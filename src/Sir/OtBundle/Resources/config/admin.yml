@@ -1,0 +1,144 @@
+services:
+#Справочники
+    sonata.admin.professionkind:
+        class: Sir\OtBundle\Admin\ProfessionkindAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Виды профессий" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Professionkind
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.profession:
+        class: Sir\OtBundle\Admin\ProfessionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Профессии" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Profession
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.marriagekind:
+        class: Sir\OtBundle\Admin\MarriagekindAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Семейное положение(типы)" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Marriagekind
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+#Предприятие
+    sonata.admin.enterprice:
+        class: Sir\OtBundle\Admin\EnterpriseAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Предприятие", label: "Предприятие" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Enterprise
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.subdivision:
+        class: Sir\OtBundle\Admin\SubdivisionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Предприятие", label: "Подразделение" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Subdivision
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.employee:
+        class: Sir\OtBundle\Admin\EmployeeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Предприятие", label: "Сотрудники" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Employee
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+#Оборудование
+    sonata.admin.registrationtype:
+        class: Sir\OtBundle\Admin\RegistrationtypeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Тип регистрации" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Registrationtype
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.technicalexaminationcause:
+        class: Sir\OtBundle\Admin\TechnicalexaminationcauseAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Причины технического осмотра" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Technicalexaminationcause
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.technicalexaminationtype:
+        class: Sir\OtBundle\Admin\TechnicalexaminationtypeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Типы технического осмотра" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Technicalexaminationtype
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.technicalexaminationkind:
+        class: Sir\OtBundle\Admin\TechnicalexaminationkindAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Виды технического осмотра" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Technicalexaminationkind
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.equipmentgroup:
+        class: Sir\OtBundle\Admin\EquipmentgroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Группы оборудования" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Equipmentgroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.equipmentsubgroup:
+        class: Sir\OtBundle\Admin\EquipmentsubgroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Подгруппы оборудования" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Equipmentsubgroup
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.technicalexamination:
+        class: Sir\OtBundle\Admin\TechnicalexaminationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Технический осмотр" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Technicalexamination
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
+    sonata.admin.equipment:
+        class: Sir\OtBundle\Admin\EquipmentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Оборудование", label: "Оборудование" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Equipment
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
