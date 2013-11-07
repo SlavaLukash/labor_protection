@@ -14,6 +14,7 @@ return array(
     'Symfony\\Bundle\\AsseticBundle' => array($vendorDir . '/symfony/assetic-bundle'),
     'Symfony\\' => array($vendorDir . '/symfony/symfony/src'),
     'Sonata\\jQueryBundle' => array($vendorDir . '/sonata-project/jquery-bundle'),
+    'Sonata\\EasyExtendsBundle' => array($vendorDir . '/sonata-project/easy-extends-bundle'),
     'Sonata\\DoctrineORMAdminBundle' => array($vendorDir . '/sonata-project/doctrine-orm-admin-bundle'),
     'Sonata\\BlockBundle' => array($vendorDir . '/sonata-project/block-bundle'),
     'Sonata\\AdminBundle' => array($vendorDir . '/sonata-project/admin-bundle'),

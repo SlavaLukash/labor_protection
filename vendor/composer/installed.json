@@ -1976,5 +1976,62 @@
             "generator",
             "sonata"
         ]
+    },
+    {
+        "name": "sonata-project/easy-extends-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/EasyExtendsBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sonata-project/SonataEasyExtendsBundle.git",
+            "reference": "af920b66659abae56a0e246361c7ffb76ff3e2c1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/af920b66659abae56a0e246361c7ffb76ff3e2c1",
+            "reference": "af920b66659abae56a0e246361c7ffb76ff3e2c1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2",
+            "symfony/console": "~2",
+            "symfony/finder": "~2",
+            "symfony/framework-bundle": "~2"
+        },
+        "time": "2013-09-20 08:29:27",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\EasyExtendsBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataEasyExtendsBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataEasyExtendsBundle",
+        "homepage": "http://sonata-project.org/bundles/easy-extends",
+        "keywords": [
+            "Easy Extends",
+            "sonata"
+        ]
     }
 ]
