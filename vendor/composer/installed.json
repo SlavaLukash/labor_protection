@@ -1838,87 +1838,6 @@
         ]
     },
     {
-        "name": "sonata-project/admin-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Sonata/AdminBundle",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-            "reference": "db176158c91197ab4de04ca79a3570d86fa84697"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/db176158c91197ab4de04ca79a3570d86fa84697",
-            "reference": "db176158c91197ab4de04ca79a3570d86fa84697",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/common": "~2.2",
-            "knplabs/knp-menu-bundle": "~1.1",
-            "sensio/generator-bundle": "~2.2",
-            "sonata-project/block-bundle": "~2.2,>=2.2.7",
-            "sonata-project/exporter": "1.*",
-            "sonata-project/jquery-bundle": "1.8.*",
-            "symfony/class-loader": "~2.2",
-            "symfony/config": "~2.2",
-            "symfony/console": "~2.2",
-            "symfony/form": "~2.2",
-            "symfony/http-foundation": "~2.2",
-            "symfony/routing": "~2.2",
-            "symfony/security-bundle": "~2.2",
-            "symfony/twig-bridge": "~2.2",
-            "symfony/validator": "~2.2",
-            "twig/extensions": "~1.0",
-            "twig/twig": "~1.12"
-        },
-        "require-dev": {
-            "jms/translation-bundle": "*@dev",
-            "sonata-project/intl-bundle": "~2.1",
-            "symfony/yaml": "~2.2"
-        },
-        "suggest": {
-            "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
-            "sonata-project/intl-bundle": "2.1.*"
-        },
-        "time": "2013-11-05 15:15:26",
-        "type": "symfony-bundle",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.2.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Sonata\\AdminBundle": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Rabaix",
-                "email": "thomas.rabaix@sonata-project.org",
-                "homepage": "http://sonata-project.org"
-            },
-            {
-                "name": "Sonata Community",
-                "homepage": "https://github.com/sonata-project/SonataAdminBundle/contributors"
-            }
-        ],
-        "description": "Symfony SonataAdminBundle",
-        "homepage": "http://sonata-project.org/bundles/admin",
-        "keywords": [
-            "Admin Generator",
-            "admin",
-            "bootstrap",
-            "sonata"
-        ]
-    },
-    {
         "name": "sonata-project/doctrine-orm-admin-bundle",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2031,6 +1950,87 @@
         "homepage": "http://sonata-project.org/bundles/easy-extends",
         "keywords": [
             "Easy Extends",
+            "sonata"
+        ]
+    },
+    {
+        "name": "sonata-project/admin-bundle",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Sonata/AdminBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sonata-project/SonataAdminBundle.git",
+            "reference": "afb14fad049c6e68d84ddc1cc4234f4772f0daf9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/afb14fad049c6e68d84ddc1cc4234f4772f0daf9",
+            "reference": "afb14fad049c6e68d84ddc1cc4234f4772f0daf9",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/common": "~2.2",
+            "knplabs/knp-menu-bundle": "~1.1",
+            "sensio/generator-bundle": "~2.2",
+            "sonata-project/block-bundle": "~2.2,>=2.2.7",
+            "sonata-project/exporter": "1.*",
+            "sonata-project/jquery-bundle": "1.8.*",
+            "symfony/class-loader": "~2.2",
+            "symfony/config": "~2.2",
+            "symfony/console": "~2.2",
+            "symfony/form": "~2.2",
+            "symfony/http-foundation": "~2.2",
+            "symfony/routing": "~2.2",
+            "symfony/security-bundle": "~2.2",
+            "symfony/twig-bridge": "~2.2",
+            "symfony/validator": "~2.2",
+            "twig/extensions": "~1.0",
+            "twig/twig": "~1.12"
+        },
+        "require-dev": {
+            "jms/translation-bundle": "*@dev",
+            "sonata-project/intl-bundle": "~2.1",
+            "symfony/yaml": "~2.2"
+        },
+        "suggest": {
+            "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
+            "sonata-project/intl-bundle": "2.1.*"
+        },
+        "time": "2013-11-06 09:53:39",
+        "type": "symfony-bundle",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.2.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Sonata\\AdminBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Rabaix",
+                "email": "thomas.rabaix@sonata-project.org",
+                "homepage": "http://sonata-project.org"
+            },
+            {
+                "name": "Sonata Community",
+                "homepage": "https://github.com/sonata-project/SonataAdminBundle/contributors"
+            }
+        ],
+        "description": "Symfony SonataAdminBundle",
+        "homepage": "http://sonata-project.org/bundles/admin",
+        "keywords": [
+            "Admin Generator",
+            "admin",
+            "bootstrap",
             "sonata"
         ]
     }

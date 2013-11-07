@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3482def622d0aa78f452433a07508010",
+    "hash": "48327c8935c67bb1e94c192e4ea63ba2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1147,12 +1147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "db176158c91197ab4de04ca79a3570d86fa84697"
+                "reference": "afb14fad049c6e68d84ddc1cc4234f4772f0daf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/db176158c91197ab4de04ca79a3570d86fa84697",
-                "reference": "db176158c91197ab4de04ca79a3570d86fa84697",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/afb14fad049c6e68d84ddc1cc4234f4772f0daf9",
+                "reference": "afb14fad049c6e68d84ddc1cc4234f4772f0daf9",
                 "shasum": ""
             },
             "require": {
@@ -1217,7 +1217,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-11-05 15:15:26"
+            "time": "2013-11-06 09:53:39"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1983,9 +1983,9 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "sonata-project/admin-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20,
-        "sonata-project/easy-extends-bundle": 20
+        "sonata-project/easy-extends-bundle": 20,
+        "sonata-project/admin-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"
