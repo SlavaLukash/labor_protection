@@ -19,6 +19,11 @@ class Subdivision
 	protected $employee;
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Usersubdivision", mappedBy="subdivision")
+	 */
+	protected $usersubdivision;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Equipment", mappedBy="subdivision")
 	 */
 	protected $equipment;
@@ -113,6 +118,7 @@ class Subdivision
      */
     public function __construct()
     {
+        $this->usersubdivision = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
         $this->equipment = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -181,5 +187,38 @@ class Subdivision
     public function getEquipment()
     {
         return $this->equipment;
+    }
+
+    /**
+     * Add usersubdivision
+     *
+     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     * @return Subdivision
+     */
+    public function addUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    {
+        $this->usersubdivision[] = $usersubdivision;
+    
+        return $this;
+    }
+
+    /**
+     * Remove usersubdivision
+     *
+     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     */
+    public function removeUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    {
+        $this->usersubdivision->removeElement($usersubdivision);
+    }
+
+    /**
+     * Get usersubdivision
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersubdivision()
+    {
+        return $this->usersubdivision;
     }
 }

@@ -1,5 +1,15 @@
 services:
 #Справочники
+    sonata.admin.users:
+        class: Sir\OtBundle\Admin\UsersubdivisionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Доступ пользователей" }
+        arguments:
+            - ~
+            - Sir\OtBundle\Entity\Usersubdivision
+            - ~
+        calls:
+            - [ setTranslationDomain, [SirOtBundle]]
     sonata.admin.professionkind:
         class: Sir\OtBundle\Admin\ProfessionkindAdmin
         tags:
