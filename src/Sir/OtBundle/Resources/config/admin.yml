@@ -6,7 +6,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Доступ пользователей" }
         arguments:
             - ~
-            - Sir\OtBundle\Entity\Usersubdivision
+            - Sir\OtBundle\Entity\User
             - ~
         calls:
             - [ setTranslationDomain, [SirOtBundle]]

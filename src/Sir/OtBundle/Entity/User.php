@@ -19,9 +19,10 @@ class User extends BaseUser
 {
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Usersubdivision", mappedBy="userid")
-	 */
-	protected $usersubdivision;
+	 * @ORM\ManyToMany(targetEntity="Subdivision", inversedBy="users")
+	 * @ORM\JoinTable(name="usersubdivision")
+	 **/
+	private $usersubdivisions;
 
 	/**
 	 * @ORM\Id
@@ -33,7 +34,7 @@ class User extends BaseUser
 	public function __construct()
 	{
 		parent::__construct();
-		$this->usersubdivision = new ArrayCollection();
+		$this->usersubdivisions = new ArrayCollection();
 		// your own logic
 	}
 
@@ -53,35 +54,35 @@ class User extends BaseUser
 	}
 
     /**
-     * Add usersubdivision
+     * Get usersubdivisions
      *
-     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsersubdivisions()
+    {
+        return $this->usersubdivisions;
+    }
+
+    /**
+     * Add usersubdivisions
+     *
+     * @param \Sir\OtBundle\Entity\Subdivision $usersubdivisions
      * @return User
      */
-    public function addUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    public function addUsersubdivision(\Sir\OtBundle\Entity\Subdivision $usersubdivisions)
     {
-        $this->usersubdivision[] = $usersubdivision;
+        $this->usersubdivisions[] = $usersubdivisions;
     
         return $this;
     }
 
     /**
-     * Remove usersubdivision
+     * Remove usersubdivisions
      *
-     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     * @param \Sir\OtBundle\Entity\Subdivision $usersubdivisions
      */
-    public function removeUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    public function removeUsersubdivision(\Sir\OtBundle\Entity\Subdivision $usersubdivisions)
     {
-        $this->usersubdivision->removeElement($usersubdivision);
-    }
-
-    /**
-     * Get usersubdivision
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUsersubdivision()
-    {
-        return $this->usersubdivision;
+        $this->usersubdivisions->removeElement($usersubdivisions);
     }
 }

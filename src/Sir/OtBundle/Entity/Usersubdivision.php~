@@ -1,0 +1,93 @@
+<?php
+
+namespace Sir\OtBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usersubdivision
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Usersubdivision
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="User", inversedBy="usersubdivision")
+	 * @ORM\JoinColumn(name="userid", referencedColumnName="id")
+	 */
+	protected $userid;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Subdivision", inversedBy="usersubdivision")
+	 * @ORM\JoinColumn(name="subdivision", referencedColumnName="id")
+	 */
+	protected $subdivision;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * Set subdivision
+     *
+     * @param \Sir\OtBundle\Entity\Subdivision $subdivision
+     * @return Usersubdivision
+     */
+    public function setSubdivision(\Sir\OtBundle\Entity\Subdivision $subdivision = null)
+    {
+        $this->subdivision = $subdivision;
+    
+        return $this;
+    }
+
+    /**
+     * Get subdivision
+     *
+     * @return \Sir\OtBundle\Entity\Subdivision 
+     */
+    public function getSubdivision()
+    {
+        return $this->subdivision;
+    }
+
+    /**
+     * Set userid
+     *
+     * @param \Sir\OtBundle\Entity\User $userid
+     * @return Usersubdivision
+     */
+    public function setUserid(\Sir\OtBundle\Entity\User $userid = null)
+    {
+        $this->userid = $userid;
+    
+        return $this;
+    }
+
+    /**
+     * Get userid
+     *
+     * @return \Sir\OtBundle\Entity\User 
+     */
+    public function getUserid()
+    {
+        return $this->userid;
+    }
+}

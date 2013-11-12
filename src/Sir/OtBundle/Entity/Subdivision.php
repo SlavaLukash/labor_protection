@@ -14,14 +14,14 @@ class Subdivision
 {
 
 	/**
+	 * @ORM\ManyToMany(targetEntity="User", mappedBy="usersubdivisions")
+	 **/
+	private $users;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="subdivision")
 	 */
 	protected $employee;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="Usersubdivision", mappedBy="subdivision")
-	 */
-	protected $usersubdivision;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="Equipment", mappedBy="subdivision")
@@ -118,7 +118,7 @@ class Subdivision
      */
     public function __construct()
     {
-        $this->usersubdivision = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
         $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
         $this->equipment = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -190,35 +190,35 @@ class Subdivision
     }
 
     /**
-     * Add usersubdivision
+     * Add users
      *
-     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     * @param \Sir\OtBundle\Entity\User $users
      * @return Subdivision
      */
-    public function addUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    public function addUser(\Sir\OtBundle\Entity\User $users)
     {
-        $this->usersubdivision[] = $usersubdivision;
+        $this->users[] = $users;
     
         return $this;
     }
 
     /**
-     * Remove usersubdivision
+     * Remove users
      *
-     * @param \Sir\OtBundle\Entity\Usersubdivision $usersubdivision
+     * @param \Sir\OtBundle\Entity\User $users
      */
-    public function removeUsersubdivision(\Sir\OtBundle\Entity\Usersubdivision $usersubdivision)
+    public function removeUser(\Sir\OtBundle\Entity\User $users)
     {
-        $this->usersubdivision->removeElement($usersubdivision);
+        $this->users->removeElement($users);
     }
 
     /**
-     * Get usersubdivision
+     * Get users
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getUsersubdivision()
+    public function getUsers()
     {
-        return $this->usersubdivision;
+        return $this->users;
     }
 }
