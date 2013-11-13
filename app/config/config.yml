@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: @SirOtBundle/Resources/config/admin.yml }
+    - { resource: @SirOtBundle/Resources/config/services.yml }
 
 framework:
     #esi:             ~
@@ -66,14 +67,14 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Sir\OtBundle\Entity\User
+
 sonata_block:
     default_contexts: [cms]
     blocks:
         # Enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
-
-fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
-    user_class: Sir\OtBundle\Entity\User

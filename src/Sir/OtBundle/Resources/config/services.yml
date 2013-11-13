@@ -1,7 +1,7 @@
 parameters:
-#    sir_ot.example.class: Sir\OtBundle\Example
+    sir_ot.example.class: Sir\OtBundle\SirOtBundle
 
 services:
-#    sir_ot.example:
-#        class: %sir_ot.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sir_ot:
+        class: Sir\OtBundle\SirOtBundle
+        arguments: ["@security.context"]

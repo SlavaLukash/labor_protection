@@ -3,7 +3,7 @@ services:
     sonata.admin.users:
         class: Sir\OtBundle\Admin\UsersubdivisionAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Справочники", label: "Доступ пользователей" }
+            - { name: sonata.admin, manager_type: orm, group: "Пользователи", label: "Доступ пользователей" }
         arguments:
             - ~
             - Sir\OtBundle\Entity\User
