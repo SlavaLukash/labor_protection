@@ -1,6 +1,6 @@
-parameters:
-    sir_ot.example.class: Sir\OtBundle\SirOtBundle
-
+#parameters:
+#    sir_ot.example.class: Sir\OtBundle\SirOtBundle
+#
 services:
     sir_ot:
         class: Sir\OtBundle\SirOtBundle

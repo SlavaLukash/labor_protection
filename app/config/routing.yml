@@ -1,5 +1,8 @@
+#admin:
+#    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+#    prefix: /
 admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    resource: '@SirOtBundle/Resources/config/routing.yml'
     prefix: /
 
 _sonata_admin:

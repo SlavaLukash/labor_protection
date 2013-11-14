@@ -8,10 +8,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SirOtBundle:Default:index.html.twig', array('name' => '11'));
-    }
-    public function helloAction($name)
-    {
-        return $this->render('SirOtBundle:Default:index.html.twig', array('name' => $name));
+		$oUser = $this->getUser();
+		$arRoles = $oUser->getRoles();
+		if(in_array('ROLE_ADMIN', $arRoles))
+		{
+			echo 1;
+		}
+		return $this->render('SirOtBundle:Admin:dashboard.html.php');
     }
 }
