@@ -1,3 +1,19 @@
+SirOtBundle_medicaltype:
+        resource: "@SirOtBundle/Resources/config/routing/medicaltype.yml"
+        prefix:   /medicaltype
+
+SirOtBundle_user:
+        resource: "@SirOtBundle/Resources/config/routing/user.yml"
+        prefix:   /user
+
+SirOtBundle_subdivision:
+        resource: "@SirOtBundle/Resources/config/routing/subdivision.yml"
+        prefix:   /subdivision
+
+SirOtBundle_enterprise:
+        resource: "@SirOtBundle/Resources/config/routing/enterprise.yml"
+        prefix:   /enterprise
+
 sir_ot:
     pattern:  /
     defaults: { _controller: SirOtBundle:Default:index }

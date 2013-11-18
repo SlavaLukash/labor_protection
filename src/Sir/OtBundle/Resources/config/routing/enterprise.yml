@@ -1,0 +1,30 @@
+ot_enterprise:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Enterprise:index" }
+
+ot_enterprise_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Enterprise:show" }
+
+ot_enterprise_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Enterprise:new" }
+
+ot_enterprise_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Enterprise:create" }
+    requirements: { _method: post }
+
+ot_enterprise_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Enterprise:edit" }
+
+ot_enterprise_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Enterprise:update" }
+    requirements: { _method: post|put }
+
+ot_enterprise_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Enterprise:delete" }
+    requirements: { _method: post|delete }

@@ -7,6 +7,12 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <h1>Тут будет какой-то крутой логотип для проекта и может быть даже слоган.</h1>
+        <ul>
+            <li><a href="{{ path('subdivision') }}">subdivision</a></li>
+            <li><a href="{{ path('ot_enterprise') }}">enterprise</a></li>
+            <li><a href="{{ path('medicaltype') }}">medicaltype</a></li>
+        </ul>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
