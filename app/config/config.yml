@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: @SirOtBundle/Resources/config/admin.yml }
     - { resource: @SirOtBundle/Resources/config/services.yml }
 
 framework:
