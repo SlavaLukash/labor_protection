@@ -10,6 +10,11 @@ class DefaultController extends Controller
     {
 		$oUser = $this->getUser();
 		$arRoles = $oUser->getRoles();
+		$oO = $this->getDoctrine();
+		$oA = $oO->getRepository('SirOtBundle:Marriagekind')->find('1');
+		echo '<pre>';
+		print_r($oA->getName());
+		echo '</pre>';
 		if(in_array('ROLE_ADMIN', $arRoles))
 		{
 			echo 1;
