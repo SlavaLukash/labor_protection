@@ -12,18 +12,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Medical
 {
+
 	/**
-	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="medical")
+	 * @ORM\JoinColumn(name="employee", referencedColumnName="id")
 	 */
 	protected $employee;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Medicalkind", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Medicalkind", inversedBy="medical")
+	 * @ORM\JoinColumn(name="medicalkind", referencedColumnName="id")
 	 */
 	protected $medicalkind;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Medicaltype", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Medicaltype", inversedBy="medical")
+	 * @ORM\JoinColumn(name="medicaltype", referencedColumnName="id")
 	 */
 	protected $medicaltype;
 
@@ -59,16 +63,6 @@ class Medical
 
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->medicalkind = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->medicaltype = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * Get id
      *
@@ -149,32 +143,22 @@ class Medical
     }
 
     /**
-     * Add employee
+     * Set employee
      *
      * @param \Sir\OtBundle\Entity\Employee $employee
      * @return Medical
      */
-    public function addEmployee(\Sir\OtBundle\Entity\Employee $employee)
+    public function setEmployee(\Sir\OtBundle\Entity\Employee $employee = null)
     {
-        $this->employee[] = $employee;
+        $this->employee = $employee;
     
         return $this;
     }
 
     /**
-     * Remove employee
-     *
-     * @param \Sir\OtBundle\Entity\Employee $employee
-     */
-    public function removeEmployee(\Sir\OtBundle\Entity\Employee $employee)
-    {
-        $this->employee->removeElement($employee);
-    }
-
-    /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Sir\OtBundle\Entity\Employee 
      */
     public function getEmployee()
     {
@@ -182,32 +166,22 @@ class Medical
     }
 
     /**
-     * Add medicalkind
+     * Set medicalkind
      *
      * @param \Sir\OtBundle\Entity\Medicalkind $medicalkind
      * @return Medical
      */
-    public function addMedicalkind(\Sir\OtBundle\Entity\Medicalkind $medicalkind)
+    public function setMedicalkind(\Sir\OtBundle\Entity\Medicalkind $medicalkind = null)
     {
-        $this->medicalkind[] = $medicalkind;
+        $this->medicalkind = $medicalkind;
     
         return $this;
     }
 
     /**
-     * Remove medicalkind
-     *
-     * @param \Sir\OtBundle\Entity\Medicalkind $medicalkind
-     */
-    public function removeMedicalkind(\Sir\OtBundle\Entity\Medicalkind $medicalkind)
-    {
-        $this->medicalkind->removeElement($medicalkind);
-    }
-
-    /**
      * Get medicalkind
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Sir\OtBundle\Entity\Medicalkind 
      */
     public function getMedicalkind()
     {
@@ -215,32 +189,22 @@ class Medical
     }
 
     /**
-     * Add medicaltype
+     * Set medicaltype
      *
      * @param \Sir\OtBundle\Entity\Medicaltype $medicaltype
      * @return Medical
      */
-    public function addMedicaltype(\Sir\OtBundle\Entity\Medicaltype $medicaltype)
+    public function setMedicaltype(\Sir\OtBundle\Entity\Medicaltype $medicaltype = null)
     {
-        $this->medicaltype[] = $medicaltype;
+        $this->medicaltype = $medicaltype;
     
         return $this;
     }
 
     /**
-     * Remove medicaltype
-     *
-     * @param \Sir\OtBundle\Entity\Medicaltype $medicaltype
-     */
-    public function removeMedicaltype(\Sir\OtBundle\Entity\Medicaltype $medicaltype)
-    {
-        $this->medicaltype->removeElement($medicaltype);
-    }
-
-    /**
      * Get medicaltype
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Sir\OtBundle\Entity\Medicaltype 
      */
     public function getMedicaltype()
     {

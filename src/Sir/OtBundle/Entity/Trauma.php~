@@ -1,0 +1,67 @@
+<?php
+
+namespace Sir\OtBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Trauma
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Trauma
+{
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="datetrauma", type="date")
+	 */
+	private $datetrauma;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="trauma")
+	 * @ORM\JoinColumn(name="employee", referencedColumnName="id")
+	 */
+	protected $employee;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="traumareport", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $traumareport;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hoursstart", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $hoursstart;
+
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Traumacause", inversedBy="trauma")
+	 * @ORM\JoinColumn(name="traumacause", referencedColumnName="id")
+	 */
+	protected $traumacause;
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Traumakind", inversedBy="trauma")
+	 * @ORM\JoinColumn(name="traumakind", referencedColumnName="id")
+	 */
+	protected $traumakind;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+}

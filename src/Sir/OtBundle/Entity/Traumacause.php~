@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Traumacause
 {
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Trauma", mappedBy="traumacause")
+	 */
+	protected $trauma;
+
     /**
      * @var integer
      *
@@ -29,36 +35,4 @@ class Traumacause
     private $name;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Traumacause
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }

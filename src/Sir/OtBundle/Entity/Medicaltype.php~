@@ -15,8 +15,7 @@ class Medicaltype
 
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Medical", inversedBy="medicaltype")
-	 * @ORM\JoinColumn(name="medical", referencedColumnName="id")
+	 * @ORM\OneToMany(targetEntity="Medical", mappedBy="medicaltype")
 	 */
 	protected $medical;
 
@@ -37,6 +36,14 @@ class Medicaltype
     private $name;
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medical = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -71,22 +78,32 @@ class Medicaltype
     }
 
     /**
-     * Set medical
+     * Add medical
      *
      * @param \Sir\OtBundle\Entity\Medical $medical
      * @return Medicaltype
      */
-    public function setMedical(\Sir\OtBundle\Entity\Medical $medical = null)
+    public function addMedical(\Sir\OtBundle\Entity\Medical $medical)
     {
-        $this->medical = $medical;
+        $this->medical[] = $medical;
     
         return $this;
     }
 
     /**
+     * Remove medical
+     *
+     * @param \Sir\OtBundle\Entity\Medical $medical
+     */
+    public function removeMedical(\Sir\OtBundle\Entity\Medical $medical)
+    {
+        $this->medical->removeElement($medical);
+    }
+
+    /**
      * Get medical
      *
-     * @return \Sir\OtBundle\Entity\Medical 
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getMedical()
     {

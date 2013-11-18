@@ -12,18 +12,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Medical
 {
+
 	/**
-	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="medical")
+	 * @ORM\JoinColumn(name="employee", referencedColumnName="id")
 	 */
 	protected $employee;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Medicalkind", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Medicalkind", inversedBy="medical")
+	 * @ORM\JoinColumn(name="medicalkind", referencedColumnName="id")
 	 */
 	protected $medicalkind;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Medicaltype", mappedBy="medical")
+	 * @ORM\ManyToOne(targetEntity="Medicaltype", inversedBy="medical")
+	 * @ORM\JoinColumn(name="medicaltype", referencedColumnName="id")
 	 */
 	protected $medicaltype;
 
@@ -59,4 +63,151 @@ class Medical
 
 
 
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Medical
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set dateplan
+     *
+     * @param \DateTime $dateplan
+     * @return Medical
+     */
+    public function setDateplan($dateplan)
+    {
+        $this->dateplan = $dateplan;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateplan
+     *
+     * @return \DateTime 
+     */
+    public function getDateplan()
+    {
+        return $this->dateplan;
+    }
+
+    /**
+     * Set datefact
+     *
+     * @param \DateTime $datefact
+     * @return Medical
+     */
+    public function setDatefact($datefact)
+    {
+        $this->datefact = $datefact;
+    
+        return $this;
+    }
+
+    /**
+     * Get datefact
+     *
+     * @return \DateTime 
+     */
+    public function getDatefact()
+    {
+        return $this->datefact;
+    }
+
+    /**
+     * Set employee
+     *
+     * @param \Sir\OtBundle\Entity\Employee $employee
+     * @return Medical
+     */
+    public function setEmployee(\Sir\OtBundle\Entity\Employee $employee = null)
+    {
+        $this->employee = $employee;
+    
+        return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \Sir\OtBundle\Entity\Employee 
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
+
+    /**
+     * Set medicalkind
+     *
+     * @param \Sir\OtBundle\Entity\Medicalkind $medicalkind
+     * @return Medical
+     */
+    public function setMedicalkind(\Sir\OtBundle\Entity\Medicalkind $medicalkind = null)
+    {
+        $this->medicalkind = $medicalkind;
+    
+        return $this;
+    }
+
+    /**
+     * Get medicalkind
+     *
+     * @return \Sir\OtBundle\Entity\Medicalkind 
+     */
+    public function getMedicalkind()
+    {
+        return $this->medicalkind;
+    }
+
+    /**
+     * Set medicaltype
+     *
+     * @param \Sir\OtBundle\Entity\Medicaltype $medicaltype
+     * @return Medical
+     */
+    public function setMedicaltype(\Sir\OtBundle\Entity\Medicaltype $medicaltype = null)
+    {
+        $this->medicaltype = $medicaltype;
+    
+        return $this;
+    }
+
+    /**
+     * Get medicaltype
+     *
+     * @return \Sir\OtBundle\Entity\Medicaltype 
+     */
+    public function getMedicaltype()
+    {
+        return $this->medicaltype;
+    }
 }

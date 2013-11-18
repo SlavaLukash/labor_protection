@@ -13,11 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
 class Employee
 {
 
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Medical", inversedBy="employee")
-	 * @ORM\JoinColumn(name="medical", referencedColumnName="id")
+	 * @ORM\OneToMany(targetEntity="Medical", mappedBy="employee")
 	 */
 	protected $medical;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Trauma", mappedBy="employee")
+	 */
+	protected $trauma;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Subdivision", inversedBy="employee")
@@ -97,6 +102,15 @@ class Employee
 
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->medical = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trauma = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
      * Get id
      *
      * @return integer 
@@ -105,7 +119,6 @@ class Employee
     {
         return $this->id;
     }
-
 
     /**
      * Set lastname
@@ -269,6 +282,72 @@ class Employee
     }
 
     /**
+     * Add medical
+     *
+     * @param \Sir\OtBundle\Entity\Medical $medical
+     * @return Employee
+     */
+    public function addMedical(\Sir\OtBundle\Entity\Medical $medical)
+    {
+        $this->medical[] = $medical;
+    
+        return $this;
+    }
+
+    /**
+     * Remove medical
+     *
+     * @param \Sir\OtBundle\Entity\Medical $medical
+     */
+    public function removeMedical(\Sir\OtBundle\Entity\Medical $medical)
+    {
+        $this->medical->removeElement($medical);
+    }
+
+    /**
+     * Get medical
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMedical()
+    {
+        return $this->medical;
+    }
+
+    /**
+     * Add trauma
+     *
+     * @param \Sir\OtBundle\Entity\Trauma $trauma
+     * @return Employee
+     */
+    public function addTrauma(\Sir\OtBundle\Entity\Trauma $trauma)
+    {
+        $this->trauma[] = $trauma;
+    
+        return $this;
+    }
+
+    /**
+     * Remove trauma
+     *
+     * @param \Sir\OtBundle\Entity\Trauma $trauma
+     */
+    public function removeTrauma(\Sir\OtBundle\Entity\Trauma $trauma)
+    {
+        $this->trauma->removeElement($trauma);
+    }
+
+    /**
+     * Get trauma
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrauma()
+    {
+        return $this->trauma;
+    }
+
+    /**
      * Set subdivision
      *
      * @param \Sir\OtBundle\Entity\Subdivision $subdivision
@@ -289,29 +368,6 @@ class Employee
     public function getSubdivision()
     {
         return $this->subdivision;
-    }
-
-    /**
-     * Set profession
-     *
-     * @param \Sir\OtBundle\Entity\Profession $profession
-     * @return Employee
-     */
-    public function setProfession(\Sir\OtBundle\Entity\Profession $profession = null)
-    {
-        $this->profession = $profession;
-    
-        return $this;
-    }
-
-    /**
-     * Get profession
-     *
-     * @return \Sir\OtBundle\Entity\Profession 
-     */
-    public function getProfession()
-    {
-        return $this->profession;
     }
 
     /**
@@ -338,25 +394,25 @@ class Employee
     }
 
     /**
-     * Set medical
+     * Set profession
      *
-     * @param \Sir\OtBundle\Entity\Medical $medical
+     * @param \Sir\OtBundle\Entity\Profession $profession
      * @return Employee
      */
-    public function setMedical(\Sir\OtBundle\Entity\Medical $medical = null)
+    public function setProfession(\Sir\OtBundle\Entity\Profession $profession = null)
     {
-        $this->medical = $medical;
+        $this->profession = $profession;
     
         return $this;
     }
 
     /**
-     * Get medical
+     * Get profession
      *
-     * @return \Sir\OtBundle\Entity\Medical 
+     * @return \Sir\OtBundle\Entity\Profession 
      */
-    public function getMedical()
+    public function getProfession()
     {
-        return $this->medical;
+        return $this->profession;
     }
 }

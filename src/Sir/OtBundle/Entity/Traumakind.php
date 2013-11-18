@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Traumakind
 {
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Trauma", mappedBy="traumakind")
+	 */
+	protected $trauma;
+
     /**
      * @var integer
      *
@@ -29,6 +35,15 @@ class Traumakind
     private $name;
 
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->trauma = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -60,5 +75,38 @@ class Traumakind
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add trauma
+     *
+     * @param \Sir\OtBundle\Entity\Trauma $trauma
+     * @return Traumakind
+     */
+    public function addTrauma(\Sir\OtBundle\Entity\Trauma $trauma)
+    {
+        $this->trauma[] = $trauma;
+    
+        return $this;
+    }
+
+    /**
+     * Remove trauma
+     *
+     * @param \Sir\OtBundle\Entity\Trauma $trauma
+     */
+    public function removeTrauma(\Sir\OtBundle\Entity\Trauma $trauma)
+    {
+        $this->trauma->removeElement($trauma);
+    }
+
+    /**
+     * Get trauma
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrauma()
+    {
+        return $this->trauma;
     }
 }
