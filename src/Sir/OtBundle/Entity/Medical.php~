@@ -1,0 +1,62 @@
+<?php
+
+namespace Sir\OtBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Medical
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Medical
+{
+	/**
+	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="medical")
+	 */
+	protected $employee;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Medicalkind", mappedBy="medical")
+	 */
+	protected $medicalkind;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Medicaltype", mappedBy="medical")
+	 */
+	protected $medicaltype;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255)
+     */
+    private $comment;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="dateplan", type="date")
+	 */
+	private $dateplan;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="datefact", type="date")
+	 */
+	private $datefact;
+
+
+
+}

@@ -12,6 +12,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Medicaltype
 {
+
+
+	/**
+	 * @ORM\ManyToOne(targetEntity="Medical", inversedBy="medicaltype")
+	 * @ORM\JoinColumn(name="medical", referencedColumnName="id")
+	 */
+	protected $medical;
+
     /**
      * @var integer
      *
@@ -60,5 +68,28 @@ class Medicaltype
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set medical
+     *
+     * @param \Sir\OtBundle\Entity\Medical $medical
+     * @return Medicaltype
+     */
+    public function setMedical(\Sir\OtBundle\Entity\Medical $medical = null)
+    {
+        $this->medical = $medical;
+    
+        return $this;
+    }
+
+    /**
+     * Get medical
+     *
+     * @return \Sir\OtBundle\Entity\Medical 
+     */
+    public function getMedical()
+    {
+        return $this->medical;
     }
 }
