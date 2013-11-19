@@ -415,4 +415,9 @@ class Employee
     {
         return $this->profession;
     }
+
+	public function __toString()
+	{
+		return $this->lastname;
+	}
 }
