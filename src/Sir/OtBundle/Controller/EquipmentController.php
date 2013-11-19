@@ -5,37 +5,37 @@ namespace Sir\OtBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Sir\OtBundle\Entity\Enterprise;
-use Sir\OtBundle\Form\EnterpriseType;
+use Sir\OtBundle\Entity\Equipment;
+use Sir\OtBundle\Form\EquipmentType;
 
 /**
- * Enterprise controller.
+ * Equipment controller.
  *
  */
-class EnterpriseController extends Controller
+class EquipmentController extends Controller
 {
 
     /**
-     * Lists all Enterprise entities.
+     * Lists all Equipment entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+        $entities = $em->getRepository('SirOtBundle:Equipment')->findAll();
 
-        return $this->render('SirOtBundle:Enterprise:index.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Enterprise entity.
+     * Creates a new Equipment entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Enterprise();
+        $entity = new Equipment();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class EnterpriseController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('enterprise_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('equipment_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('SirOtBundle:Enterprise:new.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Enterprise entity.
+    * Creates a form to create a Equipment entity.
     *
-    * @param Enterprise $entity The entity
+    * @param Equipment $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Enterprise $entity)
+    private function createCreateForm(Equipment $entity)
     {
-        $form = $this->createForm(new EnterpriseType(), $entity, array(
-            'action' => $this->generateUrl('enterprise_create'),
+        $form = $this->createForm(new EquipmentType(), $entity, array(
+            'action' => $this->generateUrl('equipment_create'),
             'method' => 'POST',
         ));
 
@@ -73,59 +73,59 @@ class EnterpriseController extends Controller
     }
 
     /**
-     * Displays a form to create a new Enterprise entity.
+     * Displays a form to create a new Equipment entity.
      *
      */
     public function newAction()
     {
-        $entity = new Enterprise();
+        $entity = new Equipment();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('SirOtBundle:Enterprise:new.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Enterprise entity.
+     * Finds and displays a Equipment entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Enterprise')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Enterprise entity.');
+            throw $this->createNotFoundException('Unable to find Equipment entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SirOtBundle:Enterprise:show.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to edit an existing Enterprise entity.
+     * Displays a form to edit an existing Equipment entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Enterprise')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Enterprise entity.');
+            throw $this->createNotFoundException('Unable to find Equipment entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SirOtBundle:Enterprise:edit.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -133,16 +133,16 @@ class EnterpriseController extends Controller
     }
 
     /**
-    * Creates a form to edit a Enterprise entity.
+    * Creates a form to edit a Equipment entity.
     *
-    * @param Enterprise $entity The entity
+    * @param Equipment $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Enterprise $entity)
+    private function createEditForm(Equipment $entity)
     {
-        $form = $this->createForm(new EnterpriseType(), $entity, array(
-            'action' => $this->generateUrl('enterprise_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new EquipmentType(), $entity, array(
+            'action' => $this->generateUrl('equipment_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -151,17 +151,17 @@ class EnterpriseController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Enterprise entity.
+     * Edits an existing Equipment entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Enterprise')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Enterprise entity.');
+            throw $this->createNotFoundException('Unable to find Equipment entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -171,17 +171,17 @@ class EnterpriseController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('enterprise_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('equipment_edit', array('id' => $id)));
         }
 
-        return $this->render('SirOtBundle:Enterprise:edit.html.twig', array(
+        return $this->render('SirOtBundle:Equipment:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Enterprise entity.
+     * Deletes a Equipment entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -191,21 +191,21 @@ class EnterpriseController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SirOtBundle:Enterprise')->find($id);
+            $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Enterprise entity.');
+                throw $this->createNotFoundException('Unable to find Equipment entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('enterprise'));
+        return $this->redirect($this->generateUrl('Equipment'));
     }
 
     /**
-     * Creates a form to delete a Enterprise entity by id.
+     * Creates a form to delete a Equipment entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -214,7 +214,7 @@ class EnterpriseController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('enterprise_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('equipment_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

@@ -1,0 +1,154 @@
+body {
+	background: url('../images/body-bg.png');
+}
+
+#b-wrapper {
+	width: 1000px;
+	margin: -40px auto 0 auto;
+	background: url('../images/wrapper-bg.png') no-repeat 50% 232px;
+}
+
+.b-line-top {
+	background: url('../images/top-line-bg.jpg') repeat-x;
+}
+.b-line-wrap {
+	background: url('../images/body-bg.png');
+}
+.b-line-top, .b-line-wrap {
+	width: 100%;
+	height: 40px;
+}
+
+.l-line-wrap-l{
+	float: left;
+}
+.l-line-wrap-r{
+	float: right;
+}
+.l-line-wrap-l .bd-line, .l-line-wrap-r .bd-line {
+	height: 40px;
+	width: 4px;
+	position: absolute;
+}
+.l-line-wrap-l .bd-line {
+	background: url('../images/wrap-line-l.png') no-repeat;
+	right: -4px;
+}
+.l-line-wrap-r .bd-line {
+	background: url('../images/wrap-line-r.png') no-repeat;
+	left: -4px;
+}
+
+.l-line-wrap-l, .l-line-wrap-r {
+	background: url('../images/top-line-bg.jpg') repeat-x;
+	width: 440px;
+	height: 40px;
+	position: relative;
+}
+
+.b-logo {
+	float: left;
+	margin-left: 4px;
+	width: 112px;
+	text-align: center;
+	padding-top: 9px;
+}
+
+h1.l-title {
+	text-align: center;
+	font-size: 16px;
+	margin-top: 8px;
+}
+
+ul#b-top-menu {
+	list-style-type: none;
+	margin: 10px 0 14px 0;
+	display: inline-block;
+}
+
+ul#b-top-menu li {
+	float: left;
+	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -46px;
+	height: 43px; width: 193px;
+	margin-right: 5px;
+	border: 1px solid #21759b;
+	border-radius: 3px;
+	text-align: center;
+}
+
+ul#b-top-menu li.active, ul#b-top-menu li:hover {
+	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -1px;
+	border: 1px solid #7e7e7e;
+}
+	ul#b-top-menu li a {
+		text-decoration: none;
+		color: #ffffff;
+		font-size: 14px;
+		line-height: 43px;
+	}
+
+div.b-left-menu {
+	width: 210px;
+	display: table-cell;
+}
+	div.b-left-menu ul {
+		list-style-type: none;
+	}
+		div.b-left-menu ul li {
+			width: 196px; height: 33px;
+			background: #e6e6e6;
+			border-top: 1px solid #ffffff;
+			border-bottom: 1px solid #d6d6d6;
+			position: relative;
+		}
+			div.b-left-menu ul li a {
+				text-decoration: none;
+				line-height: 28px;
+				color: #333333;
+			}
+			div.b-left-menu ul li a:hover {
+				color: #ffffff;
+			}
+
+			div.b-left-menu ul li a:hover p {
+				background: url('../images/left-menu-hover.png') no-repeat;
+			}
+				div.b-left-menu ul li a p {
+					padding-left: 23px;
+					height: 29px;
+					position: absolute;
+					width: 181px;
+					top: 3px;
+				}
+
+div#b-content-werapper {
+	min-height: 560px;
+}
+
+div#b-content {
+	display: table-cell;
+	vertical-align: top;
+}
+
+div#b-footer {
+	height: 50px;
+	width: 100%;
+}
+
+div#b-footer a {
+	text-decoration: underline;
+}
+
+div#b-footer a, div#b-footer p {
+	color: #6b6b6b;
+}
+
+div.b-footer-left {
+	float: left;
+	margin-top: 22px;
+}
+
+div.b-footer-right {
+	float: right;
+	margin-top: 22px;
+}

@@ -4,7 +4,7 @@ namespace Sir\OtBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class EnterpriseControllerTest extends WebTestCase
+class EquipmentControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class EnterpriseControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/enterprise/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /enterprise/");
+        $crawler = $client->request('GET', '/equipment/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /equipment/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'sir_otbundle_enterprisetype[field_name]'  => 'Test',
+            'sir_otbundle_equipmenttype[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class EnterpriseControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Edit')->form(array(
-            'sir_otbundle_enterprisetype[field_name]'  => 'Foo',
+            'sir_otbundle_equipmenttype[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 
