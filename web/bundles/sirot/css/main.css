@@ -109,17 +109,16 @@ div.b-left-menu {
 			div.b-left-menu ul li a:hover {
 				color: #ffffff;
 			}
-
-			div.b-left-menu ul li a:hover p {
+			div.b-left-menu ul li a:hover p, div.b-left-menu ul li.active a p {
 				background: url('../images/left-menu-hover.png') no-repeat;
 			}
-				div.b-left-menu ul li a p {
-					padding-left: 23px;
-					height: 29px;
-					position: absolute;
-					width: 181px;
-					top: 3px;
-				}
+			div.b-left-menu ul li a p {
+				padding-left: 23px;
+				height: 29px;
+				position: absolute;
+				width: 181px;
+				top: 3px;
+			}
 
 div#b-content-werapper {
 	min-height: 560px;
