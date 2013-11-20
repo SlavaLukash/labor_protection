@@ -106,11 +106,9 @@ div.b-left-menu {
 				text-decoration: none;
 				line-height: 28px;
 			}
-			div.b-left-menu ul li a:hover {
-				color: #ffffff;
-			}
 			div.b-left-menu ul li a:hover p, div.b-left-menu ul li.active a p {
 				background: url('../images/left-menu-hover.png') no-repeat;
+				color: #ffffff;
 			}
 			div.b-left-menu ul li a p {
 				padding-left: 23px;

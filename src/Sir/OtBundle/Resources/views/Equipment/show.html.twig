@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block submenu %}
+    {{ include('SirOtBundle:Submenu:Equipment.html.twig') }}
+{% endblock %}
+
 {% block body -%}
     <h1>Equipment</h1>
 
