@@ -22,9 +22,10 @@
                 <div class="clear"></div>
                 <h1 class="l-title">Управление Труда и Социальной Защиты Населения НАО</h1>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {{ get_controller_name() }}
                     <ul id="b-top-menu">
-                        <li><a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a></li>
-                        <li class="active"><a href="#"><p>СОТРУДНИКИ</p></a></li>
+                        <li {% if get_controller_name() == 'equipment' %}class="active"{% endif %}><a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a></li>
+                        <li><a href="#"><p>СОТРУДНИКИ</p></a></li>
                         <li><a href="#"><p>ОБОРУДОВАНИЕ</p></a></li>
                         <li><a href="#"><p>ЗАТРАТЫ</p></a></li>
                         <li><a href="#"><p>ОТЧЕТЫ</p></a></li>
@@ -35,13 +36,7 @@
             <div id="b-content-werapper">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {% block submenu %}
-                        <div class="b-left-menu">
-                            <ul>
-                                <li><a href="#"><p>Реестр сотрудников</p></a></li>
-                                <li><a href="#"><p>График медосмотров</p></a></li>
-                                <li><a href="#"><p>Травматизм</p></a></li>
-                            </ul>
-                        </div>
+
                     {% endblock %}
                 {% endif %}
 

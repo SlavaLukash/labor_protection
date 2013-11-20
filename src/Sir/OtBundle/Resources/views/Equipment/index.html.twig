@@ -1,5 +1,18 @@
 {% extends '::base.html.twig' %}
 
+{% block submenu %}
+    <div class="b-left-menu">
+        <ul>
+            <li  {% if get_action_name() == 'index' %}class="active"{% endif %}>
+                <a href="#"><p>Реестр оборудования</p></a>
+            </li>
+            <li>
+                <a href="#"><p>Тех. освидетельств.</p></a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+
 {% block body -%}
     <h1>{% trans %}Equipment list{% endtrans %}</h1>
 

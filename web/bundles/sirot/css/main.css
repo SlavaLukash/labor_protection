@@ -105,11 +105,11 @@ div.b-left-menu ul li a {
 	text-decoration: none;
 	line-height: 28px;
 }
-div.b-left-menu ul li a:hover {
+div.b-left-menu ul li a:hover, div.b-left-menu ul li.active a {
 	color: #ffffff;
 }
 
-div.b-left-menu ul li a:hover p {
+div.b-left-menu ul li a:hover p, div.b-left-menu ul li.active a p {
 	background: url('../images/left-menu-hover.png') no-repeat;
 }
 div.b-left-menu ul li a p {

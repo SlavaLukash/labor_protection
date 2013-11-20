@@ -2,6 +2,16 @@
 #    sir_ot.example.class: Sir\OtBundle\SirOtBundle
 #
 services:
-    sir_ot:
-        class: Sir\OtBundle\SirOtBundle
-        arguments: ["@security.context"]
+  sir_ot:
+    class: Sir\OtBundle\SirOtBundle
+    arguments: ["@security.context"]
+
+  request:
+    class:        Symfony\Component\HttpFoundation\Reques
+
+  sir.twig.extension:
+    class: Sir\OtBundle\Twig\Extension\SirOtExtension
+    arguments:  [@request]
+    tags:
+      - { name: 'twig.extension' }
+
