@@ -80,45 +80,45 @@ ul#b-top-menu li.active, ul#b-top-menu li:hover {
 	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -1px;
 	border: 1px solid #7e7e7e;
 }
-ul#b-top-menu li a {
-	text-decoration: none;
-	color: #ffffff;
-	font-size: 14px;
-	line-height: 43px;
-}
+	ul#b-top-menu li a {
+		text-decoration: none;
+		color: #ffffff;
+		font-size: 14px;
+		line-height: 43px;
+	}
 
 div.b-left-menu {
 	width: 210px;
 	display: table-cell;
 }
-div.b-left-menu ul {
-	list-style-type: none;
-}
-div.b-left-menu ul li {
-	width: 196px; height: 33px;
-	background: #e6e6e6;
-	border-top: 1px solid #ffffff;
-	border-bottom: 1px solid #d6d6d6;
-	position: relative;
-}
-div.b-left-menu ul li a {
-	text-decoration: none;
-	line-height: 28px;
-}
-div.b-left-menu ul li a:hover, div.b-left-menu ul li.active a {
-	color: #ffffff;
-}
+	div.b-left-menu ul {
+		list-style-type: none;
+	}
+		div.b-left-menu ul li {
+			width: 196px; height: 33px;
+			background: #e6e6e6;
+			border-top: 1px solid #ffffff;
+			border-bottom: 1px solid #d6d6d6;
+			position: relative;
+		}
+			div.b-left-menu ul li a {
+				text-decoration: none;
+				line-height: 28px;
+			}
+			div.b-left-menu ul li a:hover {
+				color: #ffffff;
+			}
 
-div.b-left-menu ul li a:hover p, div.b-left-menu ul li.active a p {
-	background: url('../images/left-menu-hover.png') no-repeat;
-}
-div.b-left-menu ul li a p {
-	padding-left: 23px;
-	height: 29px;
-	position: absolute;
-	width: 181px;
-	top: 3px;
-}
+			div.b-left-menu ul li a:hover p {
+				background: url('../images/left-menu-hover.png') no-repeat;
+			}
+				div.b-left-menu ul li a p {
+					padding-left: 23px;
+					height: 29px;
+					position: absolute;
+					width: 181px;
+					top: 3px;
+				}
 
 div#b-content-werapper {
 	min-height: 560px;
@@ -151,83 +151,3 @@ div.b-footer-right {
 	float: right;
 	margin-top: 22px;
 }
-
-div.b-login {
-	width: 365px;
-	background-color: #e6e6e6;
-	border-right: 1px solid #afafaf;
-	border-bottom: 1px solid #afafaf;
-	border-radius: 0 5px 5px 5px;
-	margin: 150px 0 0 312px;
-}
-div.b-login h2 {
-	background: url('../images/login-head.jpg') repeat-x;
-	height: 38px;
-	border-radius: 5px 5px 0 0;
-	color: #ffffff;
-	font-size: 23px;
-	line-height: 37px;
-	padding-left: 25px;
-}
-
-div.b-login-form {}
-
-div.b-input {
-	border-bottom: 1px solid #cccccc;
-	padding: 10px 0 0 25px;
-}
-div.b-login-form input[type="text"], div.b-login-form input[type="password"] {
-	border: 1px solid #cccccc;
-	border-left: none;
-	border-radius: 0 3px 3px 0;
-	height: 26px; width: 280px;
-	padding-left: 10px;
-	color: #212121;
-}
-div.b-login-form div.email-label, div.b-login-form div.password-label {
-	height: 30px; width: 30px;
-	padding-left: 30px;
-}
-div.b-login-form div.email-label {
-	background: url('../images/login-label.png') no-repeat;
-	margin: 10px 0 7px 0;
-}
-div.b-login-form div.password-label {
-	background: url('../images/pass-label.png') no-repeat;
-	margin-bottom: 14px;
-}
-
-div.b-submit {
-	padding: 18px 0 0 25px;
-	position: relative;
-	border-top: 1px solid #ffffff;
-	height: 34px;
-}
-
-label.checkbox-label {
-	font-size: 11px;
-}
-
-div.el-submit {
-	position: absolute;
-	right: 10px; top: 10px;
-}
-div.el-submit em{
-	width: 4px; height: 30px;
-	background: url('../images/submit-btn-l.png') no-repeat top;
-	float: left;
-}
-div.el-submit input {
-	border: none; height: 30px;
-	background: url('../images/submit-btn-bg.png') repeat-x;
-	font-size: 14px; color: #ffffff;
-	float: left; cursor: pointer;
-	margin: 0; padding: 0 16px;
-}
-div.el-submit b{
-	width: 4px; height: 30px;
-	background: url('../images/submit-btn-r.png') no-repeat;
-	float: left;
-}
-
-

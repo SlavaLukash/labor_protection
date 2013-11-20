@@ -1,3 +1,7 @@
+SirOtBundle_technicalexamination:
+        resource: "@SirOtBundle/Resources/config/routing/technicalexamination.yml"
+        prefix:   /technicalexamination
+
 SirOtBundle_equipment:
         resource: "@SirOtBundle/Resources/config/routing/equipment.yml"
         prefix:   /equipment

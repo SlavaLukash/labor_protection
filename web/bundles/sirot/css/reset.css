@@ -15,16 +15,16 @@ body, code, dl, dd, form, pre {
 	margin: 0;
 }
 a {
-	color: #21759b;
+	color: #333333;
 }
 a:link {
-	color: #21759b;
+	color: #333333;
 }
 a:link, a:visited, ins {
 	text-decoration: none;
 }
 a:visited {
-	color: #21759b;
+	color: #333333;
 }
 a:hover {
 	text-decoration: underline;

@@ -7,7 +7,9 @@
             <link rel="stylesheet" href="{{ asset('bundles/sirot/css/reset.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/sirot/css/main.css') }}" type="text/css" media="all" />
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/sirot/js/jquery-1.10.2.min.js') }}"></script>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -24,7 +26,13 @@
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {{ get_controller_name() }}
                     <ul id="b-top-menu">
-                        <li {% if get_controller_name() == 'equipment' %}class="active"{% endif %}><a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a></li>
+                        <li {% if (get_controller_name() == 'equipment'
+                                or get_controller_name() == 'technicalexamination')
+                            %}
+                                    class="active"
+                            {% endif %}>
+                            <a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a>
+                        </li>
                         <li><a href="#"><p>СОТРУДНИКИ</p></a></li>
                         <li><a href="#"><p>ОБОРУДОВАНИЕ</p></a></li>
                         <li><a href="#"><p>ЗАТРАТЫ</p></a></li>
@@ -35,9 +43,7 @@
             <div class="clear"></div>
             <div id="b-content-werapper">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {% block submenu %}
-
-                    {% endblock %}
+                    {% block submenu %}{% endblock %}
                 {% endif %}
 
                 <div id="b-content">

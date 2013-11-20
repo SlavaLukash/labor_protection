@@ -1,0 +1,30 @@
+technicalexamination:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Technicalexamination:index" }
+
+technicalexamination_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Technicalexamination:show" }
+
+technicalexamination_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Technicalexamination:new" }
+
+technicalexamination_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Technicalexamination:create" }
+    requirements: { _method: post }
+
+technicalexamination_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Technicalexamination:edit" }
+
+technicalexamination_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Technicalexamination:update" }
+    requirements: { _method: post|put }
+
+technicalexamination_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Technicalexamination:delete" }
+    requirements: { _method: post|delete }
