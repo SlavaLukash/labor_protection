@@ -3,6 +3,7 @@
 namespace Sir\OtBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Expensekind
@@ -12,7 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Expensekind
 {
-    /**
+
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Expense", mappedBy="expensekind")
+	 */
+	protected $expense;
+
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -28,37 +36,15 @@ class Expensekind
      */
     private $name;
 
+	public function __construct()
+	{
+		$this->expense = new ArrayCollection();
+	}
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	public function __toString()
+	{
+		return $this->name;
+	}
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Expensekind
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }
