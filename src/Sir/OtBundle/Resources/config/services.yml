@@ -7,7 +7,7 @@ services:
     arguments: ["@security.context"]
 
   request:
-    class:        Symfony\Component\HttpFoundation\Reques
+    class:        Symfony\Component\HttpFoundation\Request
 
   sir.twig.extension:
     class: Sir\OtBundle\Twig\Extension\SirOtExtension

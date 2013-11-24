@@ -15,6 +15,11 @@ class Enterprise
 {
 
 	/**
+	 * @ORM\OneToMany(targetEntity="Expense", mappedBy="enterprise")
+	 */
+	protected $expense;
+
+	/**
 	 * @ORM\OneToMany(targetEntity="Subdivision", mappedBy="enterprise")
 	 */
 	protected $subdivision;
@@ -22,6 +27,7 @@ class Enterprise
 	public function __construct()
 	{
 		$this->subdivision = new ArrayCollection();
+		$this->expense = new ArrayCollection();
 	}
 
     /**
@@ -53,6 +59,12 @@ class Enterprise
      * @ORM\Column(name="okved", type="string", length=8)
      */
     private $okved;
+
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 
 
     /**
@@ -135,9 +147,42 @@ class Enterprise
     }
 
     /**
-     * Add subdivisions
+     * Add expense
      *
-     * @param \Sir\OtBundle\Entity\Subdivision $subdivisions
+     * @param \Sir\OtBundle\Entity\Expense $expense
+     * @return Enterprise
+     */
+    public function addExpense(\Sir\OtBundle\Entity\Expense $expense)
+    {
+        $this->expense[] = $expense;
+    
+        return $this;
+    }
+
+    /**
+     * Remove expense
+     *
+     * @param \Sir\OtBundle\Entity\Expense $expense
+     */
+    public function removeExpense(\Sir\OtBundle\Entity\Expense $expense)
+    {
+        $this->expense->removeElement($expense);
+    }
+
+    /**
+     * Get expense
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExpense()
+    {
+        return $this->expense;
+    }
+
+    /**
+     * Add subdivision
+     *
+     * @param \Sir\OtBundle\Entity\Subdivision $subdivision
      * @return Enterprise
      */
     public function addSubdivision(\Sir\OtBundle\Entity\Subdivision $subdivision)
@@ -148,29 +193,14 @@ class Enterprise
     }
 
     /**
-     * Remove subdivisions
+     * Remove subdivision
      *
-     * @param \Sir\OtBundle\Entity\Subdivision $subdivisions
+     * @param \Sir\OtBundle\Entity\Subdivision $subdivision
      */
-    public function removeSubdivision(\Sir\OtBundle\Entity\Subdivision $subdivisions)
+    public function removeSubdivision(\Sir\OtBundle\Entity\Subdivision $subdivision)
     {
-        $this->subdivisions->removeElement($subdivisions);
+        $this->subdivision->removeElement($subdivision);
     }
-
-    /**
-     * Get subdivisions
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSubdivisions()
-    {
-        return $this->subdivisions;
-    }
-
-	public function __toString()
-	{
-		return $this->name;
-	}
 
     /**
      * Get subdivision

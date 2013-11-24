@@ -3,6 +3,7 @@
 namespace Sir\OtBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Expensekind
@@ -12,7 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Expensekind
 {
-    /**
+
+
+	/**
+	 * @ORM\OneToMany(targetEntity="Expense", mappedBy="expensekind")
+	 */
+	protected $expense;
+
+	/**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -27,6 +35,17 @@ class Expensekind
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+	public function __construct()
+	{
+		$this->expense = new ArrayCollection();
+	}
+
+	public function __toString()
+	{
+		return $this->name;
+	}
+
 
 
     /**
@@ -60,5 +79,38 @@ class Expensekind
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add expense
+     *
+     * @param \Sir\OtBundle\Entity\Expense $expense
+     * @return Expensekind
+     */
+    public function addExpense(\Sir\OtBundle\Entity\Expense $expense)
+    {
+        $this->expense[] = $expense;
+    
+        return $this;
+    }
+
+    /**
+     * Remove expense
+     *
+     * @param \Sir\OtBundle\Entity\Expense $expense
+     */
+    public function removeExpense(\Sir\OtBundle\Entity\Expense $expense)
+    {
+        $this->expense->removeElement($expense);
+    }
+
+    /**
+     * Get expense
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExpense()
+    {
+        return $this->expense;
     }
 }
