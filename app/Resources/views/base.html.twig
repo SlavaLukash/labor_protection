@@ -25,19 +25,7 @@
                 <div class="clear"></div>
                 <h1 class="l-title">Управление Труда и Социальной Защиты Населения НАО</h1>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <ul id="b-top-menu">
-                        <li {% if (get_controller_name() == 'equipment'
-                                or get_controller_name() == 'technicalexamination')
-                            %}
-                                    class="active"
-                            {% endif %}>
-                            <a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a>
-                        </li>
-                        <li><a href="{{ path('profession') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a></li>
-                        <li><a href="{{ path('employee') }}"><p>СОТРУДНИКИ</p></a></li>
-                        <li><a href="#"><p>ЗАТРАТЫ</p></a></li>
-                        <li><a href="#"><p>ОТЧЕТЫ</p></a></li>
-                    </ul>
+                    {{ include('SirOtBundle:Submenu:MainMenu.html.twig') }}
                 {% endif %}
             </div>
             <div class="clear"></div>

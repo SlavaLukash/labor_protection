@@ -1,0 +1,34 @@
+<ul id="b-top-menu">
+    <li {% if (get_controller_name() == 'equipment'
+    or get_controller_name() == 'technicalexamination')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a>
+    </li>
+    <li {% if (get_controller_name() == 'profession'
+    or get_controller_name() == 'enterprise'
+    or get_controller_name() == 'subdivision'
+    or get_controller_name() == 'professionkind'
+    or get_controller_name() == 'medicalkind'
+    or get_controller_name() == 'medicaltype'
+    or get_controller_name() == 'traumakind'
+    or get_controller_name() == 'traumacause'
+    or get_controller_name() == 'equipmentgroup'
+    or get_controller_name() == 'equipmentsubgroup')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('profession') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
+    </li>
+    <li {% if (get_controller_name() == 'employee'
+    or get_controller_name() == 'medical'
+    or get_controller_name() == 'trauma')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('employee') }}"><p>СОТРУДНИКИ</p></a>
+    </li>
+    <li><a href="#"><p>ЗАТРАТЫ</p></a></li>
+    <li><a href="#"><p>ОТЧЕТЫ</p></a></li>
+</ul>
