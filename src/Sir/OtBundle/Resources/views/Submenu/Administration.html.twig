@@ -1,16 +1,32 @@
 <div class="b-left-menu">
     <ul>
         <li><a href="{{ path('profession') }}"><p>Пользователи</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Предприятия</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Структурные подразделения</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Профессии</p></a></li>
-        <li><a href="{{ path('professionkind') }}"><p>Виды профессий</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Виды медосмотров</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Характер медосмотра</p></a></li>
+        <li {% if get_controller_name() == 'enterprise' %}class="active"{% endif %}>
+            <a href="{{ path('enterprise') }}"><p>Предприятия</p></a>
+        </li>
+        <li {% if get_controller_name() == 'subdivision' %}class="active"{% endif %}>
+            <a href="{{ path('subdivision') }}"><p>Структурные подразделения</p></a>
+        </li>
+        <li {% if get_controller_name() == 'profession' %}class="active"{% endif %}>
+            <a href="{{ path('profession') }}"><p>Профессии</p></a>
+        </li>
+        <li {% if get_controller_name() == 'professionkind' %}class="active"{% endif %}>
+            <a href="{{ path('professionkind') }}"><p>Виды профессий</p></a>
+        </li>
+        <li {% if get_controller_name() == 'medicalkind' %}class="active"{% endif %}>
+            <a href="{{ path('medicalkind') }}"><p>Виды медосмотров</p></a>
+        </li>
+        <li {% if get_controller_name() == 'medicaltype' %}class="active"{% endif %}>
+            <a href="{{ path('medicaltype') }}"><p>Характер медосмотра</p></a>
+        </li>
         <li><a href="{{ path('profession') }}"><p>Виды происшествий</p></a></li>
         <li><a href="{{ path('profession') }}"><p>Причины несчастных случаев</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Группы оборудования</p></a></li>
-        <li><a href="{{ path('profession') }}"><p>Подгруппы оборудования</p></a></li>
+        <li {% if get_controller_name() == 'equipmentgroup' %}class="active"{% endif %}>
+            <a href="{{ path('equipmentgroup') }}"><p>Группы оборудования</p></a>
+        </li>
+        <li {% if get_controller_name() == 'equipmentsubgroup' %}class="active"{% endif %}>
+            <a href="{{ path('equipmentsubgroup') }}"><p>Подгруппы оборудования</p></a>
+        </li>
         <li><a href="{{ path('profession') }}"><p>Виды затрат на охрану труда</p></a></li>
     </ul>
 </div>
