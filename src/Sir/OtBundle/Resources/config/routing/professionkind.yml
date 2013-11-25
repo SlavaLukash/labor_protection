@@ -1,0 +1,30 @@
+professionkind:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Professionkind:index" }
+
+professionkind_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Professionkind:show" }
+
+professionkind_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Professionkind:new" }
+
+professionkind_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Professionkind:create" }
+    requirements: { _method: post }
+
+professionkind_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Professionkind:edit" }
+
+professionkind_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Professionkind:update" }
+    requirements: { _method: post|put }
+
+professionkind_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Professionkind:delete" }
+    requirements: { _method: post|delete }

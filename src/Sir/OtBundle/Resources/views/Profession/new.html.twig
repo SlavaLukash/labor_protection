@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>Profession creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('profession') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

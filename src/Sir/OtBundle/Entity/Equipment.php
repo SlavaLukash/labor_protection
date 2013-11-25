@@ -30,6 +30,7 @@ class Equipment
 	/**
 	 * @ORM\ManyToOne(targetEntity="Subdivision", inversedBy="equipment")
 	 * @ORM\JoinColumn(name="subdivision", referencedColumnName="id")
+	 * @Symfony\Component\Validator\Constraints\NotBlank
 	 */
 	protected $subdivision;
 
@@ -55,6 +56,7 @@ class Equipment
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+	 * @Symfony\Component\Validator\Constraints\NotBlank
      */
     private $name;
 
@@ -62,6 +64,7 @@ class Equipment
      * @var string
      *
      * @ORM\Column(name="model", type="string", length=255)
+	 * @Symfony\Component\Validator\Constraints\NotBlank
      */
     private $model;
 

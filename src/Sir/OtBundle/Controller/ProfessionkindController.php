@@ -5,37 +5,37 @@ namespace Sir\OtBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Sir\OtBundle\Entity\Equipment;
-use Sir\OtBundle\Form\EquipmentType;
+use Sir\OtBundle\Entity\Professionkind;
+use Sir\OtBundle\Form\ProfessionkindType;
 
 /**
- * Equipment controller.
+ * Professionkind controller.
  *
  */
-class EquipmentController extends Controller
+class ProfessionkindController extends Controller
 {
 
     /**
-     * Lists all Equipment entities.
+     * Lists all Professionkind entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SirOtBundle:Equipment')->findAll();
+        $entities = $em->getRepository('SirOtBundle:Professionkind')->findAll();
 
-        return $this->render('SirOtBundle:Equipment:index.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Equipment entity.
+     * Creates a new Professionkind entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Equipment();
+        $entity = new Professionkind();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,86 +44,88 @@ class EquipmentController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('equipment_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('professionkind_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('SirOtBundle:Equipment:new.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a Equipment entity.
+    * Creates a form to create a Professionkind entity.
     *
-    * @param Equipment $entity The entity
+    * @param Professionkind $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Equipment $entity)
+    private function createCreateForm(Professionkind $entity)
     {
-        $form = $this->createForm(new EquipmentType(), $entity, array(
-            'action' => $this->generateUrl('equipment_create'),
+        $form = $this->createForm(new ProfessionkindType(), $entity, array(
+            'action' => $this->generateUrl('professionkind_create'),
             'method' => 'POST',
         ));
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Equipment entity.
+     * Displays a form to create a new Professionkind entity.
      *
      */
     public function newAction()
     {
-        $entity = new Equipment();
+        $entity = new Professionkind();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('SirOtBundle:Equipment:new.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Equipment entity.
+     * Finds and displays a Professionkind entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Professionkind')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Equipment entity.');
+            throw $this->createNotFoundException('Unable to find Professionkind entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SirOtBundle:Equipment:show.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),        ));
     }
 
     /**
-     * Displays a form to edit an existing Equipment entity.
+     * Displays a form to edit an existing Professionkind entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Professionkind')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Equipment entity.');
+            throw $this->createNotFoundException('Unable to find Professionkind entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SirOtBundle:Equipment:edit.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -131,16 +133,16 @@ class EquipmentController extends Controller
     }
 
     /**
-    * Creates a form to edit a Equipment entity.
+    * Creates a form to edit a Professionkind entity.
     *
-    * @param Equipment $entity The entity
+    * @param Professionkind $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Equipment $entity)
+    private function createEditForm(Professionkind $entity)
     {
-        $form = $this->createForm(new EquipmentType(), $entity, array(
-            'action' => $this->generateUrl('equipment_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new ProfessionkindType(), $entity, array(
+            'action' => $this->generateUrl('professionkind_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -149,17 +151,17 @@ class EquipmentController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Equipment entity.
+     * Edits an existing Professionkind entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
+        $entity = $em->getRepository('SirOtBundle:Professionkind')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Equipment entity.');
+            throw $this->createNotFoundException('Unable to find Professionkind entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -169,17 +171,17 @@ class EquipmentController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('equipment_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('professionkind_edit', array('id' => $id)));
         }
 
-        return $this->render('SirOtBundle:Equipment:edit.html.twig', array(
+        return $this->render('SirOtBundle:Professionkind:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Equipment entity.
+     * Deletes a Professionkind entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -189,21 +191,21 @@ class EquipmentController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SirOtBundle:Equipment')->find($id);
+            $entity = $em->getRepository('SirOtBundle:Professionkind')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Equipment entity.');
+                throw $this->createNotFoundException('Unable to find Professionkind entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('Equipment'));
+        return $this->redirect($this->generateUrl('professionkind'));
     }
 
     /**
-     * Creates a form to delete a Equipment entity by id.
+     * Creates a form to delete a Professionkind entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -212,7 +214,7 @@ class EquipmentController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('equipment_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('professionkind_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

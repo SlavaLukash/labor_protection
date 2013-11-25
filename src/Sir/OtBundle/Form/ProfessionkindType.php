@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EquipmentType extends AbstractType
+class ProfessionkindType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,18 +15,7 @@ class EquipmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('required' => true))
-            ->add('model', null, array('required' => true))
-            ->add('registrationnumber')
-            ->add('internalnumber')
-            ->add('factorynumber')
-            ->add('manufacturer')
-            ->add('productiondate')
-            ->add('startupdate')
-            ->add('life')
-            ->add('equipmentsubgroup')
-            ->add('subdivision')
-            ->add('registrationtype')
+            ->add('name')
         ;
     }
     
@@ -36,8 +25,7 @@ class EquipmentType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sir\OtBundle\Entity\Equipment',
-			'required' => true,
+            'data_class' => 'Sir\OtBundle\Entity\Professionkind'
         ));
     }
 
@@ -46,6 +34,6 @@ class EquipmentType extends AbstractType
      */
     public function getName()
     {
-        return 'sir_otbundle_equipment';
+        return 'sir_otbundle_professionkind';
     }
 }

@@ -5,15 +5,152 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Equipment creation</h1>
 
-    {{ form(form) }}
+{#        {{ form(form) }}
+ <ul class="record_actions">
+     <li>
+         <a href="{{ path('equipment') }}">
+             Back to the list
+         </a>
+     </li>
+ </ul>
+#}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('equipment') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="b-form-area">
+    <div class="b-form-title"><p>Equipment creation</p><hr/></div>
+    <form action="{{ path('equipment_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
+        <table>
+            <tr>
+                <td>
+                    {{ form_label(form.name) }}
+                </td>
+                <td>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.model) }}
+                </td>
+                <td>
+                    {{ form_errors(form.model) }}
+                    {{ form_widget(form.model) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.registrationtype) }}
+                </td>
+                <td>
+                    {{ form_errors(form.registrationtype) }}
+                    {{ form_widget(form.registrationtype) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.registrationnumber) }}
+                </td>
+                <td>
+                    {{ form_errors(form.registrationnumber) }}
+                    {{ form_widget(form.registrationnumber) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.internalnumber) }}
+                </td>
+                <td>
+                    {{ form_errors(form.internalnumber) }}
+                    {{ form_widget(form.internalnumber) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.factorynumber) }}
+                </td>
+                <td>
+                    {{ form_errors(form.factorynumber) }}
+                    {{ form_widget(form.factorynumber) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.manufacturer) }}
+                </td>
+                <td>
+                    {{ form_errors(form.manufacturer) }}
+                    {{ form_widget(form.manufacturer) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.productiondate) }}
+                </td>
+                <td>
+                    {{ form_errors(form.productiondate) }}
+                    {{ form_widget(form.productiondate) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.startupdate) }}
+                </td>
+                <td>
+                    {{ form_errors(form.startupdate) }}
+                    {{ form_widget(form.startupdate) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.life) }}
+                </td>
+                <td>
+                    {{ form_errors(form.life) }}
+                    {{ form_widget(form.life) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.equipmentsubgroup) }}
+                </td>
+                <td>
+                    {{ form_errors(form.equipmentsubgroup) }}
+                    {{ form_widget(form.equipmentsubgroup) }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form_label(form.subdivision) }}
+                </td>
+                <td>
+                    {{ form_errors(form.subdivision) }}
+                    {{ form_widget(form.subdivision) }}
+                </td>
+            </tr>
+        </table>
+        <hr/>
+        <div class="b-contrils">
+            <div class="el-submit i-save">
+                <em>&nbsp;</em>
+                <input type="submit" value="Сохранить" />
+                <b>&nbsp;</b>
+            </div>
+            <div class="el-submit">
+                <em>&nbsp;</em>
+                <input type="submit" value="Сохранить и добавить" />
+                <b>&nbsp;</b>
+            </div>
+            <div class="el-submit">
+                <em>&nbsp;</em>
+                <input type="burron" value="Отменить" />
+                <b>&nbsp;</b>
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+    </form>
+
+    <div class="clear"></div>
+</div>
 {% endblock %}

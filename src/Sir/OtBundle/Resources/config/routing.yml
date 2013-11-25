@@ -1,3 +1,11 @@
+SirOtBundle_professionkind:
+        resource: "@SirOtBundle/Resources/config/routing/professionkind.yml"
+        prefix:   /professionkind
+
+SirOtBundle_profession:
+        resource: "@SirOtBundle/Resources/config/routing/profession.yml"
+        prefix:   /profession
+
 SirOtBundle_technicalexamination:
         resource: "@SirOtBundle/Resources/config/routing/technicalexamination.yml"
         prefix:   /technicalexamination
