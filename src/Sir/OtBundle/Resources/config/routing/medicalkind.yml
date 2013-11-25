@@ -1,0 +1,30 @@
+medicalkind:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Medicalkind:index" }
+
+medicalkind_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Medicalkind:show" }
+
+medicalkind_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Medicalkind:new" }
+
+medicalkind_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Medicalkind:create" }
+    requirements: { _method: post }
+
+medicalkind_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Medicalkind:edit" }
+
+medicalkind_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Medicalkind:update" }
+    requirements: { _method: post|put }
+
+medicalkind_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Medicalkind:delete" }
+    requirements: { _method: post|delete }

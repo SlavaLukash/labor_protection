@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Medicaltype</h1>
+    <h1>Medicalkind</h1>
 
     <table class="record_properties">
         <tbody>
@@ -22,12 +22,12 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('medicaltype') }}">
+        <a href="{{ path('medicalkind') }}">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('medicaltype_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('medicalkind_edit', { 'id': entity.id }) }}">
             Edit
         </a>
     </li>

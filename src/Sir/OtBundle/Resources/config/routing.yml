@@ -1,3 +1,15 @@
+SirOtBundle_equipmentsubgroup:
+        resource: "@SirOtBundle/Resources/config/routing/equipmentsubgroup.yml"
+        prefix:   /equipmentsubgroup
+
+SirOtBundle_equipmentgroup:
+        resource: "@SirOtBundle/Resources/config/routing/equipmentgroup.yml"
+        prefix:   /equipmentgroup
+
+SirOtBundle_medicalkind: #вид медосмотра
+        resource: "@SirOtBundle/Resources/config/routing/medicalkind.yml"
+        prefix:   /medicalkind
+
 SirOtBundle_professionkind:
         resource: "@SirOtBundle/Resources/config/routing/professionkind.yml"
         prefix:   /professionkind
@@ -18,7 +30,7 @@ SirOtBundle_trauma:
         resource: "@SirOtBundle/Resources/config/routing/trauma.yml"
         prefix:   /trauma
 
-SirOtBundle_medicaltype:
+SirOtBundle_medicaltype: #характер медосмотра
         resource: "@SirOtBundle/Resources/config/routing/medicaltype.yml"
         prefix:   /medicaltype
 
