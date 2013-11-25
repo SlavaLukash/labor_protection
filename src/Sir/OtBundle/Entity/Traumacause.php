@@ -108,4 +108,9 @@ class Traumacause
     {
         return $this->trauma;
     }
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 }

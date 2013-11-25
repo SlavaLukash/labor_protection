@@ -1,36 +1,32 @@
 {% extends '::base.html.twig' %}
 
 {% block submenu %}
-    {{ include('SirOtBundle:Submenu:Employee.html.twig') }}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma list</h1>
+    <h1>Traumacause list</h1>
 
     <table class="records_list">
         <thead>
             <tr>
-                <th>Datetrauma</th>
-                <th>Traumareport</th>
-                <th>Hoursstart</th>
                 <th>Id</th>
+                <th>Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('trauma_show', { 'id': entity.id }) }}">{{ entity.datetrauma|date('Y-m-d H:i:s') }}</a></td>
-                <td>{{ entity.traumareport }}</td>
-                <td>{{ entity.hoursstart }}</td>
-                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('traumacause_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('trauma_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('traumacause_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('trauma_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('traumacause_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -41,7 +37,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('trauma_new') }}">
+            <a href="{{ path('traumacause_new') }}">
                 Create a new entry
             </a>
         </li>

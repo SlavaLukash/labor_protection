@@ -1,0 +1,30 @@
+employee:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Employee:index" }
+
+employee_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Employee:show" }
+
+employee_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Employee:new" }
+
+employee_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Employee:create" }
+    requirements: { _method: post }
+
+employee_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Employee:edit" }
+
+employee_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Employee:update" }
+    requirements: { _method: post|put }
+
+employee_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Employee:delete" }
+    requirements: { _method: post|delete }

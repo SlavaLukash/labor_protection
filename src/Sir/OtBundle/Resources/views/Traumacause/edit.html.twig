@@ -1,19 +1,20 @@
 {% extends '::base.html.twig' %}
 
 {% block submenu %}
-    {{ include('SirOtBundle:Submenu:Employee.html.twig') }}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma creation</h1>
+    <h1>Traumacause edit</h1>
 
-    {{ form(form) }}
+    {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('trauma') }}">
+        <a href="{{ path('traumacause') }}">
             Back to the list
         </a>
     </li>
+    <li>{{ form(delete_form) }}</li>
 </ul>
 {% endblock %}

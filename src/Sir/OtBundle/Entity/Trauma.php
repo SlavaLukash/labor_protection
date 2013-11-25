@@ -212,4 +212,9 @@ class Trauma
     {
         return $this->traumakind;
     }
+
+	public function __toString()
+	{
+		return $this->traumakind;
+	}
 }

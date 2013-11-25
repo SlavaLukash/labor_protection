@@ -1,17 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block submenu %}
-    {{ include('SirOtBundle:Submenu:Employee.html.twig') }}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma creation</h1>
+    <h1>Traumakind creation</h1>
 
     {{ form(form) }}
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('trauma') }}">
+        <a href="{{ path('traumakind') }}">
             Back to the list
         </a>
     </li>

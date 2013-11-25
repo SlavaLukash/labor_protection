@@ -109,4 +109,9 @@ class Medicaltype
     {
         return $this->medical;
     }
+
+	public function __toString()
+	{
+		return $this->name;
+	}
 }

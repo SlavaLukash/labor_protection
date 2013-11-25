@@ -5,32 +5,32 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma list</h1>
+    <h1>Medical list</h1>
 
     <table class="records_list">
         <thead>
             <tr>
-                <th>Datetrauma</th>
-                <th>Traumareport</th>
-                <th>Hoursstart</th>
                 <th>Id</th>
+                <th>Comment</th>
+                <th>Dateplan</th>
+                <th>Datefact</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('trauma_show', { 'id': entity.id }) }}">{{ entity.datetrauma|date('Y-m-d H:i:s') }}</a></td>
-                <td>{{ entity.traumareport }}</td>
-                <td>{{ entity.hoursstart }}</td>
-                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('medical_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.comment }}</td>
+                <td>{% if entity.dateplan %}{{ entity.dateplan|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.datefact %}{{ entity.datefact|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('trauma_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('medical_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('trauma_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('medical_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -41,7 +41,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('trauma_new') }}">
+            <a href="{{ path('medical_new') }}">
                 Create a new entry
             </a>
         </li>

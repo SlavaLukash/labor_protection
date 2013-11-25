@@ -1,0 +1,13 @@
+<div class="b-left-menu">
+    <ul>
+        <li {% if get_controller_name() == 'employee' %}class="active"{% endif %}>
+            <a href="{{ path('employee') }}"><p>Реестр сотрудников</p></a>
+        </li>
+        <li {% if get_controller_name() == 'medical' %}class="active"{% endif %}>
+            <a href="{{ path('medical') }}"><p>График медосмотров</p></a>
+        </li>
+        <li {% if get_controller_name() == 'trauma' %}class="active"{% endif %}>
+            <a href="{{ path('trauma') }}"><p>Травматизм</p></a>
+        </li>
+    </ul>
+</div>

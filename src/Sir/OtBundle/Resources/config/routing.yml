@@ -1,3 +1,19 @@
+SirOtBundle_medical:
+        resource: "@SirOtBundle/Resources/config/routing/medical.yml"
+        prefix:   /medical
+
+SirOtBundle_traumakind:
+        resource: "@SirOtBundle/Resources/config/routing/traumakind.yml"
+        prefix:   /traumakind
+
+SirOtBundle_traumacause:
+        resource: "@SirOtBundle/Resources/config/routing/traumacause.yml"
+        prefix:   /traumacause
+
+SirOtBundle_employee:
+        resource: "@SirOtBundle/Resources/config/routing/employee.yml"
+        prefix:   /employee
+
 SirOtBundle_equipmentsubgroup:
         resource: "@SirOtBundle/Resources/config/routing/equipmentsubgroup.yml"
         prefix:   /equipmentsubgroup
