@@ -5,16 +5,20 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Enterprise edit</h1>
+<div class="b-form-area">
+    <div class="b-form-title"><p>Enterprise edit</p><hr/></div>
+    {{ form(edit_form) }}
+    <hr/>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('enterprise') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('enterprise') }}">
+                    Back to the list
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+</div>
 {% endblock %}

@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Enterprise creation</h1>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('enterprise') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="b-form-area">
+    <div class="b-form-title"><p>Enterprise creation</p><hr/></div>
+        {{ form(form) }}
+    <hr/>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('enterprise') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+</div>
 {% endblock %}

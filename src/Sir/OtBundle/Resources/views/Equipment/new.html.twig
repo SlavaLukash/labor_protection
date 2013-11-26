@@ -6,7 +6,9 @@
 
 {% block body -%}
 
-{#        {{ form(form) }}
+<div class="b-form-area">
+    <div class="b-form-title"><p>Equipment creation</p><hr/></div>
+        {{ form(form) }}
  <ul class="record_actions">
      <li>
          <a href="{{ path('equipment') }}">
@@ -14,9 +16,8 @@
          </a>
      </li>
  </ul>
-#}
-
-<div class="b-form-area">
+    </div>
+{#<div class="b-form-area">
     <div class="b-form-title"><p>Equipment creation</p><hr/></div>
     <form action="{{ path('equipment_create') }}" method="post" {{ form_enctype(form) }} novalidate="novalidate">
         <table>
@@ -153,4 +154,5 @@
 
     <div class="clear"></div>
 </div>
+    #}
 {% endblock %}

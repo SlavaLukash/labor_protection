@@ -27,6 +27,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+      resources:
+        - 'SirOtBundle:Form:form.html.twig'
 
 # Assetic Configuration
 assetic:

@@ -226,7 +226,7 @@ div.b-login {
 				background: url('../images/submit-btn-l.png') no-repeat top;
 				float: left;
 			}
-			div.el-submit input {
+			div.el-submit input, div.el-submit button {
 				border: none; height: 30px;
 				background: url('../images/submit-btn-bg.png') repeat-x;
 				font-size: 14px; color: #ffffff;
@@ -326,4 +326,3 @@ div.b-breadcrumbs {
 	width: 100%;
 	height: 35px;
 }
-

@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Subdivision creation</h1>
-
-    {{ form(form) }}
-
+<div class="b-form-area">
+    <div class="b-form-title"><p>Subdivision creation</p><hr/></div>
+        {{ form(form) }}
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('subdivision') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+            <li>
+                <a href="{{ path('subdivision') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+</div>
 {% endblock %}

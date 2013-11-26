@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Technicalexamination creation</h1>
+<div class="b-form-area">
+    <div class="b-form-title"><p>Technicalexamination creation</p><hr/></div>
 
-    {{ form(form) }}
+        {{ form(form) }}
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('technicalexamination') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+            <li>
+                <a href="{{ path('technicalexamination') }}">
+                    Back to the list
+                </a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

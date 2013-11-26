@@ -5,16 +5,18 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Profession edit</h1>
+<div class="b-form-area">
+    <div class="b-form-title"><p>Profession edit</p><hr/></div>
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('profession') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('profession') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+</div>
 {% endblock %}
