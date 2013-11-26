@@ -1,3 +1,62 @@
+Address: Адрес
+Bithday: Дата рождения
+Comment: Примечание
+Datefact: Дата факт.
+Factdate: Дата факт.
+Date first medical: Дата первичного медосмотра
+Date instruction: Дата инструктажа
+Dateplan: Дата план.
+Datetrauma: Дата несчастного случая
+Employee: Сотрудник
+Enterprise: Прдеприятие
+Equipment: Оборудование
 equipment: ОБОРУДОВАНИЕ
-Create a new entry: Добавить новую запись
-Equipment list: Перечень оборудования
+Equipmentgroup: Группа оборудования
+Equipmentsubgroup: Подгруппа оборудования
+Expensekind: Вид затрат
+Factorynumber: Заводской номер
+Firstname: Имя
+Hoursstart: Часов с начала работы
+Id: Код
+Internalnumber: Внутризаводской номер
+Lastname: Фамилия
+Manufacturer: Изготовитель
+Marriagekind: Семейный статус
+Medicalkind: Вид медосмотра
+Medicaltype: Тип медосмотра
+Middlename: Отчество
+Model: Модель
+Name: Наименование
+Okved: ОКВЭД
+Plandate: Дата план.
+Productiondate: Дата изготовления
+Profession: Профессия
+Professionkind: Вид профессии
+Registrationnumber: Регистрационный номер
+Registrationtype: Регистрация в органах Ростехнадзора
+Resulttext: Результат
+Sex: Пол
+Startupdate: Дата ввода в эксплуатацию
+Subdivision: Подразделение
+Subdivision_id: Подразделение
+sum1: Сумма январь
+sum10: Сумма октябрь
+sum11: Сумма ноябрь
+sum12: Сумма декабрь
+sum2: Сумма февраль
+sum3: Сумма март
+sum4: Сумма апрель
+sum5: Сумма май
+sum6: Сумма июнь
+sum7: Сумма июль
+sum8: Сумма август
+sum9: Сумма сентябрь
+Technicalexaminationcause: Причина обследования
+Technicalexaminationkind: Вид обследования
+Technicalexaminationtype: Тип обследования
+Traumacause: Причина происшествия
+Traumakind: Вид происшествия
+Traumareport: Акт Н-1
+Eear: Год
+Actions: Действие
+Users: Пользователи

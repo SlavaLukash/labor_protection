@@ -24,7 +24,17 @@ body {
 }
 .l-line-wrap-r{
 	float: right;
+	text-align: right;
 }
+	.l-line-wrap-r p{
+		color: #ffffff;
+		line-height: 39px;
+	}
+
+		.l-line-wrap-r p a {
+			color: #ffffff;
+			text-decoration: underline;
+		}
 .l-line-wrap-l .bd-line, .l-line-wrap-r .bd-line {
 	height: 40px;
 	width: 4px;
@@ -90,11 +100,17 @@ ul#b-top-menu li.active, ul#b-top-menu li:hover {
 div.b-left-menu {
 	width: 210px;
 	display: table-cell;
-	padding-right: 10px;
+	padding-right: 15px;
 }
 	div.b-left-menu ul {
 		list-style-type: none;
 	}
+		div.b-left-menu ul li:first-child {
+			border-radius: 5px 5px 0 0;
+		}
+		div.b-left-menu ul li:last-child {
+			border-radius: 0 0 5px 5px;
+		}
 		div.b-left-menu ul li {
 			width: 196px; height: 33px;
 			background: #e6e6e6;
@@ -132,10 +148,10 @@ div#b-content-werapper {
 div#b-content {
 	display: table-cell;
 	vertical-align: top;
-	min-width: 785px;
+	width: 100%;
 	background-color: #ffffff;
 	border-radius: 4px;
-	padding-bottom: 50px;
+	padding: 15px 15px 50px 15px;
 }
 
 div#b-footer {
@@ -243,6 +259,35 @@ table.records_list {
 	border-bottom: 1px solid #c5c5c5;
 	border-left: 1px solid #c5c5c5;
 	width: 100%;
+	border-spacing: 0; /*Отступы между границами ячеек*/
+	border-collapse: separate; /*Границы ячеек не склеиваются*/
+	-webkit-border-radius: 5px; /*Радиус скругления углов у таблицы Safari, Chrome*/
+	-moz-border-radius: 5px; /*Радиус скругления углов у таблицы Mozilla*/
+	border-radius: 5px; /*Радиус скругления углов у таблицы*/
+}
+
+table.records_list thead tr:first-child th:first-child { /*Первая строка первая ячейка в заголовке таблицы*/
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
+}
+
+table.records_list thead tr:first-child th:last-child { /*Первая строка последняя ячейка в заголовке таблицы*/
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+	border-radius: 0 5px 0 0;
+}
+
+table.records_list tbody tr:last-child td:first-child  /*Последняя строка первая ячейка в теле таблицы*/ {
+	-webkit-border-radius: 0 0 0 5px;
+	-moz-border-radius: 0 0 0 5px;
+	border-radius: 0 0 0 5px;
+}
+
+table.records_list tbody tr:last-child td:last-child  /*Последняя строка последняя ячейка в теле таблицы*/{
+	-webkit-border-radius: 0 0 5px 0;
+	-moz-border-radius: 0 0 5px 0;
+	border-radius: 0 0 5px 0;
 }
 
 table.records_list tr th {
@@ -253,7 +298,7 @@ table.records_list tr th, table.records_list tr td {
 	border-top: 1px solid #c5c5c5;
 	border-right: 1px solid #c5c5c5;
 	vertical-align: middle;
-	padding: 0 10px;
+	padding: 0 5px;
 	font-size: 12px;
 }
 
@@ -275,7 +320,7 @@ table.records_list tr:hover {
 div.b-form-area {
 	background-color: #f1f1f1;
 	border-radius: 0 4px 4px 4px;
-	width: 668px;
+	width: 670px;
 	margin: 0 auto;
 	position: relative;
 	margin-top: 33px;
@@ -309,11 +354,17 @@ div.b-form-area {
 			text-align: right;
 		}
 
-	div.b-form-area form input[type="text"] {
+	div.b-form-area form input[type="text"], div.b-form-area form input[type="number"] {
 		width: 420px; height: 24px;
 		border-radius: 4px;
 		border: 1px solid #cccccc;
 		padding-left: 8px;
+	}
+
+	div.b-form-area form select {
+		/*width: 420px; */height: 24px;
+		border-radius: 4px;
+		border: 1px solid #cccccc;
 	}
 
 	div.b-form-area hr {

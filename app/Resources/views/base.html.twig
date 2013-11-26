@@ -20,7 +20,11 @@
                 <div class="b-line-wrap">
                     <div class="l-line-wrap-l"><div class="bd-line"></div></div>
                     <div class="b-logo"><a href="{{ path('sir_ot') }}"><img src="/bundles/sirot/images/logo.png" /></a></div>
-                    <div class="l-line-wrap-r"><div class="bd-line"></div></div>
+                    <div class="l-line-wrap-r"><div class="bd-line"></div>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        	<p>Вы вошли как {{ app.security.getToken().getUser().getUsername() }}. <a href="{{ path("fos_user_security_logout") }}">Выход</a></p>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="clear"></div>
                 <h1 class="l-title">Управление Труда и Социальной Защиты Населения НАО</h1>
@@ -34,7 +38,7 @@
                     {% block submenu %}{% endblock %}
                 {% endif %}
 
-                <div id="b-content">
+                <div {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}{{ 'id="b-content"' }}{% endif %}">
                     {% for type, messages in app.session.flashbag.all() %}
                         {% for key, message in messages %}
                             <div class="flash-{{ type }}">
