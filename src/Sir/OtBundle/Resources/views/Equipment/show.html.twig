@@ -60,7 +60,7 @@
     </li>
     <li>
         <a href="{{ path('equipment_edit', { 'id': entity.id }) }}">
-            Edit
+            {% trans %}Edit{% endtrans %}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

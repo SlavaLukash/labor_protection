@@ -35,10 +35,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('employee_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('employee_show', { 'id': entity.id }) }}">{% trans %}Show{% endtrans %}</a>
                     </li>
                     <li>
-                        <a href="{{ path('employee_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('employee_edit', { 'id': entity.id }) }}">{% trans %}Edit{% endtrans %}</a>
                     </li>
                 </ul>
                 </td>
@@ -50,7 +50,7 @@
         <ul>
         <li>
             <a href="{{ path('employee_new') }}">
-                Create a new entry
+                {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>
     </ul>

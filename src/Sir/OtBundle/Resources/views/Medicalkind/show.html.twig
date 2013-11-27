@@ -28,7 +28,7 @@
     </li>
     <li>
         <a href="{{ path('medicalkind_edit', { 'id': entity.id }) }}">
-            Edit
+            {% trans %}Edit{% endtrans %}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
