@@ -1,57 +1,5 @@
 [
     {
-        "name": "jdorn/sql-formatter",
-        "version": "v1.2.9",
-        "version_normalized": "1.2.9.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jdorn/sql-formatter.git",
-            "reference": "bd1f09133f6dbbe0713856910e58ea9480c2be58"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/bd1f09133f6dbbe0713856910e58ea9480c2be58",
-            "reference": "bd1f09133f6dbbe0713856910e58ea9480c2be58",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.4"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2013-04-26 18:42:52",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.3.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "lib"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jeremy Dorn",
-                "email": "jeremy@jeremydorn.com",
-                "homepage": "http://jeremydorn.com/"
-            }
-        ],
-        "description": "a PHP SQL highlighting library",
-        "homepage": "https://github.com/jdorn/sql-formatter/",
-        "keywords": [
-            "highlight",
-            "sql"
-        ]
-    },
-    {
         "name": "psr/log",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -1621,6 +1569,112 @@
         "homepage": "http://friendsofsymfony.github.com",
         "keywords": [
             "User management"
+        ]
+    },
+    {
+        "name": "jdorn/sql-formatter",
+        "version": "v1.2.16",
+        "version_normalized": "1.2.16.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jdorn/sql-formatter.git",
+            "reference": "8859d664737492d313c34796731b35eca851b362"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/8859d664737492d313c34796731b35eca851b362",
+            "reference": "8859d664737492d313c34796731b35eca851b362",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*"
+        },
+        "time": "2013-11-27 22:51:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jeremy Dorn",
+                "email": "jeremy@jeremydorn.com",
+                "homepage": "http://jeremydorn.com/"
+            }
+        ],
+        "description": "a PHP SQL highlighting library",
+        "homepage": "https://github.com/jdorn/sql-formatter/",
+        "keywords": [
+            "highlight",
+            "sql"
+        ]
+    },
+    {
+        "name": "lexik/form-filter-bundle",
+        "version": "v2.0.0",
+        "version_normalized": "2.0.0.0",
+        "target-dir": "Lexik/Bundle/FormFilterBundle",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/lexik/LexikFormFilterBundle.git",
+            "reference": "3dd57a9a98affb398183e9610dda48ab01c9abc2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lexik/LexikFormFilterBundle/zipball/3dd57a9a98affb398183e9610dda48ab01c9abc2",
+            "reference": "3dd57a9a98affb398183e9610dda48ab01c9abc2",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/orm": "*",
+            "php": ">=5.3.2",
+            "symfony/form": ">=2.1,<2.4-dev",
+            "symfony/framework-bundle": ">=2.1,<2.4-dev"
+        },
+        "time": "2013-10-24 16:06:49",
+        "type": "symfony-bundle",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Lexik\\Bundle\\FormFilterBundle": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Dev Lexik",
+                "email": "dev@lexik.fr"
+            },
+            {
+                "name": "Cedric Girard",
+                "email": "c.girard@lexik.fr"
+            }
+        ],
+        "description": "This bundle aim to provide classes to build some form filters and then build a doctrine query from this form filter.",
+        "homepage": "https://github.com/lexik/LexikFormFilterBundle",
+        "keywords": [
+            "Symfony2",
+            "bundle",
+            "doctrine",
+            "filter",
+            "form"
         ]
     }
 ]

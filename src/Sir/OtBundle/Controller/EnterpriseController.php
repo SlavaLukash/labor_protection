@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sir\OtBundle\Entity\Enterprise;
 use Sir\OtBundle\Form\EnterpriseType;
+use Sir\OtBundle\Filter\EnterpriseFilterType;
 
 /**
  * Enterprise controller.
@@ -21,12 +22,34 @@ class EnterpriseController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$form = $this->get('form.factory')->create(new EnterpriseFilterType());
+		if ($this->get('request')->query->has('submit-filter')) {
+			$form->bind($this->get('request'));
+
+			$filterBuilder = $this->get('doctrine.orm.entity_manager')
+				->getRepository('SirOtBundle:Enterprise')
+				->createQueryBuilder('e');
+
+			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+			$em = $this->getDoctrine()->getManager();
+			$aValues = $this->getRequest()->get('enterprise_filter');
+			$query = $em->createQuery($filterBuilder->getDql());
+			if(!empty($aValues['name']))
+			{
+				$nameValue = $em->getRepository('SirOtBundle:Enterprise')->find($aValues['name'])->getName();
+				$query->setParameter('p_name', $nameValue);
+			}
+			$entities = $query->getResult();
+		} else {
+			$em = $this->getDoctrine()->getManager();
+			$entities = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		}
 
         return $this->render('SirOtBundle:Enterprise:index.html.twig', array(
             'entities' => $entities,
+			'form' => $form->createView(),
         ));
     }
     /**
