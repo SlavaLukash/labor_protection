@@ -31,6 +31,11 @@ class User extends BaseUser
 	 */
 	protected $id;
 
+	/**
+	 * @var \DateTime
+	 */
+	protected $expiresAt;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -85,4 +90,24 @@ class User extends BaseUser
     {
         $this->usersubdivisions->removeElement($usersubdivisions);
     }
+
+	/**
+	 * Get ExpiresAt
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getExpiresAt()
+	{
+		return $this->expiresAt;
+	}
+
+	/**
+	 * @param \DateTime $date
+	 *
+	 * @return User
+	 */
+	public function getCredentialsExpireAt()
+	{
+		return $this->credentialsExpireAt;
+	}
 }

@@ -1,5 +1,6 @@
 <ul id="b-top-menu">
     <li {% if (get_controller_name() == 'profession'
+    or get_controller_name() == 'user'
     or get_controller_name() == 'enterprise'
     or get_controller_name() == 'subdivision'
     or get_controller_name() == 'professionkind'
@@ -12,7 +13,7 @@
     %}
         class="active"
             {% endif %}>
-        <a href="{{ path('enterprise') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
+        <a href="{{ path('user') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
     </li>
     <li {% if (get_controller_name() == 'employee'
     or get_controller_name() == 'medical'

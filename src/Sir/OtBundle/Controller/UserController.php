@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sir\OtBundle\Entity\User;
 use Sir\OtBundle\Form\UserType;
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 
 /**
  * User controller.
@@ -14,7 +15,6 @@ use Sir\OtBundle\Form\UserType;
  */
 class UserController extends Controller
 {
-
     /**
      * Lists all User entities.
      *
@@ -62,7 +62,7 @@ class UserController extends Controller
     */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
+        $form = $this->createForm(new RegistrationFormType('Sir\OtBundle\Entity\User'), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));

@@ -69,3 +69,12 @@ Back to the list: Вернуться к списку
 Create a new entry: Добавить новую запись
 Show: Просмотр
 Edit: Редактировать
+Username: Имя пользователя
+Enabled: Включен
+Salt: Соль
+Password: Пароль
+Last login: Время последнего захода
+Locked: Заблокирован
+Expired: Истекло
+Expires at: Истекает в
+Usersubdivisions: Подразделение пользователя
