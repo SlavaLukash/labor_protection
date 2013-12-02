@@ -11,26 +11,23 @@ namespace Sir\OtBundle\Filter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
-use Lexik\Bundle\FormFilterBundle\Filter\ORM\Expr;
-class EnterpriseFilterType extends AbstractType
+
+class SubdivisionFilterType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-//		$builder->add('name', 'filter_entity', array('class' => 'SirOtBundle:Enterprise',
-//			'empty_value' => 'Выберите предприятие'));
+		$builder->add('enterprise', 'filter_text', array(
+			'apply_filter' => array($this, 'textFieldCallback')
+		));
 		$builder->add('name', 'filter_text', array(
 			'apply_filter' => array($this, 'textFieldCallback')
 		));
-//		$builder->add('okved', 'filter_text', array(
-//			'apply_filter' => array($this, 'textFieldCallback')
-//		));
 	}
 
 	public function getName()
 	{
-		return 'enterprise_filter';
+		return 'subdivision_filter';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -45,7 +42,9 @@ class EnterpriseFilterType extends AbstractType
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->andWhere($filterQuery->getExpr()->like($field, '\'%' .$values['value'] . '%\''));
+			$qb->innerJoin('e.enterprise', 'ee');
+			$qb->andWhere($filterQuery->getExpr()->like('ee.name', '\'%' .$values['value'] . '%\''));
+			$qb->orderBy('ee.id', 'ASC');
 		}
 	}
 

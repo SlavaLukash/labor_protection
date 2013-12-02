@@ -36,11 +36,11 @@ class EnterpriseController extends Controller
 			$em = $this->getDoctrine()->getManager();
 			$aValues = $this->getRequest()->get('enterprise_filter');
 			$query = $em->createQuery($filterBuilder->getDql());
-			if(!empty($aValues['name']))
-			{
-				$nameValue = $em->getRepository('SirOtBundle:Enterprise')->find($aValues['name'])->getName();
-				$query->setParameter('p_name', $nameValue);
-			}
+//			if(!empty($aValues['name']))
+//			{
+//				$nameValue = $em->getRepository('SirOtBundle:Enterprise')->find($aValues['name'])->getName();
+//				$query->setParameter('p_name', $nameValue);
+//			}
 			$entities = $query->getResult();
 		} else {
 			$em = $this->getDoctrine()->getManager();

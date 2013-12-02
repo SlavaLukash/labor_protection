@@ -6,12 +6,16 @@
 
 {% block body -%}
     <h1>Subdivision list</h1>
-
+	<form method="get" action=".">
+		{{ form_rest(form) }}
+		<input type="submit" name="submit-filter" value="Применить фильтр" />
+	</form>
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Enterprise</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +24,7 @@
             <tr>
                 <td><a href="{{ path('subdivision_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
+                <td>{{ entity.enterprise }}</td>
                 <td>
                 <ul>
                     <li>
