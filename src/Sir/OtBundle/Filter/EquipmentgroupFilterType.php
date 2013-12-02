@@ -24,7 +24,7 @@ class EquipmentgroupFilterType extends AbstractType
 
 	public function getName()
 	{
-		return 'medicalkind_filter';
+		return 'equipmentgroup_filter';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)

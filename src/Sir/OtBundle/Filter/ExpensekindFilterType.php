@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 
-class TraumacauseFilterType extends AbstractType
+class ExpensekindFilterType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
@@ -24,7 +24,7 @@ class TraumacauseFilterType extends AbstractType
 
 	public function getName()
 	{
-		return 'traumacause_filter';
+		return 'expensekind_filter';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)

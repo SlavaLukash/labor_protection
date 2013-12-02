@@ -24,7 +24,7 @@ class TraumakindFilterType extends AbstractType
 
 	public function getName()
 	{
-		return 'medicalkind_filter';
+		return 'traumakind_filter';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
