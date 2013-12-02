@@ -6,6 +6,10 @@
 
 {% block body -%}
     <h1>Traumakind list</h1>
+	<form method="get" action=".">
+		{{ form_rest(form) }}
+		<input type="submit" name="submit-filter" value="Применить фильтр" />
+	</form>
 
     <table class="records_list">
         <thead>

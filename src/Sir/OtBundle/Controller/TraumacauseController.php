@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Traumacause;
 use Sir\OtBundle\Form\TraumacauseType;
+use Sir\OtBundle\Filter\TraumacauseFilterType;
 
 /**
  * Traumacause controller.
@@ -21,13 +21,28 @@ class TraumacauseController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$form = $this->get('form.factory')->create(new TraumacauseFilterType());
+		if ($this->get('request')->query->has('submit-filter')) {
+			$form->bind($this->get('request'));
 
-        $entities = $em->getRepository('SirOtBundle:Traumacause')->findAll();
+			$filterBuilder = $this->get('doctrine.orm.entity_manager')
+				->getRepository('SirOtBundle:Traumacause')
+				->createQueryBuilder('e');
 
-        return $this->render('SirOtBundle:Traumacause:index.html.twig', array(
-            'entities' => $entities,
-        ));
+			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
+			$em = $this->getDoctrine()->getManager();
+			$query = $em->createQuery($filterBuilder->getDql());
+			$entities = $query->getResult();
+		} else {
+			$em = $this->getDoctrine()->getManager();
+			$entities = $em->getRepository('SirOtBundle:Traumacause')->findAll();
+		}
+
+		return $this->render('SirOtBundle:Traumacause:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Traumacause entity.
