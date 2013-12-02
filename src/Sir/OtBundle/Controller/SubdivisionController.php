@@ -22,30 +22,21 @@ class SubdivisionController extends Controller
     public function indexAction()
     {
 		$form = $this->get('form.factory')->create(new SubdivisionFilterType());
-		if ($this->get('request')->query->has('submit-filter')) {
-			$form->bind($this->get('request'));
-
-			$filterBuilder = $this->get('doctrine.orm.entity_manager')
-				->getRepository('SirOtBundle:Subdivision')
-				->createQueryBuilder('e');
-
-			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-
-			$em = $this->getDoctrine()->getManager();
-			$query = $em->createQuery($filterBuilder->getDql());
-			$entities = $query->getResult();
-		} else {
-			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('SirOtBundle:Subdivision')->findAll();
-		}
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Subdivision')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$entities = $query->getResult();
 
 		return $this->render('SirOtBundle:Subdivision:index.html.twig', array(
 			'entities' => $entities,
 			'form' => $form->createView(),
 		));
-
-
     }
+
     /**
      * Creates a new Subdivision entity.
      *

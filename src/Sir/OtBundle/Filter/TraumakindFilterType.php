@@ -39,7 +39,7 @@ class TraumakindFilterType extends AbstractType
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->andWhere($filterQuery->getExpr()->like($field, '\'%' .$values['value'] . '%\''));
+			$qb->andWhere("LOWER({$field}) LIKE LOWER('%{$values['value']}%')");
 		}
 	}
 

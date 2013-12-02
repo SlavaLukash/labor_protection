@@ -44,7 +44,7 @@ class EquipmentsubgroupFilterType extends AbstractType
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.equipmentgroup', 'ee');
-			$qb->andWhere($filterQuery->getExpr()->like('ee.name', '\'%' .$values['value'] . '%\''));
+			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
 			$qb->orderBy('ee.id', 'ASC');
 		}
 	}
@@ -53,7 +53,7 @@ class EquipmentsubgroupFilterType extends AbstractType
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->andWhere($filterQuery->getExpr()->like($field, '\'%' .$values['value'] . '%\''));
+			$qb->andWhere("LOWER({$field}) LIKE LOWER('%{$values['value']}%')");
 		}
 	}
 

@@ -23,22 +23,14 @@ class MedicalkindController extends Controller
     public function indexAction()
     {
 		$form = $this->get('form.factory')->create(new MedicalkindFilterType());
-		if ($this->get('request')->query->has('submit-filter')) {
-			$form->bind($this->get('request'));
-
-			$filterBuilder = $this->get('doctrine.orm.entity_manager')
-				->getRepository('SirOtBundle:Medicalkind')
-				->createQueryBuilder('e');
-
-			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-
-			$em = $this->getDoctrine()->getManager();
-			$query = $em->createQuery($filterBuilder->getDql());
-			$entities = $query->getResult();
-		} else {
-			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('SirOtBundle:Medicalkind')->findAll();
-		}
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Medicalkind')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$entities = $query->getResult();
 
 		return $this->render('SirOtBundle:Medicalkind:index.html.twig', array(
 			'entities' => $entities,

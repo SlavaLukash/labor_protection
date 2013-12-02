@@ -22,22 +22,14 @@ class ProfessionkindController extends Controller
     public function indexAction()
     {
 		$form = $this->get('form.factory')->create(new ProfessionkindFilterType());
-		if ($this->get('request')->query->has('submit-filter')) {
-			$form->bind($this->get('request'));
-
-			$filterBuilder = $this->get('doctrine.orm.entity_manager')
-				->getRepository('SirOtBundle:Professionkind')
-				->createQueryBuilder('e');
-
-			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-
-			$em = $this->getDoctrine()->getManager();
-			$query = $em->createQuery($filterBuilder->getDql());
-			$entities = $query->getResult();
-		} else {
-			$em = $this->getDoctrine()->getManager();
-			$entities = $em->getRepository('SirOtBundle:Professionkind')->findAll();
-		}
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Professionkind')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$entities = $query->getResult();
 
 		return $this->render('SirOtBundle:Professionkind:index.html.twig', array(
 			'entities' => $entities,
