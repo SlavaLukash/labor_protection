@@ -6,12 +6,17 @@
 
 {% block body -%}
     <h1>Profession list</h1>
+	<form method="get" action=".">
+		{{ form_rest(form) }}
+		<input type="submit" name="submit-filter" value="Применить фильтр" />
+	</form>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Professionkind</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +25,7 @@
             <tr>
                 <td><a href="{{ path('profession_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
+                <td>{{ entity.professionkind }}</td>
                 <td>
                 <ul>
                     <li>

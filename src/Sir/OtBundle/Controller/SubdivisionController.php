@@ -32,7 +32,6 @@ class SubdivisionController extends Controller
 			$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
 
 			$em = $this->getDoctrine()->getManager();
-			var_dump($filterBuilder->getDql());
 			$query = $em->createQuery($filterBuilder->getDql());
 			$entities = $query->getResult();
 		} else {
