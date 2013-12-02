@@ -20,6 +20,9 @@ class EquipmentsubgroupFilterType extends AbstractType
 		$builder->add('name', 'filter_text', array(
 			'apply_filter' => array($this, 'textFieldCallback')
 		));
+		$builder->add('equipmentgroup', 'filter_text', array(
+			'apply_filter' => array($this, 'equipmentgroupFieldCallback')
+		));
 	}
 
 	public function getName()
@@ -33,6 +36,17 @@ class EquipmentsubgroupFilterType extends AbstractType
 			'csrf_protection'   => false,
 			'validation_groups' => array('filtering') // avoid NotBlank() constraint-related message
 		));
+	}
+
+
+	public function equipmentgroupFieldCallback(QueryInterface $filterQuery, $field, $values)
+	{
+		if (!empty($values['value'])) {
+			$qb = $filterQuery->getQueryBuilder();
+			$qb->innerJoin('e.equipmentgroup', 'ee');
+			$qb->andWhere($filterQuery->getExpr()->like('ee.name', '\'%' .$values['value'] . '%\''));
+			$qb->orderBy('ee.id', 'ASC');
+		}
 	}
 
 	public function textFieldCallback(QueryInterface $filterQuery, $field, $values)
