@@ -1,0 +1,84 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+	{{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>Expense</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ entity.year|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Sum1</th>
+                <td>{{ entity.sum1 }}</td>
+            </tr>
+            <tr>
+                <th>Sum2</th>
+                <td>{{ entity.sum2 }}</td>
+            </tr>
+            <tr>
+                <th>Sum3</th>
+                <td>{{ entity.sum3 }}</td>
+            </tr>
+            <tr>
+                <th>Sum4</th>
+                <td>{{ entity.sum4 }}</td>
+            </tr>
+            <tr>
+                <th>Sum5</th>
+                <td>{{ entity.sum5 }}</td>
+            </tr>
+            <tr>
+                <th>Sum6</th>
+                <td>{{ entity.sum6 }}</td>
+            </tr>
+            <tr>
+                <th>Sum7</th>
+                <td>{{ entity.sum7 }}</td>
+            </tr>
+            <tr>
+                <th>Sum8</th>
+                <td>{{ entity.sum8 }}</td>
+            </tr>
+            <tr>
+                <th>Sum9</th>
+                <td>{{ entity.sum9 }}</td>
+            </tr>
+            <tr>
+                <th>Sum10</th>
+                <td>{{ entity.sum10 }}</td>
+            </tr>
+            <tr>
+                <th>Sum11</th>
+                <td>{{ entity.sum11 }}</td>
+            </tr>
+            <tr>
+                <th>Sum12</th>
+                <td>{{ entity.sum12 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('expense') }}">
+			{% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('expense_edit', { 'id': entity.id }) }}">
+			{% trans %}Edit{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

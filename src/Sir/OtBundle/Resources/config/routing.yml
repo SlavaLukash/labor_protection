@@ -62,6 +62,15 @@ SirOtBundle_enterprise:
         resource: "@SirOtBundle/Resources/config/routing/enterprise.yml"
         prefix:   /enterprise
 
+SirOtBundle_expense:
+        resource: "@SirOtBundle/Resources/config/routing/expense.yml"
+        prefix:   /expense
+
+SirOtBundle_expensekind:
+        resource: "@SirOtBundle/Resources/config/routing/expensekind.yml"
+        prefix:   /expensekind
+
+
 sir_ot:
     pattern:  /
     defaults: { _controller: SirOtBundle:Default:index }

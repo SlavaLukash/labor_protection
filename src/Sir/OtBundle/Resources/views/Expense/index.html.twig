@@ -1,0 +1,69 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+	{{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>Expense list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Year</th>
+                <th>Sum1</th>
+                <th>Sum2</th>
+                <th>Sum3</th>
+                <th>Sum4</th>
+                <th>Sum5</th>
+                <th>Sum6</th>
+                <th>Sum7</th>
+                <th>Sum8</th>
+                <th>Sum9</th>
+                <th>Sum10</th>
+                <th>Sum11</th>
+                <th>Sum12</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.year %}{{ entity.year|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.sum1 }}</td>
+                <td>{{ entity.sum2 }}</td>
+                <td>{{ entity.sum3 }}</td>
+                <td>{{ entity.sum4 }}</td>
+                <td>{{ entity.sum5 }}</td>
+                <td>{{ entity.sum6 }}</td>
+                <td>{{ entity.sum7 }}</td>
+                <td>{{ entity.sum8 }}</td>
+                <td>{{ entity.sum9 }}</td>
+                <td>{{ entity.sum10 }}</td>
+                <td>{{ entity.sum11 }}</td>
+                <td>{{ entity.sum12 }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('expense_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('expense_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('expense_new') }}">
+				{% trans %}Create a new entry{% endtrans %}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

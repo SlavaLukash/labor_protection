@@ -1,0 +1,30 @@
+expense:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Expense:index" }
+
+expense_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Expense:show" }
+
+expense_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Expense:new" }
+
+expense_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Expense:create" }
+    requirements: { _method: post }
+
+expense_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Expense:edit" }
+
+expense_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Expense:update" }
+    requirements: { _method: post|put }
+
+expense_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Expense:delete" }
+    requirements: { _method: post|delete }
