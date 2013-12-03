@@ -419,6 +419,10 @@ div.b-form-area {
 		border: 1px solid #cccccc;
 	}
 
+		div.b-form-area form select[multiple="multiple"] {
+			height: auto;
+		}
+
 	div.b-form-area hr {
 		border-top: 1px solid #d6d6d6;
 		border-bottom: 1px solid #ffffff;

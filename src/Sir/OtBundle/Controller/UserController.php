@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sir\OtBundle\Entity\User;
 use Sir\OtBundle\Form\UserType;
-use FOS\UserBundle\Form\Type\RegistrationFormType;
 
 /**
  * User controller.
@@ -62,7 +61,11 @@ class UserController extends Controller
     */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(new RegistrationFormType('Sir\OtBundle\Entity\User'), $entity, array(
+		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+		$roles = array_keys($roleHierarchy);
+
+//        $form = $this->createForm(new UserType('Sir\OtBundle\Entity\User', 'asdf'), $entity, array(
+        $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));
@@ -141,7 +144,10 @@ class UserController extends Controller
     */
     private function createEditForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
+		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
+		$roles = array_keys($roleHierarchy);
+
+        $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
             'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

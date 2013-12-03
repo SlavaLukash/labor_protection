@@ -92,3 +92,7 @@ Locked: Заблокирован
 Expired: Истекло
 Expires at: Истекает в
 Usersubdivisions: Подразделение пользователя
+ROLE_SUPER_ADMIN: Суперадминистратор
+ROLE_ADMIN: Администратор
+ROLE_USER: Пользователь
+Roles: Роли
