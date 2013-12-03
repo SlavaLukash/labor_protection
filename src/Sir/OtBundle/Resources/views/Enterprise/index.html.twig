@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Enterprise list</h1>
-	<form method="get" action=".">
+    <h1>{% trans %}Enterprise list{% endtrans %}</h1>
+	<br />
+	<form class="ot_filter_form" method="get" action=".">
 		{{ form_rest(form) }}
-		<input type="submit" name="submit-filter" value="Применить фильтр" />
+		<br />
+		<input type="submit" id="ot_filter_apply" name="submit-filter" value="Применить фильтр" />
+		<input type="submit" id="ot_filter_clear" name="submit-filter" value="Сбросить фильтр" onclick="filterClear();" />
 	</form>
-    <table class="records_list">
+	<hr />
+	<br />
+	<table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
@@ -41,10 +46,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('enterprise_new') }}">
+            <a id="ot_list_create" href="{{ path('enterprise_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>

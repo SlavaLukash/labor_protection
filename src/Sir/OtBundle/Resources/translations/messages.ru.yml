@@ -9,11 +9,15 @@ Dateplan: Дата план.
 Datetrauma: Дата несчастного случая
 Employee: Сотрудник
 Enterprise: Предприятие
+Enterprise list: Список предприятий
 Equipment: Оборудование
 equipment: ОБОРУДОВАНИЕ
 Equipmentgroup: Группа оборудования
+Equipmentgroup list: Список групп оборудования
 Equipmentsubgroup: Подгруппа оборудования
+Equipmentsubgroup list: Список подгрупп оборудования
 Expensekind: Вид затрат
+Expensekind list: Список видов затрат
 Factorynumber: Заводской номер
 Firstname: Имя
 Hoursstart: Часов с начала работы
@@ -23,7 +27,9 @@ Lastname: Фамилия
 Manufacturer: Изготовитель
 Marriagekind: Семейный статус
 Medicalkind: Вид медосмотра
+Medicalkind list: Список видов медосмотров
 Medicaltype: Тип медосмотра
+Medicaltype list: Список типов медосмотров
 Middlename: Отчество
 Model: Модель
 Name: Наименование
@@ -31,13 +37,16 @@ Okved: ОКВЭД
 Plandate: Дата план.
 Productiondate: Дата изготовления
 Profession: Профессия
+Profession list: Список профессий
 Professionkind: Вид профессии
+Professionkind list: Список видов профессий
 Registrationnumber: Регистрационный номер
 Registrationtype: Регистрация в органах Ростехнадзора
 Resulttext: Результат
 Sex: Пол
 Startupdate: Дата ввода в эксплуатацию
 Subdivision: Подразделение
+Subdivision list: Список структурных подразделений
 Subdivision_id: Подразделение
 sum1: Сумма январь
 sum10: Сумма октябрь
@@ -55,7 +64,9 @@ Technicalexaminationcause: Причина обследования
 Technicalexaminationkind: Вид обследования
 Technicalexaminationtype: Тип обследования
 Traumacause: Причина происшествия
+Traumacause list: Список причин происшествий
 Traumakind: Вид происшествия
+Traumakind list: Список видов происшествий
 Traumareport: Акт Н-1
 Eear: Год
 Actions: Действие

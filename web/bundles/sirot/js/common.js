@@ -11,3 +11,7 @@ $(document).ready(function () {
 		});
 	});
 });
+
+function filterClear() {
+	$('.ot_filter_form input[type="text"]').val('');
+}

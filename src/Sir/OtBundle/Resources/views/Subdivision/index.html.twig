@@ -5,11 +5,16 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Subdivision list</h1>
-	<form method="get" action=".">
+	<h1>{% trans %}Subdivision list{% endtrans %}</h1>
+	<br />
+	<form class="ot_filter_form" method="get" action=".">
 		{{ form_rest(form) }}
-		<input type="submit" name="submit-filter" value="Применить фильтр" />
+		<br />
+		<input type="submit" id="ot_filter_apply" name="submit-filter" value="Применить фильтр" />
+		<input type="submit" id="ot_filter_clear" name="submit-filter" value="Сбросить фильтр" onclick="filterClear();" />
 	</form>
+	<hr />
+	<br />
     <table class="records_list">
         <thead>
             <tr>
@@ -39,10 +44,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('subdivision_new') }}">
+            <a id="ot_list_create" href="{{ path('subdivision_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>
