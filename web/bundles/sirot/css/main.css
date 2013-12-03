@@ -402,7 +402,10 @@ div.b-form-area {
 			text-align: right;
 		}
 
-	div.b-form-area form input[type="text"], div.b-form-area form input[type="number"] {
+	div.b-form-area form input[type="text"],
+	div.b-form-area form input[type="number"],
+	div.b-form-area form input[type="password"],
+	div.b-form-area form input[type="email"] {
 		width: 420px; height: 24px;
 		border-radius: 4px;
 		border: 1px solid #cccccc;
