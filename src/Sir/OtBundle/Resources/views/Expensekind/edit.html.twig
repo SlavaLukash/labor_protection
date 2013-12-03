@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+	{{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+<div class="b-form-area">
+	<div class="b-form-title"><p>Expensekind edit</p><hr/></div>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('expensekind') }}">
+			{% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+	</div>
+
+{% endblock %}

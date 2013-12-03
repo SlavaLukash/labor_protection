@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Profession list</h1>
-
+	<h1>{% trans %}Profession list{% endtrans %}</h1>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th>Professionkind</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +23,7 @@
             <tr>
                 <td><a href="{{ path('profession_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
+                <td>{{ entity.professionkind }}</td>
                 <td>
                 <ul>
                     <li>
@@ -34,10 +38,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('profession_new') }}">
+            <a id="ot_list_create" href="{{ path('profession_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>

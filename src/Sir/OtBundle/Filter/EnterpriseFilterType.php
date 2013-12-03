@@ -18,12 +18,7 @@ class EnterpriseFilterType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('name', 'filter_entity', array('class' => 'SirOtBundle:Enterprise',
-			'empty_value' => 'Выберите предприятие'));
-		$builder->add('address', 'filter_text', array(
-			'apply_filter' => array($this, 'textFieldCallback')
-		));
-		$builder->add('okved', 'filter_text', array(
+		$builder->add('name', 'filter_text', array(
 			'apply_filter' => array($this, 'textFieldCallback')
 		));
 	}
@@ -37,7 +32,7 @@ class EnterpriseFilterType extends AbstractType
 	{
 		$resolver->setDefaults(array(
 			'csrf_protection'   => false,
-			'validation_groups' => array('filtering') // avoid NotBlank() constraint-related message
+			'validation_groups' => array('filtering')
 		));
 	}
 
@@ -45,7 +40,7 @@ class EnterpriseFilterType extends AbstractType
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->andWhere($filterQuery->getExpr()->like($field, '\'%' .$values['value'] . '%\''));
+			$qb->andWhere("LOWER({$field}) LIKE LOWER('%{$values['value']}%')");
 		}
 	}
 

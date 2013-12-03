@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Equipmentgroup;
 use Sir\OtBundle\Form\EquipmentgroupType;
+use Sir\OtBundle\Filter\EquipmentgroupFilterType;
 
 /**
  * Equipmentgroup controller.
@@ -21,13 +21,20 @@ class EquipmentgroupController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$form = $this->get('form.factory')->create(new EquipmentgroupFilterType());
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Equipmentgroup')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$entities = $query->getResult();
 
-        $entities = $em->getRepository('SirOtBundle:Equipmentgroup')->findAll();
-
-        return $this->render('SirOtBundle:Equipmentgroup:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		return $this->render('SirOtBundle:Equipmentgroup:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Equipmentgroup entity.

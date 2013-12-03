@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Traumacause list</h1>
-
+	<h1>{% trans %}Traumacause list{% endtrans %}</h1>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -34,10 +36,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('traumacause_new') }}">
+            <a id="ot_list_create" href="{{ path('traumacause_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>

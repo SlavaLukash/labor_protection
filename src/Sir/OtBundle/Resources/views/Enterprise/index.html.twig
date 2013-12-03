@@ -5,19 +5,18 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Enterprise list</h1>
-	<form method="get" action=".">
-		{{ form_rest(form) }}
-		<input type="submit" name="submit-filter" value="Применить фильтр" />
-	</form>
-    <table class="records_list">
+    <h1>{% trans %}Enterprise list{% endtrans %}</h1>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
+	<table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>Okved</th>
-                <th>Actions</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -41,10 +40,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('enterprise_new') }}">
+            <a id="ot_list_create" href="{{ path('enterprise_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>

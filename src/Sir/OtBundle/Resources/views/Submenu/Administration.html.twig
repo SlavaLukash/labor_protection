@@ -33,6 +33,8 @@
         <li {% if get_controller_name() == 'equipmentsubgroup' %}class="active"{% endif %}>
             <a href="{{ path('equipmentsubgroup') }}"><p>Подгруппы оборудования</p></a>
         </li>
-        <li><a href="{{ path('profession') }}"><p>Виды затрат</p></a></li>
+		<li {% if get_controller_name() == 'expensekind' %}class="active"{% endif %}>
+			<a href="{{ path('expensekind') }}"><p>Виды затрат</p></a>
+		</li>
     </ul>
 </div>

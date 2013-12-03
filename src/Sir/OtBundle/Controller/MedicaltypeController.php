@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Medicaltype;
 use Sir\OtBundle\Form\MedicaltypeType;
+use Sir\OtBundle\Filter\MedicaltypeFilterType;
 
 /**
  * Medicaltype controller.
@@ -21,13 +21,20 @@ class MedicaltypeController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$form = $this->get('form.factory')->create(new MedicaltypeFilterType());
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Medicaltype')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$entities = $query->getResult();
 
-        $entities = $em->getRepository('SirOtBundle:Medicaltype')->findAll();
-
-        return $this->render('SirOtBundle:Medicaltype:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		return $this->render('SirOtBundle:Medicaltype:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Medicaltype entity.

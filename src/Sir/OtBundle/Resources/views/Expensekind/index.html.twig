@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+	{{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+	<h1>{% trans %}Expensekind list{% endtrans %}</h1>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('expensekind_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('expensekind_show', { 'id': entity.id }) }}">{% trans %}show{% endtrans %}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('expensekind_edit', { 'id': entity.id }) }}">{% trans %}edit{% endtrans %}</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<br />
+        <ul>
+        <li>
+            <a id="ot_list_create" href="{{ path('expensekind_new') }}">
+				{% trans %}Create a new entry{% endtrans %}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

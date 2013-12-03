@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Equipmentsubgroup list</h1>
-
+	<h1>{% trans %}Equipmentsubgroup list{% endtrans %}</h1>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Actions</th>
+                <th>Equipmentgroup</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +23,7 @@
             <tr>
                 <td><a href="{{ path('equipmentsubgroup_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
+                <td>{{ entity.equipmentgroup }}</td>
                 <td>
                 <ul>
                     <li>
@@ -34,10 +38,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+	<br />
         <ul>
         <li>
-            <a href="{{ path('equipmentsubgroup_new') }}">
+            <a id="ot_list_create" href="{{ path('equipmentsubgroup_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>

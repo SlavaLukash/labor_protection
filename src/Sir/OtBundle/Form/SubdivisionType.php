@@ -16,7 +16,6 @@ class SubdivisionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('users')
             ->add('enterprise')
         ;
     }

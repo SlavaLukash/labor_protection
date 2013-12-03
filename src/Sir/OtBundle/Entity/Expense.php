@@ -37,9 +37,9 @@ class Expense
 
 
 	/**
-	 * @var string
+	 * @var integer
 	 *
-	 * @ORM\Column(name="year", type="date")
+	 * @ORM\Column(name="year", type="integer")
 	 */
 	private $year;
 
@@ -104,6 +104,7 @@ class Expense
 	protected $sum12;
 	
 
+
     /**
      * Get id
      *
@@ -117,7 +118,7 @@ class Expense
     /**
      * Set year
      *
-     * @param \DateTime $year
+     * @param integer $year
      * @return Expense
      */
     public function setYear($year)
@@ -130,7 +131,7 @@ class Expense
     /**
      * Get year
      *
-     * @return \DateTime 
+     * @return integer 
      */
     public function getYear()
     {
