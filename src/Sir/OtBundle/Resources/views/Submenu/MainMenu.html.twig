@@ -29,6 +29,11 @@
             {% endif %}>
         <a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a>
     </li>
-    <li><a href="#"><p>ЗАТРАТЫ</p></a></li>
+    <li {% if (get_controller_name() == 'expense')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('expense') }}"><p>{% trans %}expense{% endtrans %}</p></a>
+    </li>
     <li><a href="#"><p>ОТЧЕТЫ</p></a></li>
 </ul>

@@ -351,7 +351,7 @@ table.records_list tr th, table.records_list tr td {
 }
 
 table.records_list tr th {
-	background: url('../images/tbl-th.jpg') repeat-x;
+	background: url('../images/tbl-th.jpg') repeat-x bottom;
 	height: 32px;
 }
 
