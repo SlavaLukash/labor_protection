@@ -206,7 +206,8 @@ div.b-login {
 	}
 
 	.ot_filter_form label {
-		margin: 0 10px;
+		margin: 10px;
+		display: inline-block;
 	}
 
 	.ot_filter_form input {

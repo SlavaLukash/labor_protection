@@ -18,10 +18,18 @@ class EmployeeType extends AbstractType
             ->add('lastname')
             ->add('firstname')
             ->add('middlename')
-            ->add('sex')
-            ->add('bithday')
-            ->add('date_first_medical')
-            ->add('date_instruction')
+            ->add('sex', 'choice', array(
+				'choices' => array('Ж', 'М')
+			))
+            ->add('bithday', 'date', array(
+				'years' => range(1900, date('Y')
+			)))
+            ->add('date_first_medical', 'date', array(
+				'years' => range(1900, date('Y')
+				)))
+            ->add('date_instruction', 'date', array(
+				'years' => range(1900, date('Y')
+				)))
             ->add('subdivision')
             ->add('marriagekind')
             ->add('profession')

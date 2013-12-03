@@ -6,7 +6,9 @@
 
 {% block body -%}
     <h1>Employee list</h1>
-
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
@@ -28,7 +30,7 @@
                 <td>{{ entity.lastname }}</td>
                 <td>{{ entity.firstname }}</td>
                 <td>{{ entity.middlename }}</td>
-                <td>{{ entity.sex }}</td>
+                <td>{% if entity.sex == 0 %}Ж{% else %}М{% endif %}</td>
                 <td>{% if entity.bithday %}{{ entity.bithday|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.datefirstmedical %}{{ entity.datefirstmedical|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.dateinstruction %}{{ entity.dateinstruction|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -46,10 +48,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+<br />
         <ul>
         <li>
-            <a href="{{ path('employee_new') }}">
+            <a id="ot_list_create" href="{{ path('employee_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>
