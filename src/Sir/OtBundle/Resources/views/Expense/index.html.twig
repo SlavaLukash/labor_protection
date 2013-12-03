@@ -10,38 +10,20 @@
     <table class="records_list">
         <thead>
             <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <th>{% trans %}Expensekind{% endtrans %}</th>
                 <th>{% trans %}Year{% endtrans %}</th>
-                <th>{% trans %}Sum1{% endtrans %}</th>
-                <th>{% trans %}Sum2{% endtrans %}</th>
-                <th>{% trans %}Sum3{% endtrans %}</th>
-                <th>{% trans %}Sum4{% endtrans %}</th>
-                <th>{% trans %}Sum5{% endtrans %}</th>
-                <th>{% trans %}Sum6{% endtrans %}</th>
-                <th>{% trans %}Sum7{% endtrans %}</th>
-                <th>{% trans %}Sum8{% endtrans %}</th>
-                <th>{% trans %}Sum9{% endtrans %}</th>
-                <th>{% trans %}Sum10{% endtrans %}</th>
-                <th>{% trans %}Sum11{% endtrans %}</th>
-                <th>{% trans %}Sum12{% endtrans %}</th>
+                <th>Сумма затрат за год</th>
                 <th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td>{% if entity.year %}<a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.year|date('Y') }}</a>{% endif %}</td>
-                <td>{{ entity.sum1 }}</td>
-                <td>{{ entity.sum2 }}</td>
-                <td>{{ entity.sum3 }}</td>
-                <td>{{ entity.sum4 }}</td>
-                <td>{{ entity.sum5 }}</td>
-                <td>{{ entity.sum6 }}</td>
-                <td>{{ entity.sum7 }}</td>
-                <td>{{ entity.sum8 }}</td>
-                <td>{{ entity.sum9 }}</td>
-                <td>{{ entity.sum10 }}</td>
-                <td>{{ entity.sum11 }}</td>
-                <td>{{ entity.sum12 }}</td>
+				<td>{{ entity.enterprise }}</td>
+				<td>{{ entity.expensekind }}</td>
+                <td>{% if entity.year %}<a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.year }}</a>{% endif %}</td>
+                <td>{{ (entity.sum1 + entity.sum2 + entity.sum3 + entity.sum4 + entity.sum5 + entity.sum6 + entity.sum7 + entity.sum8 + entity.sum9 + entity.sum10 + entity.sum11 + entity.sum12)|number_format(2, '.', ',') }}</td>
                 <td>
                 <ul>
                     <li>

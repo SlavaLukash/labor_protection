@@ -14,8 +14,16 @@ class ExpenseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$ch = range(1970, date('Y'));
+		$newCh = array();
+		foreach($ch as $c)
+		{
+			$newCh[$c] = $c;
+		}
         $builder
-            ->add('year')
+            ->add('year', 'choice', array(
+				'choices' => $newCh
+			))
             ->add('sum1')
             ->add('sum2')
             ->add('sum3')
