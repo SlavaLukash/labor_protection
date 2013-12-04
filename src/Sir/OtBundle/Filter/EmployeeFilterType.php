@@ -17,10 +17,14 @@ class EmployeeFilterType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('enterprise', 'filter_text', array(
+		$builder->add('enterprise', 'filter_entity', array(
+			'empty_value' => 'Все',
+			'class' => 'SirOtBundle:Enterprise',
 			'apply_filter' => array($this, 'enterpriseFieldCallback')
 		));
-		$builder->add('subdivision', 'filter_text', array(
+		$builder->add('subdivision', 'filter_entity', array(
+			'empty_value' => 'Все',
+			'class' => 'SirOtBundle:Subdivision',
 			'apply_filter' => array($this, 'subdivisionFieldCallback')
 		));
 	}
@@ -42,9 +46,10 @@ class EmployeeFilterType extends AbstractType
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->innerJoin('e.enterprise', 'ee');
-			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
-			$qb->orderBy('ee.id', 'ASC');
+			$qb->select('e')
+				->leftJoin('e.subdivision', 'ee')
+				->where('ee.enterprise = ' . $_REQUEST['subdivision_filter']['enterprise'])
+				->orderBy('e.id', 'DESC');
 		}
 	}
 
