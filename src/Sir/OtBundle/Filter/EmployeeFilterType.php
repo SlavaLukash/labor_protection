@@ -26,7 +26,6 @@ class EmployeeFilterType extends AbstractType
 	{
 		$builder->add('enterprise', 'filter_entity', array(
 			'class' => 'SirOtBundle:Enterprise',
-			'virtual' => true,
 			'empty_value' => false,
 			'apply_filter' => array($this, 'enterpriseFieldCallback')
 		));
