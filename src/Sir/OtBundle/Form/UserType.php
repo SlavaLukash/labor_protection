@@ -11,7 +11,6 @@ class UserType extends AbstractType
 
 	protected $roles;
 	protected $userRoles;
-
 	protected $entity;
 
 	public function __construct($entity, $roles, $userRoles) {
@@ -22,6 +21,7 @@ class UserType extends AbstractType
 		$this->roles 		= $theRoles;
 		$this->userRoles 	= $userRoles;
 		$this->entity 		= $entity;
+
 	}
 
     /*public function buildForm(FormBuilderInterface $builder, array $options)

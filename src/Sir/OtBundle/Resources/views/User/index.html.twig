@@ -29,7 +29,11 @@
                 <td>{{ entity.enabled }}</td>
                 <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ entity.locked }}</td>
-                <td>{{ entity.roles }}</td>
+				<td>
+					{% for role in entity.roles %}
+						{{ role }}<br />
+					{% endfor %}
+				</td>
                 <td>
                 <ul>
                     <li>
@@ -44,10 +48,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+<br />
         <ul>
         <li>
-            <a href="{{ path('user_new') }}">
+            <a id="ot_list_create" href="{{ path('user_new') }}">
                 {% trans %}Create a new entry{% endtrans %}
             </a>
         </li>
