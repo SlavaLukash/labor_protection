@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma list</h1>
+    <h1>{% trans %}Trauma list{% endtrans %}</h1>
 
     <table class="records_list">
         <thead>
             <tr>
-                <th>Datetrauma</th>
-                <th>Traumareport</th>
-                <th>Hoursstart</th>
                 <th>Id</th>
+                <th>{% trans %}Datetrauma{% endtrans %}</th>
+                <th>{% trans %}Traumareport{% endtrans %}</th>
+                <th>{% trans %}Hoursstart{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
@@ -21,18 +21,18 @@
         {% for entity in entities %}
             <tr>
                 <td><a href="{{ path('trauma_show', { 'id': entity.id }) }}">{{ entity.datetrauma|date('Y-m-d H:i:s') }}</a></td>
+                <td>{{ entity.id }}</td>
                 <td>{{ entity.traumareport }}</td>
                 <td>{{ entity.hoursstart }}</td>
-                <td>{{ entity.id }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('trauma_show', { 'id': entity.id }) }}">{% trans %}Show{% endtrans %}</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('trauma_edit', { 'id': entity.id }) }}">{% trans %}Edit{% endtrans %}</a>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                            <a href="{{ path('trauma_show', { 'id': entity.id }) }}">{% trans %}Show{% endtrans %}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trauma_edit', { 'id': entity.id }) }}">{% trans %}Edit{% endtrans %}</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

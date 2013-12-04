@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Medical</h1>
+    <h1>{% trans %}Medical{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
@@ -14,15 +14,15 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Comment</th>
+                <th>{% trans %}Comment{% endtrans %}</th>
                 <td>{{ entity.comment }}</td>
             </tr>
             <tr>
-                <th>Dateplan</th>
+                <th>{% trans %}Dateplan{% endtrans %}</th>
                 <td>{{ entity.dateplan|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Datefact</th>
+                <th>{% trans %}Datefact{% endtrans %}</th>
                 <td>{{ entity.datefact|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>

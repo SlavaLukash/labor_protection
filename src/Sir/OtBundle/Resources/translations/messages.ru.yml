@@ -20,6 +20,7 @@ Equipmentgroup list: Список групп оборудования
 Equipmentsubgroup: Подгруппа оборудования
 Equipmentsubgroup list: Список подгрупп оборудования
 expense: ЗАТРАТЫ
+Expense: Затрата
 Expense list: Список затрат
 Expensekind: Вид затрат
 Expensekind list: Список видов затрат
@@ -136,3 +137,20 @@ Equipmentsubgroup edit: Редактирование подгруппы обор
 Equipmentsubgroup creation: Создание подгруппы оборудования
 Expensekind edit: Редактирование вида затрат
 Expensekind creation: Создание вида затрат
+Employee creation: Создание сотрудника
+Employee edit: Редактирование сотрудника
+Medical: График медосмотров
+Medical list: Графики медосмотров
+Medical edit: Редактирование графика медосмотров
+Medical creation: Создание графика медосмотров
+Trauma list: Лист травматизма
+Trauma: Травматизм
+Trauma edit: Редактирование травматизма
+Trauma creation: Создание травматизма
+Equipment list: Реестр оборудования
+Technicalexamination creation: Создание технического освидетельствования
+Technicalexamination edit: Редактирование технического освидетельствования
+Technicalexamination list: Технические освидетельствования
+Technicalexamination: Техническиое освидетельствование
+Expense edit: Редактирование затраты
+Expense creation: Создание затраты

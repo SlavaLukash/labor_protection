@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Medical list</h1>
+    <h1>{% trans %}Medical list{% endtrans %}</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Comment</th>
-                <th>Dateplan</th>
-                <th>Datefact</th>
+                <th>{% trans %}Comment{% endtrans %}</th>
+                <th>{% trans %}Dateplan{% endtrans %}</th>
+                <th>{% trans %}Datefact{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>

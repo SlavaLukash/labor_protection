@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Technicalexamination</h1>
+    <h1>{% trans %}Technicalexamination{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
@@ -14,15 +14,15 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Resulttext</th>
+                <th>{% trans %}Resulttext{% endtrans %}</th>
                 <td>{{ entity.resulttext }}</td>
             </tr>
             <tr>
-                <th>Plandate</th>
+                <th>{% trans %}Plandate{% endtrans %}</th>
                 <td>{{ entity.plandate|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Factdate</th>
+                <th>{% trans %}Factdate{% endtrans %}</th>
                 <td>{{ entity.factdate|date('Y-m-d H:i:s') }}</td>
             </tr>
         </tbody>

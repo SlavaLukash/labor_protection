@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block submenu %}
-	{{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+    {{ include('SirOtBundle:Submenu:Expense.html.twig') }}
 {% endblock %}
 
 {% block body -%}
-    <h1>Expense</h1>
+    <h1>{% trans %}Expense{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>

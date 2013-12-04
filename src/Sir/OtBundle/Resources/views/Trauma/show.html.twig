@@ -5,25 +5,25 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Trauma</h1>
+    <h1>{% trans %}Trauma{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>Datetrauma</th>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Datetrauma{% endtrans %}</th>
                 <td>{{ entity.datetrauma|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Traumareport</th>
+                <th>{% trans %}Traumareport{% endtrans %}</th>
                 <td>{{ entity.traumareport }}</td>
             </tr>
             <tr>
-                <th>Hoursstart</th>
+                <th>{% trans %}Hoursstart{% endtrans %}</th>
                 <td>{{ entity.hoursstart }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
             </tr>
         </tbody>
     </table>
