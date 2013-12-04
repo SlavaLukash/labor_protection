@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>User list</h1>
+    <h1>{% trans %}User list{% endtrans %}</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Enabled</th>
-                <th>Lastlogin</th>
-                <th>Locked</th>
-                <th>Roles</th>
-                <th>Actions</th>
+                <th>{% trans %}Username{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Enabled{% endtrans %}</th>
+                <th>{% trans %}Lastlogin{% endtrans %}</th>
+                <th>{% trans %}Locked{% endtrans %}</th>
+                <th>{% trans %}Roles{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>

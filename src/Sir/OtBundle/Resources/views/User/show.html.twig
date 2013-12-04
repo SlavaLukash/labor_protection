@@ -10,11 +10,11 @@
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>Username</th>
+                <th>{% trans %}Username{% endtrans %}</th>
                 <td>{{ entity.username }}</td>
             </tr>
             <tr>
-                <th>Usernamecanonical</th>
+                <th>{% trans %}Usernamecanonical{% endtrans %}</th>
                 <td>{{ entity.usernameCanonical }}</td>
             </tr>
             <tr>
@@ -22,47 +22,47 @@
                 <td>{{ entity.email }}</td>
             </tr>
             <tr>
-                <th>Emailcanonical</th>
+                <th>{% trans %}Emailcanonical{% endtrans %}</th>
                 <td>{{ entity.emailCanonical }}</td>
             </tr>
             <tr>
-                <th>Enabled</th>
+                <th>{% trans %}Enabled{% endtrans %}</th>
                 <td>{{ entity.enabled }}</td>
             </tr>
             <tr>
-                <th>Salt</th>
+                <th>{% trans %}Salt{% endtrans %}</th>
                 <td>{{ entity.salt }}</td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>{% trans %}Password{% endtrans %}</th>
                 <td>{{ entity.password }}</td>
             </tr>
             <tr>
-                <th>Lastlogin</th>
+                <th>{% trans %}Lastlogin{% endtrans %}</th>
                 <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Locked</th>
+                <th>{% trans %}Locked{% endtrans %}</th>
                 <td>{{ entity.locked }}</td>
             </tr>
             <tr>
-                <th>Expired</th>
+                <th>{% trans %}Expired{% endtrans %}</th>
                 <td>{{ entity.expired }}</td>
             </tr>
             <tr>
-                <th>Expiresat</th>
+                <th>{% trans %}Expiresat{% endtrans %}</th>
                 <td>{{ entity.expiresAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Confirmationtoken</th>
+                <th>{% trans %}Confirmationtoken{% endtrans %}</th>
                 <td>{{ entity.confirmationToken }}</td>
             </tr>
             <tr>
-                <th>Passwordrequestedat</th>
+                <th>{% trans %}Passwordrequestedat{% endtrans %}</th>
                 <td>{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
+                <th>{% trans %}Roles{% endtrans %}</th>
 				<td>
 					{% for role in entity.roles %}
 						{{ role }}<br />
@@ -70,11 +70,11 @@
 				</td>
             </tr>
             <tr>
-                <th>Credentialsexpired</th>
+                <th>{% trans %}Credentialsexpired{% endtrans %}</th>
                 <td>{{ entity.credentialsExpired }}</td>
             </tr>
             <tr>
-                <th>Credentialsexpireat</th>
+                <th>{% trans %}Credentialsexpireat{% endtrans %}</th>
                 <td>{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>

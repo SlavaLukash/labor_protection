@@ -4,7 +4,9 @@ Comment: Примечание
 Datefact: Дата факт.
 Factdate: Дата факт.
 Date first medical: Дата первичного медосмотра
+Date_first_medical: Дата первичного медосмотра
 Date instruction: Дата инструктажа
+Date_instruction: Дата инструктажа
 Dateplan: Дата план.
 Datetrauma: Дата несчастного случая
 Employee: Сотрудник
@@ -31,8 +33,8 @@ Manufacturer: Изготовитель
 Marriagekind: Семейный статус
 Medicalkind: Вид медосмотра
 Medicalkind list: Список видов медосмотров
-Medicaltype: Тип медосмотра
-Medicaltype list: Список типов медосмотров
+Medicaltype: Характер медосмотра
+Medicaltype list: Список характеров медосмотров
 Middlename: Отчество
 Model: Модель
 Name: Наименование
@@ -89,6 +91,7 @@ Enabled: Включен
 Salt: Соль
 Password: Пароль
 Last login: Время последнего захода
+Lastlogin: Время последнего захода
 Locked: Заблокирован
 Expired: Истекло
 Expires at: Истекает в
@@ -110,3 +113,26 @@ Okt: Окт
 Nov: Ноя
 Dec: Дек
 LFMname: Ф.И.О.
+User list: Список пользователей
+Enterprise edit: Редактирование предприятния
+Enterprise creation: Создание предприятния
+Enterprise: Предприятие
+Subdivision edit: Редактирование структурного подразделения
+Subdivision creation: Создание структурного подразделения
+Profession edit: Редактирование профессии
+Profession creation: Создание профессии
+Professionkind creation: Создание вида профессии
+Professionkind edit: Редактирование вида профессии
+Medicalkind creation: Создание вида медосмотра
+Medicalkind edit: Редактирование вида медосмотра
+Medicaltype edit: Редактирование характера медосмотра
+Medicaltype creation: Создание характера медосмотра
+Traumakind edit: Редактирование вида происшествия
+Traumakind creation: Создание вида происшествия
+Traumacause edit: Редактирование причины происшествия
+Traumacause creation: Создание причины происшествия
+Equipmentgroup creation: Создание группы оборудования
+Equipmentsubgroup edit: Редактирование подгруппы оборудования
+Equipmentsubgroup creation: Создание подгруппы оборудования
+Expensekind edit: Редактирование вида затрат
+Expensekind creation: Создание вида затрат
