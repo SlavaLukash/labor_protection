@@ -15,11 +15,19 @@ use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 
 class EmployeeFilterType extends AbstractType
 {
+	protected $req;
+
+	public function __construct() {
+		$this->req = 0;
+		if(isset($_REQUEST['subdivision_filter']['enterprise']))$this->req =$_REQUEST['subdivision_filter']['enterprise'];
+	}
+
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('enterprise', 'filter_entity', array(
-			'empty_value' => 'Все',
 			'class' => 'SirOtBundle:Enterprise',
+			'virtual' => true,
+			'empty_value' => false,
 			'apply_filter' => array($this, 'enterpriseFieldCallback')
 		));
 		$builder->add('subdivision', 'filter_entity', array(
@@ -48,7 +56,7 @@ class EmployeeFilterType extends AbstractType
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->select('e')
 				->leftJoin('e.subdivision', 'ee')
-				->where('ee.enterprise = ' . $_REQUEST['subdivision_filter']['enterprise'])
+				->where('ee.enterprise = ' . $this->req)
 				->orderBy('e.id', 'DESC');
 		}
 	}

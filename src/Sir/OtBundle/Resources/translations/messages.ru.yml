@@ -8,6 +8,7 @@ Date instruction: Дата инструктажа
 Dateplan: Дата план.
 Datetrauma: Дата несчастного случая
 Employee: Сотрудник
+Employee list: Реестр сотрудников
 Enterprise: Предприятие
 Enterprise list: Список предприятий
 Equipment: Оборудование
@@ -108,3 +109,4 @@ Sep: Сен
 Okt: Окт
 Nov: Ноя
 Dec: Дек
+LFMname: Ф.И.О.

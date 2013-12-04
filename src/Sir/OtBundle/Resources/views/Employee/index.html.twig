@@ -5,17 +5,16 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>Employee list</h1>
+    <h1>{% trans %}Employee list{% endtrans %}</h1>
 	{% block filter %}
 		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
 	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
-                <th>{% trans %}Lastname{% endtrans %}</th>
-                <th>{% trans %}Firstname{% endtrans %}</th>
-                <th>{% trans %}Middlename{% endtrans %}</th>
+                <th>{% trans %}LFMname{% endtrans %}</th>
                 <th>{% trans %}Bithday{% endtrans %}</th>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
                 <th>{% trans %}Profession{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
@@ -23,10 +22,9 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('employee_show', { 'id': entity.id }) }}">{{ entity.lastname }}</a></td>
-                <td>{{ entity.firstname }}</td>
-                <td>{{ entity.middlename }}</td>
-                <td>{% if entity.bithday %}{{ entity.bithday|date('d-m-Y') }}{% endif %}</td>
+                <td><a href="{{ path('employee_show', { 'id': entity.id }) }}">{{ entity.lastname }} {{ entity.firstname }} {{ entity.middlename }}</a></td>
+				<td>{% if entity.bithday %}{{ entity.bithday|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.subdivision }}</td>
 				<td>{{ entity.profession }}</td>
                 <td>
                 <ul>
