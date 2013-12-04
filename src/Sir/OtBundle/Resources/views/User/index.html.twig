@@ -31,7 +31,7 @@
                 <td>{{ entity.locked }}</td>
 				<td>
 					{% for role in entity.roles %}
-						{{ role }}<br />
+                        {{ role|trans }}<br />
 					{% endfor %}
 				</td>
                 <td>
