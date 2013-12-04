@@ -8,9 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-		$response = $this->forward('Sir\OtBundle\Controller\EnterpriseController::indexAction');
+		if($this->getUser()->hasRole('ROLE_ADMIN')) {
+			$response = $this->forward('Sir\OtBundle\Controller\UserController::indexAction');
+		} else {
+			$response = $this->forward('Sir\OtBundle\Controller\EmployeeController::indexAction');
+		}
 		return $response;
-
-//		return $this->render('SirOtBundle:Default:index.html.twig');
     }
 }

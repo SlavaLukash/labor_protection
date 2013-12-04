@@ -23,7 +23,20 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, role: ROLE_USER }
+        - { path: ^/login$,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register,               role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting,              role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/user,                   role: ROLE_ADMIN }
+        - { path: ^/enterprise,             role: ROLE_ADMIN }
+        - { path: ^/profession,             role: ROLE_ADMIN }
+        - { path: ^/subdivision,            role: ROLE_ADMIN }
+        - { path: ^/professionkind,         role: ROLE_ADMIN }
+        - { path: ^/medicalkind,            role: ROLE_ADMIN }
+        - { path: ^/medicaltype,            role: ROLE_ADMIN }
+        - { path: ^/traumakind,             role: ROLE_ADMIN }
+        - { path: ^/traumacause,            role: ROLE_ADMIN }
+        - { path: ^/equipmentgroup,         role: ROLE_ADMIN }
+        - { path: ^/equipmentsubgroup,      role: ROLE_ADMIN }
+
+        - { path: ^/,                       role: ROLE_USER }
