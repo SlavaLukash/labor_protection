@@ -27,6 +27,7 @@ class EmployeeFilterType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder->add('name', 'filter_text', array(
+			'label' => 'Ф.И.О',
 			'apply_filter' => array($this, 'fioVariantsFieldCallback')
 		));
 		$builder->add('subdivision', 'filter_choice', array(
@@ -62,10 +63,19 @@ class EmployeeFilterType extends AbstractType
 	public function fioVariantsFieldCallback(QueryInterface $filterQuery, $field, $values)
 	{
 		if (!empty($values['value'])) {
+			$aValues = explode(' ', $values['value']);
+			$query = '';
+			foreach($aValues as $key => $val)
+			{
+				if($key == 0)
+				{
+					$query .= "LOWER(e.firstname) LIKE LOWER('%{$val}%') OR LOWER(e.lastname) LIKE LOWER('%{$val}%') OR LOWER(e.middlename) LIKE LOWER('%{$val}%')";
+				} else {
+					$query .= " OR LOWER(e.firstname) LIKE LOWER('%{$val}%') OR LOWER(e.lastname) LIKE LOWER('%{$val}%') OR LOWER(e.middlename) LIKE LOWER('%{$val}%')";
+				}
+			}
 			$qb = $filterQuery->getQueryBuilder();
-			$qb->innerJoin('e.firstname', 'ee');
-			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
-			$qb->orderBy('ee.id', 'ASC');
+			$qb->andWhere($query);
 		}
 	}
 
