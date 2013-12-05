@@ -447,9 +447,6 @@ table.record_properties {
 	background-color: #f1f1f1;
 }
 
-/*table.record_properties tr td {
-	padding: 5px;
-}*/
 table.record_properties {
 	font-size: 13px;
 }
@@ -457,6 +454,30 @@ table.record_properties {
 table.record_properties tr th {
 	font-weight: bold;
 	width: 200px;
+}
+
+table.record_properties tr:first-child th:first-child { /*Первая строка первая ячейка в заголовке таблицы*/
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
+}
+
+table.record_properties tr:first-child td:last-child { /*Первая строка последняя ячейка в заголовке таблицы*/
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+	border-radius: 0 5px 0 0;
+}
+
+table.record_properties tr:last-child th:first-child  /*Последняя строка первая ячейка в теле таблицы*/ {
+	-webkit-border-radius: 0 0 0 5px;
+	-moz-border-radius: 0 0 0 5px;
+	border-radius: 0 0 0 5px;
+}
+
+table.record_properties tr:last-child td:last-child  /*Последняя строка последняя ячейка в теле таблицы*/{
+	-webkit-border-radius: 0 0 5px 0;
+	-moz-border-radius: 0 0 5px 0;
+	border-radius: 0 0 5px 0;
 }
 
 table.record_properties tr th, table.record_properties tr td {
