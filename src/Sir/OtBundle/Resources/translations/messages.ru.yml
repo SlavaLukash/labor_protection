@@ -78,6 +78,7 @@ Traumareport: Акт Н-1
 Eear: Год
 Actions: Действия
 Users: Пользователи
+User: Пользователь
 edit: редактировать
 show: просмотр
 Update: Обновить
@@ -115,6 +116,8 @@ Nov: Ноя
 Dec: Дек
 LFMname: Ф.И.О.
 User list: Список пользователей
+User creation: Создание пользователя
+User edit: Редактирования пользователя
 Enterprise edit: Редактирование предприятния
 Enterprise creation: Создание предприятния
 Enterprise: Предприятие
@@ -154,3 +157,4 @@ Technicalexamination list: Технические освидетельствов
 Technicalexamination: Техническиое освидетельствование
 Expense edit: Редактирование затраты
 Expense creation: Создание затраты
+Expiresat: Истекает

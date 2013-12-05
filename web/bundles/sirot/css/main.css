@@ -374,7 +374,7 @@ div.b-form-area {
 	margin: 0 auto;
 	position: relative;
 	margin-top: 33px;
-	padding: 10px 0;
+	padding-top: 10px;
 }
 
 div.b-form-area div.b-form-title {
@@ -434,4 +434,69 @@ div.b-form-area hr {
 div.b-breadcrumbs {
 	width: 100%;
 	height: 35px;
+}
+
+table.record_properties {
+	border: 1px solid #c5c5c5;
+	width: 100%;
+	border-spacing: 0; /*Отступы между границами ячеек*/
+	border-collapse: separate; /*Границы ячеек не склеиваются*/
+	-webkit-border-radius: 5px; /*Радиус скругления углов у таблицы Safari, Chrome*/
+	-moz-border-radius: 5px; /*Радиус скругления углов у таблицы Mozilla*/
+	border-radius: 5px; /*Радиус скругления углов у таблицы*/
+	background-color: #f1f1f1;
+}
+
+/*table.record_properties tr td {
+	padding: 5px;
+}*/
+table.record_properties {
+	font-size: 13px;
+}
+
+table.record_properties tr th {
+	font-weight: bold;
+	width: 200px;
+}
+
+table.record_properties tr th, table.record_properties tr td {
+	padding: 5px;
+}
+
+table.record_properties tr.row_even {
+	background-color: #ffffff;
+}
+table.record_properties tr.row_odd {
+	background-color: #f6f6f6;
+}
+table.record_properties tr:hover {
+	background-color: #e4daf8;
+}
+
+ul.record_actions {
+	margin-top: 10px;
+}
+
+ul.record_actions li {
+	float: left;
+	margin-right: 5px;
+}
+
+ul.record_actions li a {
+	background: url('../images/submit-btn-bg.png') repeat-x;
+	color: #ffffff;
+	display: inline-block;
+	height: 29px;
+	line-height: 28px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	padding: 0 5px;
+}
+
+ul.record_actions li a:hover {
+	text-decoration: none;
+}
+
+table#form td{
+	padding: 0;
 }

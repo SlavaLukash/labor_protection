@@ -5,37 +5,25 @@
 {% endblock %}
 
 {% block body -%}
-    <h1>User</h1>
+    <h1>{% trans %}User{% endtrans %}</h1>
 
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>{% trans %}Username{% endtrans %}</th>
-                <td>{{ entity.username }}</td>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>{% trans %}Usernamecanonical{% endtrans %}</th>
-                <td>{{ entity.usernameCanonical }}</td>
+                <th>{% trans %}Username{% endtrans %}</th>
+                <td>{{ entity.username }}</td>
             </tr>
             <tr>
                 <th>Email</th>
                 <td>{{ entity.email }}</td>
             </tr>
             <tr>
-                <th>{% trans %}Emailcanonical{% endtrans %}</th>
-                <td>{{ entity.emailCanonical }}</td>
-            </tr>
-            <tr>
                 <th>{% trans %}Enabled{% endtrans %}</th>
                 <td>{{ entity.enabled }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}Salt{% endtrans %}</th>
-                <td>{{ entity.salt }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}Password{% endtrans %}</th>
-                <td>{{ entity.password }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Lastlogin{% endtrans %}</th>
@@ -54,47 +42,27 @@
                 <td>{{ entity.expiresAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>{% trans %}Confirmationtoken{% endtrans %}</th>
-                <td>{{ entity.confirmationToken }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}Passwordrequestedat{% endtrans %}</th>
-                <td>{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
                 <th>{% trans %}Roles{% endtrans %}</th>
 				<td>
 					{% for role in entity.roles %}
-						{{ role }}<br />
+						{{ role|trans }}<br />
 					{% endfor %}
 				</td>
-            </tr>
-            <tr>
-                <th>{% trans %}Credentialsexpired{% endtrans %}</th>
-                <td>{{ entity.credentialsExpired }}</td>
-            </tr>
-            <tr>
-                <th>{% trans %}Credentialsexpireat{% endtrans %}</th>
-                <td>{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
             </tr>
         </tbody>
     </table>
 
         <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            {% trans %}Back to the list{% endtrans %}
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('user_edit', { 'id': entity.id }) }}">
-            {% trans %}Edit{% endtrans %}
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <li>
+                <a href="{{ path('user') }}">
+                    {% trans %}Back to the list{% endtrans %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('user_edit', { 'id': entity.id }) }}">
+                    {% trans %}Edit{% endtrans %}
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
 {% endblock %}
