@@ -34,7 +34,13 @@ class EmployeeController extends Controller
 		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
 		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery($filterBuilder->getDql());
-		$entities = $query->getResult();
+
+		$paginator  = $this->get('knp_paginator');
+		$entities = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
 
 		return $this->render('SirOtBundle:Employee:index.html.twig', array(
 			'entities' => $entities,

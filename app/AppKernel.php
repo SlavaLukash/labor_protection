@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 			new Sir\OtBundle\SirOtBundle(),
 			new FOS\UserBundle\FOSUserBundle(),
 			new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+			new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

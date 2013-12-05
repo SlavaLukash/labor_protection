@@ -521,3 +521,31 @@ ul.record_actions li a:hover {
 table#form td{
 	padding: 0;
 }
+
+.navigation {
+	margin: 20px auto;
+	font-family: "Times New Roman";
+	font-size: 15px;
+	font-weight: bold;
+	color: deepskyblue;
+	max-width: 250px;
+}
+
+.navigation .page, .navigation .current, .navigation .first, .navigation .last, .navigation .next, .navigation .previous {
+	background: url('../images/submit-btn-bg.png') repeat-x;
+	color: #ffffff;
+	padding: 5px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	width: 20px;
+	height: 20px;
+	text-decoration: none;
+}
+
+.navigation .page a, .navigation .first a, .navigation .last a, .navigation .next a, .navigation .previous a {
+	color: #fff;
+}
+
+.navigation .current {
+	color: #000000;
+}
