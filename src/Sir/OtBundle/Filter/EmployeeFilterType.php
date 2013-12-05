@@ -17,8 +17,11 @@ class EmployeeFilterType extends AbstractType
 {
 	protected $sdArray;
 
-	public function __construct($sdArray = null) {
-		$this->sdArray = $sdArray;
+	public function __construct($sdArray = null, $entArray = null) {
+		foreach($sdArray as $subD)
+		{
+			$this->sdArray[$subD->getEnterprise()->getName()][] = $subD->getName();
+		}
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
@@ -58,7 +61,6 @@ class EmployeeFilterType extends AbstractType
 
 	public function fioVariantsFieldCallback(QueryInterface $filterQuery, $field, $values)
 	{
-		var_dump($values['value']);
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.firstname', 'ee');

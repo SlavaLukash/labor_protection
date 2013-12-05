@@ -23,12 +23,10 @@ class EmployeeController extends Controller
     {
 		$em = $this->getDoctrine()->getManager();
 
-		$entities = $em->getRepository('SirOtBundle:Subdivision')->findAll();
-		foreach($entities as $entity)
-		{
-			$sdArray[$entity->getEnterprise()->getName()][$entity->getId()] = $entity->getName();
-		}
-		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray));
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+
+		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray, $entArray));
 		$form->bind($this->get('request'));
 		$filterBuilder = $this->get('doctrine.orm.entity_manager')
 			->getRepository('SirOtBundle:Employee')
