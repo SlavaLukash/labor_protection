@@ -22,6 +22,16 @@ $(document).ready(function () {
 			i++;
 		});
 	});
+
+	/*вешаем на форму удаления событие, которое будет заставить подтвердить удаление*/
+	var deleteForm		= $('input[value="DELETE"][name="_method"]').parent('form');
+
+	deleteForm.find('button[type="submit"]').click(function () {
+		if(confirm('Подвердите удаление')) {
+			return true;
+		}
+		return false;
+	});
 });
 
 function filterClear() {
