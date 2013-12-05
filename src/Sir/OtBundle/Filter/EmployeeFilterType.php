@@ -20,7 +20,7 @@ class EmployeeFilterType extends AbstractType
 	public function __construct($sdArray = null, $entArray = null) {
 		foreach($sdArray as $subD)
 		{
-			$this->sdArray[$subD->getEnterprise()->getName()][] = $subD->getName();
+			$this->sdArray[$subD->getEnterprise()->getName()][$subD->getId()] = $subD->getName();
 		}
 	}
 
@@ -55,7 +55,7 @@ class EmployeeFilterType extends AbstractType
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.subdivision', 'ee');
-			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
+			$qb->andWhere("ee.id = {$values['value']}");
 			$qb->orderBy('ee.id', 'ASC');
 		}
 	}
