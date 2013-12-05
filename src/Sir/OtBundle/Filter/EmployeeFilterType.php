@@ -67,6 +67,7 @@ class EmployeeFilterType extends AbstractType
 			$query = '';
 			foreach($aValues as $key => $val)
 			{
+				$val = str_replace("'",'',$val);
 				if($key == 0)
 				{
 					$query .= "LOWER(e.firstname) LIKE LOWER('%{$val}%') OR LOWER(e.lastname) LIKE LOWER('%{$val}%') OR LOWER(e.middlename) LIKE LOWER('%{$val}%')";
