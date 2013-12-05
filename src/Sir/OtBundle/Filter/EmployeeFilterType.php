@@ -15,23 +15,20 @@ use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 
 class EmployeeFilterType extends AbstractType
 {
-	protected $req;
+	protected $sdArray;
 
-	public function __construct() {
-		$this->req = 0;
-		if(isset($_REQUEST['subdivision_filter']['enterprise']))$this->req =$_REQUEST['subdivision_filter']['enterprise'];
+	public function __construct($sdArray = null) {
+		$this->sdArray = $sdArray;
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('enterprise', 'filter_entity', array(
-			'class' => 'SirOtBundle:Enterprise',
-			'empty_value' => false,
-			'apply_filter' => array($this, 'enterpriseFieldCallback')
+		$builder->add('name', 'filter_text', array(
+			'apply_filter' => array($this, 'fioVariantsFieldCallback')
 		));
-		$builder->add('subdivision', 'filter_entity', array(
+		$builder->add('subdivision', 'filter_choice', array(
 			'empty_value' => 'Все',
-			'class' => 'SirOtBundle:Subdivision',
+			'choices' => $this->sdArray,
 			'apply_filter' => array($this, 'subdivisionFieldCallback')
 		));
 	}
@@ -49,22 +46,22 @@ class EmployeeFilterType extends AbstractType
 		));
 	}
 
-	public function enterpriseFieldCallback(QueryInterface $filterQuery, $field, $values)
-	{
-		if (!empty($values['value'])) {
-			$qb = $filterQuery->getQueryBuilder();
-			$qb->select('e')
-				->leftJoin('e.subdivision', 'ee')
-				->where('ee.enterprise = ' . $this->req)
-				->orderBy('e.id', 'DESC');
-		}
-	}
-
 	public function subdivisionFieldCallback(QueryInterface $filterQuery, $field, $values)
 	{
 		if (!empty($values['value'])) {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.subdivision', 'ee');
+			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
+			$qb->orderBy('ee.id', 'ASC');
+		}
+	}
+
+	public function fioVariantsFieldCallback(QueryInterface $filterQuery, $field, $values)
+	{
+		var_dump($values['value']);
+		if (!empty($values['value'])) {
+			$qb = $filterQuery->getQueryBuilder();
+			$qb->innerJoin('e.firstname', 'ee');
 			$qb->andWhere("LOWER(ee.name) LIKE LOWER('%{$values['value']}%')");
 			$qb->orderBy('ee.id', 'ASC');
 		}

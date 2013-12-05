@@ -21,7 +21,14 @@ class EmployeeController extends Controller
      */
     public function indexAction()
     {
-		$form = $this->get('form.factory')->create(new EmployeeFilterType());
+		$em = $this->getDoctrine()->getManager();
+
+		$entities = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		foreach($entities as $entity)
+		{
+			$sdArray[$entity->getEnterprise()->getName()][$entity->getId()] = $entity->getName();
+		}
+		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray));
 		$form->bind($this->get('request'));
 		$filterBuilder = $this->get('doctrine.orm.entity_manager')
 			->getRepository('SirOtBundle:Employee')
