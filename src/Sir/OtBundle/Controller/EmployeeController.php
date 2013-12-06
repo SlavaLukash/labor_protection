@@ -23,15 +23,14 @@ class EmployeeController extends Controller
     {
 		$em = $this->getDoctrine()->getManager();
 
-		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$oUser = $this->getUser();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
 			$sdArray = $oUser->getUsersubdivisions()->getValues();
-		} else {
-			$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		}
 
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray, $entArray));
 		$form->bind($this->get('request'));
 		$filterBuilder = $this->get('doctrine.orm.entity_manager')
@@ -45,7 +44,7 @@ class EmployeeController extends Controller
 		$entities = $paginator->paginate(
 			$query,
 			$this->get('request')->query->get('page', 1)/*page number*/,
-			10/*limit per page*/
+			5/*limit per page*/
 		);
 
 		return $this->render('SirOtBundle:Employee:index.html.twig', array(
