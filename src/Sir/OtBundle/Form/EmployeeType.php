@@ -5,15 +5,17 @@ namespace Sir\OtBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class EmployeeType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('lastname')
             ->add('firstname')
@@ -30,7 +32,11 @@ class EmployeeType extends AbstractType
             ->add('date_instruction', 'date', array(
 				'years' => range(1900, date('Y')
 				)))
-            ->add('subdivision')
+			->add('subdivision', 'entity', array(
+				'class' => 'SirOtBundle:Subdivision',
+				'empty_value' => false,
+				'choices' => $options['sdArray'],
+			))
             ->add('marriagekind')
             ->add('profession')
         ;
@@ -41,8 +47,13 @@ class EmployeeType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+		$resolver->setRequired(array(
+			'sdArray',
+		));
+
         $resolver->setDefaults(array(
-            'data_class' => 'Sir\OtBundle\Entity\Employee'
+            'data_class' => 'Sir\OtBundle\Entity\Employee',
+			'sdArray' => null,
         ));
     }
 

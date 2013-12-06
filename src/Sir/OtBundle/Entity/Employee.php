@@ -356,7 +356,7 @@ class Employee
     public function setSubdivision(\Sir\OtBundle\Entity\Subdivision $subdivision = null)
     {
         $this->subdivision = $subdivision;
-    
+
         return $this;
     }
 

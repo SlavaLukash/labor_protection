@@ -22,29 +22,27 @@ class EmployeeController extends Controller
     public function indexAction()
     {
 		$em = $this->getDoctrine()->getManager();
-
 		$oUser = $this->getUser();
 		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
 			$sdArray = $oUser->getUsersubdivisions()->getValues();
 		}
 
-		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray, $entArray));
 		$form->bind($this->get('request'));
-		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+		$filterBuilder = $em
 			->getRepository('SirOtBundle:Employee')
 			->createQueryBuilder('e');
 		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-		$em = $this->getDoctrine()->getManager();
 		$query = $em->createQuery($filterBuilder->getDql());
 
 		$paginator  = $this->get('knp_paginator');
 		$entities = $paginator->paginate(
 			$query,
 			$this->get('request')->query->get('page', 1)/*page number*/,
-			5/*limit per page*/
+			10/*limit per page*/
 		);
 
 		return $this->render('SirOtBundle:Employee:index.html.twig', array(
@@ -58,8 +56,17 @@ class EmployeeController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Employee();
-        $form = $this->createCreateForm($entity);
+		$em = $this->getDoctrine()->getManager();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		}
+		$entity = new Employee();
+
+		$form   = $this->createCreateForm($entity, $sdArray);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -81,13 +88,16 @@ class EmployeeController extends Controller
     *
     * @param Employee $entity The entity
     *
+	* @param $entArray
+    *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Employee $entity)
+    private function createCreateForm(Employee $entity, $sdArray = null)
     {
         $form = $this->createForm(new EmployeeType(), $entity, array(
             'action' => $this->generateUrl('employee_create'),
             'method' => 'POST',
+			'sdArray' => $sdArray
         ));
 
         $form->add('submit', 'submit', array('label' => 'Create'));
@@ -101,9 +111,17 @@ class EmployeeController extends Controller
      */
     public function newAction()
     {
+		$em = $this->getDoctrine()->getManager();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		}
         $entity = new Employee();
-        $form   = $this->createCreateForm($entity);
 
+        $form   = $this->createCreateForm($entity, $sdArray);
         return $this->render('SirOtBundle:Employee:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -119,6 +137,20 @@ class EmployeeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SirOtBundle:Employee')->find($id);
+
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+			foreach($sdArray as $subD)
+			{
+				$aIds[] = $subD->getId();
+			}
+			if(!in_array($id,$aIds))
+			{
+				return $this->redirect($this->generateUrl('employee'));
+			}
+		}
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Employee entity.');
@@ -140,6 +172,20 @@ class EmployeeController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SirOtBundle:Employee')->find($id);
+
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+			foreach($sdArray as $subD)
+			{
+				$aIds[] = $subD->getId();
+			}
+			if(!in_array($id,$aIds))
+			{
+				return $this->redirect($this->generateUrl('employee'));
+			}
+		}
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Employee entity.');

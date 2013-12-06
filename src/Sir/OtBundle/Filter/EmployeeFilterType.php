@@ -15,12 +15,14 @@ use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 
 class EmployeeFilterType extends AbstractType
 {
-	protected $sdArray;
+	protected $aSubdivisions;
+	protected $aUserSubdivisions;
 
-	public function __construct($sdArray = null, $entArray = null) {
-		foreach($sdArray as $subD)
+	public function __construct($aSubdivisions = null, $entArray = null) {
+		foreach($aSubdivisions as $subD)
 		{
-			$this->sdArray[$subD->getEnterprise()->getName()][$subD->getId()] = $subD->getName();
+			$this->aSubdivisions[$subD->getEnterprise()->getName()][$subD->getId()] = $subD->getName();
+			$this->aUserSubdivisions[] = $subD->getId();
 		}
 	}
 
@@ -32,7 +34,7 @@ class EmployeeFilterType extends AbstractType
 		));
 		$builder->add('subdivision', 'filter_choice', array(
 			'empty_value' => 'Все',
-			'choices' => $this->sdArray,
+			'choices' => $this->aSubdivisions,
 			'apply_filter' => array($this, 'subdivisionFieldCallback')
 		));
 	}
@@ -56,6 +58,21 @@ class EmployeeFilterType extends AbstractType
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.subdivision', 'ee');
 			$qb->andWhere("ee.id = {$values['value']}");
+			$qb->orderBy('ee.id', 'ASC');
+		} else {
+			$qb = $filterQuery->getQueryBuilder();
+			$qb->innerJoin('e.subdivision', 'ee');
+			$query = '';
+			foreach($this->aUserSubdivisions as $key => $val)
+			{
+				if($key == 0)
+				{
+					$query .= "ee.id = {$val}";
+				} else {
+					$query .= " OR ee.id = {$val}";
+				}
+			}
+			$qb->andWhere($query);
 			$qb->orderBy('ee.id', 'ASC');
 		}
 	}
