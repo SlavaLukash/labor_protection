@@ -23,8 +23,14 @@ class EmployeeController extends Controller
     {
 		$em = $this->getDoctrine()->getManager();
 
-		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		} else {
+			$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		}
 
 		$form = $this->get('form.factory')->create(new EmployeeFilterType($sdArray, $entArray));
 		$form->bind($this->get('request'));
