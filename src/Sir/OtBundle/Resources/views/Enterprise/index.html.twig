@@ -6,6 +6,9 @@
 
 {% block body -%}
     <h1>{% trans %}Enterprise list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('enterprise_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
 	{% block filter %}
 		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
 	{% endblock %}
@@ -43,12 +46,4 @@
 	<div class="navigation">
 		{{ knp_pagination_render(entities) }}
 	</div>
-	<br />
-        <ul>
-        <li>
-            <a id="ot_list_create" href="{{ path('enterprise_new') }}">
-                {% trans %}Create a new entry{% endtrans %}
-            </a>
-        </li>
-    </ul>
     {% endblock %}

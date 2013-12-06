@@ -6,6 +6,9 @@
 
 {% block body -%}
     <h1>{% trans %}Equipment list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('enterprise_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
 
     <table class="records_list">
         <thead>
@@ -50,12 +53,4 @@
         {% endfor %}
         </tbody>
     </table>
-	<br />
-        <ul>
-        <li>
-            <a id="ot_list_create" href="{{ path('equipment_new') }}">
-                {% trans %}Create a new entry{% endtrans %}
-            </a>
-        </li>
-    </ul>
     {% endblock %}

@@ -34,7 +34,7 @@ class EnterpriseController extends Controller
 		$entities = $paginator->paginate(
 			$query,
 			$this->get('request')->query->get('page', 1)/*page number*/,
-			10/*limit per page*/
+			1/*limit per page*/
 		);
 
         return $this->render('SirOtBundle:Enterprise:index.html.twig', array(

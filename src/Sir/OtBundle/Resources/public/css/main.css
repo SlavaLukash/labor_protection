@@ -242,9 +242,15 @@ div.b-login-form {}
 	padding: 5px 16px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
-	width: 200px;
-	height: 26px;
+	width: 160px;
+	height: 20px;
 	text-decoration: none;
+	float: right;
+	margin: 5px;
+}
+
+#b-content h1 {
+	display: inline-block;
 }
 
 div.b-input {
@@ -532,8 +538,7 @@ table#form td{
 }
 
 .navigation .page, .navigation .current, .navigation .first, .navigation .last, .navigation .next, .navigation .previous {
-	background: url('../images/submit-btn-bg.png') repeat-x;
-	color: #ffffff;
+	background: buttonface;
 	padding: 5px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
@@ -543,9 +548,14 @@ table#form td{
 }
 
 .navigation .page a, .navigation .first a, .navigation .last a, .navigation .next a, .navigation .previous a {
-	color: #fff;
+	color: #000000;
 }
 
 .navigation .current {
-	color: #000000;
+	color: #ffffff;
+	padding: 5px;
+}
+
+.navigation span {
+	margin: 0 2px;
 }
