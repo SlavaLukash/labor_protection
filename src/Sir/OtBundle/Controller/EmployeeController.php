@@ -146,7 +146,7 @@ class EmployeeController extends Controller
 			{
 				$aIds[] = $subD->getId();
 			}
-			if(!in_array($id,$aIds))
+			if(!in_array($entity->getSubdivision()->getId(),$aIds))
 			{
 				return $this->redirect($this->generateUrl('employee'));
 			}
@@ -181,7 +181,7 @@ class EmployeeController extends Controller
 			{
 				$aIds[] = $subD->getId();
 			}
-			if(!in_array($id,$aIds))
+			if(!in_array($entity->getSubdivision()->getId(),$aIds))
 			{
 				return $this->redirect($this->generateUrl('employee'));
 			}
