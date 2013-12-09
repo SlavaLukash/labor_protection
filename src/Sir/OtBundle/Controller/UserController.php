@@ -35,7 +35,15 @@ class UserController extends Controller
     public function createAction(Request $request)
     {
         $entity = new User();
-        $form = $this->createCreateForm($entity);
+
+		$em = $this->getDoctrine()->getManager();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN')) {
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		}
+
+        $form = $this->createCreateForm($entity, $sdArray);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -59,13 +67,14 @@ class UserController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(User $entity)
+    private function createCreateForm(User $entity, $sdArray)
     {
 		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
 		$roles = array_keys($roleHierarchy);
 
 //        $form = $this->createForm(new UserType('Sir\OtBundle\Entity\User', 'asdf'), $entity, array(
         $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
+			'sdArray' => $sdArray,
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));
@@ -82,7 +91,27 @@ class UserController extends Controller
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createCreateForm($entity);
+
+		$em = $this->getDoctrine()->getManager();
+		$sddArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = array();
+			foreach($oUser->getUsersubdivisions()->getValues() as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		} else {
+			$sdArray = array();
+			foreach($sddArray as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		}
+
+        $form   = $this->createCreateForm($entity, $sdArray);
 
         return $this->render('SirOtBundle:User:new.html.twig', array(
             'entity' => $entity,

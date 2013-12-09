@@ -21,7 +21,6 @@ class UserType extends AbstractType
 		$this->roles 		= $theRoles;
 		$this->userRoles 	= $userRoles;
 		$this->entity 		= $entity;
-
 	}
 
     /*public function buildForm(FormBuilderInterface $builder, array $options)
@@ -73,7 +72,14 @@ class UserType extends AbstractType
 				'expanded' => true,
 				'multiple' => true,
 			))
-			->add('usersubdivisions')
+//			->add('usersubdivisions')
+			->add('usersubdivisions', 'entity', array(
+				'class' => 'SirOtBundle:Subdivision',
+				'empty_value' => false,
+				'choices' => $options['sdArray'],
+				'expanded'  => true,
+				'multiple'  => true
+			))
 		;
 	}
     
@@ -83,8 +89,13 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sir\OtBundle\Entity\User'
+            'data_class' => 'Sir\OtBundle\Entity\User',
+			'sdArray' => null,
         ));
+
+		$resolver->setRequired(array(
+			'sdArray',
+		));
     }
 
     /**
