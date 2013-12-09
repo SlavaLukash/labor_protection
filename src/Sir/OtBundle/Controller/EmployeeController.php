@@ -88,7 +88,7 @@ class EmployeeController extends Controller
     *
     * @param Employee $entity The entity
     *
-	* @param $entArray
+	* @param $sdArray
     *
     * @return \Symfony\Component\Form\Form The form
     */
@@ -117,7 +117,11 @@ class EmployeeController extends Controller
 		$oUser = $this->getUser();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
-			$sdArray = $oUser->getUsersubdivisions()->getValues();
+			$sdArray = array();
+			foreach($oUser->getUsersubdivisions()->getValues() as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
 		}
         $entity = new Employee();
 
