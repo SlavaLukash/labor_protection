@@ -112,13 +112,19 @@ class EmployeeController extends Controller
     public function newAction()
     {
 		$em = $this->getDoctrine()->getManager();
-		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$sddArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$oUser = $this->getUser();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
 			$sdArray = array();
 			foreach($oUser->getUsersubdivisions()->getValues() as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		} else {
+			$sdArray = array();
+			foreach($sddArray as $val)
 			{
 				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
 			}
