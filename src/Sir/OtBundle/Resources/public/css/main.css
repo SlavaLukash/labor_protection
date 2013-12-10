@@ -428,7 +428,9 @@ div.b-form-area form select {
 }
 
 div.b-form-area form select[multiple="multiple"] {
-	height: auto;
+	min-height: 300px;
+	width: 420px;
+
 }
 
 div.b-form-area hr {
@@ -501,7 +503,10 @@ table.record_properties tr:hover {
 }
 
 ul.record_actions {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
+	position: absolute;
+	top: -38px;
+	right: -5px;
 }
 
 ul.record_actions li {

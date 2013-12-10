@@ -77,10 +77,11 @@ class UserType extends AbstractType
 				'class' => 'SirOtBundle:Subdivision',
 				'empty_value' => false,
 				'choices' => $options['sdArray'],
-				'expanded'  => true,
+				'expanded'  => false,
 				'multiple'  => true
 			))
 		;
+//		var_dump($options['sdArray']);die;
 	}
     
     /**

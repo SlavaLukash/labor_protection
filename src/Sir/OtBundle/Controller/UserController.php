@@ -150,11 +150,29 @@ class UserController extends Controller
 
         $entity = $em->getRepository('SirOtBundle:User')->find($id);
 
+		$sddArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = array();
+			foreach($oUser->getUsersubdivisions()->getValues() as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		} else {
+			$sdArray = array();
+			foreach($sddArray as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		}
+
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $sdArray);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('SirOtBundle:User:edit.html.twig', array(
@@ -171,12 +189,13 @@ class UserController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(User $entity)
+    private function createEditForm(User $entity, $sdArray)
     {
 		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
 		$roles = array_keys($roleHierarchy);
 
         $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
+			'sdArray'		=> $sdArray,
             'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -195,12 +214,29 @@ class UserController extends Controller
 
         $entity = $em->getRepository('SirOtBundle:User')->find($id);
 
+		$sddArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = array();
+			foreach($oUser->getUsersubdivisions()->getValues() as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		} else {
+			$sdArray = array();
+			foreach($sddArray as $val)
+			{
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
+			}
+		}
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $sdArray);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
