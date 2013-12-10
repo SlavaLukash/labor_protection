@@ -18,7 +18,11 @@ class MedicalType extends AbstractType
             ->add('comment')
             ->add('dateplan')
             ->add('datefact')
-            ->add('employee')
+			->add('employee', 'entity', array(
+				'class' => 'SirOtBundle:Employee',
+				'empty_value' => false,
+				'choices' => $options['OTparams']['aEmployee'],
+			))
             ->add('medicalkind')
             ->add('medicaltype')
         ;
@@ -29,8 +33,12 @@ class MedicalType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+		$resolver->setRequired(array(
+			'OTparams',
+		));
         $resolver->setDefaults(array(
-            'data_class' => 'Sir\OtBundle\Entity\Medical'
+            'data_class' => 'Sir\OtBundle\Entity\Medical',
+			'OTparams' => null,
         ));
     }
 

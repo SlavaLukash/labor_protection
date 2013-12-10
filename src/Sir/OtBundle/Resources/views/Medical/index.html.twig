@@ -9,23 +9,28 @@
 	<a id="ot_list_create" href="{{ path('medical_new') }}">
 		{% trans %}Create a new entry{% endtrans %}
 	</a>
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>{% trans %}Comment{% endtrans %}</th>
-                <th>{% trans %}Dateplan{% endtrans %}</th>
-                <th>{% trans %}Datefact{% endtrans %}</th>
+				<th>{% trans %}LFMname{% endtrans %}</th>
+				<th>{% trans %}Enterprise{% endtrans %}</th>
+				<th>{% trans %}Subdivision{% endtrans %}</th>
+				<th>{% trans %}Comment{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('medical_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.comment }}</td>
-                <td>{% if entity.dateplan %}{{ entity.dateplan|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.datefact %}{{ entity.datefact|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.id }}</td>
+				<td><a href="{{ path('medical_show', { 'id': entity.id }) }}">{{ entity.employee }}</a></td>
+				<td>{{ entity.employee.subdivision.enterprise }}</td>
+				<td>{{ entity.employee.subdivision }}</td>
+				<td>{{ entity.comment }}</td>
                 <td>
                 <ul>
                     <li>

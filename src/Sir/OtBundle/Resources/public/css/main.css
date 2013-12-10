@@ -207,7 +207,7 @@ div.b-login-form {}
 }
 
 .ot_filter_form label {
-	margin: 10px;
+	margin: 10px 10px 10px 20px;
 	display: inline-block;
 }
 
@@ -563,4 +563,12 @@ table#form td{
 
 .navigation span {
 	margin: 0 2px;
+}
+
+#medicalkind_filter_subdivision {
+	min-width: 200px;
+}
+
+#medicalkind_filter_dateplan_left_date, #medicalkind_filter_dateplan_right_date {
+	margin-top: 5px;
 }

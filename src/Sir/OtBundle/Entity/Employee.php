@@ -418,6 +418,6 @@ class Employee
 
 	public function __toString()
 	{
-		return $this->lastname;
+		return $this->lastname . ' ' . $this->firstname . ' ' . $this->middlename;
 	}
 }

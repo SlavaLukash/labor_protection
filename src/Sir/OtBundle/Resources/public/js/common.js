@@ -36,5 +36,6 @@ $(document).ready(function () {
 
 function filterClear() {
 	$('.ot_filter_form input[type="text"]').val('');
+	$('.ot_filter_form input[type="date"]').val('');
 	$('.ot_filter_form select option:selected').attr('selected', false);
 }
