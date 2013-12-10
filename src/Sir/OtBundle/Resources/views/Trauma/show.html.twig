@@ -14,6 +14,30 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
+                <th>{% trans %}LFMname{% endtrans %}</th>
+                <td>{{ entity.employee }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Datetrauma{% endtrans %}</th>
+                <td>{{ entity.datetrauma|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision.enterprise }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Traumakind{% endtrans %}</th>
+                <td>{{ entity.traumakind }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Traumacause{% endtrans %}</th>
+                <td>{{ entity.traumacause }}</td>
+            </tr>
+            <tr>
                 <th>{% trans %}Datetrauma{% endtrans %}</th>
                 <td>{{ entity.datetrauma|date('Y-m-d H:i:s') }}</td>
             </tr>

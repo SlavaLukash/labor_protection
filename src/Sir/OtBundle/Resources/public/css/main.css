@@ -569,6 +569,10 @@ table#form td{
 	min-width: 200px;
 }
 
-#medicalkind_filter_dateplan_left_date, #medicalkind_filter_dateplan_right_date {
+#medicalkind_filter_datetrauma tr, #medicalkind_filter_dateplan tr, #medicalkind_filter_datefact tr {
+	display: inline-block;
+}
+
+#medicalkind_filter_datetrauma input, #medicalkind_filter_dateplan input, #medicalkind_filter_datefact input {
 	margin-top: 5px;
 }

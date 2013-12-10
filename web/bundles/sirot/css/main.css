@@ -207,7 +207,7 @@ div.b-login-form {}
 }
 
 .ot_filter_form label {
-	margin: 10px;
+	margin: 10px 10px 10px 20px;
 	display: inline-block;
 }
 
@@ -563,4 +563,16 @@ table#form td{
 
 .navigation span {
 	margin: 0 2px;
+}
+
+#medicalkind_filter_subdivision {
+	min-width: 200px;
+}
+
+#medicalkind_filter_datetrauma tr, #medicalkind_filter_dateplan tr, #medicalkind_filter_datefact tr {
+	display: inline-block;
+}
+
+#medicalkind_filter_datetrauma input, #medicalkind_filter_dateplan input, #medicalkind_filter_datefact input {
+	margin-top: 5px;
 }

@@ -18,7 +18,11 @@ class TraumaType extends AbstractType
             ->add('datetrauma')
             ->add('traumareport')
             ->add('hoursstart')
-            ->add('employee')
+			->add('employee', 'entity', array(
+				'class' => 'SirOtBundle:Employee',
+				'empty_value' => false,
+				'choices' => $options['OTparams']['aEmployee'],
+			))
             ->add('traumacause')
             ->add('traumakind')
         ;
@@ -29,8 +33,12 @@ class TraumaType extends AbstractType
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+		$resolver->setRequired(array(
+			'OTparams',
+		));
         $resolver->setDefaults(array(
-            'data_class' => 'Sir\OtBundle\Entity\Trauma'
+            'data_class' => 'Sir\OtBundle\Entity\Trauma',
+			'OTparams' => null,
         ));
     }
 
