@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Trauma;
 use Sir\OtBundle\Form\TraumaType;
+use Sir\OtBundle\Filter\TraumaFilterType;
 
 /**
  * Trauma controller.
@@ -21,13 +21,33 @@ class TraumaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
+		$oUser = $this->getUser();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		}
 
-        $entities = $em->getRepository('SirOtBundle:Trauma')->findAll();
+		$form = $this->get('form.factory')->create(new TraumaFilterType($sdArray, $entArray));
+		$form->bind($this->get('request'));
+		$filterBuilder = $em
+			->getRepository('SirOtBundle:Trauma')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$query = $em->createQuery($filterBuilder->getDql());
+		$paginator  = $this->get('knp_paginator');
+		$entities = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
 
-        return $this->render('SirOtBundle:Trauma:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		return $this->render('SirOtBundle:Trauma:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Trauma entity.
@@ -35,8 +55,28 @@ class TraumaController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Trauma();
-        $form = $this->createCreateForm($entity);
+		$em = $this->getDoctrine()->getManager();
+		$aSubdivisions = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$aEnterprises = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$aEmployee = $em->getRepository('SirOtBundle:Employee')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
+		}
+		foreach($aSubdivisions as $subdivision)
+		{
+			$aSubdIds[] = $subdivision->getId();
+		}
+		foreach($aEmployee as $employee)
+		{
+			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
+			{
+				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
+			}
+		}
+		$entity = new Trauma();
+		$form = $this->createCreateForm($entity, $OTparams);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -60,11 +100,12 @@ class TraumaController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Trauma $entity)
+    private function createCreateForm(Trauma $entity, $OTparams = null)
     {
         $form = $this->createForm(new TraumaType(), $entity, array(
             'action' => $this->generateUrl('trauma_create'),
             'method' => 'POST',
+			'OTparams' => $OTparams
         ));
 
         $form->add('submit', 'submit', array('label' => 'Create'));
@@ -78,8 +119,28 @@ class TraumaController extends Controller
      */
     public function newAction()
     {
-        $entity = new Trauma();
-        $form   = $this->createCreateForm($entity);
+		$em = $this->getDoctrine()->getManager();
+		$aSubdivisions = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$aEnterprises = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$aEmployee = $em->getRepository('SirOtBundle:Employee')->findAll();
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
+		}
+		foreach($aSubdivisions as $subdivision)
+		{
+			$aSubdIds[] = $subdivision->getId();
+		}
+		foreach($aEmployee as $employee)
+		{
+			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
+			{
+				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
+			}
+		}
+		$entity = new Trauma();
+		$form = $this->createCreateForm($entity, $OTparams);
 
         return $this->render('SirOtBundle:Trauma:new.html.twig', array(
             'entity' => $entity,
@@ -96,7 +157,19 @@ class TraumaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('SirOtBundle:Trauma')->find($id);
-
+		$oUser = $this->getUser();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+			foreach($sdArray as $subD)
+			{
+				$aIds[] = $subD->getId();
+			}
+			if(!in_array($entity->getEmployee()->getSubdivision()->getId(),$aIds))
+			{
+				return $this->redirect($this->generateUrl('medical'));
+			}
+		}
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Trauma entity.');
         }

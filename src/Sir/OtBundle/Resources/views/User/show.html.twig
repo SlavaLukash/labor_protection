@@ -49,6 +49,14 @@
 					{% endfor %}
 				</td>
             </tr>
+            <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>
+                    {% for subdivision in entity.usersubdivisions %}
+                        {{ subdivision }} ({{ subdivision.enterprise }})<br />
+                    {% endfor %}
+                </td>
+            </tr>
         </tbody>
     </table>
 
