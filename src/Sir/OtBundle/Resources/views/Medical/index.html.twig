@@ -34,10 +34,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('medical_show', { 'id': entity.id }) }}">{% trans %}Show{% endtrans %}</a>
+                        <a class="show-action" href="{{ path('medical_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
                     </li>
                     <li>
-                        <a href="{{ path('medical_edit', { 'id': entity.id }) }}">{% trans %}Edit{% endtrans %}</a>
+                        <a class="edit-action" href="{{ path('medical_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
                     </li>
                 </ul>
                 </td>

@@ -345,6 +345,7 @@ table.records_list thead tr:first-child th:last-child { /*Первая стро�
 	-webkit-border-radius: 0 5px 0 0;
 	-moz-border-radius: 0 5px 0 0;
 	border-radius: 0 5px 0 0;
+	width: 60px;
 }
 
 table.records_list tbody tr:last-child td:first-child  /*Последняя строка первая ячейка в теле таблицы*/ {
@@ -357,6 +358,7 @@ table.records_list tbody tr:last-child td:last-child  /*Последняя ст�
 	-webkit-border-radius: 0 0 5px 0;
 	-moz-border-radius: 0 0 5px 0;
 	border-radius: 0 0 5px 0;
+	width: 60px;
 }
 
 table.records_list tr th {
@@ -516,10 +518,7 @@ table.record_properties tr:hover {
 }
 
 ul.record_actions {
-	/*margin-top: 10px;*/
-	position: absolute;
-	top: -38px;
-	right: -5px;
+	margin-top: 10px;
 }
 
 ul.record_actions_in_form {
@@ -594,4 +593,19 @@ table#form td{
 
 #medicalkind_filter_datetrauma input, #medicalkind_filter_dateplan input, #medicalkind_filter_datefact input {
 	margin-top: 5px;
+}
+
+a.show-action, a.edit-action {
+	width: 15px; height: 15px;
+	display: block;
+	float: left;
+	margin-left: 11px;
+}
+
+a.show-action {
+	background: url('../images/glyphicons_black.png') no-repeat -49px 1px;
+}
+
+a.edit-action {
+	background: url('../images/glyphicons_black.png') no-repeat -1px -72px;
 }
