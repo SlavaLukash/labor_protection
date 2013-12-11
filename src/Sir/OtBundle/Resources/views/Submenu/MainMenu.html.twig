@@ -1,4 +1,4 @@
-<ul id="b-top-menu">
+<ul id="b-top-menu" {% if not app.security.getToken().getUser().hasRole('ROLE_ADMIN') %} class="element4"{% endif %}>
     {% if app.security.getToken().getUser().hasRole('ROLE_ADMIN') %}
         <li {% if (get_controller_name() == 'profession'
         or get_controller_name() == 'user'

@@ -91,6 +91,10 @@ ul#b-top-menu li {
 	text-align: center;
 }
 
+ul.element4 li {
+	width: 242px !important;
+}
+
 ul#b-top-menu li.active, ul#b-top-menu li:hover {
 	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -1px;
 	border: 1px solid #7e7e7e;
@@ -304,6 +308,7 @@ div.el-submit input, div.el-submit button {
 	font-size: 14px; color: #ffffff;
 	float: left; cursor: pointer;
 	margin: 0; padding: 0 16px;
+	min-width: 97px;
 }
 div.el-submit b{
 	width: 4px; height: 30px;
@@ -509,12 +514,18 @@ ul.record_actions {
 	right: -5px;
 }
 
-ul.record_actions li {
+ul.record_actions_in_form {
+	position: absolute;
+	bottom: 4px;
+	left: 114px;
+}
+
+ul.record_actions li, ul.record_actions_in_form li {
 	float: left;
 	margin-right: 5px;
 }
 
-ul.record_actions li a {
+ul.record_actions li a, ul.record_actions_in_form li a {
 	background: url('../images/submit-btn-bg.png') repeat-x;
 	color: #ffffff;
 	display: inline-block;
@@ -525,7 +536,7 @@ ul.record_actions li a {
 	padding: 0 5px;
 }
 
-ul.record_actions li a:hover {
+ul.record_actions li a:hover, ul.record_actions_in_form li a:hover {
 	text-decoration: none;
 }
 
