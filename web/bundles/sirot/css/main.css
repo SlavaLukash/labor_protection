@@ -585,6 +585,7 @@ table#form td{
 }
 
 .navigation .current {
+	background-color: #31a4d7;
 	color: #ffffff;
 	padding: 5px;
 }
