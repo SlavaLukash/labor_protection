@@ -339,6 +339,8 @@ table.records_list thead tr:first-child th:first-child { /*Первая стро
 	-webkit-border-radius: 5px 0 0 0;
 	-moz-border-radius: 5px 0 0 0;
 	border-radius: 5px 0 0 0;
+	width: 30px;
+	text-align: center;
 }
 
 table.records_list thead tr:first-child th:last-child { /*Первая строка последняя ячейка в заголовке таблицы*/
@@ -354,10 +356,18 @@ table.records_list tbody tr:last-child td:first-child  /*Последняя ст
 	border-radius: 0 0 0 5px;
 }
 
+table.records_list tbody tr td:first-child {
+	width: 30px;
+	text-align: center;
+}
+
 table.records_list tbody tr:last-child td:last-child  /*Последняя строка последняя ячейка в теле таблицы*/{
 	-webkit-border-radius: 0 0 5px 0;
 	-moz-border-radius: 0 0 5px 0;
 	border-radius: 0 0 5px 0;
+}
+
+table.records_list tbody tr td:last-child {
 	width: 60px;
 }
 
