@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>labor</Alias>
+        <ConnectionStringEncrypted>5XZPjE1Rc5nvW+WNY1hla8PCg0jNCeMZbEuhhGMEpC/c3mECRhYBiWkZ5Y1qSTX7gcRxCU0FS4DpWpyETlT2L4t42cJnTTGVbEqh9OlxZWuNVLnCZlGzCWlJofB0dKB7</ConnectionStringEncrypted>
+        <Name>labor</Name>
+      </labor>
+    </Databases>
+    <DataSources isList="true" count="2">
+      <enterprise Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>enterprise</Alias>
+        <Columns isList="true" count="2">
+          <value>id,System.Int32</value>
+          <value>name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>enterprise</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select id, name from enterprise</SqlCommand>
+      </enterprise>
+      <expense Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>expense</Alias>
+        <Columns isList="true" count="16">
+          <value>enterprise_name,System.String</value>
+          <value>expensekind_name,System.String</value>
+          <value>year,System.Int32</value>
+          <value>sum1,System.Decimal</value>
+          <value>sum2,System.Decimal</value>
+          <value>sum3,System.Decimal</value>
+          <value>sum4,System.Decimal</value>
+          <value>sum5,System.Decimal</value>
+          <value>sum6,System.Decimal</value>
+          <value>sum7,System.Decimal</value>
+          <value>sum8,System.Decimal</value>
+          <value>sum9,System.Decimal</value>
+          <value>sum10,System.Decimal</value>
+          <value>sum11,System.Decimal</value>
+          <value>sum12,System.Decimal</value>
+          <value>total,total,System.Double,expense.sum1_x002B_expense.sum2_x002B_expense.sum3_x002B_expense.sum4_x000D__x000A__x002B_expense.sum5_x002B_expense.sum6_x002B_expense.sum7_x002B_expense.sum8_x000D__x000A__x002B_expense.sum9_x002B_expense.sum10_x002B_expense.sum11_x002B_expense.sum12</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>expense</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="1">
+          <value>p_enterprise,var_enterprise,23,0</value>
+        </Parameters>
+        <SqlCommand>SELECT enterprise.name enterprise_name, expensekind.name AS
+  expensekind_name, expense."year", expense.sum1,
+  expense.sum2, expense.sum3, expense.sum4,
+  expense.sum5, expense.sum6, expense.sum7,
+  expense.sum8, expense.sum9, expense.sum10,
+  expense.sum11, expense.sum12
+FROM enterprise INNER JOIN
+  expense ON expense.enterprise = enterprise.id INNER JOIN
+  expensekind ON expense.expense_kind =
+    expensekind.id
+--WHERE enterprise.id = ?
+</SqlCommand>
+      </expense>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="3">
+      <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_enterprise.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_enterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,var_date_from,Начальная_x0020_дата_x0020_отчета,,System.DateTime,Today,False,True,True</value>
+      <value>,var_date_to,Конечная_x0020_дата_x0020_отчета,,System.DateTime,Today,False,True,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="5" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="4">
+        <ReportTitleBand1 Ref="6" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,2.2</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text1 Ref="7" type="Text" isKey="true">
+              <AutoWidth>True</AutoWidth>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.05,0.8,18.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>Затраты в сфере охраны труда на предприятии 
+(на период с {Format("{0:dd.MM.yyyy}", var_date_from)}  по {Format("{0:dd.MM.yyyy}",var_date_to)} )</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+            <Text4 Ref="8" type="Text" isKey="true">
+              <Border>All;Black;1;None;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.2,8.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>{expense.enterprise_name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text4>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </ReportTitleBand1>
+        <HeaderBand1 Ref="9" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,3.4,19,1.2</ClientRectangle>
+          <Components isList="true" count="5">
+            <Text2 Ref="10" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0.2,3,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>5aaa053507e442b6b0a1c2a188fad775</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="5" />
+              <Parent isRef="9" />
+              <Text>Сумма затрат, руб</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text6 Ref="11" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.2,0.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>1c4f66622a9145a28fe34d58ee4ef1fa</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="5" />
+              <Parent isRef="9" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text14 Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0.2,12,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>7741e6f63dda42c3bdc7adb1b62b23e5</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="5" />
+              <Parent isRef="9" />
+              <Text>Вид затрат на ОТ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text17 Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.2,0.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>3b57e606733c4b8385923a9bf850f50c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="5" />
+              <Parent isRef="9" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text3 Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.8,0.2,3,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>354effd65ee34a6097ff9aac6218372b</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="5" />
+              <Parent isRef="9" />
+              <Text>% от общей суммы</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </HeaderBand1>
+        <DataBand1 Ref="15" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,5.4,19,0.6</ClientRectangle>
+          <Components isList="true" count="4">
+            <Text8 Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.8,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>722d1261ed294cddae9b63ea48763cae</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="5" />
+              <Parent isRef="15" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text13 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>9073a2a3df93461889efa9a200c4c23a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="5" />
+              <Parent isRef="15" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text15 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0,12,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>ed3e23453b1f4313a00b18edc197ee1a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="5" />
+              <Parent isRef="15" />
+              <Text>{expense.total}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text5 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>260694449af74b78a7a7fb13b7d7cb4d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="5" />
+              <Parent isRef="15" />
+              <Text>{expense.total}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <CountData>2</CountData>
+          <DataRelationName isNull="true" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <FooterBand1 Ref="20" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,6.8,19,0.8</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text7 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15.8,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>23601fc5b7e04b6d80dc8e497c59096d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="5" />
+              <Parent isRef="20" />
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text9 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0,12,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>3fc27242709347e4856daf76f46e2a71</Guid>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="5" />
+              <Parent isRef="20" />
+              <Text>Итого:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text10 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0,3,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>7244415c7d144b9a98b411b030775418</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="5" />
+              <Parent isRef="20" />
+              <Text>{Sum(DataBand1,expense.total)}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Totals</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand1</Name>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+        </FooterBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>45210a1b96da43f9842ea22b91b42ea5</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="24" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="25" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>12/4/2013 2:09:43 PM</ReportChanged>
+  <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
+  <ReportFile>D:\work\OT\Reports\ExpenseKindSum.mrt</ReportFile>
+  <ReportGuid>e6b2728e3ac64acf86766991345ea557</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.2.1700</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

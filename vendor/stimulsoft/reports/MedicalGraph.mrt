@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>labor</Alias>
+        <ConnectionStringEncrypted>5XZPjE1Rc5nvW+WNY1hla8PCg0jNCeMZbEuhhGMEpC/c3mECRhYBiWkZ5Y1qSTX7gcRxCU0FS4DpWpyETlT2L4t42cJnTTGVbEqh9OlxZWuNVLnCZlGzCWlJofB0dKB7</ConnectionStringEncrypted>
+        <Name>labor</Name>
+      </labor>
+    </Databases>
+    <DataSources isList="true" count="3">
+      <enterprise Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>enterprise</Alias>
+        <Columns isList="true" count="2">
+          <value>id,System.Int32</value>
+          <value>name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>enterprise</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select id, name from enterprise</SqlCommand>
+      </enterprise>
+      <subdivision Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>subdivision</Alias>
+        <Columns isList="true" count="3">
+          <value>id,System.Int32</value>
+          <value>enterprise,System.Int32</value>
+          <value>name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>subdivision</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select id, enterprise, name from subdivision </SqlCommand>
+      </subdivision>
+      <MedicalGraph Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>MedicalGraph</Alias>
+        <Columns isList="true" count="9">
+          <value>lastname,System.String</value>
+          <value>firsname,System.String</value>
+          <value>middlename,System.String</value>
+          <value>date_plan,System.DateTime</value>
+          <value>medical_type_name,System.String</value>
+          <value>medical_kind_name,System.String</value>
+          <value>profession_name,System.String</value>
+          <value>FIO,FIO,System.String,MedicalGraph.lastname_x0020__x002B_MedicalGraph.firsname_x0020__x002B__x0020_MedicalGraph.middlename</value>
+          <value>subdivision,System.Int32</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>MedicalGraph</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="3">
+          <value>p_subdivision,var_subdivision,23,0</value>
+          <value>p_date_from,var_date_from,1082,0</value>
+          <value>p_date_to,var_date_to,1082,0</value>
+        </Parameters>
+        <SqlCommand>SELECT employee.lastname, employee.firsname,
+  employee.middlename, medical.date_plan,
+  medical_type.name AS medical_type_name, medical_kind.name AS
+  medical_kind_name, profession.name AS profession_name,
+  employee.subdivision
+FROM medical INNER JOIN
+  employee ON medical.employee = employee.id
+  INNER JOIN
+  medical_type ON medical.medical_type =
+    medical_type.id INNER JOIN
+  medical_kind ON medical.medical_kind =
+    medical_kind.id INNER JOIN
+  profession ON employee.profession =
+    profession.proffession_kind
+WHERE employee.subdivision = ?
+and medical.date_plan between ? and ?</SqlCommand>
+      </MedicalGraph>
+    </DataSources>
+    <Relations isList="true" count="2">
+      <enterprise_link Ref="6" type="DataRelation" isKey="true">
+        <Alias>enterprise_link</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>enterprise</value>
+        </ChildColumns>
+        <ChildSource isRef="4" />
+        <Dictionary isRef="1" />
+        <Name>enterprise_link</Name>
+        <NameInSource>Связь</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>id</value>
+        </ParentColumns>
+        <ParentSource isRef="3" />
+      </enterprise_link>
+      <subdivision_link Ref="7" type="DataRelation" isKey="true">
+        <Alias>subdivision_link</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>subdivision</value>
+        </ChildColumns>
+        <ChildSource isRef="5" />
+        <Dictionary isRef="1" />
+        <Name>subdivision_link</Name>
+        <NameInSource>Связь2</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>id</value>
+        </ParentColumns>
+        <ParentSource isRef="4" />
+      </subdivision_link>
+    </Relations>
+    <Report isRef="0" />
+    <Variables isList="true" count="4">
+      <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_enterprise.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_enterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,var_subdivision,Подразделение,,System.Int32,,False,True,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_subdivision.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_subdivision.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x003E__x002C_var_enterprise_x002C_Предприятие_x002C__x002C_System.Int32_x002C__x002C_False_x002C_False_x002C_True_x002C_False_x002C__x005F_x003C__x005F_x003F_xml_x005F_x0020_version_x005F_x003D__x005F_x0022_1.0_x005F_x0022__x005F_x0020_encoding_x005F_x003D__x005F_x0022_utf-16_x005F_x0022__x005F_x0020_standalone_x005F_x003D__x005F_x0022_yes_x005F_x0022__x005F_x003F__x005F_x003E__x005F_x003C_StiSerializer_x005F_x0020_version_x005F_x003D__x005F_x0022_1.02_x005F_x0022__x005F_x0020_type_x005F_x003D__x005F_x0022_Net_x005F_x0022__x005F_x0020_application_x005F_x003D__x005F_x0022_State_x005F_x0022__x005F_x003E__x005F_x003C_ItemsInitializationType_x005F_x003E_Columns_x005F_x003C__x005F_x002F_ItemsInitializationType_x005F_x003E__x005F_x003C_KeysColumn_x005F_x003E_enterprise.id_x005F_x003C__x005F_x002F_KeysColumn_x005F_x003E__x005F_x003C_ValuesColumn_x005F_x003E_enterprise.name_x005F_x003C__x005F_x002F_ValuesColumn_x005F_x003E__x005F_x003C_BindingVariable_x005F_x0020_isNull_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_AllowUserValues_x005F_x003E_False_x005F_x003C__x005F_x002F_AllowUserValues_x005F_x003E__x005F_x003C_Keys_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_Values_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_ValuesBinding_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C__x005F_x002F_StiSerializer_x005F_x003E__x003C__x002F_BindingVariable_x003E__x003C_BindingValuesColumn_x003E_subdivision.enterprise_x003C__x002F_BindingValuesColumn_x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_BindingValue_x003E_True_x003C__x002F_BindingValue_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,var_date_from,Начальная_x0020_дата_x0020_отчета,,System.DateTime,,False,False,True</value>
+      <value>,var_date_to,Конечная_x0020_дата_x0020_отчета,,System.DateTime,,False,False,True</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="8" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="3">
+        <ReportTitleBand1 Ref="9" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,27.7,1</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitleBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </ReportTitleBand1>
+        <HeaderBand1 Ref="10" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.2,27.7,1.8</ClientRectangle>
+          <Components isList="true" count="10">
+            <Text10 Ref="11" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.4,0.8,5.4,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>ced5959394834d2a96a1f18ec072eb05</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text10</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Ф.И.О.</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text10>
+            <Text2 Ref="12" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0.8,2.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>5aaa053507e442b6b0a1c2a188fad775</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Дата медосмотра</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text3 Ref="13" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,0.8,4.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>85430b9407884244a8f7b5fbde893a51</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Вид медосмотра</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <Text4 Ref="14" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.6,0.8,3.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>3dd960ccb19b4fc9bf7eb01f1d22cf42</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Характер
+медосмотра</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text4>
+            <Text5 Ref="15" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>23.4,0.8,4.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>f95048133b554fd693a5f7affd9d4dcf</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Профессия</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
+            <Text6 Ref="16" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,0.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>1c4f66622a9145a28fe34d58ee4ef1fa</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text6</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text6>
+            <Text14 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0.8,6.6,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>7741e6f63dda42c3bdc7adb1b62b23e5</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text14</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Подразделение</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text14>
+            <Text16 Ref="18" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0.8,2.2,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>6f4d38f12553405fa65a8044b67cd6c7</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>Дата медосмотра</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="19" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,0.8,1</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>3b57e606733c4b8385923a9bf850f50c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>№</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text1 Ref="20" type="Text" isKey="true">
+              <AutoWidth>True</AutoWidth>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.05,0,27.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,12</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="8" />
+              <Parent isRef="10" />
+              <Text>График медицинских осмотров {MedicalGraph.subdivision_link.enterprise_link.name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </HeaderBand1>
+        <DataBand1 Ref="21" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,4.8,27.7,0.4</ClientRectangle>
+          <Components isList="true" count="7">
+            <Text7 Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>7.4,0,5.4,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>3414b063e7374d839d2fbc24297a4b0d</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.FIO}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="23" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>12.8,0,2.2,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>722d1261ed294cddae9b63ea48763cae</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text8</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.date_plan}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text8>
+            <Text9 Ref="24" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>15,0,4.6,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>ba226ed7de644a78b3dccdc93654a954</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text9</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.medical_type_name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text9>
+            <Text11 Ref="25" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.6,0,3.8,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>b57d1f51bc5845ebb23a7deb2f62107f</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.medical_kind_name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text12 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>23.4,0,4.2,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>6c0d298af18e46ac8a4cfe7baf2dcaa3</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text12</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.profession_name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text12>
+            <Text13 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,0.8,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>9073a2a3df93461889efa9a200c4c23a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{Line}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text15 Ref="28" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0,6.6,0.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>ed3e23453b1f4313a00b18edc197ee1a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="8" />
+              <Parent isRef="21" />
+              <Text>{MedicalGraph.subdivision_link.name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <CountData>3</CountData>
+          <DataRelationName isNull="true" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>45210a1b96da43f9842ea22b91b42ea5</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <Orientation>Landscape</Orientation>
+      <PageHeight>21</PageHeight>
+      <PageWidth>29.7</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="29" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="30" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>11/15/2013 7:51:02 PM</ReportChanged>
+  <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
+  <ReportFile>D:\work\OT\Reports\MedicalGraph.mrt</ReportFile>
+  <ReportGuid>6c1b022dbbde47588bf6c6104c9a7900</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2013.2.1700</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>
