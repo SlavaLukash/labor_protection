@@ -95,8 +95,16 @@ ul.element4 li {
 	width: 242px !important;
 }
 
-ul#b-top-menu li.active, ul#b-top-menu li:hover {
+ul#b-top-menu li.active {
 	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -1px;
+	border: 1px solid #7e7e7e;
+}
+ul#b-top-menu li:hover {
+	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -91px;
+	border: 1px solid #7e7e7e;
+}
+ul#b-top-menu li:active {
+	background: url('../images/bg-menu-item-spr.jpg') repeat-x 0px -136px;
 	border: 1px solid #7e7e7e;
 }
 ul#b-top-menu li a {
