@@ -50,25 +50,25 @@
   employee.bithday AS birthday,
   employee.date_first_medical,
   employee.date_instruction	
-FROM trauma INNER JOIN
+FROM trauma LEFT JOIN
   employee ON trauma.employee = employee.id
-  INNER JOIN
+  LEFT JOIN
   subdivision ON employee.subdivision =
-    subdivision.id INNER JOIN
+    subdivision.id LEFT JOIN
   enterprise ON subdivision.enterprise =
-    enterprise.id INNER JOIN
+    enterprise.id LEFT JOIN
   traumakind ON trauma.traumakind = traumakind.id
-  INNER JOIN
+  LEFT JOIN
   traumacause ON trauma.traumacause = traumacause.id
-  join profession on employee.profession = profession.id
-  join marriagekind on employee.marriagekind = marriagekind.id
+  LEFT JOIN profession on employee.profession = profession.id
+  LEFT JOIN marriagekind on employee.marriagekind = marriagekind.id
 WHERE trauma.id = ?</SqlCommand>
       </trauma>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Variables isList="true" count="1">
-      <value>,VarId,VarId,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,VarId,VarId,System.Int32,,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -83,7 +83,7 @@ WHERE trauma.id = ?</SqlCommand>
           <Brush>[32:0:128:0]</Brush>
           <CanBreak>True</CanBreak>
           <ClientRectangle>0,4,190,56.1</ClientRectangle>
-          <Components isList="true" count="12">
+          <Components isList="true" count="11">
             <Text4 Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -265,19 +265,6 @@ WHERE trauma.id = ?</SqlCommand>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text2>
-            <Text5 Ref="17" type="Text" isKey="true">
-              <Border>None;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,1,15,5</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Times New Roman,6</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text5</Name>
-              <Page isRef="4" />
-              <Parent isRef="5" />
-              <Text>{VarId}</Text>
-              <TextBrush>Black</TextBrush>
-            </Text5>
           </Components>
           <Conditions isList="true" count="0" />
           <CountData>1</CountData>
@@ -287,12 +274,12 @@ WHERE trauma.id = ?</SqlCommand>
           <Parent isRef="4" />
           <Sort isList="true" count="0" />
         </DataBand2>
-        <DataBand1 Ref="18" type="DataBand" isKey="true">
+        <DataBand1 Ref="17" type="DataBand" isKey="true">
           <Brush>[32:0:128:0]</Brush>
           <CanBreak>True</CanBreak>
           <ClientRectangle>0,68.1,190,483</ClientRectangle>
           <Components isList="true" count="127">
-            <Text132 Ref="19" type="Text" isKey="true">
+            <Text132 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>48,0,90,12</ClientRectangle>
@@ -303,7 +290,7 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text132</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>АКТ №
 о несчастном случае на производстве</Text>
               <TextBrush>[0:0:0]</TextBrush>
@@ -311,7 +298,7 @@ WHERE trauma.id = ?</SqlCommand>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text132>
-            <Text134 Ref="20" type="Text" isKey="true">
+            <Text134 Ref="19" type="Text" isKey="true">
               <Border>None;Black;0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -322,13 +309,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text134</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Председатель комиссии:</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text134>
-            <Text135 Ref="21" type="Text" isKey="true">
+            <Text135 Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0.5,106.26,33.14,5</ClientRectangle>
@@ -338,12 +325,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text135</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Члены комиссии:</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
             </Text135>
-            <Text137 Ref="22" type="Text" isKey="true">
+            <Text137 Ref="21" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,21.15,188,5</ClientRectangle>
@@ -354,13 +341,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text137</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.datetrauma} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text137>
-            <Text138 Ref="23" type="Text" isKey="true">
+            <Text138 Ref="22" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,29.65,188,5.51</ClientRectangle>
@@ -371,12 +358,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text138</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text138>
-            <Text139 Ref="24" type="Text" isKey="true">
+            <Text139 Ref="23" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>64,15.15,124,6</ClientRectangle>
@@ -386,11 +373,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text139</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text139>
-            <Text140 Ref="25" type="Text" isKey="true">
+            <Text140 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,15.15,64,6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -399,11 +386,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text140</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>1. Дата и время несчастного случая </Text>
               <TextBrush>Black</TextBrush>
             </Text140>
-            <Text142 Ref="26" type="Text" isKey="true">
+            <Text142 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.31,26.29,187.77,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -413,11 +400,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text142</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(число, месяц, год и время происшествия несчастного случая, </Text>
               <TextBrush>Black</TextBrush>
             </Text142>
-            <Text143 Ref="27" type="Text" isKey="true">
+            <Text143 Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,39.85,151.55,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -425,12 +412,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text143</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>2. Организация (работодатель), работником которой является (являлся) пострадавший  
 </Text>
               <TextBrush>Black</TextBrush>
             </Text143>
-            <Text141 Ref="28" type="Text" isKey="true">
+            <Text141 Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,35.6,188,4.5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -440,11 +427,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text141</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>количество полных часов от начала работы)</Text>
               <TextBrush>Black</TextBrush>
             </Text141>
-            <Text144 Ref="29" type="Text" isKey="true">
+            <Text144 Ref="28" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>151.97,39.59,36.23,5.5</ClientRectangle>
@@ -454,11 +441,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text144</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text144>
-            <Text145 Ref="30" type="Text" isKey="true">
+            <Text145 Ref="29" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,48.9,187.77,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -467,11 +454,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text145</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(наименование, место нахождения,</Text>
               <TextBrush>Black</TextBrush>
             </Text145>
-            <Text146 Ref="31" type="Text" isKey="true">
+            <Text146 Ref="30" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,53.93,187.77,5</ClientRectangle>
@@ -480,12 +467,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text146</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>адрес: {trauma.address}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text146>
-            <Text147 Ref="32" type="Text" isKey="true">
+            <Text147 Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,58.46,187.52,4.26</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -494,12 +481,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text147</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>юридический адрес, </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text147>
-            <Text148 Ref="33" type="Text" isKey="true">
+            <Text148 Ref="32" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.07,62.99,187.77,5</ClientRectangle>
@@ -508,12 +495,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text148</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>ОКВЭД: {trauma.okved}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text148>
-            <Text149 Ref="34" type="Text" isKey="true">
+            <Text149 Ref="33" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.31,68.01,187.52,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -522,11 +509,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text149</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>ведомственная и отраслевая принадлежность /ОКВЭД основного вида деятельности)</Text>
               <TextBrush>Black</TextBrush>
             </Text149>
-            <Text150 Ref="35" type="Text" isKey="true">
+            <Text150 Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,73.29,78.13,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -534,11 +521,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text150</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Наименование структурного подразделения  </Text>
               <TextBrush>Black</TextBrush>
             </Text150>
-            <Text151 Ref="36" type="Text" isKey="true">
+            <Text151 Ref="35" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,44.62,188,5</ClientRectangle>
@@ -549,13 +536,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text151</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.enterprise_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text151>
-            <Text152 Ref="37" type="Text" isKey="true">
+            <Text152 Ref="36" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>78.27,73.04,109.57,5.25</ClientRectangle>
@@ -565,12 +552,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text152</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.subdivision_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text152>
-            <Text153 Ref="38" type="Text" isKey="true">
+            <Text153 Ref="37" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.31,80.09,72.08,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -578,12 +565,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text153</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>3. Организация, направившая работника  
 </Text>
               <TextBrush>Black</TextBrush>
             </Text153>
-            <Text154 Ref="39" type="Text" isKey="true">
+            <Text154 Ref="38" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>72.99,79.83,114.86,5.25</ClientRectangle>
@@ -593,11 +580,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text154</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text154>
-            <Text156 Ref="40" type="Text" isKey="true">
+            <Text156 Ref="39" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.06,85.61,187.77,5</ClientRectangle>
@@ -607,11 +594,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text156</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text156>
-            <Text155 Ref="41" type="Text" isKey="true">
+            <Text155 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.32,91.15,187.5,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -620,11 +607,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text155</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(наименование, место нахождения, юридический адрес, отраслевая принадлежность)</Text>
               <TextBrush>Black</TextBrush>
             </Text155>
-            <Text133 Ref="42" type="Text" isKey="true">
+            <Text133 Ref="41" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanBreak>True</CanBreak>
               <CanGrow>True</CanGrow>
@@ -635,14 +622,14 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text133</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>4. Лица, проводившие расследование несчастного случая: 
 </Text>
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text133>
-            <Text157 Ref="43" type="Text" isKey="true">
+            <Text157 Ref="42" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>45.09,100.71,142.74,5</ClientRectangle>
@@ -652,11 +639,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text157</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text157>
-            <Text159 Ref="44" type="Text" isKey="true">
+            <Text159 Ref="43" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.31,111.77,187.77,5</ClientRectangle>
@@ -666,11 +653,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text159</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text159>
-            <Text160 Ref="45" type="Text" isKey="true">
+            <Text160 Ref="44" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,117,188,5</ClientRectangle>
@@ -680,11 +667,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text160</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text160>
-            <Text161 Ref="46" type="Text" isKey="true">
+            <Text161 Ref="45" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,122,188,5</ClientRectangle>
@@ -694,11 +681,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text161</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text161>
-            <Text163 Ref="47" type="Text" isKey="true">
+            <Text163 Ref="46" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,127,188,5</ClientRectangle>
@@ -708,11 +695,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text163</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text163>
-            <Text165 Ref="48" type="Text" isKey="true">
+            <Text165 Ref="47" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,143.23,44,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -720,11 +707,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text165</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>фамилия, имя, отчество    </Text>
               <TextBrush>Black</TextBrush>
             </Text165>
-            <Text136 Ref="49" type="Text" isKey="true">
+            <Text136 Ref="48" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,149.52,45,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -732,11 +719,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text136</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>пол (мужской, женский)   </Text>
               <TextBrush>Black</TextBrush>
             </Text136>
-            <Text166 Ref="50" type="Text" isKey="true">
+            <Text166 Ref="49" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,155.05,30,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -744,11 +731,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text166</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>дата рождения     </Text>
               <TextBrush>Black</TextBrush>
             </Text166>
-            <Text167 Ref="51" type="Text" isKey="true">
+            <Text167 Ref="50" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,160.57,48,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -756,11 +743,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text167</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>профессиональный статус  </Text>
               <TextBrush>Black</TextBrush>
             </Text167>
-            <Text168 Ref="52" type="Text" isKey="true">
+            <Text168 Ref="51" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,167.11,43,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -768,11 +755,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text168</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>профессия (должность)  </Text>
               <TextBrush>Black</TextBrush>
             </Text168>
-            <Text169 Ref="53" type="Text" isKey="true">
+            <Text169 Ref="52" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,173.65,125,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -780,11 +767,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text169</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>стаж работы, при выполнении которой произошел несчастный случай  </Text>
               <TextBrush>Black</TextBrush>
             </Text169>
-            <Text170 Ref="54" type="Text" isKey="true">
+            <Text170 Ref="53" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,179.18,62,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -792,11 +779,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text170</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>в том числе в данной организации  </Text>
               <TextBrush>Black</TextBrush>
             </Text170>
-            <Text171 Ref="55" type="Text" isKey="true">
+            <Text171 Ref="54" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>45.62,142.99,142.74,5</ClientRectangle>
@@ -806,12 +793,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text171</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.lastname} {trauma.firstname} {trauma.middlename} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text171>
-            <Text172 Ref="56" type="Text" isKey="true">
+            <Text172 Ref="55" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>54.67,137.2,133.69,5</ClientRectangle>
@@ -821,11 +808,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text172</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text172>
-            <Text173 Ref="57" type="Text" isKey="true">
+            <Text173 Ref="56" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>45.62,149.26,142.74,5</ClientRectangle>
@@ -835,12 +822,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text173</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.sex}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text173>
-            <Text174 Ref="58" type="Text" isKey="true">
+            <Text174 Ref="57" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>29.62,155.29,158.74,5</ClientRectangle>
@@ -850,12 +837,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text174</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.birthday}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text174>
-            <Text175 Ref="59" type="Text" isKey="true">
+            <Text175 Ref="58" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>49.62,160.83,138.74,5</ClientRectangle>
@@ -865,11 +852,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text175</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text175>
-            <Text176 Ref="60" type="Text" isKey="true">
+            <Text176 Ref="59" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>43.62,167.11,144.74,5</ClientRectangle>
@@ -879,12 +866,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text176</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.profession_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text176>
-            <Text177 Ref="61" type="Text" isKey="true">
+            <Text177 Ref="60" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>125.62,173.65,62.74,5</ClientRectangle>
@@ -894,11 +881,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text177</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text177>
-            <Text178 Ref="62" type="Text" isKey="true">
+            <Text178 Ref="61" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>62.62,179.18,125.74,5</ClientRectangle>
@@ -908,11 +895,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text178</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text178>
-            <Text158 Ref="63" type="Text" isKey="true">
+            <Text158 Ref="62" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0.3,132.43,187.77,4.25</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -921,11 +908,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text158</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(фамилия, инициалы, должности и место работы)</Text>
               <TextBrush>Black</TextBrush>
             </Text158>
-            <Text8 Ref="64" type="Text" isKey="true">
+            <Text8 Ref="63" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,186.9,93,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -933,11 +920,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>6. Сведения о проведении инструктажей и обучения по охране труда</Text>
               <TextBrush>Black</TextBrush>
             </Text8>
-            <Text9 Ref="65" type="Text" isKey="true">
+            <Text9 Ref="64" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,192.9,40,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -945,11 +932,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Вводный инструктаж</Text>
               <TextBrush>Black</TextBrush>
             </Text9>
-            <Text15 Ref="66" type="Text" isKey="true">
+            <Text15 Ref="65" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,198.9,111,9</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -957,13 +944,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Инструктаж на рабочем месте по профессии или виду работы,
 при выполнении которой произошел несчастный случай</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text15>
-            <Text16 Ref="67" type="Text" isKey="true">
+            <Text16 Ref="66" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>42,192.9,146,5</ClientRectangle>
@@ -973,12 +960,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.date_instruction}</Text>
               <TextBrush>Black</TextBrush>
               <Type>DataColumn</Type>
             </Text16>
-            <Text17 Ref="68" type="Text" isKey="true">
+            <Text17 Ref="67" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>112,198.9,76,5</ClientRectangle>
@@ -988,11 +975,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text17>
-            <Text164 Ref="69" type="Text" isKey="true">
+            <Text164 Ref="68" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,136.7,52.97,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1000,11 +987,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text164</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>5. Сведения о пострадавшем:</Text>
               <TextBrush>Black</TextBrush>
             </Text164>
-            <Text18 Ref="70" type="Text" isKey="true">
+            <Text18 Ref="69" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,209.9,28,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1012,12 +999,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Стажировка: с</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text18>
-            <Text19 Ref="71" type="Text" isKey="true">
+            <Text19 Ref="70" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>94,209.9,10,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1025,12 +1012,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>г. по</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text19>
-            <Text20 Ref="72" type="Text" isKey="true">
+            <Text20 Ref="71" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>105,209.9,78.74,5</ClientRectangle>
@@ -1040,11 +1027,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text20>
-            <Text21 Ref="73" type="Text" isKey="true">
+            <Text21 Ref="72" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>29,209.9,63.74,5</ClientRectangle>
@@ -1054,11 +1041,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text21>
-            <Text22 Ref="74" type="Text" isKey="true">
+            <Text22 Ref="73" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,214.9,188,5</ClientRectangle>
@@ -1068,11 +1055,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text22>
-            <Text23 Ref="75" type="Text" isKey="true">
+            <Text23 Ref="74" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,219.9,188,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1082,12 +1069,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(если не проводилась – указать)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text23>
-            <Text24 Ref="76" type="Text" isKey="true">
+            <Text24 Ref="75" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,230.9,40,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1096,12 +1083,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text24</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>несчастный случай: с </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text24>
-            <Text27 Ref="77" type="Text" isKey="true">
+            <Text27 Ref="76" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>184,209.9,4,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1110,12 +1097,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>г.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text27>
-            <Text25 Ref="78" type="Text" isKey="true">
+            <Text25 Ref="77" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,224.9,188,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1124,12 +1111,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Обучение по охране труда по профессии или виду работы, при выполнении которой произошел</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text25>
-            <Text26 Ref="79" type="Text" isKey="true">
+            <Text26 Ref="78" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>99,230.9,10,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1138,12 +1125,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>г. по</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text26>
-            <Text28 Ref="80" type="Text" isKey="true">
+            <Text28 Ref="79" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>110,230.9,73,5</ClientRectangle>
@@ -1153,11 +1140,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text28>
-            <Text29 Ref="81" type="Text" isKey="true">
+            <Text29 Ref="80" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>41,230.9,57,5</ClientRectangle>
@@ -1167,11 +1154,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text29</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text29>
-            <Text30 Ref="82" type="Text" isKey="true">
+            <Text30 Ref="81" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>184,230.9,4,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1180,12 +1167,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>г.</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text30>
-            <Text31 Ref="83" type="Text" isKey="true">
+            <Text31 Ref="82" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,235.9,188,5</ClientRectangle>
@@ -1195,11 +1182,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text31>
-            <Text32 Ref="84" type="Text" isKey="true">
+            <Text32 Ref="83" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,241.9,188,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1209,12 +1196,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text32</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(если не проводилась – указать)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text32>
-            <Text33 Ref="85" type="Text" isKey="true">
+            <Text33 Ref="84" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,245.9,188,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1223,12 +1210,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text33</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Проверка знаний по охране труда по профессии или виду работы, при выполнении которой </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text33>
-            <Text34 Ref="86" type="Text" isKey="true">
+            <Text34 Ref="85" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,251.9,55,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1237,12 +1224,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>произошел несчастный случай </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text34>
-            <Text37 Ref="87" type="Text" isKey="true">
+            <Text37 Ref="86" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>55,251.9,133,5</ClientRectangle>
@@ -1252,11 +1239,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text37</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text37>
-            <Text35 Ref="88" type="Text" isKey="true">
+            <Text35 Ref="87" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>55,256.9,133,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1266,12 +1253,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text35</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(число, месяц, год, № протокола)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text35>
-            <Text36 Ref="89" type="Text" isKey="true">
+            <Text36 Ref="88" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,260.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1279,11 +1266,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text36</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>7. Краткая характеристика места (объекта), где произошел несчастный случай:  </Text>
               <TextBrush>Black</TextBrush>
             </Text36>
-            <Text38 Ref="90" type="Text" isKey="true">
+            <Text38 Ref="89" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,264.9,188,5</ClientRectangle>
@@ -1293,11 +1280,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text38</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text38>
-            <Text39 Ref="91" type="Text" isKey="true">
+            <Text39 Ref="90" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,270.9,188,7</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1307,13 +1294,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text39</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(краткое описание места происшествия с указанием опасных и (или) вредных производственных факторов со ссылкой на сведения, содержащиеся в протоколе осмотра места несчастного случая)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text39>
-            <Text40 Ref="92" type="Text" isKey="true">
+            <Text40 Ref="91" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,283.9,188,5</ClientRectangle>
@@ -1323,11 +1310,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text40</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text40>
-            <Text41 Ref="93" type="Text" isKey="true">
+            <Text41 Ref="92" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,289.9,188,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1337,13 +1324,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text41</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(наименование, тип, марка, год выпуска, организация-изготовитель)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text41>
-            <Text42 Ref="94" type="Text" isKey="true">
+            <Text42 Ref="93" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,278.9,188,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1352,12 +1339,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text42</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Оборудование, использование которого привело к несчастному случаю:  </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text42>
-            <Text43 Ref="95" type="Text" isKey="true">
+            <Text43 Ref="94" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,293.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1366,12 +1353,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text43</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8. Обстоятельства несчастного случая:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text43>
-            <Text44 Ref="96" type="Text" isKey="true">
+            <Text44 Ref="95" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,298.9,188,5</ClientRectangle>
@@ -1381,11 +1368,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text44</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text44>
-            <Text45 Ref="97" type="Text" isKey="true">
+            <Text45 Ref="96" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,304.9,188,7</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1395,13 +1382,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text45</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(краткое изложение обстоятельств, предшествовавших несчастному случаю, описание событий и действий пострадавшего и других лиц, связанных с несчастным случаем, и другие сведения, установленные в ходе расследования)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text45>
-            <Text46 Ref="98" type="Text" isKey="true">
+            <Text46 Ref="97" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,311.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1410,12 +1397,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text46</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8.1. Вид происшествия:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text46>
-            <Text47 Ref="99" type="Text" isKey="true">
+            <Text47 Ref="98" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,316.9,188,13</ClientRectangle>
@@ -1425,14 +1412,14 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text47</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8.2. Характер полученных повреждений и орган, подвергшийся повреждению, медицинское заключение о тяжести повреждения здоровья:
 {trauma.traumakind_name}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text47>
-            <Text48 Ref="100" type="Text" isKey="true">
+            <Text48 Ref="99" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,329.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1441,12 +1428,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text48</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8.3. Нахождение пострадавшего в состоянии алкогольного или наркотического опьянения:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text48>
-            <Text49 Ref="101" type="Text" isKey="true">
+            <Text49 Ref="100" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,333.9,188,5</ClientRectangle>
@@ -1456,11 +1443,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text49</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text49>
-            <Text50 Ref="102" type="Text" isKey="true">
+            <Text50 Ref="101" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,338.9,188,7</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1470,13 +1457,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text50</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(нет, да – указать состояние и степень опьянения в соответствии с заключением по результатам освидетельствования, проведенного в установленном порядке)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text50>
-            <Text51 Ref="103" type="Text" isKey="true">
+            <Text51 Ref="102" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,346.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1485,12 +1472,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text51</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8.3. Нахождение пострадавшего в состоянии алкогольного или наркотического опьянения:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text51>
-            <Text128 Ref="104" type="Text" isKey="true">
+            <Text128 Ref="103" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,350.9,188,5</ClientRectangle>
@@ -1500,11 +1487,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text128</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text128>
-            <Text129 Ref="105" type="Text" isKey="true">
+            <Text129 Ref="104" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,356.9,188,7</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1514,13 +1501,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text129</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(нет, да – указать состояние и степень опьянения в соответствии с заключением по результатам освидетельствования, проведенного в установленном порядке)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text129>
-            <Text130 Ref="106" type="Text" isKey="true">
+            <Text130 Ref="105" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,363.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1529,12 +1516,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text130</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>8.4. Очевидцы несчастного случая:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text130>
-            <Text131 Ref="107" type="Text" isKey="true">
+            <Text131 Ref="106" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,367.9,188,5</ClientRectangle>
@@ -1544,11 +1531,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text131</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text131>
-            <Text162 Ref="108" type="Text" isKey="true">
+            <Text162 Ref="107" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,373.9,188,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1558,13 +1545,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text162</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(фамилия, инициалы, постоянное место жительства, домашний телефон)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text162>
-            <Text179 Ref="109" type="Text" isKey="true">
+            <Text179 Ref="108" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,377.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1573,12 +1560,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text179</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>9. Причины несчастного случая :</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text179>
-            <Text180 Ref="110" type="Text" isKey="true">
+            <Text180 Ref="109" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,381.9,188,5</ClientRectangle>
@@ -1588,12 +1575,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text180</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>{trauma.traumacause_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text180>
-            <Text181 Ref="111" type="Text" isKey="true">
+            <Text181 Ref="110" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,386.9,188,8</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1603,13 +1590,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text181</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(указать основную и сопутствующие причины несчастного случая со ссылками на нарушенные требования законодательных и иных нормативных правовых актов, локальных нормативных актов)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text181>
-            <Text182 Ref="112" type="Text" isKey="true">
+            <Text182 Ref="111" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,394.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1618,12 +1605,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text182</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>10. Лица, допустившие нарушение требований охраны труда:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text182>
-            <Text183 Ref="113" type="Text" isKey="true">
+            <Text183 Ref="112" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,404.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1632,12 +1619,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text183</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Организация (работодатель), работниками которой являются данные лица</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text183>
-            <Text185 Ref="114" type="Text" isKey="true">
+            <Text185 Ref="113" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,409.9,188,5</ClientRectangle>
@@ -1647,11 +1634,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text185</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text185>
-            <Text186 Ref="115" type="Text" isKey="true">
+            <Text186 Ref="114" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,415.9,188,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1661,13 +1648,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text186</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(наименование, адрес)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text186>
-            <Text187 Ref="116" type="Text" isKey="true">
+            <Text187 Ref="115" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,419.9,140,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1676,12 +1663,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text187</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>11. Мероприятия по устранению причин несчастного случая, сроки:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text187>
-            <Text188 Ref="117" type="Text" isKey="true">
+            <Text188 Ref="116" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,423.9,188,5</ClientRectangle>
@@ -1691,11 +1678,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text188</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text188>
-            <Text189 Ref="118" type="Text" isKey="true">
+            <Text189 Ref="117" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,433.9,188,12</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -1705,13 +1692,13 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text189</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>(фамилия, инициалы, должность (профессия) с указанием требований законодательных, иных нормативных правовых и локальных нормативных актов, предусматривающих их ответственность за нарушения, явившиеся причинами несчастного случая, указанными в п. 9 настоящего акта; при установлении факта грубой неосторожности пострадавшего указать степень его вины в процентах)</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
             </Text189>
-            <Text191 Ref="119" type="Text" isKey="true">
+            <Text191 Ref="118" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,428.9,188,5</ClientRectangle>
@@ -1721,11 +1708,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text191</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text191>
-            <Text52 Ref="120" type="Text" isKey="true">
+            <Text52 Ref="119" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>0,445.9,73,10</ClientRectangle>
@@ -1735,14 +1722,14 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text52</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <Text>Подписи лиц, проводивших
 расследование несчастного случая:</Text>
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text52>
-            <Text57 Ref="121" type="Text" isKey="true">
+            <Text57 Ref="120" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1754,12 +1741,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text57</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text57>
-            <Text59 Ref="122" type="Text" isKey="true">
+            <Text59 Ref="121" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1770,12 +1757,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text59</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text59>
-            <Text61 Ref="123" type="Text" isKey="true">
+            <Text61 Ref="122" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1787,11 +1774,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text61</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
             </Text61>
-            <Text63 Ref="124" type="Text" isKey="true">
+            <Text63 Ref="123" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1802,11 +1789,11 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text63</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
             </Text63>
-            <Text65 Ref="125" type="Text" isKey="true">
+            <Text65 Ref="124" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1818,12 +1805,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text65</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text65>
-            <Text67 Ref="126" type="Text" isKey="true">
+            <Text67 Ref="125" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1834,12 +1821,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text67</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text67>
-            <Text69 Ref="127" type="Text" isKey="true">
+            <Text69 Ref="126" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>74,456.9,36,2</ClientRectangle>
@@ -1850,12 +1837,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text69</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text69>
-            <Text71 Ref="128" type="Text" isKey="true">
+            <Text71 Ref="127" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
               <ClientRectangle>124,456.9,58,2</ClientRectangle>
@@ -1865,12 +1852,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text71</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text71>
-            <Text73 Ref="129" type="Text" isKey="true">
+            <Text73 Ref="128" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1882,12 +1869,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text73</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text73>
-            <Text75 Ref="130" type="Text" isKey="true">
+            <Text75 Ref="129" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1898,12 +1885,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text75</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text75>
-            <Text77 Ref="131" type="Text" isKey="true">
+            <Text77 Ref="130" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1915,12 +1902,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text77</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text77>
-            <Text79 Ref="132" type="Text" isKey="true">
+            <Text79 Ref="131" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1931,12 +1918,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text79</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text79>
-            <Text81 Ref="133" type="Text" isKey="true">
+            <Text81 Ref="132" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1948,12 +1935,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text81</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text81>
-            <Text83 Ref="134" type="Text" isKey="true">
+            <Text83 Ref="133" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1964,12 +1951,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text83</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text83>
-            <Text85 Ref="135" type="Text" isKey="true">
+            <Text85 Ref="134" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1981,12 +1968,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text85</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text85>
-            <Text87 Ref="136" type="Text" isKey="true">
+            <Text87 Ref="135" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -1997,12 +1984,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text87</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text87>
-            <Text89 Ref="137" type="Text" isKey="true">
+            <Text89 Ref="136" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2014,12 +2001,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text89</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text89>
-            <Text91 Ref="138" type="Text" isKey="true">
+            <Text91 Ref="137" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2030,12 +2017,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text91</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text91>
-            <Text93 Ref="139" type="Text" isKey="true">
+            <Text93 Ref="138" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2047,12 +2034,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text93</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text93>
-            <Text95 Ref="140" type="Text" isKey="true">
+            <Text95 Ref="139" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2063,12 +2050,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text95</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text95>
-            <Text97 Ref="141" type="Text" isKey="true">
+            <Text97 Ref="140" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2080,12 +2067,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text97</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text97>
-            <Text99 Ref="142" type="Text" isKey="true">
+            <Text99 Ref="141" type="Text" isKey="true">
               <Border>Bottom;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2096,12 +2083,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text99</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text99>
-            <Text101 Ref="143" type="Text" isKey="true">
+            <Text101 Ref="142" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2113,12 +2100,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text101</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text101>
-            <Text103 Ref="144" type="Text" isKey="true">
+            <Text103 Ref="143" type="Text" isKey="true">
               <Border>Top;[0:0:10];0.699999988079071;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
@@ -2129,12 +2116,12 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text103</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>[0:0:0]</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Bottom</VertAlignment>
             </Text103>
-            <Text184 Ref="145" type="Text" isKey="true">
+            <Text184 Ref="144" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,400.9,188,5</ClientRectangle>
@@ -2144,7 +2131,7 @@ WHERE trauma.id = ?</SqlCommand>
               <Margins>0,0,0,0</Margins>
               <Name>Text184</Name>
               <Page isRef="4" />
-              <Parent isRef="18" />
+              <Parent isRef="17" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text184>
@@ -2168,13 +2155,13 @@ WHERE trauma.id = ?</SqlCommand>
       <PageHeight>297</PageHeight>
       <PageWidth>210</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="146" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="145" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="147" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="146" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -2186,10 +2173,10 @@ WHERE trauma.id = ?</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/12/2013 6:01:58 PM</ReportChanged>
+  <ReportChanged>12/12/2013 6:13:55 PM</ReportChanged>
   <ReportCreated>11/20/2013 2:40:46 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\FormN1.mrt</ReportFile>
-  <ReportGuid>fc8896c2c63a4a5483f5cb665563cebe</ReportGuid>
+  <ReportGuid>73f16022e8a84dad93b5eb54739b2ef0</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
