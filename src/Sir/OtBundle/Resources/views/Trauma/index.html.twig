@@ -29,7 +29,7 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.id }}</td>
-				<td><a href="{{ path('medical_show', { 'id': entity.id }) }}">{{ entity.employee }}</a></td>
+				<td><a href="{{ path('trauma_show', { 'id': entity.id }) }}">{{ entity.employee }}</a></td>
 				<td>{{ entity.employee.subdivision.enterprise }}</td>
 				<td>{{ entity.employee.subdivision }}</td>
 				<td>{{ entity.datetrauma|date('Y-m-d H:i:s') }}</td>
