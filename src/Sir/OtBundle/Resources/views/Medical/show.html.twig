@@ -54,10 +54,10 @@
             <li>{{ form(delete_form) }}</li>
             <li>
                 <ul class="button-list">
-                    <li class="b-list-first-child"><a href="#">{% trans %}Report{% endtrans %} <p>&nbsp;</p></a></li>
-                    <li><a href="/reports/index.php?stimulsoft_report_key=FormN1.mrt?VarId={{ entity.id }}" target="_blank">Акт (форма Н-1)</a></li>
-                    <li><a href="/reports/index.php?stimulsoft_report_key=TraumaGroupNotice.mrt?VarId={{ entity.id }}" target="_blank">Извещение о групповом НС</a></li>
-                    <li><a href="/reports/index.php?stimulsoft_report_key=TraumaNotice.mrt?VarId={{ entity.id }}" target="_blank">Сообщение о последствиях</a></li>
+                    <li class="b-list-first-child"><a href="#">{% trans %}Print{% endtrans %} <p>&nbsp;</p></a></li>
+                    <li><a href="/reports/index.php?stimulsoft_report_key=FormN1.mrt&VarId={{ entity.id }}" target="_blank">Акт (форма Н-1)</a></li>
+                    <li><a href="/reports/index.php?stimulsoft_report_key=TraumaGroupNotice.mrt&VarId={{ entity.id }}" target="_blank">Извещение о групповом НС</a></li>
+                    <li><a href="/reports/index.php?stimulsoft_report_key=TraumaNotice.mrt&VarId={{ entity.id }}" target="_blank">Сообщение о последствиях</a></li>
                 </ul>
             </li>
         </ul>
