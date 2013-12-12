@@ -239,7 +239,7 @@ div.b-login-form {}
 }
 
 #ot_filter_apply {
-	background: url('../images/submit-btn-bg.png') repeat-x;
+	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	color: #ffffff;
 	cursor: pointer;
 }
@@ -249,7 +249,7 @@ div.b-login-form {}
 }
 
 #ot_list_create {
-	background: url('../images/submit-btn-bg.png') repeat-x;
+	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	color: #ffffff;
 	padding: 5px 16px;
 	border: 1px solid #cccccc;
@@ -311,12 +311,13 @@ div.el-submit em{
 	float: left;
 }
 div.el-submit input, div.el-submit button {
-	border: none; height: 30px;
-	background: url('../images/submit-btn-bg.png') repeat-x;
+	border: none; height: 28px;
+	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	font-size: 14px; color: #ffffff;
 	float: left; cursor: pointer;
 	margin: 0; padding: 0 16px;
 	min-width: 97px;
+	border-radius: 3px;
 }
 div.el-submit b{
 	width: 4px; height: 30px;
@@ -543,12 +544,13 @@ ul.record_actions li, ul.record_actions_in_form li {
 }
 
 ul.record_actions li a, ul.record_actions_in_form li a {
-	background: url('../images/submit-btn-bg.png') repeat-x;
+	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	color: #ffffff;
 	display: inline-block;
-	height: 29px;
+	height: 28px;
 	line-height: 28px;
-	border: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
 	border-radius: 5px;
 	padding: 0 5px;
 }
@@ -619,4 +621,36 @@ a.show-action {
 
 a.edit-action {
 	background: url('../images/glyphicons_black.png') no-repeat -1px -72px;
+}
+
+ul.button-list {
+	position: absolute;
+}
+
+ul.button-list li {
+	float: none;
+	display: none;
+	margin-bottom: 1px;
+}
+
+ul.button-list li a {
+	/*background: url('../images/a-button-bd.jpg') repeat-x 0px -28px;*/
+	background: url('../images/submit-btn-bg-white.png') repeat-x;
+	color: #212121;
+	width: 190px;
+}
+
+ul.button-list li.b-list-first-child {
+	display: block;
+}
+
+ul.button-list li.b-list-first-child a p {
+	background: url('../images/glyphicons_black.png') no-repeat -312px -112px;
+	width: 16px; height: 25px;
+	display: inline-block;
+	float: right;
+}
+
+ul.button-list li.b-list-first-child a.opened p {
+	background: url('../images/glyphicons_black.png') no-repeat -287px -112px;
 }
