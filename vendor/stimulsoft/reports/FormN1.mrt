@@ -34,9 +34,7 @@
         <Dictionary isRef="1" />
         <Name>trauma</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters isList="true" count="1">
-          <value>id,VarId,23,0</value>
-        </Parameters>
+        <Parameters isList="true" count="0" />
         <SqlCommand>SELECT trauma.datetrauma, enterprise.name AS enterprise_name,
   enterprise.address AS address, enterprise.okved,
   traumakind.name AS traumakind_name, traumacause.name AS traumacause_name,
@@ -62,7 +60,7 @@ FROM trauma LEFT JOIN
   traumacause ON trauma.traumacause = traumacause.id
   LEFT JOIN profession on employee.profession = profession.id
   LEFT JOIN marriagekind on employee.marriagekind = marriagekind.id
-WHERE trauma.id = ?</SqlCommand>
+WHERE trauma.id = {VarId}</SqlCommand>
       </trauma>
     </DataSources>
     <Relations isList="true" count="0" />
@@ -2173,10 +2171,10 @@ WHERE trauma.id = ?</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/12/2013 6:13:55 PM</ReportChanged>
+  <ReportChanged>12/12/2013 6:25:17 PM</ReportChanged>
   <ReportCreated>11/20/2013 2:40:46 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\FormN1.mrt</ReportFile>
-  <ReportGuid>73f16022e8a84dad93b5eb54739b2ef0</ReportGuid>
+  <ReportGuid>26a680cbcbfb4d4187adb608ef01abd8</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
