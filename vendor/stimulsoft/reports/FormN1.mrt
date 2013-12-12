@@ -5,7 +5,7 @@
     <Databases isList="true" count="1">
       <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
         <Alias>labor</Alias>
-        <ConnectionStringEncrypted>5XZPjE1Rc5nvW+WNY1hla8PCg0jNCeMZbEuhhGMEpC/c3mECRhYBiWkZ5Y1qSTX7gcRxCU0FS4DpWpyETlT2L4t42cJnTTGVbEqh9OlxZWuNVLnCZlGzCWlJofB0dKB7</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>5XbbKUVRS93vW+WNanT3F8PQaUlhWUMZQ03olGSIMkrc0E+rxgNDvEZJzejk7KRnxEDNrE1VAYVpBo2c6wTgE4JWyYNICVuFaFuchE49dSfR1tvCxlxRpHROudxjAOBy0xjRAs5Mo4U=</ConnectionStringEncrypted>
         <Name>labor</Name>
       </labor>
     </Databases>
@@ -13,7 +13,7 @@
       <trauma Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>trauma</Alias>
         <Columns isList="true" count="16">
-          <value>date_trauma,System.DateTime</value>
+          <value>datetrauma,System.DateTime</value>
           <value>enterprise_name,System.String</value>
           <value>address,System.String</value>
           <value>okved,System.String</value>
@@ -23,9 +23,9 @@
           <value>profession_name,System.String</value>
           <value>marriagekind_name,System.String</value>
           <value>lastname,System.String</value>
-          <value>firsname,System.String</value>
+          <value>firstname,System.String</value>
           <value>middlename,System.String</value>
-          <value>sex,System.String</value>
+          <value>sex,System.Int32</value>
           <value>birthday,System.DateTime</value>
           <value>date_first_medical,System.DateTime</value>
           <value>date_instruction,System.DateTime</value>
@@ -35,17 +35,17 @@
         <Name>trauma</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT trauma.date_trauma, enterprise.name AS enterprise_name,
+        <SqlCommand>SELECT trauma.datetrauma, enterprise.name AS enterprise_name,
   enterprise.address AS address, enterprise.okved,
   traumakind.name AS traumakind_name, traumacause.name AS traumacause_name,
   subdivision.name AS subdivision_name,
   profession.name AS profession_name,
   marriagekind.name AS marriagekind_name,
   employee.lastname,
-  employee.firsname,
+  employee.firstname,
   employee.middlename,
   employee.sex,
-  employee.birthday,
+  employee.bithday AS birthday,
   employee.date_first_medical,
   employee.date_instruction	
 FROM trauma INNER JOIN
@@ -55,17 +55,19 @@ FROM trauma INNER JOIN
     subdivision.id INNER JOIN
   enterprise ON subdivision.enterprise =
     enterprise.id INNER JOIN
-  traumakind ON trauma.trauma_kind = traumakind.id
+  traumakind ON trauma.traumakind = traumakind.id
   INNER JOIN
-  traumacause ON trauma.trauma_cause = traumacause.id
+  traumacause ON trauma.traumacause = traumacause.id
   join profession on employee.profession = profession.id
-  join marriagekind on employee.marriage_kind = marriagekind.id
---WHERE trauma.id = ?</SqlCommand>
+  join marriagekind on employee.marriagekind = marriagekind.id
+WHERE trauma.id = {VarId}</SqlCommand>
       </trauma>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,VarId,VarId,System.Int32,,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -338,7 +340,7 @@ FROM trauma INNER JOIN
               <Name>Text137</Name>
               <Page isRef="4" />
               <Parent isRef="17" />
-              <Text>{trauma.date_trauma} </Text>
+              <Text>{trauma.datetrauma} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -790,7 +792,7 @@ FROM trauma INNER JOIN
               <Name>Text171</Name>
               <Page isRef="4" />
               <Parent isRef="17" />
-              <Text>{trauma.lastname} {trauma.firsname} {trauma.middlename} </Text>
+              <Text>{trauma.lastname} {trauma.firstname} {trauma.middlename} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text171>
@@ -2169,10 +2171,10 @@ FROM trauma INNER JOIN
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/11/2013 11:30:58 AM</ReportChanged>
+  <ReportChanged>12/12/2013 3:23:35 PM</ReportChanged>
   <ReportCreated>11/20/2013 2:40:46 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\FormN1.mrt</ReportFile>
-  <ReportGuid>551d645ed77b420bbe2813461fda01ee</ReportGuid>
+  <ReportGuid>d4a7012031ff4e259fd8d8fe3ef9c8c5</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>

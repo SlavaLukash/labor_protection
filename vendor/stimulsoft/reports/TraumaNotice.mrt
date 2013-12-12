@@ -2,26 +2,88 @@
 <StiSerializer version="1.02" type="Net" application="StiReport">
   <Dictionary Ref="1" type="Dictionary" isKey="true">
     <BusinessObjects isList="true" count="0" />
-    <Databases isList="true" count="0" />
-    <DataSources isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
+        <Alias>labor</Alias>
+        <ConnectionStringEncrypted>5XbbKUVRS93vW+WNanT3F8PQaUlhWUMZQ03olGSIMkrc0E+rxgNDvEZJzejk7KRnxEDNrE1VAYVpBo2c6wTgE4JWyYNICVuFaFuchE49dSfR1tvCxlxRpHROudxjAOBy0xjRAs5Mo4U=</ConnectionStringEncrypted>
+        <Name>labor</Name>
+      </labor>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <trauma Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>trauma</Alias>
+        <Columns isList="true" count="17">
+          <value>datetrauma,System.DateTime</value>
+          <value>enterprise_name,System.String</value>
+          <value>address,System.String</value>
+          <value>okved,System.String</value>
+          <value>traumakind_name,System.String</value>
+          <value>traumacause_name,System.String</value>
+          <value>subdivision_name,System.String</value>
+          <value>profession_name,System.String</value>
+          <value>marriagekind_name,System.String</value>
+          <value>lastname,System.String</value>
+          <value>firstname,System.String</value>
+          <value>middlename,System.String</value>
+          <value>sex,System.Int32</value>
+          <value>birthday,System.DateTime</value>
+          <value>date_first_medical,System.DateTime</value>
+          <value>date_instruction,System.DateTime</value>
+          <value>FIO,FIO,System.String,trauma.lastname_x0020__x002B__x0020__x0022__x0020__x0022__x0020__x002B__x0020_Left_x0028_trauma.firstname_x002C_1_x0029__x0020__x002B__x0020__x0022_._x0020__x0022__x0020__x002B__x0020_Left_x0028_trauma.middlename_x002C_1_x0029__x0020__x002B__x0020__x0022_._x0022__x0020_</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>trauma</Name>
+        <NameInSource>labor</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>SELECT trauma.datetrauma, enterprise.name AS enterprise_name,
+	enterprise.address AS address, enterprise.okved,
+	traumakind.name AS traumakind_name, traumacause.name AS traumacause_name,
+	subdivision.name AS subdivision_name,
+	profession.name AS profession_name,
+	marriagekind.name AS marriagekind_name,
+	employee.lastname,
+	employee.firstname,
+	employee.middlename,
+	employee.sex,
+	employee.bithday AS birthday,
+	employee.date_first_medical,
+	employee.date_instruction	
+	FROM trauma INNER JOIN
+	employee ON trauma.employee = employee.id
+  INNER JOIN
+  subdivision ON employee.subdivision =
+    subdivision.id INNER JOIN
+  enterprise ON subdivision.enterprise =
+    enterprise.id INNER JOIN
+  traumakind ON trauma.traumakind = traumakind.id
+  INNER JOIN
+  traumacause ON trauma.traumacause = traumacause.id
+  join profession on employee.profession = profession.id
+  join marriagekind on employee.marriagekind = marriagekind.id
+WHERE trauma.id = {VarId}</SqlCommand>
+      </trauma>
+    </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
-    <Variables isList="true" count="0" />
+    <Variables isList="true" count="1">
+      <value>,VarId,VarId,System.Int32,_x0030_,False,False</value>
+    </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
   <MetaTags isList="true" count="0" />
   <Pages isList="true" count="1">
-    <Page1 Ref="2" type="Page" isKey="true">
+    <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
       <Components isList="true" count="1">
-        <DataBand1 Ref="3" type="DataBand" isKey="true">
+        <DataBand1 Ref="5" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <CanBreak>True</CanBreak>
           <ClientRectangle>0,4,185.98,375.6</ClientRectangle>
           <Components isList="true" count="40">
-            <Text1 Ref="4" type="Text" isKey="true">
+            <Text1 Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>1,2,178,18</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -29,8 +91,8 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>СООБЩЕНИЕ
 о последствиях несчастного случая на производстве
 и принятых мерах</Text>
@@ -38,7 +100,7 @@
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text137 Ref="5" type="Text" isKey="true">
+            <Text137 Ref="7" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,31,185,5</ClientRectangle>
@@ -47,14 +109,14 @@
               <Guid>f14e7fc15e454318865769e42444dc3d</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text137</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>с </Text>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>с {trauma.FIO}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text137>
-            <Text140 Ref="6" type="Text" isKey="true">
+            <Text140 Ref="8" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,21,108,6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -62,13 +124,13 @@
               <Guid>127e4e169e92450789b92627759f278c</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text140</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>	Несчастный случай на производстве, происшедший</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text140>
-            <Text142 Ref="7" type="Text" isKey="true">
+            <Text142 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,36,185,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -77,13 +139,13 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text142</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(фамилия, инициалы пострадавшего)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text142>
-            <Text2 Ref="8" type="Text" isKey="true">
+            <Text2 Ref="10" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>108,22,77,5</ClientRectangle>
@@ -93,13 +155,14 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Format("{0:dd.MM.yyyy}", trauma.datetrauma)}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text4 Ref="9" type="Text" isKey="true">
+            <Text4 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>108,27,77,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -108,13 +171,13 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(дата несчастного случая)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text4>
-            <Text146 Ref="10" type="Text" isKey="true">
+            <Text146 Ref="12" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,52,185,5</ClientRectangle>
@@ -123,13 +186,13 @@
               <Guid>b5cc37e713674f8ba367e5bcb4cdaa75</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text146</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>адрес: </Text>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>адрес: {trauma.address}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text146>
-            <Text147 Ref="11" type="Text" isKey="true">
+            <Text147 Ref="13" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,57,185,7</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -138,14 +201,14 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text147</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(профессия (должность) пострадавшего, место работы: наименование, место нахождения и юридический адрес
  организации, фамилия и инициалы работодателя – физического лица и его регистрационные данные)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text147>
-            <Text143 Ref="12" type="Text" isKey="true">
+            <Text143 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,41,185,11</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -153,15 +216,14 @@
               <Guid>ef7eb67bf80b4508a692dc47f47852db</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text143</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>работающим(ей), работавшим(ей)  
-Организация: 
-</Text>
+Организация: {trauma.enterprise_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text143>
-            <Text5 Ref="13" type="Text" isKey="true">
+            <Text5 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,69,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -169,14 +231,14 @@
               <Guid>a312de47f3ab401485dd4749f0cf4f41</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>Данный несчастный случай оформлен актом о несчастном случае на производстве №
 </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text5>
-            <Text6 Ref="14" type="Text" isKey="true">
+            <Text6 Ref="16" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,74,29,6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -184,13 +246,13 @@
               <Guid>74eb6fa0ab6f46f5a3ec50789f634ae1</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>утвержденным</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text6>
-            <Text7 Ref="15" type="Text" isKey="true">
+            <Text7 Ref="17" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>29,75,156,5</ClientRectangle>
@@ -200,13 +262,13 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text7>
-            <Text8 Ref="16" type="Text" isKey="true">
+            <Text8 Ref="18" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,86,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -215,13 +277,13 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(должность, фамилия, инициалы лица, утвердившего акт о несчастном случае на производстве)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text8>
-            <Text9 Ref="17" type="Text" isKey="true">
+            <Text9 Ref="19" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,81,185,5</ClientRectangle>
@@ -230,24 +292,24 @@
               <Guid>7c8e404f24ad44e297ce02844b01834c</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text9>
-            <Text10 Ref="18" type="Text" isKey="true">
+            <Text10 Ref="20" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,93,95,5</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>Последствия несчастного случая на производстве:</Text>
               <TextBrush>Black</TextBrush>
             </Text10>
-            <Text3 Ref="19" type="Text" isKey="true">
+            <Text3 Ref="21" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,276,146,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -255,13 +317,13 @@
               <Guid>167bf2bf5c74472caa86f12572309607</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>Принятые меры по устранению причин несчастного случая на производстве:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text3>
-            <Text11 Ref="20" type="Text" isKey="true">
+            <Text11 Ref="22" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,110,185,5</ClientRectangle>
@@ -270,12 +332,12 @@
               <Guid>00641c65556d43bdaa5c690b5198f23f</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text11>
-            <Text12 Ref="21" type="Text" isKey="true">
+            <Text12 Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,115,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -284,13 +346,13 @@
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(при несчастном случае со смертельным исходом – по заключению органа судебно-медицинской экспертизы)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text12>
-            <Text13 Ref="22" type="Text" isKey="true">
+            <Text13 Ref="24" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,99,185,11</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -298,16 +360,16 @@
               <Guid>915910d388de4de6a115bd6ea786d9d4</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
-              <Text>1) пострадавший ;
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>1) пострадавший {trauma.lastname} {trauma.firstname} {trauma.middlename};
 2) окончательный диагноз по заключению (справке) лечебного учреждения
 
 </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text13>
-            <Text14 Ref="23" type="Text" isKey="true">
+            <Text14 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,122,185,76</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -315,8 +377,8 @@
               <Guid>41fcc8e4cb364b45a85549d77e53f394</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>3) продолжительность временной нетрудоспособности пострадавшего	0	дней.
 Освобожден от работы с _______________	г. по ______________________ г.
 Продолжительность выполнения другой работы (в случае перевода пострадавшего на другую 
@@ -342,20 +404,20 @@ ________________________________________________________________________________
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text14>
-            <Text15 Ref="24" type="Text" isKey="true">
+            <Text15 Ref="26" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,201,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>8) сведения о назначении сумм ежемесячных выплат пострадавшему в возмещение вреда</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text15>
-            <Text16 Ref="25" type="Text" isKey="true">
+            <Text16 Ref="27" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,197,185,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -364,13 +426,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text16</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(сумма строк 4 – 7)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text16>
-            <Text17 Ref="26" type="Text" isKey="true">
+            <Text17 Ref="28" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,211,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -379,13 +441,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(дата и номер приказа (распоряжения) страховщика о назначении указанных сумм, размер сумм)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text17>
-            <Text18 Ref="27" type="Text" isKey="true">
+            <Text18 Ref="29" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,206,185,5</ClientRectangle>
@@ -394,12 +456,12 @@ ________________________________________________________________________________
               <Guid>0850409881ca45a8bc1abd73fce19a63</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text18>
-            <Text19 Ref="28" type="Text" isKey="true">
+            <Text19 Ref="30" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,216,185,10</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -407,14 +469,14 @@ ________________________________________________________________________________
               <Guid>a7537982c1414064b0a531ea63aab01a</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>9) сведения о назначении сумм ежемесячных выплат лицам, имеющим право на их получение 
 (в случае смерти пострадавшего):  </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text19>
-            <Text20 Ref="29" type="Text" isKey="true">
+            <Text20 Ref="31" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,230,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -423,13 +485,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(дата и номер приказа (распоряжения) страховщика о назначении указанных сумм, размер сумм)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text20>
-            <Text21 Ref="30" type="Text" isKey="true">
+            <Text21 Ref="32" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,225,185,5</ClientRectangle>
@@ -438,12 +500,12 @@ ________________________________________________________________________________
               <Guid>85c1256a053a4099bfaa0a61f34f48a8</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text21>
-            <Text22 Ref="31" type="Text" isKey="true">
+            <Text22 Ref="33" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,252,185,10</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -451,14 +513,14 @@ ________________________________________________________________________________
               <Guid>4a7cca8a6f7a496398e28794362e3579</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text22</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>10) сведения о решении прокуратуры о возбуждении (отказе в возбуждении) уголовного дела по 
 факту несчастного случая на производстве:   </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text22>
-            <Text23 Ref="32" type="Text" isKey="true">
+            <Text23 Ref="34" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,267,185,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -467,13 +529,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text23</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(дата, номер и краткое содержание решения прокуратуры по факту данного несчастного случая)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text23>
-            <Text24 Ref="33" type="Text" isKey="true">
+            <Text24 Ref="35" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,262,185,5</ClientRectangle>
@@ -482,12 +544,12 @@ ________________________________________________________________________________
               <Guid>804d4aa6447c49c9bb11a4aa8c67570e</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text24</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text24>
-            <Text25 Ref="34" type="Text" isKey="true">
+            <Text25 Ref="36" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,290,185,12</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -496,8 +558,8 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text25</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(излагается информация о реализации мероприятий по устранению причин несчастного случая,
 предусмотренных в акте о несчастном случае, предписании государственного инспектора труда и
 других документах, принятых по результатам расследования)
@@ -505,7 +567,7 @@ ________________________________________________________________________________
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text25>
-            <Text26 Ref="35" type="Text" isKey="true">
+            <Text26 Ref="37" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,285,185,5</ClientRectangle>
@@ -514,12 +576,12 @@ ________________________________________________________________________________
               <Guid>f212573fbb60407394d22ac9b149d711</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text26</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text26>
-            <Text28 Ref="36" type="Text" isKey="true">
+            <Text28 Ref="38" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>75,329,105,4</ClientRectangle>
@@ -529,13 +591,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text28</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text28>
-            <Text29 Ref="37" type="Text" isKey="true">
+            <Text29 Ref="39" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>75,333,105,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -544,13 +606,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text29</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>      (подпись)                              (фамилия, инициалы, должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text29>
-            <Text27 Ref="38" type="Text" isKey="true">
+            <Text27 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8,328,64,5</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -558,13 +620,13 @@ ________________________________________________________________________________
               <Guid>4b16c15a6d944a8d84a5e49361ea55aa</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text27</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>Работодатель (его представитель)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text27>
-            <Text30 Ref="39" type="Text" isKey="true">
+            <Text30 Ref="41" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>75,347,105,5</ClientRectangle>
@@ -574,13 +636,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text30</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text30>
-            <Text31 Ref="40" type="Text" isKey="true">
+            <Text31 Ref="42" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>75,352,105,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -589,13 +651,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text31</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>      (подпись)                              (фамилия, инициалы, должность)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text31>
-            <Text32 Ref="41" type="Text" isKey="true">
+            <Text32 Ref="43" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>8,346,64,6</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -603,13 +665,13 @@ ________________________________________________________________________________
               <Guid>62db80f4fd4648419696e3eac3f0f927</Guid>
               <Margins>0,0,0,0</Margins>
               <Name>Text32</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>Главный бухгалтер</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text32>
-            <Text33 Ref="42" type="Text" isKey="true">
+            <Text33 Ref="44" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>7,364,50,5</ClientRectangle>
@@ -619,13 +681,13 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text33</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text33>
-            <Text34 Ref="43" type="Text" isKey="true">
+            <Text34 Ref="45" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>7,369,50,4</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -634,8 +696,8 @@ ________________________________________________________________________________
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text34</Name>
-              <Page isRef="2" />
-              <Parent isRef="3" />
+              <Page isRef="4" />
+              <Parent isRef="5" />
               <Text>(дата)</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -645,8 +707,8 @@ ________________________________________________________________________________
           <CountData>1</CountData>
           <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
-          <Page isRef="2" />
-          <Parent isRef="2" />
+          <Page isRef="4" />
+          <Parent isRef="4" />
           <Sort isList="true" count="0" />
         </DataBand1>
       </Components>
@@ -660,13 +722,13 @@ ________________________________________________________________________________
       <PageWidth>216</PageWidth>
       <PaperSize>Letter</PaperSize>
       <Report isRef="0" />
-      <Watermark Ref="44" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="46" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="45" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="47" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -678,10 +740,10 @@ ________________________________________________________________________________
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/9/2013 1:33:05 PM</ReportChanged>
+  <ReportChanged>12/12/2013 3:45:02 PM</ReportChanged>
   <ReportCreated>12/9/2013 10:48:02 AM</ReportCreated>
-  <ReportFile>D:\work\OT\Reports\TraumaNotice.mrt</ReportFile>
-  <ReportGuid>52356822bb374f46bb9d7eb08e418a3c</ReportGuid>
+  <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaNotice.mrt</ReportFile>
+  <ReportGuid>6931a581d59f43568035d69344ca2697</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
