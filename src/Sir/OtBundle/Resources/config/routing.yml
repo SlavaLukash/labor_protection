@@ -1,3 +1,17 @@
+SirOtBundle_reports:
+    pattern:  /reports/{Categoryid}
+    defaults: { _controller: "SirOtBundle:Report:list", Categoryid: null }
+    requirements:
+        id:  \d+
+
+SirOtBundle_report:
+        resource: "@SirOtBundle/Resources/config/routing/report.yml"
+        prefix:   /report
+
+SirOtBundle_categoryreport:
+        resource: "@SirOtBundle/Resources/config/routing/categoryreport.yml"
+        prefix:   /categoryreport
+
 SirOtBundle_medical:
         resource: "@SirOtBundle/Resources/config/routing/medical.yml"
         prefix:   /medical

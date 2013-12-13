@@ -11,6 +11,8 @@
         or get_controller_name() == 'traumacause'
         or get_controller_name() == 'equipmentgroup'
         or get_controller_name() == 'equipmentsubgroup'
+        or get_controller_name() == 'categoryreport'
+        or (get_controller_name() == 'report' and get_action_name() != 'list')
         or get_controller_name() == 'expensekind')
         %}
             class="active"
@@ -39,5 +41,7 @@
             {% endif %}>
         <a href="{{ path('expense') }}"><p>{% trans %}expense{% endtrans %}</p></a>
     </li>
-    <li><a href="#"><p>ОТЧЕТЫ</p></a></li>
+    <li {% if (get_controller_name() == 'report' and get_action_name() == 'list')%}class="active"{% endif %}>
+        <a href="{{ path('SirOtBundle_reports') }}"><p>{% trans %}REPORTS{% endtrans %}</p></a>
+    </li>
 </ul>

@@ -26,6 +26,7 @@ security:
         - { path: ^/login$,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register,               role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting,              role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/report,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         - { path: ^/user,                   role: ROLE_ADMIN }
         - { path: ^/enterprise,             role: ROLE_ADMIN }
@@ -38,5 +39,7 @@ security:
         - { path: ^/traumacause,            role: ROLE_ADMIN }
         - { path: ^/equipmentgroup,         role: ROLE_ADMIN }
         - { path: ^/equipmentsubgroup,      role: ROLE_ADMIN }
+        - { path: ^/report,                 role: ROLE_ADMIN }
+        - { path: ^/categoryreport,         role: ROLE_ADMIN }
 
         - { path: ^/,                       role: ROLE_USER }

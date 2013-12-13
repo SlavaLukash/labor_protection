@@ -1,0 +1,30 @@
+report:
+    pattern:  /
+    defaults: { _controller: "SirOtBundle:Report:index" }
+
+report_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "SirOtBundle:Report:show" }
+
+report_new:
+    pattern:  /new
+    defaults: { _controller: "SirOtBundle:Report:new" }
+
+report_create:
+    pattern:  /create
+    defaults: { _controller: "SirOtBundle:Report:create" }
+    requirements: { _method: post }
+
+report_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "SirOtBundle:Report:edit" }
+
+report_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "SirOtBundle:Report:update" }
+    requirements: { _method: post|put }
+
+report_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "SirOtBundle:Report:delete" }
+    requirements: { _method: post|delete }

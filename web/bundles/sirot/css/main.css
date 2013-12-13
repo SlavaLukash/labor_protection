@@ -607,7 +607,7 @@ table#form td{
 	margin-top: 5px;
 }
 
-a.show-action, a.edit-action {
+a.show-action, a.edit-action, a.print-action {
 	width: 15px; height: 15px;
 	display: block;
 	float: left;
@@ -616,6 +616,11 @@ a.show-action, a.edit-action {
 
 a.show-action {
 	background: url('../images/glyphicons_black.png') no-repeat -49px 1px;
+}
+
+a.print-action {
+	background: url('../images/glyphicons_black.png') no-repeat -95px -47px;
+	margin-left: 23px !important;
 }
 
 a.edit-action {

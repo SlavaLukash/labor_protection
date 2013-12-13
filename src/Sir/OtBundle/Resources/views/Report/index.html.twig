@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Report list{% endtrans %}</h1>
+    <a id="ot_list_create" href="{{ path('report_new') }}">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Params{% endtrans %}</th>
+                <th>{% trans %}Categoryreport{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('report_show', { 'id': entity.id }) }}" title="{{ entity.name }}">{{ entity.name }}</a></td>
+                <td>
+                    <span title="{{ entity.params }}">{{ entity.params|slice(0, 30) }}...</span>
+                </td>
+                <td>{{ entity.categoryreport }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('report_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('report_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
