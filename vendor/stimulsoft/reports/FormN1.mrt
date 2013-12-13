@@ -48,25 +48,25 @@
   employee.bithday AS birthday,
   employee.date_first_medical,
   employee.date_instruction	
-FROM trauma INNER JOIN
+FROM trauma LEFT JOIN
   employee ON trauma.employee = employee.id
-  INNER JOIN
+  LEFT JOIN
   subdivision ON employee.subdivision =
-    subdivision.id INNER JOIN
+    subdivision.id LEFT JOIN
   enterprise ON subdivision.enterprise =
-    enterprise.id INNER JOIN
+    enterprise.id LEFT JOIN
   traumakind ON trauma.traumakind = traumakind.id
-  INNER JOIN
+  LEFT JOIN
   traumacause ON trauma.traumacause = traumacause.id
-  join profession on employee.profession = profession.id
-  join marriagekind on employee.marriagekind = marriagekind.id
+  LEFT JOIN profession on employee.profession = profession.id
+  LEFT JOIN marriagekind on employee.marriagekind = marriagekind.id
 WHERE trauma.id = {VarId}</SqlCommand>
       </trauma>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Variables isList="true" count="1">
-      <value>,VarId,VarId,System.Int32,,False,False</value>
+      <value>,VarId,VarId,System.Int32,_x0031_,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -340,7 +340,7 @@ WHERE trauma.id = {VarId}</SqlCommand>
               <Name>Text137</Name>
               <Page isRef="4" />
               <Parent isRef="17" />
-              <Text>{trauma.datetrauma} </Text>
+              <Text>{Format("{0:dd.MM.yyyy}", trauma.datetrauma )} {Format("{0:HH:mm}", trauma.datetrauma )}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -836,7 +836,7 @@ WHERE trauma.id = {VarId}</SqlCommand>
               <Name>Text174</Name>
               <Page isRef="4" />
               <Parent isRef="17" />
-              <Text>{trauma.birthday}</Text>
+              <Text>{Format("{0:dd.MM.yyyy}",trauma.birthday)}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text174>
@@ -959,9 +959,9 @@ WHERE trauma.id = {VarId}</SqlCommand>
               <Name>Text16</Name>
               <Page isRef="4" />
               <Parent isRef="17" />
-              <Text>{trauma.date_instruction}</Text>
+              <Text>{Format("{0:dd.MM.yyyy}",trauma.date_instruction)}</Text>
               <TextBrush>Black</TextBrush>
-              <Type>DataColumn</Type>
+              <Type>Expression</Type>
             </Text16>
             <Text17 Ref="67" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
@@ -2171,10 +2171,10 @@ WHERE trauma.id = {VarId}</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/12/2013 3:23:35 PM</ReportChanged>
+  <ReportChanged>12/12/2013 7:25:07 PM</ReportChanged>
   <ReportCreated>11/20/2013 2:40:46 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\FormN1.mrt</ReportFile>
-  <ReportGuid>d4a7012031ff4e259fd8d8fe3ef9c8c5</ReportGuid>
+  <ReportGuid>e0b1d8d40b4d48b386ce26156adeb22a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
