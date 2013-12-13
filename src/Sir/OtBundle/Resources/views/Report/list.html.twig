@@ -12,7 +12,6 @@
             <tr>
                 <th>{% trans %}Id{% endtrans %}</th>
                 <th>{% trans %}Name{% endtrans %}</th>
-                <th>{% trans %}Params{% endtrans %}</th>
                 <th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
@@ -20,10 +19,7 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.id }}</td>
-                <td>{{ entity.name }}</td>
-                <td>
-                    <span title="{{ entity.params }}">{{ entity.params|slice(0, 30) }}...</span>
-                </td>
+                <td><a href="/reports/index.php{{ entity.params }}" title="{{ entity.name }}" target="_blank">{{ entity.name }}</a></td>
                 <td>
                     <a class="print-action" href="/reports/index.php{{ entity.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
                 </td>
