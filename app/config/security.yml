@@ -33,13 +33,12 @@ security:
         - { path: ^/subdivision,            role: ROLE_ADMIN }
         - { path: ^/professionkind,         role: ROLE_ADMIN }
         - { path: ^/medicalkind,            role: ROLE_ADMIN }
-        - { path: ^/medicaltype,            role: ROLE_ADMIN }
         - { path: ^/traumakind,             role: ROLE_ADMIN }
+        - { path: ^/medicaltype,            role: ROLE_ADMIN }
         - { path: ^/traumacause,            role: ROLE_ADMIN }
         - { path: ^/equipmentgroup,         role: ROLE_ADMIN }
         - { path: ^/equipmentsubgroup,      role: ROLE_ADMIN }
-        - { path: ^/report,                 role: ROLE_ADMIN }
+        - { path: ^/report/,                 role: ROLE_ADMIN }
         - { path: ^/categoryreport,         role: ROLE_ADMIN }
-        - { path: ^/reportlist,             role: ROLE_USER }
 
         - { path: ^/,                       role: ROLE_USER }
