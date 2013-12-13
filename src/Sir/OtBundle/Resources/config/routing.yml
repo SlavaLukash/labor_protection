@@ -1,5 +1,5 @@
 SirOtBundle_reports:
-    pattern:  /reports/{Categoryid}
+    pattern:  /reportlist/{Categoryid}
     defaults: { _controller: "SirOtBundle:Report:list", Categoryid: null }
     requirements:
         id:  \d+
