@@ -1,4 +1,4 @@
-Address: Адрес
+﻿Address: Адрес
 Bithday: Дата рождения
 Comment: Примечание
 Datefact: Дата фактическая
@@ -81,7 +81,7 @@ Users: Пользователи
 User: Пользователь
 edit: редактировать
 show: просмотр
-Update: Обновить
+Update: Сохранить
 Delete: Удалить
 Create: Создать
 Back to the list: Вернуться к списку
