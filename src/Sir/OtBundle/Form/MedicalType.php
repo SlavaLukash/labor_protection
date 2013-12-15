@@ -16,8 +16,14 @@ class MedicalType extends AbstractType
     {
         $builder
             ->add('comment')
-            ->add('dateplan')
-            ->add('datefact')
+//            ->add('dateplan')
+//            ->add('datefact')
+			->add('dateplan', 'date', array(
+				'widget' => 'single_text'
+			))
+			->add('datefact', 'date', array(
+				'widget' => 'single_text'
+			))
 			->add('employee', 'entity', array(
 				'class' => 'SirOtBundle:Employee',
 				'empty_value' => false,

@@ -16,8 +16,14 @@ class TechnicalexaminationType extends AbstractType
     {
         $builder
             ->add('resulttext')
-            ->add('plandate')
-            ->add('factdate')
+//            ->add('plandate')
+//            ->add('factdate')
+			->add('plandate', 'date', array(
+				'widget' => 'single_text'
+			))
+			->add('factdate', 'date', array(
+				'widget' => 'single_text'
+			))
             ->add('equipment')
             ->add('technicalexaminationkind')
             ->add('technicalexaminationcause')

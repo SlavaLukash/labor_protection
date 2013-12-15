@@ -21,8 +21,14 @@ class EquipmentType extends AbstractType
             ->add('internalnumber')
             ->add('factorynumber')
             ->add('manufacturer')
-            ->add('productiondate')
-            ->add('startupdate')
+//            ->add('productiondate')
+//            ->add('startupdate')
+			->add('productiondate', 'date', array(
+				'widget' => 'single_text'
+			))
+			->add('startupdate', 'date', array(
+				'widget' => 'single_text'
+			))
             ->add('life')
             ->add('equipmentsubgroup')
             ->add('subdivision')

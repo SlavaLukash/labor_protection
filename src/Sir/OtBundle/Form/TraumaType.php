@@ -15,7 +15,10 @@ class TraumaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datetrauma')
+//            ->add('datetrauma')
+			->add('datetrauma', 'date', array(
+				'widget' => 'single_text'
+			))
             ->add('traumareport')
             ->add('hoursstart')
 			->add('employee', 'entity', array(

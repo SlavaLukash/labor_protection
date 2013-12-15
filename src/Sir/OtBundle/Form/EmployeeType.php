@@ -24,14 +24,17 @@ class EmployeeType extends AbstractType
 				'choices' => array('Ж', 'М')
 			))
             ->add('bithday', 'date', array(
-				'years' => range(1900, date('Y')
-			)))
+//				'years' => range(1900, date('Y'))
+				'widget' => 'single_text'
+			))
             ->add('date_first_medical', 'date', array(
-				'years' => range(1900, date('Y')
-				)))
+//				'years' => range(1900, date('Y'))
+				'widget' => 'single_text'
+			))
             ->add('date_instruction', 'date', array(
-				'years' => range(1900, date('Y')
-				)))
+//				'years' => range(1900, date('Y'))
+				'widget' => 'single_text'
+			))
 			->add('subdivision', 'entity', array(
 				'class' => 'SirOtBundle:Subdivision',
 				'empty_value' => false,
