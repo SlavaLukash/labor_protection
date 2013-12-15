@@ -19,9 +19,9 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.id }}</td>
-                <td><a href="/reports/index.php{{ entity.params }}" title="{{ entity.name }}" target="_blank">{{ entity.name }}</a></td>
+                <td><a href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{{ entity.name }}" target="_blank">{{ entity.name }}</a></td>
                 <td>
-                    <a class="print-action" href="/reports/index.php{{ entity.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
+                    <a class="print-action" href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
                 </td>
             </tr>
         {% endfor %}
