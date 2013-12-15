@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('SirOtBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Technicalexaminationtype list{% endtrans %}</h1>
+    <a id="ot_list_create" href="{{ path('technicalexaminationtype_new') }}">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('technicalexaminationtype_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('technicalexaminationtype_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('technicalexaminationtype_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

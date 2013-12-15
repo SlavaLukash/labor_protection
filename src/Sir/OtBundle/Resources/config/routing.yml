@@ -1,8 +1,22 @@
+
+
 SirOtBundle_reports:
     pattern:  /reportlist/{Categoryid}
     defaults: { _controller: "SirOtBundle:Report:list", Categoryid: null }
     requirements:
         id:  \d+
+
+SirOtBundle_technicalexaminationtype:
+        resource: "@SirOtBundle/Resources/config/routing/technicalexaminationtype.yml"
+        prefix:   /technicalexaminationtype
+
+SirOtBundle_technicalexaminationcause:
+        resource: "@SirOtBundle/Resources/config/routing/technicalexaminationcause.yml"
+        prefix:   /technicalexaminationcause
+
+SirOtBundle_technicalexaminationkind:
+        resource: "@SirOtBundle/Resources/config/routing/technicalexaminationkind.yml"
+        prefix:   /technicalexaminationkind
 
 SirOtBundle_report:
         resource: "@SirOtBundle/Resources/config/routing/report.yml"

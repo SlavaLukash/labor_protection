@@ -176,3 +176,12 @@ CategoryReport: Категория отчетов
 Categoryreport: Категория отчета
 CategoryReport edit: Редактирование категории отчетов
 CategoryReport creation: Создание категории отчетов
+Technicalexaminationkind list: Виды обследований
+Technicalexaminationkind creation: Создание вида обследования
+Technicalexaminationkind edit: Редактирование вида обследования
+Technicalexaminationcause list: Причины обследований
+Technicalexaminationcause creation: Создание причины обследования
+Technicalexaminationcause edit: Редактирование причины обследования
+Technicalexaminationtype list: Типы обследований
+Technicalexaminationtype creation: Создание типа обследования
+Technicalexaminationtype edit: Редактирование типа обследования

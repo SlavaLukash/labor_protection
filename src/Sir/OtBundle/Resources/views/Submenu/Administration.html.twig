@@ -36,12 +36,20 @@
 		<li {% if get_controller_name() == 'expensekind' %}class="active"{% endif %}>
 			<a href="{{ path('expensekind') }}"><p>Виды затрат</p></a>
 		</li>
-
         <li {% if get_controller_name() == 'categoryreport' %}class="active"{% endif %}>
             <a href="{{ path('categoryreport') }}"><p>Категории отчетов</p></a>
         </li>
         <li {% if get_controller_name() == 'report' %}class="active"{% endif %}>
             <a href="{{ path('report') }}"><p>Отчеты</p></a>
+        </li>
+        <li {% if get_controller_name() == 'technicalexaminationkind' %}class="active"{% endif %}>
+            <a href="{{ path('technicalexaminationkind') }}"><p>Виды обследований</p></a>
+        </li>
+        <li {% if get_controller_name() == 'technicalexaminationcause' %}class="active"{% endif %}>
+            <a href="{{ path('technicalexaminationcause') }}"><p>Причины обследований</p></a>
+        </li>
+        <li {% if get_controller_name() == 'technicalexaminationtype' %}class="active"{% endif %}>
+            <a href="{{ path('technicalexaminationtype') }}"><p>Типы обследований</p></a>
         </li>
     </ul>
 </div>
