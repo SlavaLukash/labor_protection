@@ -32,7 +32,7 @@ class Employee
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Marriagekind", inversedBy="employee")
-	 * @ORM\JoinColumn(name="marriagekind", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="marriagekind", referencedColumnName="id", nullable=true)
 	 */
 	protected $marriagekind;
 
@@ -47,28 +47,28 @@ class Employee
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Profession", inversedBy="employee")
-	 * @ORM\JoinColumn(name="profession", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="profession", referencedColumnName="id", nullable=true)
 	 */
     private $profession;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="lastname", type="string", length=255)
+	 * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
 	 */
 	private $lastname;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="firstname", type="string", length=255)
+	 * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
 	 */
 	private $firstname;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="middlename", type="string", length=255)
+	 * @ORM\Column(name="middlename", type="string", length=255, nullable=true)
 	 */
 	private $middlename;
 
@@ -82,21 +82,21 @@ class Employee
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="bithday", type="date")
+	 * @ORM\Column(name="bithday", type="date", nullable=true)
 	 */
 	private $bithday;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="date_first_medical", type="date")
+	 * @ORM\Column(name="date_first_medical", type="date", nullable=true)
 	 */
 	private $date_first_medical;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="date_instruction", type="date")
+	 * @ORM\Column(name="date_instruction", type="date", nullable=true)
 	 */
 	private $date_instruction;
 
