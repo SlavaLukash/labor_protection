@@ -24,10 +24,14 @@ class EquipmentType extends AbstractType
 //            ->add('productiondate')
 //            ->add('startupdate')
 			->add('productiondate', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
 			->add('startupdate', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
             ->add('life')
             ->add('equipmentsubgroup')

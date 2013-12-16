@@ -32,6 +32,25 @@ $(document).ready(function () {
 		}
 		return false;
 	});
+
+	$.datepicker.setDefaults(
+		$.extend($.datepicker.regional["ru"])
+	);
+	$('.date-input').datepicker({
+		dateFormat: 'dd.mm.yy',
+		changeYear: true,
+		yearRange: "-50:+50"
+	});
+
+	$.each($('.date-input'), function () {
+		$(this).attr('placeholder', 'дд.мм.гггг')
+		$(this).wrap("<div class='b-date'></div>");
+		$(this).after('<div class="dp-img"></div>');
+	});
+
+	$('div.dp-img').click(function () {
+		$(this).prev().focus();
+	});
 });
 
 function filterClear() {

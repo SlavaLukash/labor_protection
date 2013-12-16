@@ -19,10 +19,14 @@ class MedicalType extends AbstractType
 //            ->add('dateplan')
 //            ->add('datefact')
 			->add('dateplan', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
 			->add('datefact', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
 			->add('employee', 'entity', array(
 				'class' => 'SirOtBundle:Employee',

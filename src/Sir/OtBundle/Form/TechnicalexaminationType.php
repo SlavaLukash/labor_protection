@@ -19,10 +19,14 @@ class TechnicalexaminationType extends AbstractType
 //            ->add('plandate')
 //            ->add('factdate')
 			->add('plandate', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
 			->add('factdate', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
             ->add('equipment')
             ->add('technicalexaminationkind')

@@ -24,16 +24,19 @@ class EmployeeType extends AbstractType
 				'choices' => array('Ж', 'М')
 			))
             ->add('bithday', 'date', array(
-//				'years' => range(1900, date('Y'))
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
             ->add('date_first_medical', 'date', array(
-//				'years' => range(1900, date('Y'))
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
             ->add('date_instruction', 'date', array(
-//				'years' => range(1900, date('Y'))
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
 			->add('subdivision', 'entity', array(
 				'class' => 'SirOtBundle:Subdivision',

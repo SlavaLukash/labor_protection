@@ -17,7 +17,9 @@ class TraumaType extends AbstractType
         $builder
 //            ->add('datetrauma')
 			->add('datetrauma', 'date', array(
-				'widget' => 'single_text'
+				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			))
             ->add('traumareport')
             ->add('hoursstart')
