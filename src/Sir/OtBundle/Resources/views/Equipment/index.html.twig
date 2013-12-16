@@ -36,8 +36,8 @@
                 <td>{{ entity.internalnumber }}</td>
                 <td>{{ entity.factorynumber }}</td>
                 <td>{{ entity.manufacturer }}</td>
-                <td>{% if entity.productiondate %}{{ entity.productiondate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.startupdate %}{{ entity.startupdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.productiondate %}{{ entity.productiondate|date('d.m.Y') }}{% endif %}</td>
+                <td>{% if entity.startupdate %}{{ entity.startupdate|date('d.m.Y') }}{% endif %}</td>
                 <td>{{ entity.life }}</td>
                 <td>
                 <ul>
