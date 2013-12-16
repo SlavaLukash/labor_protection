@@ -40,17 +40,25 @@ class MedicalFilterType extends AbstractType
 		$builder->add('dateplan', 'filter_date_range', array(
 			'left_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 			'right_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 		));
 		$builder->add('datefact', 'filter_date_range', array(
 			'left_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 			'right_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 		));
 	}

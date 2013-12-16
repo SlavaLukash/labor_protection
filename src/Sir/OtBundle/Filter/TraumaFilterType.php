@@ -40,9 +40,13 @@ class TraumaFilterType extends AbstractType
 		$builder->add('datetrauma', 'filter_date_range', array(
 			'left_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 			'right_date_options' => array(
 				'widget' => 'single_text',
+				'format' => 'dd.MM.yyyy',
+				'attr' => array('class' => 'date-input')
 			),
 		));
 	}
