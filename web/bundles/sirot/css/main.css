@@ -675,3 +675,7 @@ div.dp-img {
 	right: 7px;	top: 6px;
 	cursor: pointer;
 }
+
+ul.b-error li {
+	color: red;
+}
