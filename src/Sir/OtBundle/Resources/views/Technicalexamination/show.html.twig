@@ -19,11 +19,11 @@
             </tr>
             <tr>
                 <th>{% trans %}Plandate{% endtrans %}</th>
-                <td>{{ entity.plandate|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.plandate|date('d.m.Y') }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Factdate{% endtrans %}</th>
-                <td>{{ entity.factdate|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.factdate|date('d.m.Y') }}</td>
             </tr>
         </tbody>
     </table>

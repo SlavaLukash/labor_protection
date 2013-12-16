@@ -29,7 +29,7 @@
                 <td><a href="{{ path('user_edit', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.enabled }}</td>
-                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('d.m.Y H:i:s') }}{% endif %}</td>
                 <td>{{ entity.locked }}</td>
 				<td>
 					{% for role in entity.roles %}

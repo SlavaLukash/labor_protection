@@ -31,11 +31,11 @@
             </tr>
             <tr>
                 <th>{% trans %}Dateplan{% endtrans %}</th>
-                <td>{{ entity.dateplan|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.dateplan|date('d.m.Y') }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Datefact{% endtrans %}</th>
-                <td>{{ entity.datefact|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.datefact|date('d.m.Y') }}</td>
             </tr>
         </tbody>
     </table>

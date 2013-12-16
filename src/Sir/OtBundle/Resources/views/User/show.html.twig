@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th>{% trans %}Lastlogin{% endtrans %}</th>
-                <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.lastLogin|date('d.m.Y H:i:s') }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Locked{% endtrans %}</th>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <th>{% trans %}Expiresat{% endtrans %}</th>
-                <td>{{ entity.expiresAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.expiresAt|date('d.m.Y H:i:s') }}</td>
             </tr>
             <tr>
                 <th>{% trans %}Roles{% endtrans %}</th>
