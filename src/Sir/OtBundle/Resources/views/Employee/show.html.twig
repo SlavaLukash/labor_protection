@@ -31,15 +31,27 @@
             </tr>
             <tr>
                 <th>{% trans %}Bithday{% endtrans %}</th>
-                <td>{{ entity.bithday|date('d.m.Y') }}</td>
+                <td>
+                    {% if entity.bithday %}
+                        {{ entity.bithday|date('d.m.Y') }}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>{% trans %}Date_first_medical{% endtrans %}</th>
-                <td>{{ entity.datefirstmedical|date('d.m.Y') }}</td>
+                <td>
+                    {% if entity.datefirstmedical %}
+                        {{ entity.datefirstmedical|date('d.m.Y') }}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>{% trans %}Date_instruction{% endtrans %}</th>
-                <td>{{ entity.dateinstruction|date('d.m.Y') }}</td>
+                <td>
+                    {% if entity.dateinstruction %}
+                        {{ entity.dateinstruction|date('d.m.Y') }}
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
