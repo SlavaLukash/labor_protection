@@ -96,7 +96,7 @@
     <PassVariablesInUrl>False</PassVariablesInUrl>
   </Engine>
   <Localizations>
-    <Localization>Default</Localization>
+    <Localization>ru</Localization>
   </Localizations>
   <Print>
     <AllowPrintToHtml>True</AllowPrintToHtml>

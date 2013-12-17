@@ -85,7 +85,7 @@ WHERE trauma.id = {VarId}</SqlCommand>
           <Components isList="true" count="40">
             <Text1 Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>1,2,178,18</ClientRectangle>
+              <ClientRectangle>1,2,184,18</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Times New Roman,12,Bold</Font>
               <HorAlignment>Center</HorAlignment>
@@ -740,10 +740,10 @@ ________________________________________________________________________________
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/12/2013 3:45:02 PM</ReportChanged>
+  <ReportChanged>12/17/2013 10:41:44 AM</ReportChanged>
   <ReportCreated>12/9/2013 10:48:02 AM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaNotice.mrt</ReportFile>
-  <ReportGuid>6931a581d59f43568035d69344ca2697</ReportGuid>
+  <ReportGuid>7f61c3039488444ab5b2dcf81b164d4b</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Millimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>

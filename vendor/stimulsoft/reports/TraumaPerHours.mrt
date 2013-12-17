@@ -5,7 +5,7 @@
     <Databases isList="true" count="1">
       <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
         <Alias>labor</Alias>
-        <ConnectionStringEncrypted>5XZPjE1Rc5nvW+WNY1hla8PCg0jNCeMZbEuhhGMEpC/c3mECRhYBiWkZ5Y1qSTX7gcRxCU0FS4DpWpyETlT2L4t42cJnTTGVbEqh9OlxZWuNVLnCZlGzCWlJofB0dKB7</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>5XbbKUVRS93vW+WNanT3F8PQaUlhWUMZQ03olGSIMkrc0E+rxgNDvEZJzejk7KRnxEDNrE1VAYVpBo2c6wTgE4JWyYNICVuFaFuchE49dSfR1tvCxlxRpHROudxjAOBy0xjRAs5Mo4U=</ConnectionStringEncrypted>
         <Name>labor</Name>
       </labor>
     </Databases>
@@ -37,39 +37,56 @@
         <Parameters isList="true" count="0" />
         <SqlCommand>select id, enterprise, name from subdivision </SqlCommand>
       </subdivision>
-      <equipment Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
-        <Alias>equipment</Alias>
-        <Columns isList="true" count="8">
-          <value>equipmentgroup_name,System.String</value>
-          <value>equipmentsubgroup_name,System.String</value>
-          <value>subdivision_name,System.String</value>
-          <value>equipment_name,System.String</value>
-          <value>model,System.String</value>
-          <value>registration_type,System.Int32</value>
-          <value>internal_number,System.String</value>
-          <value>plan_date,System.DateTime</value>
+      <trauma Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
+        <Alias>trauma</Alias>
+        <Columns isList="true" count="6">
+          <value>n1,System.Int64</value>
+          <value>n2,System.Int64</value>
+          <value>n3,System.Int64</value>
+          <value>n4,System.Int64</value>
+          <value>count,System.Int64</value>
+          <value>traumayear,System.Double</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
-        <Name>equipment</Name>
+        <Name>trauma</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT equipmentgroup.name AS equipmentgroup_name,
-  equipmentsubgroup.name AS equipmentsubgroup_name,
-  subdivision.name AS subdivision_name, equipment.name AS
-  equipment_name, equipment.model,
-  equipment.registration_type, equipment.internal_number,
-  technicalexamination.plan_date
-FROM equipment INNER JOIN
-  equipmentsubgroup ON equipment.equipment_subgroup =
-    equipmentsubgroup.id INNER JOIN
-  equipmentgroup ON equipmentsubgroup.equipment_group =
-    equipmentgroup.id INNER JOIN
-  subdivision ON equipment.subdivision =
-    subdivision.id INNER JOIN
-  technicalexamination ON technicalexamination.equipment =
-    equipment.id</SqlCommand>
-      </equipment>
+        <Parameters isList="true" count="3">
+          <value>p_subdivision,var_subdivision,23,0</value>
+          <value>p_enterprise,var_enterprise,23,0</value>
+          <value>p_subdivision_all,var_subdision_all,16,0</value>
+        </Parameters>
+        <SqlCommand>select 
+	date_part('year',datetrauma) traumayear, 
+	sum(
+	case
+  when hoursstart &lt; 2 then 1
+  end) n1,
+sum(
+  case
+  when hoursstart &gt;= 2 and hoursstart &lt; 5 then 1
+  end) n2,
+sum(
+  case
+  when hoursstart &gt;= 5 and hoursstart &lt;= 7 then 1
+  end) n3,
+sum(
+  case
+  when hoursstart &gt; 7 then 1
+  end) n4,
+count(*) 
+from trauma t
+where exists ( 
+select * 
+	from employee e
+join subdivision s on e.subdivision = s.id
+where e.id = t.employee
+  and (s.id = :p_subdivision or :p_subdivision_all = 1)
+  and (s.enterprise = :p_enterprise)
+)  
+group by date_part('year',datetrauma)
+order by traumayear</SqlCommand>
+      </trauma>
     </DataSources>
     <Relations isList="true" count="1">
       <enterprise_link Ref="6" type="DataRelation" isKey="true">
@@ -88,11 +105,10 @@ FROM equipment INNER JOIN
       </enterprise_link>
     </Relations>
     <Report isRef="0" />
-    <Variables isList="true" count="4">
+    <Variables isList="true" count="3">
       <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_enterprise.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_enterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
-      <value>,var_subdivision,Подразделение,,System.Int32,,False,True,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_subdivision.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_subdivision.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x003E__x002C_var_enterprise_x002C_Предприятие_x002C__x002C_System.Int32_x002C__x002C_False_x002C_False_x002C_True_x002C_False_x002C__x005F_x003C__x005F_x003F_xml_x005F_x0020_version_x005F_x003D__x005F_x0022_1.0_x005F_x0022__x005F_x0020_encoding_x005F_x003D__x005F_x0022_utf-16_x005F_x0022__x005F_x0020_standalone_x005F_x003D__x005F_x0022_yes_x005F_x0022__x005F_x003F__x005F_x003E__x005F_x003C_StiSerializer_x005F_x0020_version_x005F_x003D__x005F_x0022_1.02_x005F_x0022__x005F_x0020_type_x005F_x003D__x005F_x0022_Net_x005F_x0022__x005F_x0020_application_x005F_x003D__x005F_x0022_State_x005F_x0022__x005F_x003E__x005F_x003C_ItemsInitializationType_x005F_x003E_Columns_x005F_x003C__x005F_x002F_ItemsInitializationType_x005F_x003E__x005F_x003C_KeysColumn_x005F_x003E_enterprise.id_x005F_x003C__x005F_x002F_KeysColumn_x005F_x003E__x005F_x003C_ValuesColumn_x005F_x003E_enterprise.name_x005F_x003C__x005F_x002F_ValuesColumn_x005F_x003E__x005F_x003C_BindingVariable_x005F_x0020_isNull_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_AllowUserValues_x005F_x003E_False_x005F_x003C__x005F_x002F_AllowUserValues_x005F_x003E__x005F_x003C_Keys_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_Values_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_ValuesBinding_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C__x005F_x002F_StiSerializer_x005F_x003E__x003C__x002F_BindingVariable_x003E__x003C_BindingValuesColumn_x003E_subdivision.enterprise_x003C__x002F_BindingValuesColumn_x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_BindingValue_x003E_True_x003C__x002F_BindingValue_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
-      <value>,var_date_from,Начальная_x0020_дата_x0020_отчета,,System.DateTime,,False,False,True</value>
-      <value>,var_date_to,Конечная_x0020_дата_x0020_отчета,,System.DateTime,,False,False,True</value>
+      <value>,var_subdivision,Подразделение,,System.Nullable`1[System.Int32],null,False,True,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_subdivision.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_subdivision.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x003E__x002C_var_enterprise_x002C_Предприятие_x002C__x002C_System.Int32_x002C__x002C_False_x002C_False_x002C_True_x002C_False_x002C__x005F_x003C__x005F_x003F_xml_x005F_x0020_version_x005F_x003D__x005F_x0022_1.0_x005F_x0022__x005F_x0020_encoding_x005F_x003D__x005F_x0022_utf-16_x005F_x0022__x005F_x0020_standalone_x005F_x003D__x005F_x0022_yes_x005F_x0022__x005F_x003F__x005F_x003E__x005F_x003C_StiSerializer_x005F_x0020_version_x005F_x003D__x005F_x0022_1.02_x005F_x0022__x005F_x0020_type_x005F_x003D__x005F_x0022_Net_x005F_x0022__x005F_x0020_application_x005F_x003D__x005F_x0022_State_x005F_x0022__x005F_x003E__x005F_x003C_ItemsInitializationType_x005F_x003E_Columns_x005F_x003C__x005F_x002F_ItemsInitializationType_x005F_x003E__x005F_x003C_KeysColumn_x005F_x003E_enterprise.id_x005F_x003C__x005F_x002F_KeysColumn_x005F_x003E__x005F_x003C_ValuesColumn_x005F_x003E_enterprise.name_x005F_x003C__x005F_x002F_ValuesColumn_x005F_x003E__x005F_x003C_BindingVariable_x005F_x0020_isNull_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_AllowUserValues_x005F_x003E_False_x005F_x003C__x005F_x002F_AllowUserValues_x005F_x003E__x005F_x003C_Keys_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_Values_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_ValuesBinding_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C__x005F_x002F_StiSerializer_x005F_x003E__x003C__x002F_BindingVariable_x003E__x003C_BindingValuesColumn_x003E_subdivision.enterprise_x003C__x002F_BindingValuesColumn_x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_BindingValue_x003E_True_x003C__x002F_BindingValue_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+      <value>,var_subdision_all,Все_x0020_подразделения_x0020_предприятия,,System.Boolean,false,False,False,True</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -102,27 +118,27 @@ FROM equipment INNER JOIN
     <Page1 Ref="7" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="3">
+      <Components isList="true" count="4">
         <ReportTitleBand1 Ref="8" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,27.7,1</ClientRectangle>
+          <ClientRectangle>0,0.4,27.7,1.6</ClientRectangle>
           <Components isList="true" count="1">
-            <Text1 Ref="9" type="Text" isKey="true">
-              <AutoWidth>True</AutoWidth>
+            <Text18 Ref="9" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.05,0.2,27.6,0.6</ClientRectangle>
+              <ClientRectangle>0,0,27.6,1.2</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,12</Font>
+              <Font>Times New Roman,12,Bold</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text1</Name>
+              <Name>Text18</Name>
               <Page isRef="7" />
               <Parent isRef="8" />
-              <Text>График технических (экспертных) освидетельствований оборудования</Text>
+              <Text>Распределение н/сл в зависимости от кол-ва полных часов, 
+отработанных пострадавшими от начала смены. 
+</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text1>
+            </Text18>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>ReportTitleBand1</Name>
@@ -131,12 +147,12 @@ FROM equipment INNER JOIN
         </ReportTitleBand1>
         <HeaderBand1 Ref="10" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,2.2,27.7,2</ClientRectangle>
-          <Components isList="true" count="9">
+          <ClientRectangle>0,2.8,27.7,1.6</ClientRectangle>
+          <Components isList="true" count="7">
             <Text10 Ref="11" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0.8,2.8,1.2</ClientRectangle>
+              <ClientRectangle>2.6,0.6,5.6,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>ced5959394834d2a96a1f18ec072eb05</Guid>
@@ -145,8 +161,7 @@ FROM equipment INNER JOIN
               <Name>Text10</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Марка
-оборудования</Text>
+              <Text>до 2</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -154,7 +169,7 @@ FROM equipment INNER JOIN
             <Text14 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11,0.8,4.6,1.2</ClientRectangle>
+              <ClientRectangle>0,0,2.6,1.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>7741e6f63dda42c3bdc7adb1b62b23e5</Guid>
@@ -163,312 +178,331 @@ FROM equipment INNER JOIN
               <Name>Text14</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Структурное
-подразделение</Text>
+              <Text>Год</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text2 Ref="13" type="Text" isKey="true">
+            <Text1 Ref="13" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.6,0.8,4.2,1.2</ClientRectangle>
+              <ClientRectangle>2.6,0,22.8,0.6</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>5d964fa7560243e498112f427a4b6f92</Guid>
-              <HorAlignment>Center</HorAlignment>
+              <Font>Times New Roman,12,Bold</Font>
               <Margins>0,0,0,0</Margins>
-              <Name>Text2</Name>
+              <Name>Text1</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Название
-оборудования</Text>
+              <Text>Кол-во полных отработанных часов от начала смены</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text2>
-            <Text3 Ref="14" type="Text" isKey="true">
+            </Text1>
+            <Text4 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.8,0.8,3.2,1.2</ClientRectangle>
+              <ClientRectangle>8.2,0.6,5.8,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>a0a4525d53e84075a1e097ccfaeb2da0</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text3</Name>
-              <Page isRef="7" />
-              <Parent isRef="10" />
-              <Text>Подгруппа
-оборудования</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text3>
-            <Text4 Ref="15" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,0.8,2.6,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>19e26829b30b4a5ba2b12c979fb3fc8c</Guid>
+              <Guid>9db2cf20ae24412ab7f775f1f155d2f4</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Регистрация
-в органах
-Ростехнадзора</Text>
+              <Text>2-4</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
-            <Text17 Ref="16" type="Text" isKey="true">
+            <Text5 Ref="15" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.8,0.8,1.2</ClientRectangle>
+              <ClientRectangle>14,0.6,5.8,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>3b57e606733c4b8385923a9bf850f50c</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text17</Name>
-              <Page isRef="7" />
-              <Parent isRef="10" />
-              <Text>№</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text17>
-            <Text5 Ref="17" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,0.8,3,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>8134a363f9764a999b4c1074b80da976</Guid>
+              <Guid>8c27c6ffab8846a39fb4b7282450e8d5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Регистрационный
-номер 
-оборудования</Text>
+              <Text>5-7</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text5>
-            <Text6 Ref="18" type="Text" isKey="true">
+            <Text2 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>21.2,0.8,4,1.2</ClientRectangle>
+              <ClientRectangle>19.8,0.6,5.6,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>9091fd5fa22e42278eaaedd5d72638bb</Guid>
+              <Guid>ab40e0c277774e9ba044677163577da4</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text6</Name>
+              <Name>Text2</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Вид технического
-освидетельствования</Text>
+              <Text>Более 7</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text6>
-            <Text7 Ref="19" type="Text" isKey="true">
+            </Text2>
+            <Text3 Ref="17" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>25.2,0.8,2.4,1.2</ClientRectangle>
+              <ClientRectangle>25.4,0,2.2,1.6</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>bbe29c205458428aaf7d11147dc0f954</Guid>
+              <Guid>89b365f247164960be13ff6b72fced7c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text7</Name>
+              <Name>Text3</Name>
               <Page isRef="7" />
               <Parent isRef="10" />
-              <Text>Плановая
-дата освид.</Text>
+              <Text>Всего
+пострад
+авших, 
+чел</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text7>
+            </Text3>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>HeaderBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
         </HeaderBand1>
-        <DataBand1 Ref="20" type="DataBand" isKey="true">
+        <DataBand1 Ref="18" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,5,27.7,0.4</ClientRectangle>
-          <Components isList="true" count="9">
-            <Text13 Ref="21" type="Text" isKey="true">
+          <ClientRectangle>0,5.2,27.7,0.8</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text6 Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,0.8,0.4</ClientRectangle>
+              <ClientRectangle>2.6,0,5.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>9073a2a3df93461889efa9a200c4c23a</Guid>
+              <Guid>569e9c961c474594a0a5d7f3b6c3f174</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
+              <Name>Text6</Name>
               <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{Line}</Text>
+              <Parent isRef="18" />
+              <Text>{Format("{0:P2}", trauma.n1/trauma.count)} ({trauma.n1})</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
-            </Text13>
-            <Text8 Ref="22" type="Text" isKey="true">
+            </Text6>
+            <Text7 Ref="20" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.8,0,2.8,0.4</ClientRectangle>
+              <ClientRectangle>0,0,2.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>f3a20037c03640b68d7474f2c8e5ec2f</Guid>
+              <Guid>9ce3a83f7cb44e44a0f7f125ee842386</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text7</Name>
+              <Page isRef="7" />
+              <Parent isRef="18" />
+              <Text>{trauma.traumayear}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text7>
+            <Text8 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,0,5.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>7575b19caee140a5ad434e9a44d38514</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.model}</Text>
+              <Parent isRef="18" />
+              <Text>{Format("{0:P2}", trauma.n2/trauma.count)} ({trauma.n2})</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text9 Ref="23" type="Text" isKey="true">
+            <Text9 Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>11,0,4.6,0.4</ClientRectangle>
+              <ClientRectangle>14,0,5.8,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>150ac35dd3384a48aaf0fadf99c29409</Guid>
+              <Guid>d1d3ca520ad04d5e8accbd0b9c1ee1a5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.subdivision_name}</Text>
+              <Parent isRef="18" />
+              <Text>{Format("{0:P2}", trauma.n3/trauma.count)} ({trauma.n3})</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text11 Ref="24" type="Text" isKey="true">
+            <Text11 Ref="23" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3.6,0,4.2,0.4</ClientRectangle>
+              <ClientRectangle>19.8,0,5.6,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>67c6b9776dcb4fb7a8aabea66b1da863</Guid>
+              <Guid>a7b5388cb436498ab28ba3b9c709f29e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.equipment_name}</Text>
+              <Parent isRef="18" />
+              <Text>{Format("{0:P2}", trauma.n4/trauma.count)} ({trauma.n4})</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text11>
-            <Text12 Ref="25" type="Text" isKey="true">
+            <Text12 Ref="24" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>7.8,0,3.2,0.4</ClientRectangle>
+              <ClientRectangle>25.4,0,2.2,0.8</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
-              <Guid>b22f1fdc07e04b3fa720f519c1bdc200</Guid>
+              <Guid>5b4bd1493b7d4878a8a4092caf7d586e</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text12</Name>
               <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.equipmentsubgroup_name}</Text>
+              <Parent isRef="18" />
+              <Text>{trauma.count}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text12>
-            <Text15 Ref="26" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>15.6,0,2.6,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>cc6c03e4c7b840c6a4a3f8347118fdbc</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
-              <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.registration_type}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text15>
-            <Text16 Ref="27" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>18.2,0,3,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>032323d526f343c8bc8b1681064f5003</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text16</Name>
-              <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.internal_number}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text16>
-            <Text18 Ref="28" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>21.2,0,4,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>c538e7418163493a84d454ab76b58db6</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text18</Name>
-              <Page isRef="7" />
-              <Parent isRef="20" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text18>
-            <Text19 Ref="29" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>25.2,0,2.4,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,9,Bold</Font>
-              <Guid>092a223dad9c4bbbb204a14502ec906e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text19</Name>
-              <Page isRef="7" />
-              <Parent isRef="20" />
-              <Text>{equipment.plan_date}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text19>
           </Components>
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
-          <DataSourceName>equipment</DataSourceName>
+          <DataSourceName>trauma</DataSourceName>
           <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
           <Page isRef="7" />
           <Parent isRef="7" />
           <Sort isList="true" count="0" />
         </DataBand1>
+        <FooterBand1 Ref="25" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,6.8,27.7,0.8</ClientRectangle>
+          <Components isList="true" count="6">
+            <Text15 Ref="26" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,2.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>214009852d294135a65296ad4981f66c</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text15</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text>Итого:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text15>
+            <Text13 Ref="27" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.6,0,5.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>5badaee61509460c968b4dd51134c3a5</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text13</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text>{Format("{0:P2}", Sum(trauma.n1)/Sum(trauma.count))} ({Sum(trauma.n1)})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text13>
+            <Text16 Ref="28" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>8.2,0,5.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>64f5ba2f6f284c8bbe59a24072ca47bd</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text>{Format("{0:P2}", Sum(trauma.n2)/Sum(trauma.count))} ({Sum(trauma.n2)})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text17 Ref="29" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>14,0,5.8,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>b4de65d143b34f13af276dbb2a3dba3e</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text>{Format("{0:P2}", Sum(trauma.n3)/Sum(trauma.count))} ({Sum(trauma.n3)})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text19 Ref="30" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>19.8,0,5.6,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>5b88b5c72b734f0ba151935c579970f1</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text>{Format("{0:P2}", Sum(trauma.n4)/Sum(trauma.count))} ({Sum(trauma.n4)})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
+            <Text20 Ref="31" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>25.4,0,2.2,0.8</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,9,Bold</Font>
+              <Guid>ade4eaec265b4e95b216a6118c09b1dc</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text20</Name>
+              <Page isRef="7" />
+              <Parent isRef="25" />
+              <Text> 100% ({Sum(trauma.count)})</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text20>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>FooterBand1</Name>
+          <Page isRef="7" />
+          <Parent isRef="7" />
+        </FooterBand1>
       </Components>
       <Conditions isList="true" count="0" />
       <Guid>45210a1b96da43f9842ea22b91b42ea5</Guid>
@@ -478,13 +512,13 @@ FROM equipment INNER JOIN
       <PageHeight>21</PageHeight>
       <PageWidth>29.7</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="30" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="32" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="31" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="33" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -496,10 +530,10 @@ FROM equipment INNER JOIN
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/16/2013 2:47:57 PM</ReportChanged>
+  <ReportChanged>12/17/2013 10:37:13 AM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
-  <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\EquipmentGraph.mrt</ReportFile>
-  <ReportGuid>22f1b8382c4647d0ae4a386d1d422cc8</ReportGuid>
+  <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerHours.mrt</ReportFile>
+  <ReportGuid>384db4f8e4264d71a0095854f1e1ed48</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
