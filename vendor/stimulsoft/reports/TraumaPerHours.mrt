@@ -51,10 +51,11 @@
         <Dictionary isRef="1" />
         <Name>trauma</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters isList="true" count="3">
+        <Parameters isList="true" count="4">
           <value>p_subdivision,var_subdivision,23,0</value>
           <value>p_enterprise,var_enterprise,23,0</value>
           <value>p_subdivision_all,var_subdision_all,16,0</value>
+          <value>p_enterprise_all,var_enterprise_all,16,0</value>
         </Parameters>
         <SqlCommand>select 
 	date_part('year',datetrauma) traumayear, 
@@ -81,8 +82,8 @@ select *
 	from employee e
 join subdivision s on e.subdivision = s.id
 where e.id = t.employee
-  and (s.id = :p_subdivision or :p_subdivision_all = 1)
-  and (s.enterprise = :p_enterprise)
+  and (s.id = :p_subdivision or :p_subdivision_all = 1 or :p_enterprise_all = 1)
+  and (s.enterprise = :p_enterprise or :p_enterprise_all = 1)
 )  
 group by date_part('year',datetrauma)
 order by traumayear</SqlCommand>
@@ -105,10 +106,11 @@ order by traumayear</SqlCommand>
       </enterprise_link>
     </Relations>
     <Report isRef="0" />
-    <Variables isList="true" count="3">
+    <Variables isList="true" count="4">
       <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_enterprise.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_enterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
       <value>,var_subdivision,Подразделение,,System.Nullable`1[System.Int32],null,False,True,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_subdivision.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_subdivision.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x003E__x002C_var_enterprise_x002C_Предприятие_x002C__x002C_System.Int32_x002C__x002C_False_x002C_False_x002C_True_x002C_False_x002C__x005F_x003C__x005F_x003F_xml_x005F_x0020_version_x005F_x003D__x005F_x0022_1.0_x005F_x0022__x005F_x0020_encoding_x005F_x003D__x005F_x0022_utf-16_x005F_x0022__x005F_x0020_standalone_x005F_x003D__x005F_x0022_yes_x005F_x0022__x005F_x003F__x005F_x003E__x005F_x003C_StiSerializer_x005F_x0020_version_x005F_x003D__x005F_x0022_1.02_x005F_x0022__x005F_x0020_type_x005F_x003D__x005F_x0022_Net_x005F_x0022__x005F_x0020_application_x005F_x003D__x005F_x0022_State_x005F_x0022__x005F_x003E__x005F_x003C_ItemsInitializationType_x005F_x003E_Columns_x005F_x003C__x005F_x002F_ItemsInitializationType_x005F_x003E__x005F_x003C_KeysColumn_x005F_x003E_enterprise.id_x005F_x003C__x005F_x002F_KeysColumn_x005F_x003E__x005F_x003C_ValuesColumn_x005F_x003E_enterprise.name_x005F_x003C__x005F_x002F_ValuesColumn_x005F_x003E__x005F_x003C_BindingVariable_x005F_x0020_isNull_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_AllowUserValues_x005F_x003E_False_x005F_x003C__x005F_x002F_AllowUserValues_x005F_x003E__x005F_x003C_Keys_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_Values_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C_ValuesBinding_x005F_x0020_isList_x005F_x003D__x005F_x0022_true_x005F_x0022__x005F_x0020_count_x005F_x003D__x005F_x0022_0_x005F_x0022__x005F_x0020__x005F_x002F__x005F_x003E__x005F_x003C__x005F_x002F_StiSerializer_x005F_x003E__x003C__x002F_BindingVariable_x003E__x003C_BindingValuesColumn_x003E_subdivision.enterprise_x003C__x002F_BindingValuesColumn_x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_BindingValue_x003E_True_x003C__x002F_BindingValue_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
-      <value>,var_subdision_all,Все_x0020_подразделения_x0020_предприятия,,System.Boolean,false,False,False,True</value>
+      <value>,var_enterprise_all,Все_x0020_предприятия,,System.Boolean,false,False,False,True</value>
+      <value>,var_subdision_all,Все_x0020_подразделения_x0020_,,System.Boolean,false,False,False,True</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -530,10 +532,10 @@ order by traumayear</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/17/2013 10:37:13 AM</ReportChanged>
+  <ReportChanged>12/17/2013 4:06:20 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerHours.mrt</ReportFile>
-  <ReportGuid>384db4f8e4264d71a0095854f1e1ed48</ReportGuid>
+  <ReportGuid>1c56d2a83a9f48558a3515d511a80cbd</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
