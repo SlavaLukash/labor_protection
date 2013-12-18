@@ -228,7 +228,6 @@ div.b-login-form {}
 	border-radius: 5px;
 	height: 22px;
 	width: 200px;
-	margin-right: 10px;
 	padding-left: 10px;
 	color: #212121;
 }
@@ -603,9 +602,9 @@ table#form td{
 	display: inline-block;
 }
 
-#medicalkind_filter_datetrauma input, #medicalkind_filter_dateplan input, #medicalkind_filter_datefact input {
-	margin-top: 5px;
-}
+/*#medicalkind_filter_datetrauma input, #medicalkind_filter_dateplan input, #medicalkind_filter_datefact input {*/
+	/*margin-top: 5px;*/
+/*}*/
 
 a.show-action, a.edit-action, a.print-action {
 	width: 15px; height: 15px;
@@ -657,4 +656,26 @@ ul.button-list li.b-list-first-child a p {
 
 ul.button-list li.b-list-first-child a.opened p {
 	background: url('../images/glyphicons_black.png') no-repeat -287px -112px;
+}
+
+input.date-input {
+	width: 260px !important;
+}
+
+div.b-date {
+	position: relative;
+	display: inline-block;
+}
+
+div.dp-img {
+	display: inline-block;
+	width: 15px; height: 15px;
+	background: url('../images/glyphicons_black.png') no-repeat -190px -119px;
+	position: absolute;
+	right: 7px;	top: 6px;
+	cursor: pointer;
+}
+
+ul.b-error li {
+	color: red;
 }

@@ -32,6 +32,41 @@ $(document).ready(function () {
 		}
 		return false;
 	});
+
+	$.datepicker.setDefaults(
+		$.extend($.datepicker.regional["ru"])
+	);
+	$('.date-input').datepicker({
+		dateFormat: 'dd.mm.yy',
+		changeYear: true,
+		yearRange: "-50:+50"
+	});
+
+	$.each($('.date-input'), function () {
+		$(this).attr('placeholder', 'дд.мм.гггг')
+		$(this).wrap("<div class='b-date'></div>");
+		$(this).after('<div class="dp-img"></div>');
+	});
+
+	$('div.dp-img').click(function () {
+		$(this).prev().focus();
+	});
+
+	$('.med_enterprise').change(function() {
+		$('.med_enterprise').attr('id', '');
+		$('.med_enterprise').attr('name', '');
+		$.post( "/app_dev.php/ajax",
+			{ action: "subdivision", id: $('.med_enterprise option:selected').val() },
+			function( data ) {
+				if($('#ajax_subdivision').length>0)
+				{
+					$('#ajax_subdivision').remove();
+					$(data).insertAfter('.med_enterprise');
+				} else {
+					$(data).insertAfter('.med_enterprise');
+				}
+		});
+	});
 });
 
 function filterClear() {

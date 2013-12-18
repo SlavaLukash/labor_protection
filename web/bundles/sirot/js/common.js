@@ -51,6 +51,35 @@ $(document).ready(function () {
 	$('div.dp-img').click(function () {
 		$(this).prev().focus();
 	});
+
+	$('.med_enterprise').change(function() {
+		$('.med_enterprise').attr('id', '');
+		$('.med_enterprise').attr('name', '');
+		$.post( "/app_dev.php/ajax",
+			{ action: "subdivision", id: $('.med_enterprise option:selected').val() },
+			function( data ) {
+				if($('#ajax_subdivision').length>0)
+				{
+					$('#ajax_subdivision').remove();
+					$(data).insertAfter('.med_enterprise');
+				} else {
+					$(data).insertAfter('.med_enterprise');
+				}
+		});
+		$('#ajax_subdivision select').change(function() {
+			$.post( "/app_dev.php/ajax",
+				{ action: "employee", id: $('#ajax_subdivision select option:selected').val() },
+				function( data ) {
+					if($('#ajax_employee').length>0)
+					{
+						$('#ajax_employee').remove();
+						$(data).insertAfter('#ajax_subdivision');
+					} else {
+						$(data).insertAfter('#ajax_subdivision');
+					}
+				});
+		});
+	});
 });
 
 function filterClear() {
