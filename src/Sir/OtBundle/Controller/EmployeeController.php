@@ -180,20 +180,23 @@ class EmployeeController extends Controller
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-
+		$sddArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
         $entity = $em->getRepository('SirOtBundle:Employee')->find($id);
 
 		$oUser = $this->getUser();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
-			$sdArray = $oUser->getUsersubdivisions()->getValues();
-			foreach($sdArray as $subD)
+			$sdArray = array();
+			foreach($oUser->getUsersubdivisions()->getValues() as $val)
 			{
-				$aIds[] = $subD->getId();
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
 			}
-			if(!in_array($entity->getSubdivision()->getId(),$aIds))
+		} else {
+			$sdArray = array();
+			foreach($sddArray as $val)
 			{
-				return $this->redirect($this->generateUrl('employee'));
+				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
 			}
 		}
 
@@ -201,7 +204,7 @@ class EmployeeController extends Controller
             throw $this->createNotFoundException('Unable to find Employee entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $sdArray);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('SirOtBundle:Employee:edit.html.twig', array(
@@ -216,13 +219,16 @@ class EmployeeController extends Controller
     *
     * @param Employee $entity The entity
     *
+    * @param sdArray
+    *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Employee $entity)
+    private function createEditForm(Employee $entity, $sdArray = null)
     {
         $form = $this->createForm(new EmployeeType(), $entity, array(
             'action' => $this->generateUrl('employee_update', array('id' => $entity->getId())),
             'method' => 'PUT',
+            'sdArray' => $sdArray,
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
