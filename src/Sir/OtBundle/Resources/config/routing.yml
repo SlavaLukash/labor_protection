@@ -98,6 +98,9 @@ SirOtBundle_expensekind:
         resource: "@SirOtBundle/Resources/config/routing/expensekind.yml"
         prefix:   /expensekind
 
+default_ajax:
+    pattern:  /ajax
+    defaults: { _controller: "SirOtBundle:Default:ajax" }
 
 sir_ot:
     pattern:  /

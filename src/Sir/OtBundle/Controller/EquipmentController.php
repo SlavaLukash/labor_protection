@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Equipment;
 use Sir\OtBundle\Form\EquipmentType;
+use Sir\OtBundle\Filter\EquipmentFilterType;
 
 /**
  * Equipment controller.
@@ -21,13 +21,36 @@ class EquipmentController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$em = $this->getDoctrine()->getManager();
+		$oUser = $this->getUser();
+		$sdArray = $em->getRepository('SirOtBundle:Subdivision')->findAll();
+		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
+		$aESubGroup = $em->getRepository('SirOtBundle:Equipmentsubgroup')->findAll();
+		$aEGroup = $em->getRepository('SirOtBundle:Equipmentgroup')->findAll();
+		if(!$oUser->hasRole('ROLE_ADMIN'))
+		{
+			$sdArray = $oUser->getUsersubdivisions()->getValues();
+		}
 
-        $entities = $em->getRepository('SirOtBundle:Equipment')->findAll();
+		$form = $this->get('form.factory')->create(new EquipmentFilterType($sdArray, $entArray, $aESubGroup));
+		$form->bind($this->get('request'));
+		$filterBuilder = $em
+			->getRepository('SirOtBundle:Equipment')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$query = $em->createQuery($filterBuilder->getDql());
 
-        return $this->render('SirOtBundle:Equipment:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		$paginator  = $this->get('knp_paginator');
+		$entities = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
+
+		return $this->render('SirOtBundle:Equipment:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Equipment entity.

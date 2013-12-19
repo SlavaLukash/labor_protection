@@ -4,9 +4,9 @@ namespace Sir\OtBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Sir\OtBundle\Entity\Expense;
 use Sir\OtBundle\Form\ExpenseType;
+use Sir\OtBundle\Filter\ExpenseFilterType;
 
 /**
  * Expense controller.
@@ -21,13 +21,25 @@ class ExpenseController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+		$form = $this->get('form.factory')->create(new ExpenseFilterType());
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Expense')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+		$em = $this->getDoctrine()->getManager();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$paginator  = $this->get('knp_paginator');
+		$entities = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
 
-        $entities = $em->getRepository('SirOtBundle:Expense')->findAll();
-
-        return $this->render('SirOtBundle:Expense:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		return $this->render('SirOtBundle:Expense:index.html.twig', array(
+			'entities' => $entities,
+			'form' => $form->createView(),
+		));
     }
     /**
      * Creates a new Expense entity.

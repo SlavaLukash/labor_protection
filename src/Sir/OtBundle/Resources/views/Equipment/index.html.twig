@@ -9,36 +9,34 @@
 	<a id="ot_list_create" href="{{ path('equipment_new') }}">
 		{% trans %}Create a new entry{% endtrans %}
 	</a>
-
+	{% block filter %}
+		{{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
     <table class="records_list">
         <thead>
             <tr>
                 <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <th>{% trans %}Equipmentgroup{% endtrans %}</th>
+                <th>{% trans %}Equipmentsubgroup{% endtrans %}</th>
                 <th>{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Model{% endtrans %}</th>
                 <th>{% trans %}Registrationnumber{% endtrans %}</th>
-                <th>{% trans %}Internalnumber{% endtrans %}</th>
-                <th>{% trans %}Factorynumber{% endtrans %}</th>
-                <th>{% trans %}Manufacturer{% endtrans %}</th>
-                <th>{% trans %}Productiondate{% endtrans %}</th>
-                <th>{% trans %}Startupdate{% endtrans %}</th>
-                <th>{% trans %}Life{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('equipment_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.subdivision.enterprise }}</td>
+                <td>{{ entity.subdivision }}</td>
+                <td>{{ entity.equipmentsubgroup.equipmentgroup }}</td>
+                <td>{{ entity.equipmentsubgroup }}</td>
+                <td><a href="{{ path('equipment_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.model }}</td>
                 <td>{{ entity.registrationnumber }}</td>
-                <td>{{ entity.internalnumber }}</td>
-                <td>{{ entity.factorynumber }}</td>
-                <td>{{ entity.manufacturer }}</td>
-                <td>{% if entity.productiondate %}{{ entity.productiondate|date('d.m.Y') }}{% endif %}</td>
-                <td>{% if entity.startupdate %}{{ entity.startupdate|date('d.m.Y') }}{% endif %}</td>
-                <td>{{ entity.life }}</td>
                 <td>
                 <ul>
                     <li>
@@ -53,4 +51,7 @@
         {% endfor %}
         </tbody>
     </table>
+	<div class="navigation">
+		{{ knp_pagination_render(entities) }}
+	</div>
     {% endblock %}

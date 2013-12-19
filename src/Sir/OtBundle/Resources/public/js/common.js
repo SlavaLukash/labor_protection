@@ -32,6 +32,52 @@ $(document).ready(function () {
 		}
 		return false;
 	});
+
+	$.datepicker.setDefaults(
+		$.extend($.datepicker.regional["ru"])
+	);
+	$('.date-input').datepicker({
+		dateFormat: 'dd.mm.yy',
+		changeYear: true,
+		yearRange: "-50:+50"
+	});
+
+	$.each($('.date-input'), function () {
+		$(this).attr('placeholder', 'дд.мм.гггг')
+		$(this).wrap("<div class='b-date'></div>");
+		$(this).after('<div class="dp-img"></div>');
+	});
+
+	$('div.dp-img').click(function () {
+		$(this).prev().focus();
+	});
+
+	$('.med_enterprise').click(function() {
+		$.post( "/app_dev.php/ajax",
+			{ action: "subdivision", id: $('.med_enterprise option:selected').val() },
+			function( data ) {
+				if($('.med_subdivision').length>0)
+				{
+					$('.med_subdivision').empty();
+					$('.med_subdivision').append(data);
+				} else {
+					$('.med_subdivision').append(data);
+				}
+		});
+	});
+	$('.med_subdivision').click(function() {
+		$.post( "/app_dev.php/ajax",
+			{ action: "employee", id: $('.med_subdivision option:selected').val() },
+			function( data ) {
+				if($('.med_employee').length>0)
+				{
+					$('.med_employee option').remove();
+					$('.med_employee').append(data);
+				} else {
+					$('.med_employee').append(data);
+				}
+		});
+	});
 });
 
 function filterClear() {
