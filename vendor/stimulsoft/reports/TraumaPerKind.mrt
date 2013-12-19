@@ -45,28 +45,28 @@ order by e.name, s.name</SqlCommand>
 	date_part('year',datetrauma) traumayear, 
 	sum(
 	case
-  when hoursstart &lt; 2 then 1
+  when professionkind = 2 then 1
   end) n1,
 sum(
   case
-  when hoursstart &gt;= 2 and hoursstart &lt; 5 then 1
+  when professionkind = 3 then 1
   end) n2,
 sum(
   case
-  when hoursstart &gt;= 5 and hoursstart &lt;= 7 then 1
+  when professionkind is null or professionkind not in (1,2,3) then 1
   end) n3,
 sum(
   case
-  when hoursstart &gt; 7 then 1
+  when professionkind = 1 then 1
   end) n4,
-count(*) 
+  count(*) count
 from trauma t
+left join employee e on t.employee = e.id
+left join profession p on e.profession = p.id
 where exists ( 
 select * 
-	from employee e
-join subdivision s on e.subdivision = s.id
-where e.id = t.employee
-  and (s.id = {var_subdivision} or {var_enterprise_all} = true)
+	from subdivision s 
+where (s.id = {var_subdivision} or {var_enterprise_all} = true)
 )  
 group by date_part('year',datetrauma)
 order by traumayear</SqlCommand>
@@ -101,8 +101,7 @@ order by traumayear</SqlCommand>
               <Name>Text18</Name>
               <Page isRef="5" />
               <Parent isRef="6" />
-              <Text>Распределение н/сл в зависимости от кол-ва полных часов, 
-отработанных пострадавшими от начала смены.</Text>
+              <Text>Распределение н/сл по категории пострадавших. </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text18>
@@ -128,7 +127,7 @@ order by traumayear</SqlCommand>
               <Name>Text10</Name>
               <Page isRef="5" />
               <Parent isRef="8" />
-              <Text>до 2</Text>
+              <Text>Руководители</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -161,9 +160,10 @@ order by traumayear</SqlCommand>
               <Name>Text1</Name>
               <Page isRef="5" />
               <Parent isRef="8" />
-              <Text>Кол-во полных отработанных часов от начала смены</Text>
+              <Text>Категория пострадавших</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
             </Text1>
             <Text4 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
@@ -177,7 +177,7 @@ order by traumayear</SqlCommand>
               <Name>Text4</Name>
               <Page isRef="5" />
               <Parent isRef="8" />
-              <Text>2-4</Text>
+              <Text>Специалисты</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -194,7 +194,7 @@ order by traumayear</SqlCommand>
               <Name>Text5</Name>
               <Page isRef="5" />
               <Parent isRef="8" />
-              <Text>5-7</Text>
+              <Text>Другие служащие</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -211,7 +211,7 @@ order by traumayear</SqlCommand>
               <Name>Text2</Name>
               <Page isRef="5" />
               <Parent isRef="8" />
-              <Text>Более 7</Text>
+              <Text>Рабочие</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -498,10 +498,10 @@ order by traumayear</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/18/2013 5:56:34 PM</ReportChanged>
+  <ReportChanged>12/18/2013 7:23:26 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
-  <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerHours.mrt</ReportFile>
-  <ReportGuid>20461fd6b44145c1ab4bd98216ffaee7</ReportGuid>
+  <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerKind.mrt</ReportFile>
+  <ReportGuid>2fd1fc5d2cc743239df026ca7d4e995c</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
