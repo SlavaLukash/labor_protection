@@ -30,6 +30,22 @@
                 <td>{{ entity.sex }}</td>
             </tr>
             <tr>
+                <th>{% trans %}Profession{% endtrans %}</th>
+                <td>{{ entity.profession }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>{{ entity.subdivision }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <td>{{ entity.subdivision.enterprise }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Marriagekind{% endtrans %}</th>
+                <td>{{ entity.marriagekind }}</td>
+            </tr>
+            <tr>
                 <th>{% trans %}Bithday{% endtrans %}</th>
                 <td>
                     {% if entity.bithday %}
