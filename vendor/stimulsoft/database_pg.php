@@ -111,7 +111,7 @@
 		pg_set_client_encoding($link, $info["charset"]);
 		
 		$query = sti_parse_query_parameters($query);
-		$result = pg_query($link, $query) or die("ServerError:Data not found");
+		$result = pg_query($link, $query); // or die("ServerError:Data not found");
 		
 		$xml_output = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Tables><RetrieveColumns>";
 		
@@ -139,7 +139,7 @@
 		pg_set_client_encoding($link, $info["charset"]);
 		
 		$query = sti_parse_query_parameters($query);
-		$result = pg_query($link, $query) or die("ServerError:Data not found");
+		$result = pg_query($link, $query); // or die("ServerError:Data not found");
 		
 		$xml_output = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Database>";
 		

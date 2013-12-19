@@ -36,17 +36,13 @@ SYjwaj3hN9RYzwNEW0NpRlo53MsY5z/Vet/CYkpBCW1c1czpXK0/nsDz48Zxm4FqW6SNTUx3Z9cM
         <Dictionary isRef="1"/>
         <Name>MedicalSubdivision</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters count="3" isList="true">
-          <value>p_enterprise,var_enterprise,23,0</value>
-          <value>p_date_from,var_date_from,1082,0</value>
-          <value>p_date_to,var_date_to,1082,0</value>
-        </Parameters>
+        <Parameters count="0" isList="true"/>
         <SqlCommand>SELECT enterprise.name enterprise_name, subdivision.name subdivision_name, count(*) as medical_cnt
 FROM medical INNER JOIN
   employee ON medical.employee = employee.id INNER JOIN
   subdivision ON employee.subdivision = subdivision.id INNER JOIN
   enterprise ON subdivision.enterprise = enterprise.id
-WHERE enterprise.id = ? AND medical.dateplan BETWEEN ? AND ?  
+WHERE enterprise.id = {var_enterprise} AND medical.dateplan BETWEEN {var_date_from} AND {var_date_to}  
 GROUP BY enterprise.name, subdivision.name</SqlCommand>
       </MedicalSubdivision>
     </DataSources>
