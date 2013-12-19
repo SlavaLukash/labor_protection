@@ -44,6 +44,7 @@ class EmployeeType extends AbstractType
 			->add('subdivision', 'entity', array(
 				'class' => 'SirOtBundle:Subdivision',
 				'empty_value' => false,
+				'label' => 'Предприятие и подразделение',
 				'choices' => $options['sdArray'],
 			))
             ->add('marriagekind')

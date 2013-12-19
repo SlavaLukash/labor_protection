@@ -14,6 +14,10 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <td>{{ entity.enterprise }}</td>
+            </tr>
+            <tr>
                 <th>{% trans %}Year{% endtrans %}</th>
                 <td>{{ entity.year|date('Y') }}</td>
             </tr>

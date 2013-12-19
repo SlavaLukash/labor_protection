@@ -21,6 +21,7 @@ class ExpenseType extends AbstractType
 			$newCh[$c] = $c;
 		}
         $builder
+			->add('enterprise')
             ->add('year', 'choice', array(
 				'choices' => $newCh
 			))
@@ -36,7 +37,6 @@ class ExpenseType extends AbstractType
             ->add('sum10')
             ->add('sum11')
             ->add('sum12')
-            ->add('enterprise')
             ->add('expensekind')
         ;
     }

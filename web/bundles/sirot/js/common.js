@@ -52,32 +52,30 @@ $(document).ready(function () {
 		$(this).prev().focus();
 	});
 
-	$('.med_enterprise').change(function() {
-		$('.med_enterprise').attr('id', '');
-		$('.med_enterprise').attr('name', '');
+	$('.med_enterprise').click(function() {
 		$.post( "/app_dev.php/ajax",
 			{ action: "subdivision", id: $('.med_enterprise option:selected').val() },
 			function( data ) {
-				if($('#ajax_subdivision').length>0)
+				if($('.med_subdivision').length>0)
 				{
-					$('#ajax_subdivision').remove();
-					$(data).insertAfter('.med_enterprise');
+					$('.med_subdivision').empty();
+					$('.med_subdivision').append(data);
 				} else {
-					$(data).insertAfter('.med_enterprise');
+					$('.med_subdivision').append(data);
 				}
 		});
-		$('#ajax_subdivision select').change(function() {
-			$.post( "/app_dev.php/ajax",
-				{ action: "employee", id: $('#ajax_subdivision select option:selected').val() },
-				function( data ) {
-					if($('#ajax_employee').length>0)
-					{
-						$('#ajax_employee').remove();
-						$(data).insertAfter('#ajax_subdivision');
-					} else {
-						$(data).insertAfter('#ajax_subdivision');
-					}
-				});
+	});
+	$('.med_subdivision').click(function() {
+		$.post( "/app_dev.php/ajax",
+			{ action: "employee", id: $('.med_subdivision option:selected').val() },
+			function( data ) {
+				if($('.med_employee').length>0)
+				{
+					$('.med_employee option').remove();
+					$('.med_employee').append(data);
+				} else {
+					$('.med_employee').append(data);
+				}
 		});
 	});
 });
