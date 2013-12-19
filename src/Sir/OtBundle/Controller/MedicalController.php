@@ -59,7 +59,6 @@ class MedicalController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$aSubdivisions = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		$aEnterprises = $em->getRepository('SirOtBundle:Enterprise')->findAll();
-		$aEmployee = $em->getRepository('SirOtBundle:Employee')->findAll();
 		$oUser = $this->getUser();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
@@ -67,15 +66,11 @@ class MedicalController extends Controller
 		}
 		foreach($aSubdivisions as $subdivision)
 		{
-			$aSubdIds[] = $subdivision->getId();
+			$OTparams['aEnterprise'][$subdivision->getEnterprise()->getId()] = $subdivision->getEnterprise();
 		}
-		foreach($aEmployee as $employee)
-		{
-			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
-			{
-				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
-			}
-		}
+		$employeeId = $request->request->all()['sir_otbundle_medical']['employee'];
+		$OTparams['aEmployee'][] = $em->getRepository('SirOtBundle:Employee')->find($employeeId);
+		$OTparams['aSubdivision'] = $aSubdivisions;
 		$entity = new Medical();
 		$form = $this->createCreateForm($entity, $OTparams);
         $form->handleRequest($request);
@@ -125,7 +120,6 @@ class MedicalController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$aSubdivisions = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		$aEnterprises = $em->getRepository('SirOtBundle:Enterprise')->findAll();
-		$aEmployee = $em->getRepository('SirOtBundle:Employee')->findAll();
 		$oUser = $this->getUser();
 		if(!$oUser->hasRole('ROLE_ADMIN'))
 		{
@@ -133,15 +127,10 @@ class MedicalController extends Controller
 		}
 		foreach($aSubdivisions as $subdivision)
 		{
-			$aSubdIds[] = $subdivision->getId();
+			$OTparams['aEnterprise'][$subdivision->getEnterprise()->getId()] = $subdivision->getEnterprise();
 		}
-		foreach($aEmployee as $employee)
-		{
-			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
-			{
-				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
-			}
-		}
+		$OTparams['aSubdivision'] = array();
+		$OTparams['aEmployee'] = array();
 		$entity = new Medical();
 		$form = $this->createCreateForm($entity, $OTparams);
 

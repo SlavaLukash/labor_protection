@@ -18,6 +18,14 @@
                 <td>{{ entity.employee }}</td>
             </tr>
             <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision.enterprise }}</td>
+            </tr>
+            <tr>
                 <th>{% trans %}Medicalkind{% endtrans %}</th>
                 <td>{{ entity.medicalkind }}</td>
             </tr>
