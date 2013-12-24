@@ -123,14 +123,16 @@ and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
       <Components isList="true" count="3">
         <PageHeaderBand1 Ref="9" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.4,27.7,0.8</ClientRectangle>
+          <ClientRectangle>0,0.4,27.7,1.2</ClientRectangle>
           <Components isList="true" count="1">
             <Text1 Ref="10" type="Text" isKey="true">
               <AutoWidth>True</AutoWidth>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.05,0,27.6,0.6</ClientRectangle>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.05,0,27.6,1</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,12</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
@@ -138,6 +140,7 @@ and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
               <Parent isRef="9" />
               <Text>График медицинских осмотров {subdivision.enterprise_link.name}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
@@ -149,7 +152,7 @@ and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
         </PageHeaderBand1>
         <HeaderBand1 Ref="11" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,2,27.7,1</ClientRectangle>
+          <ClientRectangle>0,2.4,27.7,1</ClientRectangle>
           <Components isList="true" count="9">
             <Text10 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
@@ -316,7 +319,7 @@ and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
         <DataBand1 Ref="21" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,3.8,27.7,0.4</ClientRectangle>
+          <ClientRectangle>0,4.2,27.7,0.4</ClientRectangle>
           <Components isList="true" count="7">
             <Text7 Ref="22" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
@@ -474,10 +477,10 @@ and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/24/2013 2:02:59 PM</ReportChanged>
+  <ReportChanged>12/24/2013 3:30:08 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\MedicalGraph.mrt</ReportFile>
-  <ReportGuid>a1e4ec1b9b3f485797ed1f5a9350ada2</ReportGuid>
+  <ReportGuid>34489053ba5b4f2caa80db1d4e8a66b0</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>

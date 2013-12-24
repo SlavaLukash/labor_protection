@@ -243,6 +243,7 @@ WHERE enterprise.id = {var_enterprise}</SqlCommand>
               <Name>Text8</Name>
               <Page isRef="5" />
               <Parent isRef="16" />
+              <Text>{Format("{0:P2}", expense.total / Sum(DataBand1,expense.total))}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
@@ -341,6 +342,7 @@ WHERE enterprise.id = {var_enterprise}</SqlCommand>
               <Name>Text7</Name>
               <Page isRef="5" />
               <Parent isRef="22" />
+              <Text>100%</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -418,10 +420,10 @@ WHERE enterprise.id = {var_enterprise}</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/19/2013 5:46:11 PM</ReportChanged>
+  <ReportChanged>12/24/2013 3:21:51 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\ExpenseKindSum.mrt</ReportFile>
-  <ReportGuid>c3a3343ae1894e7e88e97612dec59ee4</ReportGuid>
+  <ReportGuid>81c0fda6b1d34b848f1a8bea070312de</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
