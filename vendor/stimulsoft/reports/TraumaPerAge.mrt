@@ -51,15 +51,15 @@ sum(
   end) n1,
 sum(
   case
-  when bithday between now() - interval '18 year' and now() - interval '25 year'  then 1
+  when bithday between now() - interval '25 year' and now() - interval '18 year'  then 1
   end) n2,
 sum(
   case
-  when bithday between now() - interval '26 year' and now() - interval '30 year' then 1
+  when bithday between now() - interval '30 year' and now() - interval '26 year' then 1
   end) n3,
 sum(
   case
-  when bithday between now() - interval '31 year' and now() - interval '40 year' then 1
+  when bithday between now() - interval '40 year' and now() - interval '31 year' then 1
   end) n4,
 sum(
   case
@@ -609,10 +609,10 @@ order by traumayear</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/18/2013 7:21:53 PM</ReportChanged>
+  <ReportChanged>12/24/2013 2:56:33 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerAge.mrt</ReportFile>
-  <ReportGuid>10a1e1b020cf403c97b56796e15b34d8</ReportGuid>
+  <ReportGuid>d02dd80a2f984e909217caa7521cc420</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>

@@ -47,7 +47,7 @@ order by e.name, s.name</SqlCommand>
   end) n1,
 sum(
   case
-  when sex = 2 and hoursstart &lt; 5 then 1
+  when sex = 0 then 1
   end) n2,
 
 count(*) 
@@ -387,10 +387,10 @@ order by traumayear</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/18/2013 7:28:43 PM</ReportChanged>
+  <ReportChanged>12/24/2013 2:51:57 PM</ReportChanged>
   <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\TraumaPerSex.mrt</ReportFile>
-  <ReportGuid>8073c33b85a84ee49b174c2349dd4c04</ReportGuid>
+  <ReportGuid>fbb4e109927c4a65b60b5f8bbf732e6a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
