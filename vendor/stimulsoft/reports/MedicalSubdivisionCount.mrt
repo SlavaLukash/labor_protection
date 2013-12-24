@@ -1,255 +1,258 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<StiSerializer type="Flex" version="1.02" application="StiReport">
-  <Dictionary type="Dictionary" Ref="1" isKey="true">
-    <BusinessObjects count="0" isList="true"/>
-    <Databases count="1" isList="true">
-      <labor type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" Ref="2" isKey="true">
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <labor Ref="2" type="Stimulsoft.Report.Dictionary.StiPostgreSQLDatabase" isKey="true">
         <Alias>labor</Alias>
-        <ConnectionStringEncrypted>5cjRKWEIs/VvStnxZAQye8NafYNhBQGYQ13o2GcEYX7VdmXLSFCjgEVRqITrCXdn3xjzg0hLQ4Hi
-SYjwaj3hN9RYzwNEW0NpRlo53MsY5z/Vet/CYkpBCW1c1czpXK0/nsDz48Zxm4FqW6SNTUx3Z9cM
-2Q==</ConnectionStringEncrypted>
+        <ConnectionStringEncrypted>5cjRKWEIs/VvStnxZAQye8NafYNhBQGYQ13o2GcEYX7VdmXLSFCjgEVRqITrCXdn3xjzg0hLQ4HiSYjwaj3hN9RYzwNEW0NpRlo53MsY5z/Vet/CYkpBCW1c1czpXK0/nsDz48Zxm4FqW6SNTUx3Z9cM2Q==</ConnectionStringEncrypted>
         <Name>labor</Name>
       </labor>
     </Databases>
-    <DataSources count="2" isList="true">
-      <enterprise type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" Ref="3" isKey="true">
+    <DataSources isList="true" count="2">
+      <enterprise Ref="3" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>enterprise</Alias>
-        <Columns count="2" isList="true">
+        <Columns isList="true" count="2">
           <value>id,System.Int32</value>
           <value>name,System.String</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
-        <Dictionary isRef="1"/>
+        <Dictionary isRef="1" />
         <Name>enterprise</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters count="0" isList="true"/>
+        <Parameters isList="true" count="0" />
         <SqlCommand>select id, name from enterprise</SqlCommand>
       </enterprise>
-      <MedicalSubdivision type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" Ref="4" isKey="true">
+      <MedicalSubdivision Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>MedicalSubdivision</Alias>
-        <Columns count="3" isList="true">
+        <Columns isList="true" count="3">
           <value>enterprise_name,System.String</value>
           <value>medical_cnt,System.Double</value>
           <value>subdivision_name,System.String</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
-        <Dictionary isRef="1"/>
+        <Dictionary isRef="1" />
         <Name>MedicalSubdivision</Name>
         <NameInSource>labor</NameInSource>
-        <Parameters count="0" isList="true"/>
+        <Parameters isList="true" count="0" />
         <SqlCommand>SELECT enterprise.name enterprise_name, subdivision.name subdivision_name, count(*) as medical_cnt
 FROM medical INNER JOIN
   employee ON medical.employee = employee.id INNER JOIN
   subdivision ON employee.subdivision = subdivision.id INNER JOIN
   enterprise ON subdivision.enterprise = enterprise.id
-WHERE enterprise.id = {var_enterprise} AND medical.dateplan BETWEEN {var_date_from} AND {var_date_to}  
+WHERE enterprise.id = {var_enterprise} 
+and medical.dateplan &gt;= to_date('{var_date_from}','dd.MM.yyyy')
+and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
 GROUP BY enterprise.name, subdivision.name</SqlCommand>
       </MedicalSubdivision>
     </DataSources>
-    <Relations count="0" isList="true"/>
-    <Report isRef="0"/>
-    <Variables count="3" isList="true">
-      <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1_x002E_0_x0022__x0020_encoding_x003D__x0022_utf_x002D_8_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_type_x003D__x0022_Flex_x0022__x0020_version_x003D__x0022_1_x002E_02_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_Keys_x0020_count_x003D__x0022_0_x0022__x0020_isList_x003D__x0022_true_x0022__x002F__x003E__x003C_KeysColumn_x003E_enterprise_x002E_id_x003C__x002F_KeysColumn_x003E__x003C_Values_x0020_count_x003D__x0022_0_x0022__x0020_isList_x003D__x0022_true_x0022__x002F__x003E__x003C_ValuesColumn_x003E_enterprise_x002E_name_x003C__x002F_ValuesColumn_x003E__x003C__x002F_StiSerializer_x003E_</value>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Variables isList="true" count="3">
+      <value>,var_enterprise,Предприятие,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_enterprise.id_x003C__x002F_KeysColumn_x003E__x003C_ValuesColumn_x003E_enterprise.name_x003C__x002F_ValuesColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_AllowUserValues_x003E_False_x003C__x002F_AllowUserValues_x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
       <value>,var_date_from,Начальная_x0020_дата_x0020_отчета,,System.DateTime,Today,False,True,True</value>
-      <value>,var_date_to,Конечная_x0020_дата_x0020_отчета,,System.DateTime,Today,False,True,True</value>
+      <value>,var_date_to,Конечная_x0020_дата_x0020_отчета,,System.DateTime,DateSerial_x0028_Year_x0028_Today_x0029__x002C__x0020_Month_x0028_Today_x0029__x002C_DaysInMonth_x0028_Today_x0029__x0029_,False,True,True</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
-  <GlobalizationStrings count="0" isList="true"/>
-  <MetaTags count="0" isList="true"/>
-  <Pages count="1" isList="true">
-    <Page1 type="Page" Ref="5" isKey="true">
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="5" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components count="3" isList="true">
-        <ReportTitleBand1 type="ReportTitleBand" Ref="6" isKey="true">
+      <Components isList="true" count="3">
+        <ReportTitleBand1 Ref="6" type="ReportTitleBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.4,19,2.2</ClientRectangle>
-          <Components count="1" isList="true">
-            <Text1 type="Text" Ref="7" isKey="true">
+          <Components isList="true" count="1">
+            <Text1 Ref="7" type="Text" isKey="true">
               <AutoWidth>True</AutoWidth>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.05,0.8,18.8,1.4</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0.05,0,18.8,2</ClientRectangle>
+              <Conditions isList="true" count="0" />
               <Font>Arial,12</Font>
+              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
-              <Page isRef="5"/>
-              <Parent isRef="6"/>
-              <Text>Распределение количества предстоящих медосмотров по структурным подразделениям.
-(на период с {Format("{0:dd.MM.yyyy}", var_date_from)}  по {Format("{0:dd.MM.yyyy}",var_date_to)} )</Text>
+              <Page isRef="5" />
+              <Parent isRef="6" />
+              <Text>Распределение количества предстоящих медосмотров по структурным подразделениям 
+{MedicalSubdivision.enterprise_name} (на период с {Format("{0:dd.MM.yyyy}", var_date_from)}  по {Format("{0:dd.MM.yyyy}",var_date_to)} )</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
           </Components>
-          <Conditions count="0" isList="true"/>
+          <Conditions isList="true" count="0" />
           <Name>ReportTitleBand1</Name>
-          <Page isRef="5"/>
-          <Parent isRef="5"/>
+          <Page isRef="5" />
+          <Parent isRef="5" />
         </ReportTitleBand1>
-        <HeaderBand1 type="HeaderBand" Ref="8" isKey="true">
+        <HeaderBand1 Ref="8" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.4,19,1.2</ClientRectangle>
-          <Components count="4" isList="true">
-            <Text2 type="Text" Ref="9" isKey="true">
+          <Components isList="true" count="4">
+            <Text2 Ref="9" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.8,0.2,3,1</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>5aaa053507e442b6b0a1c2a188fad775</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
-              <Page isRef="5"/>
-              <Parent isRef="8"/>
+              <Page isRef="5" />
+              <Parent isRef="8" />
               <Text>Количество медосмотров</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text2>
-            <Text6 type="Text" Ref="10" isKey="true">
+            <Text6 Ref="10" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.2,0.8,1</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>1c4f66622a9145a28fe34d58ee4ef1fa</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
-              <Page isRef="5"/>
-              <Parent isRef="8"/>
+              <Page isRef="5" />
+              <Parent isRef="8" />
               <Text>№</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text6>
-            <Text14 type="Text" Ref="11" isKey="true">
+            <Text14 Ref="11" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.8,0.2,15,1</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>7741e6f63dda42c3bdc7adb1b62b23e5</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text14</Name>
-              <Page isRef="5"/>
-              <Parent isRef="8"/>
+              <Page isRef="5" />
+              <Parent isRef="8" />
               <Text>Структурное подразделение</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text14>
-            <Text17 type="Text" Ref="12" isKey="true">
+            <Text17 Ref="12" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.2,0.8,1</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>3b57e606733c4b8385923a9bf850f50c</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text17</Name>
-              <Page isRef="5"/>
-              <Parent isRef="8"/>
+              <Page isRef="5" />
+              <Parent isRef="8" />
               <Text>№</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text17>
           </Components>
-          <Conditions count="0" isList="true"/>
+          <Conditions isList="true" count="0" />
           <Name>HeaderBand1</Name>
-          <Page isRef="5"/>
-          <Parent isRef="5"/>
+          <Page isRef="5" />
+          <Parent isRef="5" />
         </HeaderBand1>
-        <DataBand1 type="DataBand" Ref="13" isKey="true">
+        <DataBand1 Ref="13" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <BusinessObjectGuid isNull="true"/>
+          <BusinessObjectGuid isNull="true" />
           <ClientRectangle>0,5.4,19,0.6</ClientRectangle>
-          <Components count="3" isList="true">
-            <Text8 type="Text" Ref="14" isKey="true">
+          <Components isList="true" count="3">
+            <Text8 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>15.8,0,3,0.6</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>722d1261ed294cddae9b63ea48763cae</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
-              <Page isRef="5"/>
-              <Parent isRef="13"/>
+              <Page isRef="5" />
+              <Parent isRef="13" />
               <Text>{MedicalSubdivision.medical_cnt}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text8>
-            <Text13 type="Text" Ref="15" isKey="true">
+            <Text13 Ref="15" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,0.8,0.6</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>9073a2a3df93461889efa9a200c4c23a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
-              <Page isRef="5"/>
-              <Parent isRef="13"/>
+              <Page isRef="5" />
+              <Parent isRef="13" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text15 type="Text" Ref="16" isKey="true">
+            <Text15 Ref="16" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.8,0,15,0.6</ClientRectangle>
-              <Conditions count="0" isList="true"/>
+              <Conditions isList="true" count="0" />
               <Font>Arial,9,Bold</Font>
               <Guid>ed3e23453b1f4313a00b18edc197ee1a</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text15</Name>
-              <Page isRef="5"/>
-              <Parent isRef="13"/>
+              <Page isRef="5" />
+              <Parent isRef="13" />
               <Text>{MedicalSubdivision.subdivision_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text15>
           </Components>
-          <Conditions count="0" isList="true"/>
-          <DataRelationName isNull="true"/>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
           <DataSourceName>MedicalSubdivision</DataSourceName>
-          <Filters count="0" isList="true"/>
+          <Filters isList="true" count="0" />
           <Name>DataBand1</Name>
-          <Page isRef="5"/>
-          <Parent isRef="5"/>
-          <Sort count="0" isList="true"/>
+          <Page isRef="5" />
+          <Parent isRef="5" />
+          <Sort isList="true" count="0" />
         </DataBand1>
       </Components>
-      <Conditions count="0" isList="true"/>
+      <Conditions isList="true" count="0" />
       <Guid>45210a1b96da43f9842ea22b91b42ea5</Guid>
       <Margins>1,1,1,1</Margins>
       <Name>Page1</Name>
       <PageHeight>29.7</PageHeight>
       <PageWidth>21</PageWidth>
-      <Report isRef="0"/>
-      <Watermark type="Stimulsoft.Report.Components.StiWatermark" Ref="17" isKey="true">
+      <Report isRef="0" />
+      <Watermark Ref="17" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings type="Stimulsoft.Report.Print.StiPrinterSettings" Ref="18" isKey="true"/>
-  <ReferencedAssemblies count="8" isList="true">
+  <PrinterSettings Ref="18" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
     <value>System.Windows.Forms.Dll</value>
@@ -260,10 +263,10 @@ GROUP BY enterprise.name, subdivision.name</SqlCommand>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>12/19/2013 06:02:35 PM</ReportChanged>
-  <ReportCreated>11/13/2013 01:54:34 PM</ReportCreated>
+  <ReportChanged>12/24/2013 2:01:22 PM</ReportChanged>
+  <ReportCreated>11/13/2013 1:54:34 PM</ReportCreated>
   <ReportFile>D:\work\OT\Source\vendor\stimulsoft\reports\MedicalSubdivisionCount.mrt</ReportFile>
-  <ReportGuid>a1d1e86ba6801166a6420b2a422143f9</ReportGuid>
+  <ReportGuid>04b8737060ff4a138835221db62c35d8</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Centimeters</ReportUnit>
   <ReportVersion>2013.2.1700</ReportVersion>
@@ -290,5 +293,5 @@ namespace Reports
     }
 }</Script>
   <ScriptLanguage>CSharp</ScriptLanguage>
-  <Styles count="0" isList="true"/>
+  <Styles isList="true" count="0" />
 </StiSerializer>
