@@ -69,7 +69,10 @@ class MedicalController extends Controller
 			$OTparams['aEnterprise'][$subdivision->getEnterprise()->getId()] = $subdivision->getEnterprise();
 		}
 
-		$employeeId = $request->request->all()['sir_otbundle_medical']['employee'];
+		$arRequest  = $request->request->all();
+
+//		$employeeId = $request->request->all()['sir_otbundle_medical']['employee'];
+		$employeeId = $arRequest['sir_otbundle_medical']['employee'];
 		$OTparams['aEmployee'][] = $em->getRepository('SirOtBundle:Employee')->find($employeeId);
 		$OTparams['aSubdivision'] = $aSubdivisions;
 		$entity = new Medical();

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sir\OtBundle\Entity\Technicalexaminationkind;
 use Sir\OtBundle\Form\TechnicalexaminationkindType;
+use Sir\OtBundle\Filter\TechnicalexaminationkindFilterType;
 
 /**
  * Technicalexaminationkind controller.
@@ -21,12 +22,28 @@ class TechnicalexaminationkindController extends Controller
      */
     public function indexAction()
     {
+		$form = $this->get('form.factory')->create(new TechnicalexaminationkindFilterType());
+		$form->bind($this->get('request'));
+		$filterBuilder = $this->get('doctrine.orm.entity_manager')
+			->getRepository('SirOtBundle:Technicalexaminationkind')
+			->createQueryBuilder('e');
+		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
+
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SirOtBundle:Technicalexaminationkind')->findAll();
+		$query = $em->createQuery($filterBuilder->getDql());
+		$paginator  = $this->get('knp_paginator');
+
+//        $entities = $em->getRepository('SirOtBundle:Technicalexaminationkind')->findAll();
+		$entities = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1)/*page number*/,
+			10/*limit per page*/
+		);
 
         return $this->render('SirOtBundle:Technicalexaminationkind:index.html.twig', array(
             'entities' => $entities,
+			'form' => $form->createView(),
         ));
     }
     /**

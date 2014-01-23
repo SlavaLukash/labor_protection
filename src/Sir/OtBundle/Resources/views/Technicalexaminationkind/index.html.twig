@@ -9,7 +9,9 @@
     <a id="ot_list_create" href="{{ path('technicalexaminationkind_new') }}">
         {% trans %}Create a new entry{% endtrans %}
     </a>
-
+    {% block filter %}
+        {{ include('SirOtBundle:Default:ot_filter_form_template.html.twig') }}
+    {% endblock %}
     <table class="records_list">
         <thead>
             <tr>
