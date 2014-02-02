@@ -16,11 +16,11 @@
         <thead>
             <tr>
                 <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Enterprise{% endtrans %}</th>
                 <th>{% trans %}Subdivision{% endtrans %}</th>
                 <th>{% trans %}Equipmentgroup{% endtrans %}</th>
                 <th>{% trans %}Equipmentsubgroup{% endtrans %}</th>
-                <th>{% trans %}Name{% endtrans %}</th>
                 <th>{% trans %}Model{% endtrans %}</th>
                 <th>{% trans %}Registrationnumber{% endtrans %}</th>
 				<th>{% trans %}Actions{% endtrans %}</th>
@@ -30,11 +30,11 @@
         {% for entity in entities %}
             <tr>
                 <td>{{ entity.id }}</td>
+                <td><a href="{{ path('equipment_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.subdivision.enterprise }}</td>
                 <td>{{ entity.subdivision }}</td>
                 <td>{{ entity.equipmentsubgroup.equipmentgroup }}</td>
                 <td>{{ entity.equipmentsubgroup }}</td>
-                <td><a href="{{ path('equipment_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.model }}</td>
                 <td>{{ entity.registrationnumber }}</td>
                 <td>

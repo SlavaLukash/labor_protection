@@ -25,9 +25,9 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-				<td>{{ entity.enterprise }}</td>
+				<td><a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.enterprise }}</a></td>
 				<td>{{ entity.expensekind }}</td>
-                <td>{% if entity.year %}<a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.year }}</a>{% endif %}</td>
+                <td>{% if entity.year %}{{ entity.year }}{% endif %}</td>
                 <td>{{ (entity.sum1 + entity.sum2 + entity.sum3 + entity.sum4 + entity.sum5 + entity.sum6 + entity.sum7 + entity.sum8 + entity.sum9 + entity.sum10 + entity.sum11 + entity.sum12)|number_format(2, '.', ',') }}</td>
                 <td>
                 <ul>
