@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Управление Труда и Социальной Защиты Населения НАО{% endblock %}</title>
+        <title>{% block title %}Управление труда и социальной защиты населения Ненецкого автономного округа{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/sirot/css/reset.css') }}" type="text/css" media="all" />
             <link rel="stylesheet" href="{{ asset('bundles/sirot/css/main.css') }}" type="text/css" media="all" />
@@ -24,7 +24,7 @@
             <div id="b-header">
                 <div class="b-line-wrap">
                     <div class="l-line-wrap-l"><div class="bd-line"></div></div>
-                    <div class="b-logo"><a href="{{ path('sir_ot') }}"><img src="/bundles/sirot/images/logo.png" /></a></div>
+                    <div class="b-logo"><a href="http://utszn-nao.ru/"><img src="/bundles/sirot/images/logo.png" /></a></div>
                     <div class="l-line-wrap-r"><div class="bd-line"></div>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         	<p>Вы вошли как {{ app.security.getToken().getUser().getUsername() }}. <a href="{{ path("fos_user_security_logout") }}">Выход</a></p>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                <h1 class="l-title">Управление Труда и Социальной Защиты Населения НАО</h1>
+                <h1 class="l-title">Управление труда и социальной защиты населения Ненецкого автономного округа</h1>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     {{ include('SirOtBundle:Submenu:MainMenu.html.twig') }}
                 {% endif %}
