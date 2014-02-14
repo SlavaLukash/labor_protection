@@ -8,6 +8,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+		$session = $this->getRequest()->getSession();
+		$session->set('report_user_id', $this->getUser()->getId());
+		
 		if($this->getUser()->hasRole('ROLE_ADMIN')) {
 			$response = $this->forward('Sir\OtBundle\Controller\UserController::indexAction');
 		} else {

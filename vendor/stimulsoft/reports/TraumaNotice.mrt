@@ -54,7 +54,7 @@
   INNER JOIN
   subdivision ON employee.subdivision =
     subdivision.id INNER JOIN
-  enterprise ON subdivision.enterprise =
+  /*SECURITY*/enterprise enterprise ON subdivision.enterprise =
     enterprise.id INNER JOIN
   traumakind ON trauma.traumakind = traumakind.id
   INNER JOIN

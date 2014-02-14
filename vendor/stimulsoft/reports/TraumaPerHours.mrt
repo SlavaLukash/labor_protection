@@ -22,8 +22,8 @@
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
         <SqlCommand>select s.id, e.name || ' :: ' || s.name as name 
-from subdivision s
-join enterprise e on s.enterprise = e.id
+from /*SECURITY*/subdivision s
+join /*SECURITY*/enterprise e on s.enterprise = e.id
 order by e.name, s.name</SqlCommand>
       </subdivision>
       <trauma Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
@@ -63,8 +63,8 @@ count(*)
 from trauma t
 where exists ( 
 select * 
-	from employee e
-join subdivision s on e.subdivision = s.id
+	from /*SECURITY*/employee e
+join /*SECURITY*/subdivision s on e.subdivision = s.id
 where e.id = t.employee
   and (s.id = {var_subdivision} or {var_enterprise_all} = true)
 )  

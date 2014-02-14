@@ -19,7 +19,11 @@ framework:
 #    default_locale:  "%locale%"
     default_locale:  ru
     trusted_proxies: ~
-    session:         ~
+#    session:         ~
+    session:
+        storage_id:      session.storage.native
+        handler_id:      session.handler.native_file
+        save_path: ~
     fragments:       ~
     http_method_override: true
 

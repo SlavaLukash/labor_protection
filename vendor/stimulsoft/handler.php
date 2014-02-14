@@ -202,6 +202,19 @@
 				$query = sti_get_xml_value($client_data, "Query");
 				$query = base64_decode($query);
 				
+				// IBIS
+				// в целях безопасности заменяем
+				//  /*SECURITY*/enterprise на get_enterprise
+				//  /*SECURITY*/subdivision на get_subdivision
+				session_start();	
+				$user_id = $_SESSION['_sf2_attributes']['report_user_id'];
+				if (is_numeric($user_id))
+				{
+					$query = str_ireplace("/*SECURITY*/enterprise","get_enterprise(".$user_id.")",$query);
+					$query = str_ireplace("/*SECURITY*/subdivision","get_subdivision(".$user_id.")",$query);
+				}
+				// IBIS
+				
 				switch ($connection_type)
 				{
 					case "StiXmlDatabase": return sti_xml_get_data($data_path, $schema_path);

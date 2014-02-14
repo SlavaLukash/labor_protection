@@ -21,7 +21,7 @@
         <Name>enterprise</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, name from enterprise</SqlCommand>
+        <SqlCommand>select id, name from /*SECURITY*/enterprise</SqlCommand>
       </enterprise>
       <expense Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>expense</Alias>
@@ -54,7 +54,7 @@
   expense.sum5, expense.sum6, expense.sum7,
   expense.sum8, expense.sum9, expense.sum10,
   expense.sum11, expense.sum12
-FROM enterprise INNER JOIN
+FROM /*SECURITY*/enterprise INNER JOIN
   expense ON expense.enterprise = enterprise.id INNER JOIN
   expensekind ON expense.expensekind =
     expensekind.id

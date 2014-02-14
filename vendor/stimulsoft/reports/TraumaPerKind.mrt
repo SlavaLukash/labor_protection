@@ -22,8 +22,8 @@
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
         <SqlCommand>select s.id, e.name || ' :: ' || s.name as name 
-from subdivision s
-join enterprise e on s.enterprise = e.id
+from /*SECURITY*/subdivision s
+join /*SECURITY*/enterprise e on s.enterprise = e.id
 order by e.name, s.name</SqlCommand>
       </subdivision>
       <trauma Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
@@ -61,11 +61,11 @@ sum(
   end) n4,
   count(*) count
 from trauma t
-left join employee e on t.employee = e.id
+left join /*SECURITY*/employee e on t.employee = e.id
 left join profession p on e.profession = p.id
 where exists ( 
 select * 
-	from subdivision s 
+	from /*SECURITY*/subdivision s 
 where (s.id = {var_subdivision} or {var_enterprise_all} = true)
 )  
 group by date_part('year',datetrauma)

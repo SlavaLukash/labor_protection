@@ -53,7 +53,7 @@ FROM trauma LEFT JOIN
   LEFT JOIN
   subdivision ON employee.subdivision =
     subdivision.id LEFT JOIN
-  enterprise ON subdivision.enterprise =
+  /*SECURITY*/enterprise enterprise ON subdivision.enterprise =
     enterprise.id LEFT JOIN
   traumakind ON trauma.traumakind = traumakind.id
   LEFT JOIN

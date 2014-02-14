@@ -21,7 +21,7 @@
         <Name>enterprise</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, name from enterprise</SqlCommand>
+        <SqlCommand>select id, name from /*SECURITY*/enterprise</SqlCommand>
       </enterprise>
       <subdivision Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>subdivision</Alias>
@@ -35,7 +35,7 @@
         <Name>subdivision</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, enterprise, name from subdivision</SqlCommand>
+        <SqlCommand>select id, enterprise, name from /*SECURITY*/subdivision</SqlCommand>
       </subdivision>
       <MedicalGraph Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>MedicalGraph</Alias>
@@ -69,7 +69,7 @@ FROM medical INNER JOIN
     medicalkind.id LEFT JOIN
   profession ON employee.profession =
     profession.professionkind
-join subdivision s on employee.subdivision = s.id
+join /*SECURITY*/subdivision s on employee.subdivision = s.id
 WHERE s.enterprise = {var_enterprise}
 and medical.dateplan &gt;= to_date('{var_date_from}','dd.MM.yyyy')
 and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')

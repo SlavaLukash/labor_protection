@@ -21,7 +21,7 @@
         <Name>enterprise</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, name from enterprise</SqlCommand>
+        <SqlCommand>select id, name from /*SECURITY*/enterprise</SqlCommand>
       </enterprise>
       <subdivision Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>subdivision</Alias>
@@ -35,7 +35,7 @@
         <Name>subdivision</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, enterprise, name from subdivision </SqlCommand>
+        <SqlCommand>select id, enterprise, name from /*SECURITY*/subdivision </SqlCommand>
       </subdivision>
       <equipment Ref="5" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>equipment</Alias>
@@ -67,7 +67,7 @@ FROM equipment INNER JOIN
     equipmentsubgroup.id INNER JOIN
   equipmentgroup ON equipmentsubgroup.equipmentgroup =
     equipmentgroup.id INNER JOIN
-  subdivision ON equipment.subdivision =
+  /*SECURITY*/subdivision ON equipment.subdivision =
     subdivision.id INNER JOIN
   technicalexamination ON technicalexamination.equipment =
     equipment.id

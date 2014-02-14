@@ -38,8 +38,8 @@
         <SqlCommand>SELECT enterprise.name enterprise_name, subdivision.name subdivision_name, count(*) as medical_cnt
 FROM medical INNER JOIN
   employee ON medical.employee = employee.id INNER JOIN
-  subdivision ON employee.subdivision = subdivision.id INNER JOIN
-  enterprise ON subdivision.enterprise = enterprise.id
+  /*SECURITY*/subdivision subdivision ON employee.subdivision = subdivision.id INNER JOIN
+  /*SECURITY*/enterprise enterprise ON subdivision.enterprise = enterprise.id
 WHERE enterprise.id = {var_enterprise} 
 and medical.dateplan &gt;= to_date('{var_date_from}','dd.MM.yyyy')
 and medical.dateplan &lt;= to_date('{var_date_to}','dd.MM.yyyy')
