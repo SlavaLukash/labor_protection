@@ -21,7 +21,7 @@
         <Name>enterprise</Name>
         <NameInSource>labor</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>select id, name from enterprise</SqlCommand>
+        <SqlCommand>select id, name from /*SECURITY*/enterprise</SqlCommand>
       </enterprise>
       <MedicalSubdivision Ref="4" type="Stimulsoft.Report.Dictionary.StiPostgreSQLSource" isKey="true">
         <Alias>MedicalSubdivision</Alias>
