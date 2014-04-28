@@ -27,8 +27,7 @@ class EquipmentController extends Controller
 		$entArray = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$aESubGroup = $em->getRepository('SirOtBundle:Equipmentsubgroup')->findAll();
 		$aEGroup = $em->getRepository('SirOtBundle:Equipmentgroup')->findAll();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
+		if(!$oUser->hasRole('ROLE_ADMIN')) {
 			$sdArray = $oUser->getUsersubdivisions()->getValues();
 		}
 

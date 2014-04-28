@@ -94,18 +94,21 @@ class MedicalFilterType extends AbstractType
 		} else {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.employee', 'es');
-			$query = '';
-			foreach($this->aUserSubdivisions as $key => $val)
-			{
-				if($key == 0)
-				{
-					$query .= "es.subdivision = {$val}";
-				} else {
-					$query .= " OR es.subdivision = {$val}";
-				}
-			}
-			$qb->andWhere($query);
-			$qb->orderBy('es.id', 'ASC');
+			if($this->aUserSubdivisions) {
+                $query = '';
+
+                foreach($this->aUserSubdivisions as $key => $val)
+                {
+                    if($key == 0)
+                    {
+                        $query .= "es.subdivision = {$val}";
+                    } else {
+                        $query .= " OR es.subdivision = {$val}";
+                    }
+                }
+                $qb->andWhere($query);
+                $qb->orderBy('es.id', 'ASC');
+            }
 		}
 	}
 

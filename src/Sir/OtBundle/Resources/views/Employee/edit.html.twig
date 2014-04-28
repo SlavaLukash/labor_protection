@@ -5,6 +5,13 @@
 {% endblock %}
 
 {% block body -%}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select#sir_otbundle_employee_profession').select2();
+    });
+</script>
+
 <div class="b-form-area">
     <div class="b-form-title"><p>{% trans %}Employee edit{% endtrans %}</p><hr/></div>
 

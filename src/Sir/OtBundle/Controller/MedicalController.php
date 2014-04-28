@@ -60,23 +60,21 @@ class MedicalController extends Controller
 		$aSubdivisions = $em->getRepository('SirOtBundle:Subdivision')->findAll();
 		$aEnterprises = $em->getRepository('SirOtBundle:Enterprise')->findAll();
 		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
-		}
-		foreach($aSubdivisions as $subdivision)
-		{
-			$OTparams['aEnterprise'][$subdivision->getEnterprise()->getId()] = $subdivision->getEnterprise();
-		}
+//		if(!$oUser->hasRole('ROLE_ADMIN')) {
+//			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
+//		}
+//		foreach($aSubdivisions as $subdivision)
+//		{
+//			$OTparams['aEnterprise'][$subdivision->getEnterprise()->getId()] = $subdivision->getEnterprise();
+//		}
 
-		$arRequest  = $request->request->all();
+//		$arRequest  = $request->request->all();
 
-//		$employeeId = $request->request->all()['sir_otbundle_medical']['employee'];
-		$employeeId = $arRequest['sir_otbundle_medical']['employee'];
-		$OTparams['aEmployee'][] = $em->getRepository('SirOtBundle:Employee')->find($employeeId);
-		$OTparams['aSubdivision'] = $aSubdivisions;
+//		$employeeId = $arRequest['sir_otbundle_medical']['employee'];
+//		$OTparams['aEmployee'][] = $em->getRepository('SirOtBundle:Employee')->find($employeeId);
+//		$OTparams['aSubdivision'] = $aSubdivisions;
 		$entity = new Medical();
-		$form = $this->createCreateForm($entity, $OTparams);
+		$form = $this->createCreateForm($entity/*, $OTparams*/);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -102,12 +100,12 @@ class MedicalController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createCreateForm(Medical $entity, $OTparams = null)
+    private function createCreateForm(Medical $entity/*, $OTparams = null*/)
     {
         $form = $this->createForm(new MedicalType(), $entity, array(
             'action' => $this->generateUrl('medical_create'),
-            'method' => 'POST',
-			'OTparams' => $OTparams
+            'method' => 'POST'/*,
+			'OTparams' => $OTparams*/
         ));
 
         $form->add('submit', 'submit', array('label' => 'Create'));

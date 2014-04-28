@@ -679,3 +679,7 @@ div.dp-img {
 ul.b-error li {
 	color: red;
 }
+
+.select2-container {
+    width: 270px;
+}

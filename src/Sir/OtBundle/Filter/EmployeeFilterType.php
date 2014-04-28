@@ -62,18 +62,20 @@ class EmployeeFilterType extends AbstractType
 		} else {
 			$qb = $filterQuery->getQueryBuilder();
 			$qb->innerJoin('e.subdivision', 'ee');
-			$query = '';
-			foreach($this->aUserSubdivisions as $key => $val)
-			{
-				if($key == 0)
-				{
-					$query .= "ee.id = {$val}";
-				} else {
-					$query .= " OR ee.id = {$val}";
-				}
-			}
-			$qb->andWhere($query);
-			$qb->orderBy('ee.id', 'ASC');
+            if($this->aUserSubdivisions) {
+                $query = '';
+                foreach($this->aUserSubdivisions as $key => $val)
+                {
+                    if($key == 0)
+                    {
+                        $query .= "ee.id = {$val}";
+                    } else {
+                        $query .= " OR ee.id = {$val}";
+                    }
+                }
+                $qb->andWhere($query);
+                $qb->orderBy('ee.id', 'ASC');
+            }
 		}
 	}
 
