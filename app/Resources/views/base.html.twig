@@ -46,13 +46,13 @@
                 {% endif %}
 
                 <div {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}{{ 'id="b-content"' }}{% endif %}">
-                    {% for type, messages in app.session.flashbag.all() %}
+                    {#{% for type, messages in app.session.flashbag.all() %}
                         {% for key, message in messages %}
                             <div class="flash-{{ type }}">
                                 {{ message|trans({}, 'FOSUserBundle') }}
                             </div>
                         {% endfor %}
-                    {% endfor %}
+                    {% endfor %}#}
 
                     {% block body %}{% endblock %}
                 </div>
