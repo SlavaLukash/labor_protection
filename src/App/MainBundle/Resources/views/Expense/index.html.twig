@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+	{{ include('MainBundle:Submenu:Expense.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Expense list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('expense_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
+	{% block filter %}
+		{{ include('MainBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <th>{% trans %}Expensekind{% endtrans %}</th>
+                <th>{% trans %}Year{% endtrans %}</th>
+                <th>Сумма затрат за год</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+				<td><a href="{{ path('expense_show', { 'id': entity.id }) }}">{{ entity.enterprise }}</a></td>
+				<td>{{ entity.expensekind }}</td>
+                <td>{% if entity.year %}{{ entity.year }}{% endif %}</td>
+                <td>{{ (entity.sum1 + entity.sum2 + entity.sum3 + entity.sum4 + entity.sum5 + entity.sum6 + entity.sum7 + entity.sum8 + entity.sum9 + entity.sum10 + entity.sum11 + entity.sum12)|number_format(2, '.', ',') }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('expense_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('expense_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<div class="navigation">
+		{{ knp_pagination_render(entities) }}
+	</div>
+    {% endblock %}

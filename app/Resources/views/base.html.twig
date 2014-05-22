@@ -4,19 +4,19 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Управление труда и социальной защиты населения Ненецкого автономного округа{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/sirot/css/reset.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/sirot/css/main.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/sirot/css/jquery-ui.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/sirot/css/jquery.ui.core.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/sirot/css/select2.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/main/css/reset.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/main/css/main.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/main/css/jquery-ui.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/main/css/jquery.ui.core.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/main/css/select2.css') }}" type="text/css" media="all" />
         {% endblock %}
         {% block javascripts %}
-            <script src="{{ asset('bundles/sirot/js/jquery-1.10.2.min.js') }}"></script>
-            <script src="{{ asset('bundles/sirot/js/jquery-ui.min.js') }}"></script>
-            <script src="{{ asset('bundles/sirot/js/jquery.ui.core.min.js') }}"></script>
-            <script src="{{ asset('bundles/sirot/js/i18n/jquery.ui.datepicker-ru.js') }}"></script>
-            <script src="{{ asset('bundles/sirot/js/common.js') }}"></script>
-            <script src="{{ asset('bundles/sirot/js/select2.min.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/jquery-1.10.2.min.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/jquery.ui.core.min.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/i18n/jquery.ui.datepicker-ru.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/common.js') }}"></script>
+            <script src="{{ asset('bundles/main/js/select2.min.js') }}"></script>
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -26,7 +26,7 @@
             <div id="b-header">
                 <div class="b-line-wrap">
                     <div class="l-line-wrap-l"><div class="bd-line"></div></div>
-                    <div class="b-logo"><a href="http://utszn-nao.ru/"><img src="/bundles/sirot/images/logo.png" /></a></div>
+                    <div class="b-logo"><a href="http://utszn-nao.ru/"><img src="/bundles/main/images/logo.png" /></a></div>
                     <div class="l-line-wrap-r"><div class="bd-line"></div>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         	<p>Вы вошли как {{ app.security.getToken().getUser().getUsername() }}. <a href="{{ path("fos_user_security_logout") }}">Выход</a></p>
@@ -36,7 +36,7 @@
                 <div class="clear"></div>
                 <h1 class="l-title">Управление труда и социальной защиты населения Ненецкого автономного округа</h1>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    {{ include('SirOtBundle:Submenu:MainMenu.html.twig') }}
+                    {{ include('MainBundle:Submenu:MainMenu.html.twig') }}
                 {% endif %}
             </div>
             <div class="clear"></div>

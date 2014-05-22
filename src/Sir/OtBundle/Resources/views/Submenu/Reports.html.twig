@@ -1,9 +1,0 @@
-<div class="b-left-menu">
-    <ul>
-        {% for entity in CategoryReportEntities %}
-            <li {% if entity.id == current %}class="active"{% endif %}>
-                <a href="{{ path('SirOtBundle_reports', {'Categoryid': entity.id}) }}"><p>{{ entity.name }}</p></a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>

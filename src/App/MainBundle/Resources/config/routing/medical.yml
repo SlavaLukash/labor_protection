@@ -1,0 +1,30 @@
+medical:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Medical:index" }
+
+medical_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Medical:show" }
+
+medical_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Medical:new" }
+
+medical_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Medical:create" }
+    requirements: { _method: post }
+
+medical_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Medical:edit" }
+
+medical_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Medical:update" }
+    requirements: { _method: post|put }
+
+medical_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Medical:delete" }
+    requirements: { _method: post|delete }

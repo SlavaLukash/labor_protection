@@ -1,0 +1,30 @@
+subdivision:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Subdivision:index" }
+
+subdivision_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Subdivision:show" }
+
+subdivision_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Subdivision:new" }
+
+subdivision_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Subdivision:create" }
+    requirements: { _method: post }
+
+subdivision_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Subdivision:edit" }
+
+subdivision_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Subdivision:update" }
+    requirements: { _method: post|put }
+
+subdivision_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Subdivision:delete" }
+    requirements: { _method: post|delete }

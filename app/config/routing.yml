@@ -2,7 +2,7 @@
 #    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
 #    prefix: /
 admin:
-    resource: '@SirOtBundle/Resources/config/routing.yml'
+    resource: '@MainBundle/Resources/config/routing.yml'
     prefix: /
 
 fos_user_security:

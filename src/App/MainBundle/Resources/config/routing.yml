@@ -1,0 +1,105 @@
+MainBundle_reports:
+    pattern:  /reportlist/{Categoryid}
+    defaults: { _controller: "MainBundle:Report:list", Categoryid: null }
+    requirements:
+        id:  \d+
+
+MainBundle_technicalexaminationtype:
+        resource: "@MainBundle/Resources/config/routing/technicalexaminationtype.yml"
+        prefix:   /technicalexaminationtype
+
+MainBundle_technicalexaminationcause:
+        resource: "@MainBundle/Resources/config/routing/technicalexaminationcause.yml"
+        prefix:   /technicalexaminationcause
+
+MainBundle_technicalexaminationkind:
+        resource: "@MainBundle/Resources/config/routing/technicalexaminationkind.yml"
+        prefix:   /technicalexaminationkind
+
+MainBundle_report:
+        resource: "@MainBundle/Resources/config/routing/report.yml"
+        prefix:   /report
+
+MainBundle_categoryreport:
+        resource: "@MainBundle/Resources/config/routing/categoryreport.yml"
+        prefix:   /categoryreport
+
+MainBundle_medical:
+        resource: "@MainBundle/Resources/config/routing/medical.yml"
+        prefix:   /medical
+
+MainBundle_traumakind:
+        resource: "@MainBundle/Resources/config/routing/traumakind.yml"
+        prefix:   /traumakind
+
+MainBundle_traumacause:
+        resource: "@MainBundle/Resources/config/routing/traumacause.yml"
+        prefix:   /traumacause
+
+MainBundle_employee:
+        resource: "@MainBundle/Resources/config/routing/employee.yml"
+        prefix:   /employee
+
+MainBundle_equipmentsubgroup:
+        resource: "@MainBundle/Resources/config/routing/equipmentsubgroup.yml"
+        prefix:   /equipmentsubgroup
+
+MainBundle_equipmentgroup:
+        resource: "@MainBundle/Resources/config/routing/equipmentgroup.yml"
+        prefix:   /equipmentgroup
+
+MainBundle_medicalkind: #вид медосмотра
+        resource: "@MainBundle/Resources/config/routing/medicalkind.yml"
+        prefix:   /medicalkind
+
+MainBundle_professionkind:
+        resource: "@MainBundle/Resources/config/routing/professionkind.yml"
+        prefix:   /professionkind
+
+MainBundle_profession:
+        resource: "@MainBundle/Resources/config/routing/profession.yml"
+        prefix:   /profession
+
+MainBundle_technicalexamination:
+        resource: "@MainBundle/Resources/config/routing/technicalexamination.yml"
+        prefix:   /technicalexamination
+
+MainBundle_equipment:
+        resource: "@MainBundle/Resources/config/routing/equipment.yml"
+        prefix:   /equipment
+
+MainBundle_trauma:
+        resource: "@MainBundle/Resources/config/routing/trauma.yml"
+        prefix:   /trauma
+
+MainBundle_medicaltype: #характер медосмотра
+        resource: "@MainBundle/Resources/config/routing/medicaltype.yml"
+        prefix:   /medicaltype
+
+MainBundle_user:
+        resource: "@MainBundle/Resources/config/routing/user.yml"
+        prefix:   /user
+
+MainBundle_subdivision:
+        resource: "@MainBundle/Resources/config/routing/subdivision.yml"
+        prefix:   /subdivision
+
+MainBundle_enterprise:
+        resource: "@MainBundle/Resources/config/routing/enterprise.yml"
+        prefix:   /enterprise
+
+MainBundle_expense:
+        resource: "@MainBundle/Resources/config/routing/expense.yml"
+        prefix:   /expense
+
+MainBundle_expensekind:
+        resource: "@MainBundle/Resources/config/routing/expensekind.yml"
+        prefix:   /expensekind
+
+default_ajax:
+    pattern:  /ajax
+    defaults: { _controller: "MainBundle:Default:ajax" }
+
+default:
+    pattern:  /
+    defaults: { _controller: MainBundle:Default:index }

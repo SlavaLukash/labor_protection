@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Equipment.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Equipment list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('equipment_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
+	{% block filter %}
+		{{ include('MainBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <th>{% trans %}Equipmentgroup{% endtrans %}</th>
+                <th>{% trans %}Equipmentsubgroup{% endtrans %}</th>
+                <th>{% trans %}Model{% endtrans %}</th>
+                <th>{% trans %}Registrationnumber{% endtrans %}</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('equipment_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.subdivision.enterprise }}</td>
+                <td>{{ entity.subdivision }}</td>
+                <td>{{ entity.equipmentsubgroup.equipmentgroup }}</td>
+                <td>{{ entity.equipmentsubgroup }}</td>
+                <td>{{ entity.model }}</td>
+                <td>{{ entity.registrationnumber }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('equipment_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('equipment_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<div class="navigation">
+		{{ knp_pagination_render(entities) }}
+	</div>
+    {% endblock %}

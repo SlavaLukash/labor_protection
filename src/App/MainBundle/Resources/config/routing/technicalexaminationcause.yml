@@ -1,0 +1,30 @@
+technicalexaminationcause:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:index" }
+
+technicalexaminationcause_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:show" }
+
+technicalexaminationcause_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:new" }
+
+technicalexaminationcause_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:create" }
+    requirements: { _method: post }
+
+technicalexaminationcause_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:edit" }
+
+technicalexaminationcause_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:update" }
+    requirements: { _method: post|put }
+
+technicalexaminationcause_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Technicalexaminationcause:delete" }
+    requirements: { _method: post|delete }

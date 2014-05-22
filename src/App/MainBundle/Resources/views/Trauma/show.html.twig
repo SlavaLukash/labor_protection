@@ -1,0 +1,81 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/main/js/trauma.js') }}"></script>
+{% endblock %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Employee.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Trauma{% endtrans %}</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}LFMname{% endtrans %}</th>
+                <td>{{ entity.employee }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Datetrauma{% endtrans %}</th>
+                <td>{{ entity.datetrauma|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Enterprise{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision.enterprise }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>{{ entity.employee.subdivision }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Traumakind{% endtrans %}</th>
+                <td>{{ entity.traumakind }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Traumacause{% endtrans %}</th>
+                <td>{{ entity.traumacause }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Datetrauma{% endtrans %}</th>
+                <td>{{ entity.datetrauma|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Traumareport{% endtrans %}</th>
+                <td>{{ entity.traumareport }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Hoursstart{% endtrans %}</th>
+                <td>{{ entity.hoursstart }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('trauma') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('trauma_edit', { 'id': entity.id }) }}">
+            {% trans %}Edit{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+    <li>
+        <ul class="button-list">
+            <li class="b-list-first-child"><a href="#">{% trans %}Print{% endtrans %} <p>&nbsp;</p></a></li>
+            <li><a href="/reports/index.php?stimulsoft_report_key=FormN1.mrt&VarId={{ entity.id }}" target="_blank">Акт (форма Н-1)</a></li>
+            <li><a href="/reports/index.php?stimulsoft_report_key=TraumaGroupNotice.mrt&VarId={{ entity.id }}" target="_blank">Извещение о групповом НС</a></li>
+            <li><a href="/reports/index.php?stimulsoft_report_key=TraumaNotice.mrt&VarId={{ entity.id }}" target="_blank">Сообщение о последствиях</a></li>
+        </ul>
+    </li>
+</ul>
+{% endblock %}

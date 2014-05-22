@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Employee.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select#mainbundle_employee_profession').select2();
+    });
+</script>
+
+<div class="b-form-area">
+    <div class="b-form-title"><p>{% trans %}Employee edit{% endtrans %}</p><hr/></div>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions_in_form">
+    <li>
+        <a href="{{ path('employee') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+    </div>
+{% endblock %}

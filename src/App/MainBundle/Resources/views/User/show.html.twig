@@ -1,0 +1,76 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}User{% endtrans %}</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Username{% endtrans %}</th>
+                <td>{{ entity.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Enabled{% endtrans %}</th>
+                <td>{{ entity.enabled }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Lastlogin{% endtrans %}</th>
+                <td>{{ entity.lastLogin|date('d.m.Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Locked{% endtrans %}</th>
+                <td>{{ entity.locked }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Expired{% endtrans %}</th>
+                <td>{{ entity.expired }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Expiresat{% endtrans %}</th>
+                <td>{{ entity.expiresAt|date('d.m.Y H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Roles{% endtrans %}</th>
+				<td>
+					{% for role in entity.roles %}
+						{{ role|trans }}<br />
+					{% endfor %}
+				</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Subdivision{% endtrans %}</th>
+                <td>
+                    {% for subdivision in entity.usersubdivisions %}
+                        {{ subdivision }} ({{ subdivision.enterprise }})<br />
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+            <li>
+                <a href="{{ path('user') }}">
+                    {% trans %}Back to the list{% endtrans %}
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('user_edit', { 'id': entity.id }) }}">
+                    {% trans %}Edit{% endtrans %}
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
+{% endblock %}

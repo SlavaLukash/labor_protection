@@ -1,0 +1,30 @@
+equipmentgroup:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Equipmentgroup:index" }
+
+equipmentgroup_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Equipmentgroup:show" }
+
+equipmentgroup_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Equipmentgroup:new" }
+
+equipmentgroup_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Equipmentgroup:create" }
+    requirements: { _method: post }
+
+equipmentgroup_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Equipmentgroup:edit" }
+
+equipmentgroup_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Equipmentgroup:update" }
+    requirements: { _method: post|put }
+
+equipmentgroup_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Equipmentgroup:delete" }
+    requirements: { _method: post|delete }

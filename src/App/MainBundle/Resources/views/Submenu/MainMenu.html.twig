@@ -1,0 +1,50 @@
+<ul id="b-top-menu" {% if not app.security.getToken().getUser().hasRole('ROLE_ADMIN') %} class="element4"{% endif %}>
+    {% if app.security.getToken().getUser().hasRole('ROLE_ADMIN') %}
+        <li {% if (get_controller_name() == 'profession'
+        or get_controller_name() == 'user'
+        or get_controller_name() == 'enterprise'
+        or get_controller_name() == 'subdivision'
+        or get_controller_name() == 'professionkind'
+        or get_controller_name() == 'medicalkind'
+        or get_controller_name() == 'medicaltype'
+        or get_controller_name() == 'traumakind'
+        or get_controller_name() == 'traumacause'
+        or get_controller_name() == 'equipmentgroup'
+        or get_controller_name() == 'equipmentsubgroup'
+        or get_controller_name() == 'categoryreport'
+        or get_controller_name() == 'technicalexaminationkind'
+        or get_controller_name() == 'technicalexaminationcause'
+        or get_controller_name() == 'technicalexaminationtype'
+        or (get_controller_name() == 'report' and get_action_name() != 'list')
+        or get_controller_name() == 'expensekind')
+        %}
+            class="active"
+                {% endif %}>
+            <a href="{{ path('user') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
+        </li>
+    {% endif %}
+    <li {% if (get_controller_name() == 'employee'
+    or get_controller_name() == 'medical'
+    or get_controller_name() == 'trauma')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('employee') }}"><p>СОТРУДНИКИ</p></a>
+    </li>
+    <li {% if (get_controller_name() == 'equipment'
+    or get_controller_name() == 'technicalexamination')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('equipment') }}"><p>{% trans %}equipment{% endtrans %}</p></a>
+    </li>
+    <li {% if (get_controller_name() == 'expense')
+    %}
+        class="active"
+            {% endif %}>
+        <a href="{{ path('expense') }}"><p>{% trans %}expense{% endtrans %}</p></a>
+    </li>
+    <li {% if (get_controller_name() == 'report' and get_action_name() == 'list')%}class="active"{% endif %}>
+        <a href="{{ path('MainBundle_reports') }}"><p>{% trans %}REPORTS{% endtrans %}</p></a>
+    </li>
+</ul>

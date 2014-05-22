@@ -1,0 +1,30 @@
+technicalexaminationtype:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:index" }
+
+technicalexaminationtype_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:show" }
+
+technicalexaminationtype_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:new" }
+
+technicalexaminationtype_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:create" }
+    requirements: { _method: post }
+
+technicalexaminationtype_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:edit" }
+
+technicalexaminationtype_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:update" }
+    requirements: { _method: post|put }
+
+technicalexaminationtype_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Technicalexaminationtype:delete" }
+    requirements: { _method: post|delete }

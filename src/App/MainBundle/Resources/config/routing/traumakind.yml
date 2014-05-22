@@ -1,0 +1,30 @@
+traumakind:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Traumakind:index" }
+
+traumakind_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Traumakind:show" }
+
+traumakind_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Traumakind:new" }
+
+traumakind_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Traumakind:create" }
+    requirements: { _method: post }
+
+traumakind_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Traumakind:edit" }
+
+traumakind_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Traumakind:update" }
+    requirements: { _method: post|put }
+
+traumakind_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Traumakind:delete" }
+    requirements: { _method: post|delete }

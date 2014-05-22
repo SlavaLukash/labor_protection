@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}User list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('user_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Username{% endtrans %}</th>
+                <th>{% trans %}Email{% endtrans %}</th>
+                <th>{% trans %}Enabled{% endtrans %}</th>
+                <th>{% trans %}Lastlogin{% endtrans %}</th>
+                <th>{% trans %}Locked{% endtrans %}</th>
+                <th>{% trans %}Roles{% endtrans %}</th>
+                <th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('user_edit', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.enabled }}</td>
+                <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('d.m.Y H:i:s') }}{% endif %}</td>
+                <td>{{ entity.locked }}</td>
+				<td>
+					{% for role in entity.roles %}
+                        {{ role|trans }}<br />
+					{% endfor %}
+				</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('user_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('user_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

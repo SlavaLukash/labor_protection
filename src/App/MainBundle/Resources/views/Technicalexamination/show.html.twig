@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Equipment.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <h1>{% trans %}Technicalexamination{% endtrans %}</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Resulttext{% endtrans %}</th>
+                <td>{{ entity.resulttext }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Plandate{% endtrans %}</th>
+                <td>{{ entity.plandate|date('d.m.Y') }}</td>
+            </tr>
+            <tr>
+                <th>{% trans %}Factdate{% endtrans %}</th>
+                <td>{{ entity.factdate|date('d.m.Y') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('technicalexamination') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('technicalexamination_edit', { 'id': entity.id }) }}">
+            {% trans %}Edit{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

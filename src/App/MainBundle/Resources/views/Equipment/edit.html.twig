@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Equipment.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+<div class="b-form-area">
+    <div class="b-form-title"><p>{% trans %}Equipment edit{% endtrans %}</p><hr/></div>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions_in_form">
+    <li>
+        <a href="{{ path('equipment') }}">
+            {% trans %}Back to the list{% endtrans %}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+    </div>
+{% endblock %}

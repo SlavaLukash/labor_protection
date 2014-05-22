@@ -1,0 +1,30 @@
+enterprise:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Enterprise:index" }
+
+enterprise_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Enterprise:show" }
+
+enterprise_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Enterprise:new" }
+
+enterprise_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Enterprise:create" }
+    requirements: { _method: post }
+
+enterprise_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Enterprise:edit" }
+
+enterprise_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Enterprise:update" }
+    requirements: { _method: post|put }
+
+enterprise_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Enterprise:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+trauma:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Trauma:index" }
+
+trauma_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Trauma:show" }
+
+trauma_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Trauma:new" }
+
+trauma_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Trauma:create" }
+    requirements: { _method: post }
+
+trauma_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Trauma:edit" }
+
+trauma_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Trauma:update" }
+    requirements: { _method: post|put }
+
+trauma_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Trauma:delete" }
+    requirements: { _method: post|delete }

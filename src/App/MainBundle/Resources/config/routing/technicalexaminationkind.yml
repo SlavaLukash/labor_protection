@@ -1,0 +1,30 @@
+technicalexaminationkind:
+    pattern:  /
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:index" }
+
+technicalexaminationkind_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:show" }
+
+technicalexaminationkind_new:
+    pattern:  /new
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:new" }
+
+technicalexaminationkind_create:
+    pattern:  /create
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:create" }
+    requirements: { _method: post }
+
+technicalexaminationkind_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:edit" }
+
+technicalexaminationkind_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:update" }
+    requirements: { _method: post|put }
+
+technicalexaminationkind_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "MainBundle:Technicalexaminationkind:delete" }
+    requirements: { _method: post|delete }

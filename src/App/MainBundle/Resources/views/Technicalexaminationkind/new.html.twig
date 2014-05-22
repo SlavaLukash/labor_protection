@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+    <div class="b-form-area">
+        <div class="b-form-title"><p>{% trans %}Technicalexaminationkind creation{% endtrans %}</p><hr/></div>
+        {{ form(form) }}
+
+        <ul class="record_actions_in_form">
+            <li>
+                <a href="{{ path('technicalexaminationkind') }}">
+                    {% trans %}Back to the list{% endtrans %}
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

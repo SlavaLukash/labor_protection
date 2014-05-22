@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block body -%}
+	<h1>{% trans %}Equipmentsubgroup list{% endtrans %}</h1>
+	<a id="ot_list_create" href="{{ path('equipmentsubgroup_new') }}">
+		{% trans %}Create a new entry{% endtrans %}
+	</a>
+	{% block filter %}
+		{{ include('MainBundle:Default:ot_filter_form_template.html.twig') }}
+	{% endblock %}
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Equipmentgroup{% endtrans %}</th>
+				<th>{% trans %}Actions{% endtrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td><a href="{{ path('equipmentsubgroup_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.equipmentgroup }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('equipmentsubgroup_show', { 'id': entity.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('equipmentsubgroup_edit', { 'id': entity.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<div class="navigation">
+		{{ knp_pagination_render(entities) }}
+	</div>
+
+    {% endblock %}
