@@ -10,7 +10,7 @@ services:
     class:        Symfony\Component\HttpFoundation\Request
 
   app.main.twig.extension:
-    class: App\MainBundle\Twig\Extension\MainExtension
+    class: App\MainBundle\Twig\Extension\AppExtension
     arguments:  [@request]
     tags:
       - { name: 'twig.extension' }
