@@ -51,11 +51,11 @@ class UserController extends BaseController
         }
 
         $builder = $this->createFormBuilder($entity)
-            ->add('username', null, [
-            ])
+            ->add('username', null, [])
             ->add('email', null, [])
             ->add('plainPassword', null, [
                 'required' => false,
+                'label' => 'Password'
             ])
             ->add('roles', 'choice', [
                 'choices' => Roles::getChoices(),
