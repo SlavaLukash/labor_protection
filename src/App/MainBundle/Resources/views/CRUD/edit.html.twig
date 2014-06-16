@@ -1,0 +1,14 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% form_theme form 'MainBundle:Form:theme.html.twig' _self %}
+
+{% block content %}
+    <div class="b-form-area">
+        <div class="b-form-title"><p>{% block panel_title %}{% endblock %}</p><hr/></div>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {% block actions %}{% endblock %}
+            <div class="clear"></div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

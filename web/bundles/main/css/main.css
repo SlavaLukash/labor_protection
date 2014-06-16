@@ -2,6 +2,10 @@ body {
 	background: url('../images/body-bg.png');
 }
 
+label {
+    font-weight: normal !important;
+}
+
 #b-wrapper {
 	width: 1000px;
 	margin: -40px auto 0 auto;
@@ -247,13 +251,13 @@ div.b-login-form {}
 	cursor: pointer;
 }
 
-#ot_list_create {
+a#add-record {
 	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	color: #ffffff;
 	padding: 5px 16px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
-	width: 160px; height: 16px;
+	height: 28px;
 	text-decoration: none;
 	float: right;
 	margin: 5px;
@@ -303,7 +307,18 @@ div.b-login-form div.el-submit {
 	position: absolute;
 	right: 10px; top: 10px;
 }
-div.el-submit em{
+
+div.b-controls {
+    margin-bottom: 5px;
+}
+
+div.el-submit {
+    height: 28px;
+    float: left;
+    margin: 10px;
+}
+
+div.el-submit em {
 	width: 4px; height: 30px;
 	background: url('../images/submit-btn-l.png') no-repeat top;
 	float: left;
@@ -313,9 +328,14 @@ div.el-submit input, div.el-submit button {
 	background: url('../images/submit-btn-bg-blue.png') repeat-x;
 	font-size: 14px; color: #ffffff;
 	float: left; cursor: pointer;
-	margin: 0; padding: 0 16px;
+	margin: 0 10px 0 0; padding: 0 16px;
 	min-width: 97px;
 	border-radius: 3px;
+    color: white;
+}
+div.el-submit button a{
+    color: white;
+    text-decoration: none;
 }
 div.el-submit b{
 	width: 4px; height: 30px;
@@ -438,17 +458,17 @@ div.b-form-area form input[type="text"],
 div.b-form-area form input[type="number"],
 div.b-form-area form input[type="password"],
 div.b-form-area form input[type="email"] {
-	width: 420px; height: 24px;
+	width: 420px; height: 28px;
 	border-radius: 4px;
-	border: 1px solid #cccccc;
+	border: 1px solid #cccccc !important;
 	padding-left: 8px;
 }
 
 div.b-form-area form select {
 	max-width: 420px;
-	height: 24px;
+	height: 28px;
 	border-radius: 4px;
-	border: 1px solid #cccccc;
+	border: 1px solid #cccccc !important;
 }
 
 div.b-form-area form select[multiple="multiple"] {
@@ -682,4 +702,8 @@ ul.b-error li {
 
 .select2-container {
     width: 270px;
+}
+
+.form-group {
+    margin-bottom: 5px !important;
 }

@@ -14,7 +14,7 @@ framework:
     csrf_protection: ~
     validation:      { enable_annotations: true }
     templating:
-        engines: ['twig', 'php']
+        engines: ['twig']
         #assets_version: SomeVersionScheme
 #    default_locale:  "%locale%"
     default_locale:  ru
@@ -61,6 +61,8 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
+        types:
+            roles: App\MainBundle\DBAL\Types\Roles
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%

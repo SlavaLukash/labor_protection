@@ -20,7 +20,7 @@
         %}
             class="active"
                 {% endif %}>
-            <a href="{{ path('user') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
+            <a href="{{ path('user_index') }}"><p>АДМИНИСТРИРОВАНИЕ</p></a>
         </li>
     {% endif %}
     <li {% if (get_controller_name() == 'employee'
@@ -45,6 +45,6 @@
         <a href="{{ path('expense') }}"><p>{% trans %}expense{% endtrans %}</p></a>
     </li>
     <li {% if (get_controller_name() == 'report' and get_action_name() == 'list')%}class="active"{% endif %}>
-        <a href="{{ path('MainBundle_reports') }}"><p>{% trans %}REPORTS{% endtrans %}</p></a>
+        <a href="{{ path('_reports') }}"><p>{% trans %}REPORTS{% endtrans %}</p></a>
     </li>
 </ul>

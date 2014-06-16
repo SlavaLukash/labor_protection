@@ -1,0 +1,13 @@
+<div class="b-controls">
+    <div class="el-submit i-save">
+        <button type="submit">{{ is_new ? 'Create'|trans : 'Update'|trans }}</button>
+        <button type="button">
+            <a href="{{ route_list }}">{{ 'Back to the list'|trans }}</a>
+        </button>
+        {% if not is_new %}
+            <button type="button" class="remove-btn">
+                <a href="{{ route_remove }}">{{ 'Delete'|trans }}</a>
+            </button>
+        {% endif %}
+    </div>
+</div>

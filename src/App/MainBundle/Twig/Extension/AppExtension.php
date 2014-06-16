@@ -2,6 +2,7 @@
 
 namespace App\MainBundle\Twig\Extension;
 
+use App\MainBundle\DBAL\Types\Roles;
 use Symfony\Component\HttpFoundation\Request;
 use App\MainBundle\Twig\Extension\ContainerInterface;
 
@@ -39,6 +40,7 @@ class AppExtension extends \Twig_Extension
 		return array(
 			'get_controller_name' => new \Twig_Function_Method($this, 'getControllerName'),
 			'get_action_name' => new \Twig_Function_Method($this, 'getActionName'),
+            'roles' => new \Twig_SimpleFunction('roles', [$this, 'rolesFunction']),
 		);
 	}
 
@@ -70,7 +72,19 @@ class AppExtension extends \Twig_Extension
 		}
 	}
 
+    public function rolesFunction($roles)
+    {
+        $result = [];
+        foreach ((array)$roles as $role) {
+            if (Roles::isValueExist($role)) {
+                $result[] = Roles::getReadableValue($role);
+            }
+        }
+
+        return implode(', ', $result);
+    }
+
 	public function getName() {
-		return 'lab_prot';
+		return 'app_extension';
 	}
 }

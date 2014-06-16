@@ -1,294 +1,165 @@
 <?php
-
 namespace App\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use App\MainBundle\DBAL\Types\Roles;
 use App\MainBundle\Entity\User;
-use App\MainBundle\Form\UserType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * User controller.
  *
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
-    /**
-     * Lists all User entities.
-     *
-     */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('MainBundle:User')->findAll();
-
-        return $this->render('MainBundle:User:index.html.twig', array(
-            'entities' => $entities,
-        ));
+        return $this->redirect($this->generateUrl('user_list'));
     }
-    /**
-     * Creates a new User entity.
-     *
-     */
-    public function createAction(Request $request)
+
+    public function listAction()
     {
-        $entity = new User();
+        $builder = $this->createFormBuilder(null, [
+            'csrf_protection' => false,
+            'method' => 'get'
+        ]);
 
-		$em = $this->getDoctrine()->getManager();
-		$sdArray = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN')) {
-			$sdArray = $oUser->getUsersubdivisions()->getValues();
-		}
+        $this->buildFilterForm($builder);
+        $form = $builder->getForm();
+        $request = $this->get('request');
+        $form->submit($request);
 
-        $form = $this->createCreateForm($entity, $sdArray);
-        $form->handleRequest($request);
+        $query = $this->createFilterQuery($form);
+        $pagination = $this->paginate($query);
 
-        if ($form->isValid()) {
+        return $this->render('MainBundle:User:list.html.twig', [
+            'pagination' => $pagination,
+            'filterForm' => $form->createView()
+        ]);
+    }
+
+    public function editAction($id = null)
+    {
+        $isNew = null === $id;
+
+        if ($isNew) {
+            $entity = new User();
+        } else {
+            $entity = $this->findUser($id);
+        }
+
+        $builder = $this->createFormBuilder($entity)
+            ->add('username', null, [
+            ])
+            ->add('email', null, [])
+            ->add('plainPassword', null, [
+                'required' => false,
+            ])
+            ->add('roles', 'choice', [
+                'choices' => Roles::getChoices(),
+                'multiple' => true,
+            ])
+            ->add('enabled', 'checkbox', [
+                'required' => false,
+            ])
+            ->add('usersubdivisions', null, [
+                'required' => false,
+            ])
+        ;
+
+        $editForm = $builder->getForm();
+        $editForm->handleRequest($this->getRequest());
+
+        if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('MainBundle:User:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to create a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(User $entity, $sdArray)
-    {
-		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
-		$roles = array_keys($roleHierarchy);
-
-//        $form = $this->createForm(new UserType('App\MainBundle\Entity\User', 'asdf'), $entity, array(
-        $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
-			'sdArray' => $sdArray,
-            'action' => $this->generateUrl('user_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new User entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new User();
-
-		$em = $this->getDoctrine()->getManager();
-		$sddArray = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$entArray = $em->getRepository('MainBundle:Enterprise')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$sdArray = array();
-			foreach($oUser->getUsersubdivisions()->getValues() as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		} else {
-			$sdArray = array();
-			foreach($sddArray as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		}
-
-        $form   = $this->createCreateForm($entity, $sdArray);
-
-        return $this->render('MainBundle:User:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a User entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:User')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:User:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
-
-    /**
-     * Displays a form to edit an existing User entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:User')->find($id);
-
-		$sddArray = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$sdArray = array();
-			foreach($oUser->getUsersubdivisions()->getValues() as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		} else {
-			$sdArray = array();
-			foreach($sddArray as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		}
-
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $editForm = $this->createEditForm($entity, $sdArray);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to edit a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(User $entity, $sdArray)
-    {
-		$roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
-		$roles = array_keys($roleHierarchy);
-
-        $form = $this->createForm(new UserType($entity, $roles, $entity->getRoles()), $entity, array(
-			'sdArray'		=> $sdArray,
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
-     * Edits an existing User entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:User')->find($id);
-
-		$sddArray = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$sdArray = array();
-			foreach($oUser->getUsersubdivisions()->getValues() as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		} else {
-			$sdArray = array();
-			foreach($sddArray as $val)
-			{
-				$sdArray[$val->getEnterprise()->getName()][$val->getId()] = $val;
-			}
-		}
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity, $sdArray);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
-        }
-
-        return $this->render('MainBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    /**
-     * Deletes a User entity.
-     *
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MainBundle:User')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find User entity.');
+            if ($isNew) {
+                $this->addFlashMessage('success', 'Пользователь создан');
+            } else {
+                $this->addFlashMessage('success', 'Пользователь сохранен');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            return $this->redirect($this->generateUrl('user_edit', [
+                'id' => $entity->getId()
+            ]));
         }
 
-        return $this->redirect($this->generateUrl('user'));
+        return $this->render('MainBundle:User:edit.html.twig', [
+            'isNew' => $isNew,
+            'entity' => $entity,
+            'form'   => $editForm->createView(),
+            'isNew' => $isNew
+        ]);
+    }
+
+    protected function buildFilterForm(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('email', 'text', [
+                'label' => 'Email',
+                'required' => false
+            ])
+            ->add('submit', 'submit', [
+                'label' => 'Показать'
+            ])
+        ;
+    }
+
+    protected function createFilterQuery(Form $form)
+    {
+        $qb = $this->getUserRepository()->createQueryBuilder('u');
+
+        if ($form->get('email')->getNormData()) {
+            $qb->andWhere('u.email LIKE :email');
+            $qb->setParameter('email', '%' . $form->get('email')->getNormData() . '%');
+        }
+
+        if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
+            $qb->orderBy('u.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        }
+
+        return $qb->getQuery();
     }
 
     /**
-     * Creates a form to delete a User entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param $id
+     * @return null|User
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function createDeleteForm($id)
+    protected function findUser($id)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('user_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $entity = $this->getUserRepository()->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Пользователь не найден');
+        }
+
+        return $entity;
+    }
+
+    public function showAction()
+    {
+        return new Response();
+    }
+
+    public function removeAction($id)
+    {
+        $user = $this->findUser($id);
+
+        if(!$user) {
+            new NotFoundHttpException();
+        }
+
+        $em = $this->getEntityManager();
+        $em->remove($user);
+        $em->flush();
+
+        $this->addFlashMessage('success', 'Пользователь удален');
+
+        return $this->redirect($this->generateUrl('user_list'));
     }
 }

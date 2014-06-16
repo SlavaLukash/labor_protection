@@ -1,0 +1,49 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block submit_widget %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <button type="submit" {{ block('button_attributes') }}><i class="fa fa-search"></i> {{ label|trans({}, translation_domain) }}</button>
+    {% endspaceless %}
+{% endblock %}
+
+{% block content %}
+
+    {% if filterForm is defined %}
+    {#{% form_theme filterForm 'AdminBundle:Form:theme.html.twig' %}#}
+    {% form_theme filterForm.submit _self %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">Фильтры</div>
+
+            <div class="panel-options">
+                <a href="#" data-rel="collapse"><i class="entypo-down-open"></i></a>
+                <a href="#" data-rel="close" class="bg"><i class="entypo-cancel"></i></a>
+            </div>
+        </div>
+        <div class="panel-body">
+            {{ form(filterForm) }}
+        </div>
+    </div>
+    {% endif %}
+
+    <h1>{% block content_title %}{% endblock %}</h1>
+    {% block content_options %}{% endblock %}
+
+    <table class="records_list">
+        <thead>
+        {% block thead %}
+        {% endblock %}
+        </thead>
+        <tbody>
+        {% block tbody %}
+        {% endblock %}
+        </tbody>
+    </table>
+    {% if pagination is defined %}
+        {{ knp_pagination_render(pagination) }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Управление труда и социальной защиты населения Ненецкого автономного округа{% endblock %}</title>
+    {% block stylesheets %}
+        {#<link rel="stylesheet" href="{{ asset('bundles/main/css/bootstrap.css') }}" type="text/css" media="all" />#}
+        <link rel="stylesheet" href="{{ asset('bundles/main/css/reset.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/main/css/main.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/main/css/jquery-ui.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('bundles/main/css/jquery.ui.core.css') }}" type="text/css" media="all" />
+        {#<link rel="stylesheet" href="{{ asset('bundles/main/css/select2.css') }}" type="text/css" media="all" />#}
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('bundles/main/js/jquery-1.10.2.min.js') }}"></script>
+        <script src="{{ asset('bundles/main/js/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('bundles/main/js/jquery.ui.core.min.js') }}"></script>
+        <script src="{{ asset('bundles/main/js/i18n/jquery.ui.datepicker-ru.js') }}"></script>
+        <script src="{{ asset('bundles/main/js/common.js') }}"></script>
+        {#<script src="{{ asset('bundles/main/js/select2.min.js') }}"></script>#}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<div class="b-line-top"></div>
+<div id="b-wrapper">
+    <div id="b-header">
+        <div class="b-line-wrap">
+            <div class="l-line-wrap-l"><div class="bd-line"></div></div>
+            <div class="b-logo"><a href="http://utszn-nao.ru/"><img src="/bundles/main/images/logo.png" /></a></div>
+            <div class="l-line-wrap-r"><div class="bd-line"></div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <p>Вы вошли как {{ app.security.getToken().getUser().getUsername() }}. <a href="{{ path("fos_user_security_logout") }}">Выход</a></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="clear"></div>
+        <h1 class="l-title">Управление труда и социальной защиты населения Ненецкого автономного округа</h1>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ include('MainBundle:Submenu:MainMenu.html.twig') }}
+        {% endif %}
+    </div>
+    <div class="clear"></div>
+    <div id="b-content-werapper">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div class="b-left-menu">
+                {% block submenu %}{% endblock %}
+            </div>
+        {% endif %}
+
+        <div {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}{{ 'id="b-content"' }}{% endif %}>
+            {#{% for type, messages in app.session.flashbag.all() %}
+                {% for key, message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message|trans({}, 'FOSUserBundle') }}
+                    </div>
+                {% endfor %}
+            {% endfor %}#}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+<div class="clear"></div>
+<div id="b-footer">
+    <div class="b-footer-left">
+        <a href="#">Информация о программе</a>
+    </div>
+    <div class="b-footer-right">
+        <p>&copy;Copyright, 2013</p>
+    </div>
+</div>
+</div>
+</body>
+</html>
