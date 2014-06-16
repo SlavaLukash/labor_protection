@@ -40,17 +40,15 @@ class Subdivision
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
-
 	/**
 	 * @ORM\ManyToOne(targetEntity="Enterprise", inversedBy="subdivision")
-	 * @ORM\JoinColumn(name="enterprise", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="enterprise", referencedColumnName="id", nullable=false)
 	 */
 	protected $enterprise;
-
 
     /**
      * Get id

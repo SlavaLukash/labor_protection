@@ -1,0 +1,48 @@
+{% extends 'MainBundle:CRUD:list.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_title %}Список пользователей{% endblock %}
+
+{% block content_options %}
+    <a href="{{ path('subdivision_new') }}" title="Добавить" id="add-record">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 's.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Name'|trans, 's.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Address'|trans, 's.enterprise') }}</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for item in pagination %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{{ path('subdivision_edit', { 'id': item.id }) }}">{{ item.name }}</a></td>
+            <td>{{ item.enterprise }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('subdivision_edit', { 'id': item.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('subdivision_edit', { 'id': item.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

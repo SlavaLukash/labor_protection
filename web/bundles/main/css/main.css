@@ -472,7 +472,11 @@ div.b-form-area form select {
 	border: 1px solid #cccccc !important;
 }
 
-div.b-form-area form select[multiple="multiple"] {
+div.b-form-area form select {
+    height: 28px;
+}
+
+div.b-form-area form select[multiple="multiple"], div.b-form-area form select {
 	/*min-height: 300px;*/
 	width: 420px;
 

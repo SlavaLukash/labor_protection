@@ -105,7 +105,7 @@ class EnterpriseController extends BaseController
         }
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
-            $qb->orderBy('u.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+            $qb->orderBy('e.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
         }
 
         return $qb->getQuery();

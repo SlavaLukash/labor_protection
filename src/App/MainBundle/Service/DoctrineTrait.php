@@ -51,4 +51,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Enterprise');
     }
+
+    /**
+     * @return SubdivisionRepository
+     */
+    public function getSubdivisionRepository()
+    {
+        return $this->getRepository('Subdivision');
+    }
 }
