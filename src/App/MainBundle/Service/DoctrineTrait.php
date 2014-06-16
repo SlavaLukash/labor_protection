@@ -43,4 +43,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('User');
     }
+
+    /**
+     * @return EnterpriseRepository
+     */
+    public function getEnterpriseRepository()
+    {
+        return $this->getRepository('Enterprise');
+    }
 }

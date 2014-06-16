@@ -4,7 +4,7 @@
             <a href="{{ path('user_list') }}"><p>Пользователи</p></a>
         </li>
         <li {% if get_controller_name() == 'enterprise' %}class="active"{% endif %}>
-            <a href="{{ path('enterprise') }}"><p>Предприятия</p></a>
+            <a href="{{ path('enterprise_list') }}"><p>Предприятия</p></a>
         </li>
         <li {% if get_controller_name() == 'subdivision' %}class="active"{% endif %}>
             <a href="{{ path('subdivision') }}"><p>Структ. подразделения</p></a>
