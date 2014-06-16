@@ -10,10 +10,10 @@
             <a href="{{ path('subdivision_list') }}"><p>Структ. подразделения</p></a>
         </li>
         <li {% if get_controller_name() == 'profession' %}class="active"{% endif %}>
-            <a href="{{ path('profession') }}"><p>Профессии</p></a>
+            <a href="{{ path('profession_list') }}"><p>Профессии</p></a>
         </li>
         <li {% if get_controller_name() == 'professionkind' %}class="active"{% endif %}>
-            <a href="{{ path('professionkind') }}"><p>Виды профессий</p></a>
+            <a href="{{ path('professionkind_list') }}"><p>Виды профессий</p></a>
         </li>
         <li {% if get_controller_name() == 'medicalkind' %}class="active"{% endif %}>
             <a href="{{ path('medicalkind') }}"><p>Виды медосмотров</p></a>

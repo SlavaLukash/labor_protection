@@ -1,30 +1,29 @@
-profession:
-    pattern:  /
-    defaults: { _controller: "MainBundle:Profession:index" }
+profession_index:
+    path: /
+    defaults:
+        _controller: MainBundle:Profession:index
 
 profession_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "MainBundle:Profession:show" }
+    path: /{id}/show
+    defaults:
+        _controller: MainBundle:Profession:show
+
+profession_list:
+    path: /list
+    defaults:
+        _controller: MainBundle:Profession:list
 
 profession_new:
-    pattern:  /new
-    defaults: { _controller: "MainBundle:Profession:new" }
-
-profession_create:
-    pattern:  /create
-    defaults: { _controller: "MainBundle:Profession:create" }
-    requirements: { _method: post }
+    path: /new
+    defaults:
+        _controller: MainBundle:Profession:edit
 
 profession_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "MainBundle:Profession:edit" }
+    path: /{id}/edit
+    defaults:
+        _controller: MainBundle:Profession:edit
 
-profession_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "MainBundle:Profession:update" }
-    requirements: { _method: post|put }
-
-profession_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "MainBundle:Profession:delete" }
-    requirements: { _method: post|delete }
+profession_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: MainBundle:Profession:remove

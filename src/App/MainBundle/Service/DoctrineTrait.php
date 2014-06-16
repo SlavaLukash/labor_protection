@@ -59,4 +59,20 @@ trait DoctrineTrait
     {
         return $this->getRepository('Subdivision');
     }
+
+    /**
+     * @return ProfessionRepository
+     */
+    public function getProfessionRepository()
+    {
+        return $this->getRepository('Profession');
+    }
+
+    /**
+     * @return ProfessionkindRepository
+     */
+    public function getProfessionkindRepository()
+    {
+        return $this->getRepository('Professionkind');
+    }
 }

@@ -26,7 +26,7 @@ class Profession
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Professionkind", inversedBy="profession")
-	 * @ORM\JoinColumn(name="professionkind", referencedColumnName="id")
+	 * @ORM\JoinColumn(name="professionkind", referencedColumnName="id", nullable=false)
 	 */
 	protected $professionkind;
 
