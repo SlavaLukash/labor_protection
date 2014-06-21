@@ -107,4 +107,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Traumacause');
     }
+
+    /**
+     * @return EquipmentgroupRepository
+     */
+    public function getEquipmentgroupRepository()
+    {
+        return $this->getRepository('Equipmentgroup');
+    }
 }
