@@ -99,4 +99,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Traumakind');
     }
+
+    /**
+     * @return TraumacauseRepository
+     */
+    public function getTraumacauseRepository()
+    {
+        return $this->getRepository('Traumacause');
+    }
 }
