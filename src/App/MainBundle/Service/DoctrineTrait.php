@@ -83,4 +83,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Medicalkind');
     }
+
+    /**
+     * @return MedicaltypeRepository
+     */
+    public function getMedicaltypeRepository()
+    {
+        return $this->getRepository('Medicaltype');
+    }
 }

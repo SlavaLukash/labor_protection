@@ -60,6 +60,7 @@ class UserController extends BaseController
             ->add('roles', 'choice', [
                 'choices' => Roles::getChoices(),
                 'multiple' => true,
+                'expanded' => true
             ])
             ->add('enabled', 'checkbox', [
                 'required' => false,

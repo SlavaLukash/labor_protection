@@ -1,30 +1,29 @@
-medicaltype:
-    pattern:  /
-    defaults: { _controller: "MainBundle:Medicaltype:index" }
+medicaltype_index:
+    path: /
+    defaults:
+        _controller: MainBundle:Medicaltype:index
 
 medicaltype_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "MainBundle:Medicaltype:show" }
+    path: /{id}/show
+    defaults:
+        _controller: MainBundle:Medicaltype:show
+
+medicaltype_list:
+    path: /list
+    defaults:
+        _controller: MainBundle:Medicaltype:list
 
 medicaltype_new:
-    pattern:  /new
-    defaults: { _controller: "MainBundle:Medicaltype:new" }
-
-medicaltype_create:
-    pattern:  /create
-    defaults: { _controller: "MainBundle:Medicaltype:create" }
-    requirements: { _method: post }
+    path: /new
+    defaults:
+        _controller: MainBundle:Medicaltype:edit
 
 medicaltype_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "MainBundle:Medicaltype:edit" }
+    path: /{id}/edit
+    defaults:
+        _controller: MainBundle:Medicaltype:edit
 
-medicaltype_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "MainBundle:Medicaltype:update" }
-    requirements: { _method: post|put }
-
-medicaltype_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "MainBundle:Medicaltype:delete" }
-    requirements: { _method: post|delete }
+medicaltype_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: MainBundle:Medicaltype:remove

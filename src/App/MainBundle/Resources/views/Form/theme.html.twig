@@ -70,11 +70,11 @@
     {% endspaceless %}
 {% endblock choice_widget_expanded %}
 
-{% block checkbox_widget %}
-    <div class="make-switch switch-small">
-        {{ parent() }}
-    </div>
-{% endblock %}
+{#{% block checkbox_widget %}#}
+    {#<div class="make-switch switch-small">#}
+        {#{{ parent() }}#}
+    {#</div>#}
+{#{% endblock %}#}
 
 {% block choice_widget %}
     {% set attr = attr|merge({'class': (attr.class|default('') ~ ' select2')|trim}) %}

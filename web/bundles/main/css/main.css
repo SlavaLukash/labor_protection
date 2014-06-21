@@ -121,7 +121,7 @@ ul#b-top-menu li a {
 div.b-left-menu {
 	width: 210px;
 	display: table-cell;
-	padding-right: 15px;
+	padding-right: 5px;
 }
 div.b-left-menu ul {
 	list-style-type: none;
@@ -173,7 +173,7 @@ div#b-content {
 	width: 100%;
 	background-color: #ffffff;
 	border-radius: 4px;
-	padding: 15px 15px 50px 15px;
+    padding: 15px 10px;
 }
 
 div#b-footer {
@@ -421,7 +421,7 @@ table.records_list tbody tr:hover {
 div.b-form-area {
 	background-color: #f1f1f1;
 	border-radius: 0 4px 4px 4px;
-	width: 725px;
+	/*width: 725px;*/
 	margin: 0 auto;
 	position: relative;
 	margin-top: 33px;
@@ -476,8 +476,11 @@ div.b-form-area form select {
     height: 28px;
 }
 
+div.b-form-area form select[multiple="multiple"] {
+    min-height: 150px;
+}
+
 div.b-form-area form select[multiple="multiple"], div.b-form-area form select {
-	/*min-height: 300px;*/
 	width: 420px;
 
 }
@@ -710,5 +713,7 @@ ul.b-error li {
 }
 
 .form-group {
+    padding-bottom: 5px !important;
     margin-bottom: 5px !important;
+    border-bottom: 1px solid #ffffff;
 }

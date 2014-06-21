@@ -2,7 +2,6 @@
 
 namespace App\MainBundle\Controller;
 
-
 use App\MainBundle\Entity\Medicalkind;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
