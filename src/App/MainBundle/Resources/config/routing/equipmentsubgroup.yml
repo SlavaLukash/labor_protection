@@ -1,30 +1,29 @@
-equipmentsubgroup:
-    pattern:  /
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:index" }
+equipmentsubgroup_index:
+    path: /
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:index
 
 equipmentsubgroup_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:show" }
+    path: /{id}/show
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:show
+
+equipmentsubgroup_list:
+    path: /list
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:list
 
 equipmentsubgroup_new:
-    pattern:  /new
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:new" }
-
-equipmentsubgroup_create:
-    pattern:  /create
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:create" }
-    requirements: { _method: post }
+    path: /new
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:edit
 
 equipmentsubgroup_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:edit" }
+    path: /{id}/edit
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:edit
 
-equipmentsubgroup_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:update" }
-    requirements: { _method: post|put }
-
-equipmentsubgroup_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "MainBundle:Equipmentsubgroup:delete" }
-    requirements: { _method: post|delete }
+equipmentsubgroup_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: MainBundle:Equipmentsubgroup:remove

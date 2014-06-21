@@ -94,7 +94,7 @@ class EquipmentgroupController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getEquipmentgroupRepository()->createQueryBuilder('tc');
+        $qb = $this->getEquipmentgroupRepository()->createQueryBuilder('eg');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('eg.name LIKE :name');

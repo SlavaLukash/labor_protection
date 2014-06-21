@@ -115,4 +115,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Equipmentgroup');
     }
+
+    /**
+     * @return EquipmentsubgroupRepository
+     */
+    public function getEquipmentsubgroupRepository()
+    {
+        return $this->getRepository('Equipmentsubgroup');
+    }
 }
