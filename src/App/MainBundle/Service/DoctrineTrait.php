@@ -91,4 +91,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Medicaltype');
     }
+
+    /**
+     * @return TraumakindRepository
+     */
+    public function getTraumakindRepository()
+    {
+        return $this->getRepository('Traumakind');
+    }
 }

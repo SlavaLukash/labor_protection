@@ -22,7 +22,7 @@
             <a href="{{ path('medicaltype_list') }}"><p>Характер медосмотра</p></a>
         </li>
         <li {% if get_controller_name() == 'traumakind' %}class="active"{% endif %}>
-            <a href="{{ path('traumakind') }}"><p>Виды происшествий</p></a>
+            <a href="{{ path('traumakind_list') }}"><p>Виды происшествий</p></a>
         </li>
         <li {% if get_controller_name() == 'traumacause' %}class="active"{% endif %}>
             <a href="{{ path('traumacause') }}"><p>Причины несчастных случаев</p></a>
