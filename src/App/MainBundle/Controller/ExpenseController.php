@@ -2,234 +2,171 @@
 
 namespace App\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\MainBundle\Entity\Expense;
-use App\MainBundle\Form\ExpenseType;
-use App\MainBundle\Filter\ExpenseFilterType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 /**
  * Expense controller.
  *
  */
-class ExpenseController extends Controller
+class ExpenseController extends BaseController
 {
-
-    /**
-     * Lists all Expense entities.
-     *
-     */
     public function indexAction()
     {
-		$form = $this->get('form.factory')->create(new ExpenseFilterType());
-		$form->bind($this->get('request'));
-		$filterBuilder = $this->get('doctrine.orm.entity_manager')
-			->getRepository('MainBundle:Expense')
-			->createQueryBuilder('e');
-		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-		$em = $this->getDoctrine()->getManager();
-		$query = $em->createQuery($filterBuilder->getDql());
-		$paginator  = $this->get('knp_paginator');
-		$entities = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1)/*page number*/,
-			10/*limit per page*/
-		);
-
-		return $this->render('MainBundle:Expense:index.html.twig', array(
-			'entities' => $entities,
-			'form' => $form->createView(),
-		));
+        return $this->redirect($this->generateUrl('expense_list'));
     }
-    /**
-     * Creates a new Expense entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Expense();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+    public function listAction()
+    {
+        $builder = $this->createFormBuilder(null, [
+            'csrf_protection' => false,
+            'method' => 'get'
+        ]);
+
+        $this->buildFilterForm($builder);
+        $form = $builder->getForm();
+        $request = $this->get('request');
+        $form->submit($request);
+
+        $query = $this->createFilterQuery($form);
+        $pagination = $this->paginate($query, 10);
+
+        return $this->render('MainBundle:Expense:list.html.twig', [
+            'pagination' => $pagination,
+            'filterForm' => $form->createView()
+        ]);
+    }
+
+    public function editAction($id = null)
+    {
+        $isNew = null === $id;
+
+        if ($isNew) {
+            $entity = new Expense();
+        } else {
+            $entity = $this->findExpense($id);
+        }
+
+        $ch = range(1970, date('Y'));
+        $newCh = array();
+        foreach($ch as $c) {
+            $newCh[$c] = $c;
+        }
+
+        $builder = $this->createFormBuilder($entity)
+            ->add('enterprise')
+            ->add('year', 'choice', array(
+                'choices' => $newCh
+            ))
+            ->add('expensekind')
+            ->add('sum1')
+            ->add('sum2')
+            ->add('sum3')
+            ->add('sum4')
+            ->add('sum5')
+            ->add('sum6')
+            ->add('sum7')
+            ->add('sum8')
+            ->add('sum9')
+            ->add('sum10')
+            ->add('sum11')
+            ->add('sum12')
+        ;
+
+        $editForm = $builder->getForm();
+        $editForm->handleRequest($this->getRequest());
+
+        if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('expense_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('MainBundle:Expense:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to create a Expense entity.
-    *
-    * @param Expense $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Expense $entity)
-    {
-        $form = $this->createForm(new ExpenseType(), $entity, array(
-            'action' => $this->generateUrl('expense_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Expense entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Expense();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('MainBundle:Expense:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Expense entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Expense')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Expense entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:Expense:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
-
-    /**
-     * Displays a form to edit an existing Expense entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Expense')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Expense entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:Expense:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to edit a Expense entity.
-    *
-    * @param Expense $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Expense $entity)
-    {
-        $form = $this->createForm(new ExpenseType(), $entity, array(
-            'action' => $this->generateUrl('expense_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
-     * Edits an existing Expense entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Expense')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Expense entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('expense_edit', array('id' => $id)));
-        }
-
-        return $this->render('MainBundle:Expense:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    /**
-     * Deletes a Expense entity.
-     *
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MainBundle:Expense')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Expense entity.');
+            if ($isNew) {
+                $this->addFlashMessage('success', 'Категория затраты создана');
+            } else {
+                $this->addFlashMessage('success', 'Категория затраты сохранена');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            return $this->redirect($this->generateUrl('expense_edit', [
+                'id' => $entity->getId()
+            ]));
         }
 
-        return $this->redirect($this->generateUrl('expense'));
+        return $this->render('MainBundle:Expense:edit.html.twig', [
+            'isNew' => $isNew,
+            'entity' => $entity,
+            'form'   => $editForm->createView(),
+            'isNew' => $isNew
+        ]);
+    }
+
+    protected function buildFilterForm(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('name', 'text', [
+                'required' => false
+            ])
+            ->add('submit', 'submit', [
+                'label' => 'Показать'
+            ])
+        ;
+    }
+
+    protected function createFilterQuery(Form $form)
+    {
+        $qb = $this->getExpenseRepository()->createQueryBuilder('e');
+
+        if ($form->get('name')->getNormData()) {
+            $qb->andWhere('e.name LIKE :name');
+            $qb->setParameter('name', '%' . $form->get('name')->getNormData() . '%');
+        }
+
+        if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
+            $qb->orderBy('e.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        }
+
+        return $qb->getQuery();
     }
 
     /**
-     * Creates a form to delete a Expense entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param $id
+     * @return null|Expense
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function createDeleteForm($id)
+    protected function findExpense($id)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('expense_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $entity = $this->getExpenseRepository()->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Категория затраты не найдена');
+        }
+
+        return $entity;
+    }
+
+    public function showAction()
+    {
+        return new Response();
+    }
+
+    public function removeAction($id)
+    {
+        $entity = $this->findExpense($id);
+
+        if(!$entity) {
+            new NotFoundHttpException();
+        }
+
+        $em = $this->getEntityManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->addFlashMessage('success', 'Категория затраты удалена');
+
+        return $this->redirect($this->generateUrl('expense_list'));
     }
 }

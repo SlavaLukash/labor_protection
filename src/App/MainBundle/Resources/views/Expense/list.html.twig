@@ -1,0 +1,50 @@
+{% extends 'MainBundle:CRUD:list.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Expense.html.twig') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_title %}Список категорий затрат{% endblock %}
+
+{% block content_options %}
+    <a href="{{ path('expense_new') }}" title="Добавить" id="add-record">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th>{% trans %}Enterprise{% endtrans %}</th>
+        <th>{% trans %}Expensekind{% endtrans %}</th>
+        <th>{% trans %}Year{% endtrans %}</th>
+        <th>Сумма затрат за год</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for item in pagination %}
+        <tr>
+            <td><a href="{{ path('expense_edit', { 'id': item.id }) }}">{{ item.enterprise }}</a></td>
+            <td>{{ item.expensekind }}</td>
+            <td>{% if item.year %}{{ item.year }}{% endif %}</td>
+            <td>{{ (item.sum1 + item.sum2 + item.sum3 + item.sum4 + item.sum5 + item.sum6 + item.sum7 + item.sum8 + item.sum9 + item.sum10 + item.sum11 + item.sum12)|number_format(2, '.', ',') }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('expense_edit', { 'id': item.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('expense_edit', { 'id': item.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

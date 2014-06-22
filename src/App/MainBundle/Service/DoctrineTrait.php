@@ -211,4 +211,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Technicalexamination');
     }
+
+    /**
+     * @return ExpenseRepository
+     */
+    public function getExpenseRepository()
+    {
+        return $this->getRepository('Expense');
+    }
 }
