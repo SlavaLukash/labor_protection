@@ -123,4 +123,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Equipmentsubgroup');
     }
+
+    /**
+     * @return ExpensekindRepository
+     */
+    public function getExpensekindRepository()
+    {
+        return $this->getRepository('Expensekind');
+    }
 }

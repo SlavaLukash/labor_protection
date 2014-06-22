@@ -1,30 +1,29 @@
-expensekind:
-    pattern:  /
-    defaults: { _controller: "MainBundle:Expensekind:index" }
+expensekind_index:
+    path: /
+    defaults:
+        _controller: MainBundle:Expensekind:index
 
 expensekind_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "MainBundle:Expensekind:show" }
+    path: /{id}/show
+    defaults:
+        _controller: MainBundle:Expensekind:show
+
+expensekind_list:
+    path: /list
+    defaults:
+        _controller: MainBundle:Expensekind:list
 
 expensekind_new:
-    pattern:  /new
-    defaults: { _controller: "MainBundle:Expensekind:new" }
-
-expensekind_create:
-    pattern:  /create
-    defaults: { _controller: "MainBundle:Expensekind:create" }
-    requirements: { _method: post }
+    path: /new
+    defaults:
+        _controller: MainBundle:Expensekind:edit
 
 expensekind_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "MainBundle:Expensekind:edit" }
+    path: /{id}/edit
+    defaults:
+        _controller: MainBundle:Expensekind:edit
 
-expensekind_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "MainBundle:Expensekind:update" }
-    requirements: { _method: post|put }
-
-expensekind_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "MainBundle:Expensekind:delete" }
-    requirements: { _method: post|delete }
+expensekind_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: MainBundle:Expensekind:remove

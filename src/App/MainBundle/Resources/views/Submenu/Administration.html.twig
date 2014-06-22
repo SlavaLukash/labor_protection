@@ -34,7 +34,7 @@
             <a href="{{ path('equipmentsubgroup_list') }}"><p>Подгруппы оборудования</p></a>
         </li>
 		<li {% if get_controller_name() == 'expensekind' %}class="active"{% endif %}>
-			<a href="{{ path('expensekind') }}"><p>Виды затрат</p></a>
+			<a href="{{ path('expensekind_list') }}"><p>Виды затрат</p></a>
 		</li>
         <li {% if get_controller_name() == 'categoryreport' %}class="active"{% endif %}>
             <a href="{{ path('categoryreport') }}"><p>Категории отчетов</p></a>
