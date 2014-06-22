@@ -17,39 +17,39 @@ class MedicalType extends AbstractType
     {
         $builder
 			->add('enterprise', 'entity', array(
-				'class' => 'MainBundle:Enterprise',
-				'mapped' => false,
-				'attr' => array('class' => 'med_enterprise'),
-				'choices' => $options['OTparams']['aEnterprise'],
-			))
-			->add('subdivision', 'entity', array(
-				'class' => 'MainBundle:Subdivision',
-				'mapped' => false,
-				'attr' => array('class' => 'med_subdivision'),
-				'choices' => $options['OTparams']['aSubdivision'],
-			))
-			->add('employee', 'entity', array(
-				'class' => 'MainBundle:Employee',
-				'attr' => array('class' => 'med_employee'),
-				'choices' => $options['OTparams']['aEmployee'],
-			))
-			->add('medicalkind', null, array(
-				'empty_value' => false,
-			))
-			->add('medicaltype', null, array(
-				'empty_value' => false,
-			))
-			->add('dateplan', 'date', array(
-				'widget' => 'single_text',
-				'format' => 'dd.MM.yyyy',
-				'attr' => array('class' => 'date-input')
-			))
-			->add('datefact', 'date', array(
-				'widget' => 'single_text',
-				'format' => 'dd.MM.yyyy',
-				'attr' => array('class' => 'date-input')
-			))
-			->add('comment')
+                'class' => 'MainBundle:Enterprise',
+                'mapped' => false,
+                'attr' => array('class' => 'med_enterprise'),
+                'choices' => $options['OTparams']['aEnterprise'],
+            ))
+            ->add('subdivision', 'entity', array(
+                'class' => 'MainBundle:Subdivision',
+                'mapped' => false,
+                'attr' => array('class' => 'med_subdivision'),
+                'choices' => $options['OTparams']['aSubdivision'],
+            ))
+            ->add('employee', 'entity', array(
+                'class' => 'MainBundle:Employee',
+                'attr' => array('class' => 'med_employee'),
+                'choices' => $options['OTparams']['aEmployee'],
+            ))
+            ->add('medicalkind', null, array(
+                'empty_value' => false,
+            ))
+            ->add('medicaltype', null, array(
+                'empty_value' => false,
+            ))
+            ->add('dateplan', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd.MM.yyyy',
+                'attr' => array('class' => 'date-input')
+            ))
+            ->add('datefact', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd.MM.yyyy',
+                'attr' => array('class' => 'date-input')
+            ))
+            ->add('comment')
         ;
     }
 

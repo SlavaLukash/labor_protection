@@ -179,4 +179,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Employee');
     }
+
+    /**
+     * @return MedicalRepository
+     */
+    public function getMedicalRepository()
+    {
+        return $this->getRepository('Medical');
+    }
 }

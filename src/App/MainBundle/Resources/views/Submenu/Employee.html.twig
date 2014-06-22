@@ -4,7 +4,7 @@
             <a href="{{ path('employee_list') }}"><p>Реестр сотрудников</p></a>
         </li>
         <li {% if get_controller_name() == 'medical' %}class="active"{% endif %}>
-            <a href="{{ path('medical') }}"><p>График медосмотров</p></a>
+            <a href="{{ path('medical_list') }}"><p>График медосмотров</p></a>
         </li>
         <li {% if get_controller_name() == 'trauma' %}class="active"{% endif %}>
             <a href="{{ path('trauma') }}"><p>Травматизм</p></a>

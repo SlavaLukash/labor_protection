@@ -1,0 +1,52 @@
+{% extends 'MainBundle:CRUD:list.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Employee.html.twig') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_title %}Список графиков медосмотров{% endblock %}
+
+{% block content_options %}
+    <a href="{{ path('medical_new') }}" title="Добавить" id="add-record">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th>{% trans %}Id{% endtrans %}</th>
+        <th>{% trans %}LFMname{% endtrans %}</th>
+        <th>{% trans %}Enterprise{% endtrans %}</th>
+        <th>{% trans %}Subdivision{% endtrans %}</th>
+        <th>{% trans %}Comment{% endtrans %}</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for item in pagination %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{{ path('medical_show', { 'id': item.id }) }}">{{ item.employee }}</a></td>
+            <td>{{ item.employee.subdivision.enterprise }}</td>
+            <td>{{ item.employee.subdivision }}</td>
+            <td>{{ item.comment }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('medical_edit', { 'id': item.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('medical_edit', { 'id': item.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
