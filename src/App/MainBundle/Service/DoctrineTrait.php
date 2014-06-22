@@ -147,4 +147,28 @@ trait DoctrineTrait
     {
         return $this->getRepository('Report');
     }
+
+    /**
+     * @return TechnicalexaminationkindRepository
+     */
+    public function getTechnicalexaminationkindRepository()
+    {
+        return $this->getRepository('Technicalexaminationkind');
+    }
+
+    /**
+     * @return TechnicalexaminationtypeRepository
+     */
+    public function getTechnicalexaminationtypeRepository()
+    {
+        return $this->getRepository('Technicalexaminationtype');
+    }
+
+    /**
+     * @return TechnicalexaminationcauseRepository
+     */
+    public function getTechnicalexaminationcauseRepository()
+    {
+        return $this->getRepository('Technicalexaminationcause');
+    }
 }

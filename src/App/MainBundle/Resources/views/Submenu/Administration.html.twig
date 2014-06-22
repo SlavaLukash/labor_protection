@@ -43,13 +43,13 @@
             <a href="{{ path('report_list') }}"><p>Отчеты</p></a>
         </li>
         <li {% if get_controller_name() == 'technicalexaminationkind' %}class="active"{% endif %}>
-            <a href="{{ path('technicalexaminationkind') }}"><p>Виды обследований</p></a>
+            <a href="{{ path('technicalexaminationkind_list') }}"><p>Виды обследований</p></a>
         </li>
         <li {% if get_controller_name() == 'technicalexaminationcause' %}class="active"{% endif %}>
-            <a href="{{ path('technicalexaminationcause') }}"><p>Причины обследований</p></a>
+            <a href="{{ path('technicalexaminationcause_list') }}"><p>Причины обследований</p></a>
         </li>
         <li {% if get_controller_name() == 'technicalexaminationtype' %}class="active"{% endif %}>
-            <a href="{{ path('technicalexaminationtype') }}"><p>Типы обследований</p></a>
+            <a href="{{ path('technicalexaminationtype_list') }}"><p>Типы обследований</p></a>
         </li>
     </ul>
 </div>
