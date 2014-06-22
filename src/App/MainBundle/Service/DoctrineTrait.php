@@ -131,4 +131,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Expensekind');
     }
+
+    /**
+     * @return CategoryReportRepository
+     */
+    public function getCategoryReportRepository()
+    {
+        return $this->getRepository('CategoryReport');
+    }
 }

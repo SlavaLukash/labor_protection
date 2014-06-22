@@ -2,222 +2,148 @@
 
 namespace App\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use App\MainBundle\Entity\CategoryReport;
-use App\MainBundle\Form\CategoryReportType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * CategoryReport controller.
  *
  */
-class CategoryReportController extends Controller
+class CategoryReportController extends BaseController
 {
-
-    /**
-     * Lists all CategoryReport entities.
-     *
-     */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('MainBundle:CategoryReport')->findAll();
-
-        return $this->render('MainBundle:CategoryReport:index.html.twig', array(
-            'entities' => $entities,
-        ));
+        return $this->redirect($this->generateUrl('categoryreport_list'));
     }
-    /**
-     * Creates a new CategoryReport entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new CategoryReport();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+    public function listAction()
+    {
+        $builder = $this->createFormBuilder(null, [
+            'csrf_protection' => false,
+            'method' => 'get'
+        ]);
+
+        $this->buildFilterForm($builder);
+        $form = $builder->getForm();
+        $request = $this->get('request');
+        $form->submit($request);
+
+        $query = $this->createFilterQuery($form);
+        $pagination = $this->paginate($query, 10);
+
+        return $this->render('MainBundle:CategoryReport:list.html.twig', [
+            'pagination' => $pagination,
+            'filterForm' => $form->createView()
+        ]);
+    }
+
+    public function editAction($id = null)
+    {
+        $isNew = null === $id;
+
+        if ($isNew) {
+            $entity = new CategoryReport();
+        } else {
+            $entity = $this->findCategoryReport($id);
+        }
+
+        $builder = $this->createFormBuilder($entity)
+            ->add('name')
+        ;
+
+        $editForm = $builder->getForm();
+        $editForm->handleRequest($this->getRequest());
+
+        if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('categoryreport_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('MainBundle:CategoryReport:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to create a CategoryReport entity.
-    *
-    * @param CategoryReport $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(CategoryReport $entity)
-    {
-        $form = $this->createForm(new CategoryReportType(), $entity, array(
-            'action' => $this->generateUrl('categoryreport_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new CategoryReport entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new CategoryReport();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('MainBundle:CategoryReport:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a CategoryReport entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:CategoryReport')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find CategoryReport entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:CategoryReport:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
-
-    /**
-     * Displays a form to edit an existing CategoryReport entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:CategoryReport')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find CategoryReport entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:CategoryReport:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to edit a CategoryReport entity.
-    *
-    * @param CategoryReport $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(CategoryReport $entity)
-    {
-        $form = $this->createForm(new CategoryReportType(), $entity, array(
-            'action' => $this->generateUrl('categoryreport_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
-     * Edits an existing CategoryReport entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:CategoryReport')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find CategoryReport entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('categoryreport_edit', array('id' => $id)));
-        }
-
-        return $this->render('MainBundle:CategoryReport:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    /**
-     * Deletes a CategoryReport entity.
-     *
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MainBundle:CategoryReport')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find CategoryReport entity.');
+            if ($isNew) {
+                $this->addFlashMessage('success', 'Категория отчетов создана');
+            } else {
+                $this->addFlashMessage('success', 'Категория отчетов сохранена');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            return $this->redirect($this->generateUrl('categoryreport_edit', [
+                'id' => $entity->getId()
+            ]));
         }
 
-        return $this->redirect($this->generateUrl('categoryreport'));
+        return $this->render('MainBundle:CategoryReport:edit.html.twig', [
+            'isNew' => $isNew,
+            'entity' => $entity,
+            'form'   => $editForm->createView(),
+            'isNew' => $isNew
+        ]);
+    }
+
+    protected function buildFilterForm(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('name', 'text', [
+                'required' => false
+            ])
+            ->add('submit', 'submit', [
+                'label' => 'Показать'
+            ])
+        ;
+    }
+
+    protected function createFilterQuery(Form $form)
+    {
+        $qb = $this->getCategoryReportRepository()->createQueryBuilder('cr');
+
+        if ($form->get('name')->getNormData()) {
+            $qb->andWhere('cr.name LIKE :name');
+            $qb->setParameter('name', '%' . $form->get('name')->getNormData() . '%');
+        }
+
+        if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
+            $qb->orderBy('cr.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        }
+
+        return $qb->getQuery();
     }
 
     /**
-     * Creates a form to delete a CategoryReport entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param $id
+     * @return null|CategoryReport
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function createDeleteForm($id)
+    protected function findCategoryReport($id)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('categoryreport_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $entity = $this->getCategoryReportRepository()->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Категория отчетов не найдена');
+        }
+
+        return $entity;
+    }
+
+    public function showAction()
+    {
+        return new Response();
+    }
+
+    public function removeAction($id)
+    {
+        $entity = $this->findCategoryReport($id);
+
+        if(!$entity) {
+            new NotFoundHttpException();
+        }
+
+        $em = $this->getEntityManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->addFlashMessage('success', 'Категория отчетов удалена');
+
+        return $this->redirect($this->generateUrl('categoryreport_list'));
     }
 }
