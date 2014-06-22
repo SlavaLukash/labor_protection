@@ -1,7 +1,7 @@
 <div class="b-left-menu">
     <ul>
         <li {% if get_controller_name() == 'employee' %}class="active"{% endif %}>
-            <a href="{{ path('employee') }}"><p>Реестр сотрудников</p></a>
+            <a href="{{ path('employee_list') }}"><p>Реестр сотрудников</p></a>
         </li>
         <li {% if get_controller_name() == 'medical' %}class="active"{% endif %}>
             <a href="{{ path('medical') }}"><p>График медосмотров</p></a>

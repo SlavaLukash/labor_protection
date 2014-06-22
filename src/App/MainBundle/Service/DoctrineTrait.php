@@ -171,4 +171,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Technicalexaminationcause');
     }
+
+    /**
+     * @return EmployeeRepository
+     */
+    public function getEmployeeRepository()
+    {
+        return $this->getRepository('Employee');
+    }
 }

@@ -1,29 +1,31 @@
-{% extends '::base.html.twig' %}
+{% extends 'MainBundle:CRUD:edit.html.twig' %}
 
 {% block submenu %}
     {{ include('MainBundle:Submenu:Employee.html.twig') }}
 {% endblock %}
 
-{% block body -%}
+{% block breadcrumbs %}
+    {% if isNew %}
+        {{ app.breadcrumbs.prepend('Добавление пользователя') }}
+    {% else %}
+        {{ app.breadcrumbs.prepend('User edit'|trans) }}
+    {% endif %}
+    {{ app.breadcrumbs.prepend('Пользователи', path('user_list')) }}
+    {{ parent() }}
+{% endblock %}
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select#mainbundle_employee_profession').select2();
-    });
-</script>
+{% block panel_title %}
+    {% if isNew %}
+        {% trans %}Employee creation{% endtrans %}
+    {% else %}
+        {% trans %}Employee edit{% endtrans %}
+    {% endif %}
+{% endblock %}
 
-<div class="b-form-area">
-    <div class="b-form-title"><p>{% trans %}Employee edit{% endtrans %}</p><hr/></div>
-
-    {{ form(edit_form) }}
-
-        <ul class="record_actions_in_form">
-    <li>
-        <a href="{{ path('employee') }}">
-            {% trans %}Back to the list{% endtrans %}
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
-    </div>
+{% block actions %}
+    {% include 'MainBundle:CRUD:form_actions.html.twig' with {
+        'is_new': isNew,
+        'route_list': path('employee_list'),
+        'route_remove' : not isNew ? path('employee_remove', {'id': entity.id}) : ''
+    } %}
 {% endblock %}
