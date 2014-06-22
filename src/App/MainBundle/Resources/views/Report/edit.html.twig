@@ -1,8 +1,7 @@
 {% extends 'MainBundle:CRUD:edit.html.twig' %}
 
 {% block submenu %}
-    {#{{ include('MainBundle:Submenu:Administration.html.twig') }}#}
-    {% include 'MainBundle:Submenu:Reports.html.twig' with {'CategoryReportEntities': CategoryReportEntities, 'current': categoryid}  %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
 {% block breadcrumbs %}
