@@ -195,4 +195,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Trauma');
     }
+
+    /**
+     * @return EquipmentRepository
+     */
+    public function getEquipmentRepository()
+    {
+        return $this->getRepository('Equipment');
+    }
 }

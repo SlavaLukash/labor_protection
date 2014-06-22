@@ -1,30 +1,29 @@
-equipment:
-    pattern:  /
-    defaults: { _controller: "MainBundle:Equipment:index" }
+equipment_index:
+    path: /
+    defaults:
+        _controller: MainBundle:Equipment:index
 
 equipment_show:
-    pattern:  /{id}/show
-    defaults: { _controller: "MainBundle:Equipment:show" }
+    path: /{id}/show
+    defaults:
+        _controller: MainBundle:Equipment:show
+
+equipment_list:
+    path: /list
+    defaults:
+        _controller: MainBundle:Equipment:list
 
 equipment_new:
-    pattern:  /new
-    defaults: { _controller: "MainBundle:Equipment:new" }
-
-equipment_create:
-    pattern:  /create
-    defaults: { _controller: "MainBundle:Equipment:create" }
-    requirements: { _method: post }
+    path: /new
+    defaults:
+        _controller: MainBundle:Equipment:edit
 
 equipment_edit:
-    pattern:  /{id}/edit
-    defaults: { _controller: "MainBundle:Equipment:edit" }
+    path: /{id}/edit
+    defaults:
+        _controller: MainBundle:Equipment:edit
 
-equipment_update:
-    pattern:  /{id}/update
-    defaults: { _controller: "MainBundle:Equipment:update" }
-    requirements: { _method: post|put }
-
-equipment_delete:
-    pattern:  /{id}/delete
-    defaults: { _controller: "MainBundle:Equipment:delete" }
-    requirements: { _method: post|delete }
+equipment_remove:
+    path: /{id}/remove
+    defaults:
+        _controller: MainBundle:Equipment:remove
