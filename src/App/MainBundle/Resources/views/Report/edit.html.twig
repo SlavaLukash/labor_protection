@@ -1,22 +1,31 @@
-{% extends '::base.html.twig' %}
+{% extends 'MainBundle:CRUD:edit.html.twig' %}
 
 {% block submenu %}
     {{ include('MainBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
-{% block body -%}
-<div class="b-form-area">
-    <div class="b-form-title"><p>{% trans %}Report edit{% endtrans %}</p><hr/></div>
+{% block breadcrumbs %}
+    {% if isNew %}
+        {{ app.breadcrumbs.prepend('Добавление пользователя') }}
+    {% else %}
+        {{ app.breadcrumbs.prepend('User edit'|trans) }}
+    {% endif %}
+    {{ app.breadcrumbs.prepend('Пользователи', path('user_list')) }}
+    {{ parent() }}
+{% endblock %}
 
-    {{ form(edit_form) }}
+{% block panel_title %}
+    {% if isNew %}
+        {% trans %}Report creation{% endtrans %}
+    {% else %}
+        {% trans %}Report edit{% endtrans %}
+    {% endif %}
+{% endblock %}
 
-    <ul class="record_actions_in_form">
-        <li>
-            <a href="{{ path('report') }}">
-                {% trans %}Back to the list{% endtrans %}
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
-</div>
+{% block actions %}
+    {% include 'MainBundle:CRUD:form_actions.html.twig' with {
+        'is_new': isNew,
+        'route_list': path('report_list'),
+        'route_remove' : not isNew ? path('report_remove', {'id': entity.id}) : ''
+    } %}
 {% endblock %}

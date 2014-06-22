@@ -1,30 +1,54 @@
-{% extends '::base.html.twig' %}
+{% extends 'MainBundle:CRUD:list.html.twig' %}
 
 {% block submenu %}
-    {% include 'MainBundle:Submenu:Reports.html.twig' with {'CategoryReportEntities': CategoryReportEntities, 'current': categoryid}  %}
+    {{ include('MainBundle:Submenu:Administration.html.twig') }}
 {% endblock %}
 
-{% block body -%}
-    <h1>{% trans %}Report list{% endtrans %}</h1>
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>{% trans %}Id{% endtrans %}</th>
-                <th>{% trans %}Name{% endtrans %}</th>
-                <th>{% trans %}Actions{% endtrans %}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>{{ entity.id }}</td>
-                <td><a href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{{ entity.name }}" target="_blank">{{ entity.name }}</a></td>
-                <td>
-                    <a class="print-action" href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content_title %}Список профессий{% endblock %}
+
+{% block content_options %}
+    <a href="{{ path('report_new') }}" title="Добавить" id="add-record">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'r.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'r.name') }}</th>
+        <th>Категория отчета</th>
+        <th>Печать</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for item in pagination %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="/reports/index.php?stimulsoft_report_key={{ item.params }}" title="{{ item.name }}" target="_blank">{{ item.name }}</a></td>
+            <td>
+                {{ item.categoryreport }}
+            </td>
+            <td>
+                <a class="print-action" href="/reports/index.php?stimulsoft_report_key={{ item.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
+            </td>
+            <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('report_edit', { 'id': item.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('report_edit', { 'id': item.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
 {% endblock %}

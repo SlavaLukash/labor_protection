@@ -139,4 +139,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('CategoryReport');
     }
+
+    /**
+     * @return ReportRepository
+     */
+    public function getReportRepository()
+    {
+        return $this->getRepository('Report');
+    }
 }
