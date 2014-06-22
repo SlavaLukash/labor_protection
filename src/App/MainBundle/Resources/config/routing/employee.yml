@@ -27,4 +27,3 @@ employee_remove:
     path: /{id}/remove
     defaults:
         _controller: MainBundle:Employee:remove
-        

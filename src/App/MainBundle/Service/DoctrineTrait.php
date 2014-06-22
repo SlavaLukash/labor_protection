@@ -187,4 +187,12 @@ trait DoctrineTrait
     {
         return $this->getRepository('Medical');
     }
+
+    /**
+     * @return TraumaRepository
+     */
+    public function getTraumaRepository()
+    {
+        return $this->getRepository('Trauma');
+    }
 }

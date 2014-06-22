@@ -2,295 +2,161 @@
 
 namespace App\MainBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\MainBundle\Entity\Trauma;
-use App\MainBundle\Form\TraumaType;
-use App\MainBundle\Filter\TraumaFilterType;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Trauma controller.
  *
  */
-class TraumaController extends Controller
+class TraumaController extends BaseController
 {
-
-    /**
-     * Lists all Trauma entities.
-     *
-     */
     public function indexAction()
     {
-		$em = $this->getDoctrine()->getManager();
-		$oUser = $this->getUser();
-		$sdArray = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$entArray = $em->getRepository('MainBundle:Enterprise')->findAll();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$sdArray = $oUser->getUsersubdivisions()->getValues();
-		}
-
-		$form = $this->get('form.factory')->create(new TraumaFilterType($sdArray, $entArray));
-		$form->bind($this->get('request'));
-		$filterBuilder = $em
-			->getRepository('MainBundle:Trauma')
-			->createQueryBuilder('e');
-		$this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($form, $filterBuilder);
-		$query = $em->createQuery($filterBuilder->getDql());
-		$paginator  = $this->get('knp_paginator');
-		$entities = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1)/*page number*/,
-			10/*limit per page*/
-		);
-
-		return $this->render('MainBundle:Trauma:index.html.twig', array(
-			'entities' => $entities,
-			'form' => $form->createView(),
-		));
+        return $this->redirect($this->generateUrl('trauma_list'));
     }
-    /**
-     * Creates a new Trauma entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-		$em = $this->getDoctrine()->getManager();
-		$aSubdivisions = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$aEnterprises = $em->getRepository('MainBundle:Enterprise')->findAll();
-		$aEmployee = $em->getRepository('MainBundle:Employee')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
-		}
-		foreach($aSubdivisions as $subdivision)
-		{
-			$aSubdIds[] = $subdivision->getId();
-		}
-		foreach($aEmployee as $employee)
-		{
-			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
-			{
-				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
-			}
-		}
-		$entity = new Trauma();
-		$form = $this->createCreateForm($entity, $OTparams);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
+    public function listAction()
+    {
+        $builder = $this->createFormBuilder(null, [
+            'csrf_protection' => false,
+            'method' => 'get'
+        ]);
+
+        $this->buildFilterForm($builder);
+        $form = $builder->getForm();
+        $request = $this->get('request');
+        $form->submit($request);
+
+        $query = $this->createFilterQuery($form);
+        $pagination = $this->paginate($query, 10);
+
+        return $this->render('MainBundle:Trauma:list.html.twig', [
+            'pagination' => $pagination,
+            'filterForm' => $form->createView()
+        ]);
+    }
+
+    public function editAction($id = null)
+    {
+        $isNew = null === $id;
+
+        if ($isNew) {
+            $entity = new Trauma();
+        } else {
+            $entity = $this->findTrauma($id);
+        }
+
+        $builder = $this->createFormBuilder($entity)
+            ->add('datetrauma', 'date', array(
+                'widget' => 'single_text',
+                'format' => 'dd.MM.yyyy',
+                'attr' => array('class' => 'date-input')
+            ))
+            ->add('traumareport')
+            ->add('hoursstart')
+            ->add('employee', 'entity', array(
+                'class' => 'MainBundle:Employee',
+                'empty_value' => false,
+//                'choices' => $options['OTparams']['aEmployee'],
+            ))
+            ->add('traumacause')
+            ->add('traumakind')
+        ;
+
+        $editForm = $builder->getForm();
+        $editForm->handleRequest($this->getRequest());
+
+        if ($editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('trauma_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('MainBundle:Trauma:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to create a Trauma entity.
-    *
-    * @param Trauma $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createCreateForm(Trauma $entity, $OTparams = null)
-    {
-        $form = $this->createForm(new TraumaType(), $entity, array(
-            'action' => $this->generateUrl('trauma_create'),
-            'method' => 'POST',
-			'OTparams' => $OTparams
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Trauma entity.
-     *
-     */
-    public function newAction()
-    {
-		$em = $this->getDoctrine()->getManager();
-		$aSubdivisions = $em->getRepository('MainBundle:Subdivision')->findAll();
-		$aEnterprises = $em->getRepository('MainBundle:Enterprise')->findAll();
-		$aEmployee = $em->getRepository('MainBundle:Employee')->findAll();
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$aSubdivisions = $oUser->getUsersubdivisions()->getValues();
-		}
-		foreach($aSubdivisions as $subdivision)
-		{
-			$aSubdIds[] = $subdivision->getId();
-		}
-		foreach($aEmployee as $employee)
-		{
-			if(in_array($employee->getSubdivision()->getId(), $aSubdIds))
-			{
-				$OTparams['aEmployee'][$employee->getSubdivision()->getEnterprise()->getName()]['..' . $employee->getSubdivision()->getName()][] = $employee;
-			}
-		}
-		$entity = new Trauma();
-		$form = $this->createCreateForm($entity, $OTparams);
-
-        return $this->render('MainBundle:Trauma:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Trauma entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Trauma')->find($id);
-		$oUser = $this->getUser();
-		if(!$oUser->hasRole('ROLE_ADMIN'))
-		{
-			$sdArray = $oUser->getUsersubdivisions()->getValues();
-			foreach($sdArray as $subD)
-			{
-				$aIds[] = $subD->getId();
-			}
-			if(!in_array($entity->getEmployee()->getSubdivision()->getId(),$aIds))
-			{
-				return $this->redirect($this->generateUrl('medical'));
-			}
-		}
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Trauma entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:Trauma:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
-    }
-
-    /**
-     * Displays a form to edit an existing Trauma entity.
-     *
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Trauma')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Trauma entity.');
-        }
-
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('MainBundle:Trauma:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-    * Creates a form to edit a Trauma entity.
-    *
-    * @param Trauma $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Trauma $entity)
-    {
-        $form = $this->createForm(new TraumaType(), $entity, array(
-            'action' => $this->generateUrl('trauma_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
-        return $form;
-    }
-    /**
-     * Edits an existing Trauma entity.
-     *
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('MainBundle:Trauma')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Trauma entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('trauma_edit', array('id' => $id)));
-        }
-
-        return $this->render('MainBundle:Trauma:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-    /**
-     * Deletes a Trauma entity.
-     *
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('MainBundle:Trauma')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Trauma entity.');
+            if ($isNew) {
+                $this->addFlashMessage('success', 'Случай травматизма создан');
+            } else {
+                $this->addFlashMessage('success', 'Случай травматизма сохранен');
             }
 
-            $em->remove($entity);
-            $em->flush();
+            return $this->redirect($this->generateUrl('trauma_edit', [
+                'id' => $entity->getId()
+            ]));
         }
 
-        return $this->redirect($this->generateUrl('trauma'));
+        return $this->render('MainBundle:Trauma:edit.html.twig', [
+            'isNew' => $isNew,
+            'entity' => $entity,
+            'form'   => $editForm->createView(),
+            'isNew' => $isNew
+        ]);
+    }
+
+    protected function buildFilterForm(FormBuilderInterface $builder)
+    {
+        $builder
+            ->add('name', 'text', [
+                'required' => false
+            ])
+            ->add('submit', 'submit', [
+                'label' => 'Показать'
+            ])
+        ;
+    }
+
+    protected function createFilterQuery(Form $form)
+    {
+        $qb = $this->getTraumaRepository()->createQueryBuilder('t');
+
+        if ($form->get('name')->getNormData()) {
+            $qb->andWhere('t.name LIKE :name');
+            $qb->setParameter('name', '%' . $form->get('name')->getNormData() . '%');
+        }
+
+        if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
+            $qb->orderBy('T.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        }
+
+        return $qb->getQuery();
     }
 
     /**
-     * Creates a form to delete a Trauma entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param $id
+     * @return null|Trauma
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function createDeleteForm($id)
+    protected function findTrauma($id)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('trauma_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        $entity = $this->getTraumaRepository()->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Случай травматизма не найден');
+        }
+
+        return $entity;
+    }
+
+    public function showAction()
+    {
+        return new Response();
+    }
+
+    public function removeAction($id)
+    {
+        $entity = $this->findTrauma($id);
+
+        if(!$entity) {
+            new NotFoundHttpException();
+        }
+
+        $em = $this->getEntityManager();
+        $em->remove($entity);
+        $em->flush();
+
+        $this->addFlashMessage('success', 'Случай травматизма удален');
+
+        return $this->redirect($this->generateUrl('trauma_list'));
     }
 }
