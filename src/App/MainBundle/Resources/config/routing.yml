@@ -8,7 +8,7 @@ default_ajax:
 
 _reports:
     pattern:  /reportlist/{Categoryid}
-    defaults: { _controller: "MainBundle:Report:list", Categoryid: null }
+    defaults: { _controller: "MainBundle:Report:categoryList", Categoryid: null }
     requirements:
         id:  \d+
 

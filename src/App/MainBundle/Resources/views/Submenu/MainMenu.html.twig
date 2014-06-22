@@ -15,7 +15,7 @@
         or get_controller_name() == 'technicalexaminationkind'
         or get_controller_name() == 'technicalexaminationcause'
         or get_controller_name() == 'technicalexaminationtype'
-        or (get_controller_name() == 'report' and get_action_name() != 'list')
+        or (get_controller_name() == 'report' and get_action_name() != 'categoryList')
         or get_controller_name() == 'expensekind')
         %}
             class="active"
@@ -44,7 +44,7 @@
             {% endif %}>
         <a href="{{ path('expense_list') }}"><p>{% trans %}expense{% endtrans %}</p></a>
     </li>
-    <li {% if (get_controller_name() == 'report' and get_action_name() == 'list')%}class="active"{% endif %}>
+    <li {% if (get_controller_name() == 'report' and get_action_name() == 'categoryList')%}class="active"{% endif %}>
         <a href="{{ path('_reports') }}"><p>{% trans %}REPORTS{% endtrans %}</p></a>
     </li>
 </ul>

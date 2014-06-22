@@ -1,0 +1,37 @@
+{% extends 'MainBundle:CRUD:list.html.twig' %}
+
+{% block submenu %}
+    {% include 'MainBundle:Submenu:Reports.html.twig' with {'CategoryReportEntities': CategoryReportEntities, 'current': categoryid}  %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_title %}Список отчетов{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th>{% trans %}Id{% endtrans %}</th>
+        <th>{% trans %}Name{% endtrans %}</th>
+        <th>Категория отчета</th>
+        <th>Печать</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.id }}</td>
+            <td><a href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{{ entity.name }}" target="_blank">{{ entity.name }}</a></td>
+            <td>
+                {{ entity.categoryreport }}
+            </td>
+            <td>
+                <a class="print-action" href="/reports/index.php?stimulsoft_report_key={{ entity.params }}" title="{% trans %}Print{% endtrans %}" target="_blank"></a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

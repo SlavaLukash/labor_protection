@@ -41,6 +41,26 @@ class ReportController extends BaseController
         ]);
     }
 
+    public function categoryListAction($Categoryid = null)
+    {
+        $CategoryReportEntities = $this->getCategoryReportRepository()->findAll();
+
+        if(!$Categoryid) {
+            foreach($CategoryReportEntities as $item) {
+                $Categoryid		= $item->getId();
+                break;
+            }
+        }
+
+        $entities = $this->getReportRepository()->findByCategoryreport($Categoryid);
+
+        return $this->render('MainBundle:Report:category_list.html.twig', [
+            'entities' 						=> $entities,
+            'categoryid' 					=> $Categoryid,
+            'CategoryReportEntities' 		=> $CategoryReportEntities
+        ]);
+    }
+
     public function editAction($id = null)
     {
         $isNew = null === $id;
