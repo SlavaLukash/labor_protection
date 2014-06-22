@@ -1,0 +1,50 @@
+{% extends 'MainBundle:CRUD:list.html.twig' %}
+
+{% block submenu %}
+    {{ include('MainBundle:Submenu:Equipment.html.twig') }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {{ app.breadcrumbs.prepend('Список', path('admin_user_list')) }}
+    {{ app.breadcrumbs.prepend('Пользователи', path('admin_user_list')) }}
+    {{ parent() }}
+{% endblock %}
+
+{% block content_title %}Список оборудования{% endblock %}
+
+{% block content_options %}
+    <a href="{{ path('technicalexamination_new') }}" title="Добавить" id="add-record">
+        {% trans %}Create a new entry{% endtrans %}
+    </a>
+{% endblock %}
+
+{% block thead %}
+    <tr>
+        <th>{% trans %}Id{% endtrans %}</th>
+        <th>{% trans %}Resulttext{% endtrans %}</th>
+        <th>{% trans %}Plandate{% endtrans %}</th>
+        <th>{% trans %}Factdate{% endtrans %}</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+    </tr>
+{% endblock %}
+
+{% block tbody %}
+    {% for item in pagination %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{{ path('technicalexamination_edit', { 'id': item.id }) }}">{{ item.resulttext }}</a></td>
+            <td>{% if item.plandate %}{{ item.plandate|date('d.m.Y') }}{% endif %}</td>
+            <td>{% if item.factdate %}{{ item.factdate|date('d.m.Y') }}{% endif %}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a class="show-action" href="{{ path('technicalexamination_edit', { 'id': item.id }) }}" title="{% trans %}Show{% endtrans %}"></a>
+                    </li>
+                    <li>
+                        <a class="edit-action" href="{{ path('technicalexamination_edit', { 'id': item.id }) }}" title="{% trans %}Edit{% endtrans %}"></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
