@@ -721,3 +721,33 @@ ul.b-error li {
     margin-bottom: 5px !important;
     border-bottom: 1px solid #ffffff;
 }
+
+table thead th {
+    position: relative;
+}
+
+table thead tr th a {
+    text-decoration: underline !important;
+}
+
+table thead th a.desc:after {
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 4px;
+    background: url('../img/helpers.png') -5px -26px no-repeat;
+    /*position: absolute;*/
+    /*top: 13px;*/
+    /*right: 4px;*/
+}
+
+table thead th a.asc:after {
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 4px;
+    background: url('../img/helpers.png') 0 -26px no-repeat;
+    /*position: absolute;*/
+    /*top: 13px;*/
+    /*right: 4px;*/
+}
