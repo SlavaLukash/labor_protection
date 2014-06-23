@@ -29,3 +29,14 @@
         'route_remove' : not isNew ? path('employee_remove', {'id': entity.id}) : ''
     } %}
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ form_stylesheet(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ form_javascript(form) }}
+{% endblock %}

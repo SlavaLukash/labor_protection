@@ -373,10 +373,10 @@ class Employee
     /**
      * Set marriagekind
      *
-     * @param \App\MainBundle\Entity\Marriagekind $marriagekind
+     * @param Marriagekind $marriagekind
      * @return Employee
      */
-    public function setMarriagekind(\App\MainBundle\Entity\Marriagekind $marriagekind = null)
+    public function setMarriagekind(Marriagekind $marriagekind = null)
     {
         $this->marriagekind = $marriagekind;
     
@@ -386,7 +386,7 @@ class Employee
     /**
      * Get marriagekind
      *
-     * @return \App\MainBundle\Entity\Marriagekind
+     * @return Marriagekind
      */
     public function getMarriagekind()
     {
@@ -396,10 +396,10 @@ class Employee
     /**
      * Set profession
      *
-     * @param \App\MainBundle\Entity\Profession $profession
+     * @param Profession $profession
      * @return Employee
      */
-    public function setProfession(\App\MainBundle\Entity\Profession $profession = null)
+    public function setProfession($profession = null)
     {
         $this->profession = $profession;
     
@@ -409,7 +409,7 @@ class Employee
     /**
      * Get profession
      *
-     * @return \App\MainBundle\Entity\Profession
+     * @return Profession
      */
     public function getProfession()
     {

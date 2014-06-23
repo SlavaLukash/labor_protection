@@ -7,6 +7,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Employee controller.
@@ -51,9 +52,24 @@ class EmployeeController extends BaseController
         }
 
         $builder = $this->createFormBuilder($entity)
-            ->add('lastname')
-            ->add('firstname')
-            ->add('middlename')
+            ->add('lastname', null, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([])
+                ]
+            ])
+            ->add('firstname', null, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([])
+                ]
+            ])
+            ->add('middlename', null, [
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([])
+                ]
+            ])
             ->add('sex', 'choice', array(
                 'choices' => array('Ж', 'М')
             ))
@@ -79,10 +95,34 @@ class EmployeeController extends BaseController
                 'class' => 'MainBundle:Subdivision',
                 'empty_value' => false,
                 'label' => 'Предприятие и подразделение',
+                'constraints' => [
+                    new NotBlank([])
+                ]
 //                'choices' => $options['sdArray'],
             ))
             ->add('marriagekind')
-            ->add('profession')
+//            ->add('profession')
+            /*->add('profession', 'genemu_jqueryselect2_hidden', [
+                'data_class' => 'App\MainBundle\Entity\Profession',
+                'mapped' => true,
+                'attr' => [
+                    'class' => 'bigdrop'
+                ]
+            ])*/
+            ->add('profession', 'genemu_jqueryselect2_entity', [
+                'class' => 'App\MainBundle\Entity\Profession',
+                'property' => 'name',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank([])
+                ],
+                'configs' => [
+                    'minimumInputLength' => 3,
+                    'placeholder' => 'Votre ville',
+                    'allowClear' => true,
+                    'width' => '420px'
+                ]
+            ])
         ;
 
         $editForm = $builder->getForm();

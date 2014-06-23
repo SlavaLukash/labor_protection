@@ -22,8 +22,8 @@
 {% block form_row %}
     {% set labelCols=labelCols|default(3) %}
     <div class="form-group{{ errors|length ? ' has-error' : '' }}" id="{{ id }}-form_group">
-        {{ form_label(form, form.vars.label, {label_attr: {class: 'col-sm-3'}}) }}
-        <div class="col-sm-8">
+        {{ form_label(form, form.vars.label, {label_attr: {class: 'col-sm-4'}}) }}
+        <div class="col-sm-7">
             {{ form_widget(form) }}
             {{ block('form_hint') }}
             {{ form_errors(form) }}
