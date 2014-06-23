@@ -105,6 +105,8 @@ class MedicalkindController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('mk.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('mk.id', 'ASC');
         }
 
         return $qb->getQuery();

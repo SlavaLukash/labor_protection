@@ -118,7 +118,10 @@ class ExpenseController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getExpenseRepository()->createQueryBuilder('e');
+        $qb = $this->getExpenseRepository()->createQueryBuilder('e')
+            ->select('e', 'enterp', 'exp')
+            ->leftJoin('e.enterprise', 'enterp')
+            ->leftJoin('e.expensekind', 'exp');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('e.name LIKE :name');
@@ -127,6 +130,8 @@ class ExpenseController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('e.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('e.id', 'ASC');
         }
 
         return $qb->getQuery();

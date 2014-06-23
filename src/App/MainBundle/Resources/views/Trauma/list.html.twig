@@ -20,13 +20,13 @@
 
 {% block thead %}
     <tr>
-        <th>{% trans %}Id{% endtrans %}</th>
-        <th>{% trans %}LFMname{% endtrans %}</th>
-        <th>{% trans %}Enterprise{% endtrans %}</th>
-        <th>{% trans %}Subdivision{% endtrans %}</th>
-        <th>{% trans %}Datetrauma{% endtrans %}</th>
-        <th>{% trans %}Traumareport{% endtrans %}</th>
-        <th>{% trans %}Hoursstart{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 't.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'LFMname'|trans, 'e.lastname') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Subdivision'|trans, 'subd.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Datetrauma'|trans, 't.datetrauma') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Traumareport'|trans, 't.traumareport') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Hoursstart'|trans, 't.hoursstart') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}

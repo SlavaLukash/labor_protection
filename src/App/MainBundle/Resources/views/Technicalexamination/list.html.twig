@@ -20,10 +20,10 @@
 
 {% block thead %}
     <tr>
-        <th>{% trans %}Id{% endtrans %}</th>
-        <th>{% trans %}Resulttext{% endtrans %}</th>
-        <th>{% trans %}Plandate{% endtrans %}</th>
-        <th>{% trans %}Factdate{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'te.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Resulttext'|trans, 'te.resulttext') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Plandate'|trans, 'te.plandate') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Factdate'|trans, 'te.factdate') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}

@@ -20,12 +20,12 @@
 
 {% block thead %}
     <tr>
-        <th>{% trans %}Id{% endtrans %}</th>
-        <th>{% trans %}LFMname{% endtrans %}</th>
-        <th>{% trans %}Bithday{% endtrans %}</th>
-        <th>{% trans %}Enterprise{% endtrans %}</th>
-        <th>{% trans %}Subdivision{% endtrans %}</th>
-        <th>{% trans %}Profession{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'e.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'LFMname'|trans, 'e.lastname') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Bithday'|trans, 'e.bithday') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Subdivision'|trans, 'subd.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Profession'|trans, 'prof.name') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}

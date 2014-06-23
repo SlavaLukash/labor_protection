@@ -131,6 +131,8 @@ class ReportController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('r.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('r.id', 'ASC');
         }
 
         return $qb->getQuery();

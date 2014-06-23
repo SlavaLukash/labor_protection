@@ -96,7 +96,10 @@ class EquipmentsubgroupController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getEquipmentsubgroupRepository()->createQueryBuilder('esg');
+        $qb = $this->getEquipmentsubgroupRepository()->createQueryBuilder('esg')
+                    ->select('esg', 'eg')
+                    ->leftJoin('esg.equipmentgroup', 'eg');
+
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('esg.name LIKE :name');
@@ -105,6 +108,8 @@ class EquipmentsubgroupController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('esg.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('esg.id', 'ASC');
         }
 
         return $qb->getQuery();

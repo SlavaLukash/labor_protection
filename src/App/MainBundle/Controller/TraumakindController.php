@@ -105,6 +105,8 @@ class TraumakindController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('tk.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('tk.id', 'ASC');
         }
 
         return $qb->getQuery();

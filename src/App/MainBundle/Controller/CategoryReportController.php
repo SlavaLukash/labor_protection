@@ -104,6 +104,8 @@ class CategoryReportController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('cr.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('cr.id', 'ASC');
         }
 
         return $qb->getQuery();

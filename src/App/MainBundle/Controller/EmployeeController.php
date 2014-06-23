@@ -166,7 +166,11 @@ class EmployeeController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getEmployeeRepository()->createQueryBuilder('e');
+        $qb = $this->getEmployeeRepository()->createQueryBuilder('e')
+            ->select('e', 'enterp', 'subd')
+            ->leftJoin('e.subdivision', 'subd')
+            ->leftJoin('subd.enterprise', 'enterp')
+            ->leftJoin('e.profession', 'prof');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('e.name LIKE :name');
@@ -175,6 +179,8 @@ class EmployeeController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('e.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('e.id', 'ASC');
         }
 
         return $qb->getQuery();

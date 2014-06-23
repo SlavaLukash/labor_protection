@@ -22,6 +22,7 @@
     <tr>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'esg.id') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'esg.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Equipmentgroup'|trans, 'eg.name') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}
@@ -31,6 +32,7 @@
         <tr>
             <td>{{ item.id }}</td>
             <td><a href="{{ path('equipmentsubgroup_edit', { 'id': item.id }) }}">{{ item.name }}</a></td>
+            <td>{{ item.equipmentgroup }}</td>
             <td>
                 <ul>
                     <li>

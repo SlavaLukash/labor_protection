@@ -20,9 +20,10 @@
 
 {% block thead %}
     <tr>
-        <th>{% trans %}Enterprise{% endtrans %}</th>
-        <th>{% trans %}Expensekind{% endtrans %}</th>
-        <th>{% trans %}Year{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'e.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Expensekind'|trans, 'exp.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Year'|trans, 'e.year') }}</th>
         <th>Сумма затрат за год</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
@@ -31,6 +32,7 @@
 {% block tbody %}
     {% for item in pagination %}
         <tr>
+            <td>{{ item.id }}</td>
             <td><a href="{{ path('expense_edit', { 'id': item.id }) }}">{{ item.enterprise }}</a></td>
             <td>{{ item.expensekind }}</td>
             <td>{% if item.year %}{{ item.year }}{% endif %}</td>

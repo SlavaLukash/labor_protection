@@ -20,14 +20,14 @@
 
 {% block thead %}
     <tr>
-        <th>{% trans %}Id{% endtrans %}</th>
-        <th>{% trans %}Name{% endtrans %}</th>
-        <th>{% trans %}Enterprise{% endtrans %}</th>
-        <th>{% trans %}Subdivision{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'e.id') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'e.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Subdivision'|trans, 'subd.name') }}</th>
         {#<th>{% trans %}Equipmentgroup{% endtrans %}</th>#}
-        <th>{% trans %}Equipmentsubgroup{% endtrans %}</th>
-        <th>{% trans %}Model{% endtrans %}</th>
-        <th>{% trans %}Registrationnumber{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Equipmentsubgroup'|trans, 'esg.name') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Model'|trans, 'e.model') }}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Registrationnumber'|trans, 'e.registrationnumber') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}

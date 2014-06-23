@@ -101,7 +101,9 @@ class ProfessionController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getProfessionRepository()->createQueryBuilder('p');
+        $qb = $this->getProfessionRepository()->createQueryBuilder('p')
+            ->select('p', 'pk')
+            ->leftJoin('p.professionkind', 'pk');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('p.name LIKE :name');
@@ -110,6 +112,8 @@ class ProfessionController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('p.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('p.id', 'ASC');
         }
 
         return $qb->getQuery();

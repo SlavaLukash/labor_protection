@@ -104,6 +104,8 @@ class TechnicalexaminationtypeController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('tet.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('tet.id', 'ASC');
         }
 
         return $qb->getQuery();

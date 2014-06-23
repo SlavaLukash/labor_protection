@@ -104,6 +104,8 @@ class TraumacauseController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('tc.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('tc.id', 'ASC');
         }
 
         return $qb->getQuery();

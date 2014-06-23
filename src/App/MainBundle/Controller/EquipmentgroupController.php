@@ -104,6 +104,8 @@ class EquipmentgroupController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('eg.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('eg.id', 'ASC');
         }
 
         return $qb->getQuery();

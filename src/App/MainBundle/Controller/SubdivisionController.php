@@ -100,7 +100,9 @@ class SubdivisionController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getSubdivisionRepository()->createQueryBuilder('s');
+        $qb = $this->getSubdivisionRepository()->createQueryBuilder('s')
+            ->select('s', 'sd')
+            ->leftJoin('s.enterprise', 'sd');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('s.name LIKE :name');
@@ -109,6 +111,8 @@ class SubdivisionController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('s.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('s.id', 'ASC');
         }
 
         return $qb->getQuery();

@@ -128,7 +128,11 @@ class MedicalController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getMedicalRepository()->createQueryBuilder('m');
+        $qb = $this->getMedicalRepository()->createQueryBuilder('m')
+                ->select('m', 'e', 'subd', 'enterp')
+                ->leftJoin('m.employee', 'e')
+                ->leftJoin('e.subdivision', 'subd')
+                ->leftJoin('subd.enterprise', 'enterp');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('m.name LIKE :name');
@@ -137,6 +141,8 @@ class MedicalController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('m.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('m.id', 'ASC');
         }
 
         return $qb->getQuery();

@@ -108,7 +108,11 @@ class TraumaController extends BaseController
 
     protected function createFilterQuery(Form $form)
     {
-        $qb = $this->getTraumaRepository()->createQueryBuilder('t');
+        $qb = $this->getTraumaRepository()->createQueryBuilder('t')
+            ->select('t', 'e', 'subd', 'enterp')
+            ->leftJoin('t.employee', 'e')
+            ->leftJoin('e.subdivision', 'subd')
+            ->leftJoin('subd.enterprise', 'enterp');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('t.name LIKE :name');
@@ -116,7 +120,9 @@ class TraumaController extends BaseController
         }
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
-            $qb->orderBy('T.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+            $qb->orderBy('t.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('t.id', 'ASC');
         }
 
         return $qb->getQuery();

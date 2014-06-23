@@ -22,7 +22,7 @@
     <tr>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'p.id') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Name'|trans, 'p.name') }}</th>
-        <th class="sorted">{% trans %}Professionkind{% endtrans %}</th>
+        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Professionkind'|trans, 'pk.name') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
 {% endblock %}

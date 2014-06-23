@@ -105,6 +105,8 @@ class ExpensekindController extends BaseController
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
             $qb->orderBy('ek.' . $form->get('sort_field')->getNormData(), $form->get('sort_order')->getNormData());
+        } else {
+            $qb->orderBy('ek.id', 'ASC');
         }
 
         return $qb->getQuery();
