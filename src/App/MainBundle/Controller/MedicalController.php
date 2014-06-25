@@ -121,7 +121,7 @@ class MedicalController extends BaseController
                 'required' => false
             ])
             ->add('submit', 'submit', [
-                'label' => 'Показать'
+                'label' => 'Применить'
             ])
         ;
     }
@@ -129,10 +129,9 @@ class MedicalController extends BaseController
     protected function createFilterQuery(Form $form)
     {
         $qb = $this->getMedicalRepository()->createQueryBuilder('m')
-                ->select('m', 'e', 'subd', 'enterp')
+                ->select('m', 'e', 'enterp')
                 ->leftJoin('m.employee', 'e')
-                ->leftJoin('e.subdivision', 'subd')
-                ->leftJoin('subd.enterprise', 'enterp');
+                ->leftJoin('e.enterprise', 'enterp');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('m.name LIKE :name');

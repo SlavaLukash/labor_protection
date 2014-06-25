@@ -76,6 +76,20 @@ $(document).ready(function () {
 				}
 		});
 	});
+
+    $('.select2').each(function () {
+        var $this = $(this);
+        if ($this.data('select2')) {
+            return;
+        }
+        var opts = {
+//            allowClear: attrDefault($this, 'allowClear', !$(this).prop('required'))
+            allowClear: false
+        };
+
+        $this.select2(opts);
+        $this.addClass('visible');
+    });
 });
 
 function filterClear() {

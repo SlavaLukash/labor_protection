@@ -91,24 +91,21 @@ class EmployeeController extends BaseController
                 'attr' => array('class' => 'date-input'),
                 'required' => false,
             ))
-            ->add('subdivision', 'entity', array(
-                'class' => 'MainBundle:Subdivision',
+            ->add('enterprise', 'entity', array(
+                'class' => 'MainBundle:Enterprise',
+//                'expanded'=> true,
+                'multiple' => true,
                 'empty_value' => false,
-                'label' => 'Предприятие и подразделение',
+                'label' => 'Предприятие',
                 'constraints' => [
                     new NotBlank([])
-                ]
-//                'choices' => $options['sdArray'],
+                ],
+                'attr' => ['class' => 'select2']
             ))
-            ->add('marriagekind')
-//            ->add('profession')
-            /*->add('profession', 'genemu_jqueryselect2_hidden', [
-                'data_class' => 'App\MainBundle\Entity\Profession',
-                'mapped' => true,
-                'attr' => [
-                    'class' => 'bigdrop'
-                ]
+            /*->add('enterprise', null, [
+                'label' => 'Предприятие',
             ])*/
+            ->add('marriagekind')
             ->add('profession', 'genemu_jqueryselect2_entity', [
                 'class' => 'App\MainBundle\Entity\Profession',
                 'property' => 'name',
@@ -156,10 +153,18 @@ class EmployeeController extends BaseController
     {
         $builder
             ->add('name', 'text', [
-                'required' => false
+                'required' => false,
+                'label' => 'Ф.И.О.'
+            ])
+            ->add('enterprise', 'entity', [
+                'class' => 'App\MainBundle\Entity\Enterprise',
+                'property' => 'name',
+                'multiple' => true,
+                'required' => false,
+                'attr' => ['class' => 'select2']
             ])
             ->add('submit', 'submit', [
-                'label' => 'Показать'
+                'label' => 'Применить'
             ])
         ;
     }
@@ -167,14 +172,23 @@ class EmployeeController extends BaseController
     protected function createFilterQuery(Form $form)
     {
         $qb = $this->getEmployeeRepository()->createQueryBuilder('e')
-            ->select('e', 'enterp', 'subd')
-            ->leftJoin('e.subdivision', 'subd')
-            ->leftJoin('subd.enterprise', 'enterp')
+            ->select('e', 'enterp', 'prof')
+            ->leftJoin('e.enterprise', 'enterp')
             ->leftJoin('e.profession', 'prof');
 
         if ($form->get('name')->getNormData()) {
-            $qb->andWhere('e.name LIKE :name');
+            $qb->andWhere('LOWER(e.firstname) LIKE LOWER(:name) OR LOWER(e.lastname) LIKE LOWER(:name) OR LOWER(e.middlename) LIKE LOWER(:name)');
             $qb->setParameter('name', '%' . $form->get('name')->getNormData() . '%');
+        }
+
+        if ($form->get('enterprise')->getNormData()->count()) {
+            echo 'adsfasdf';die;
+            $enterpriseIds = array_map(function ($item) {
+                return $item->getId();
+            }, $form->get('enterprise')->getNormData()->toArray());
+
+            $qb->andWhere('enterp.id IN (:enterprise)');
+            $qb->setParameter('enterprise', $enterpriseIds);
         }
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {

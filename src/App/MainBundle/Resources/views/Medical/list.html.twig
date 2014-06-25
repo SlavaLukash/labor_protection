@@ -23,7 +23,6 @@
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 'm.id') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'LFMname'|trans, 'e.lastname') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
-        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Subdivision'|trans, 'subd.name') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Comment'|trans, 'm.comment') }}</th>
         <th>{% trans %}Actions{% endtrans %}</th>
     </tr>
@@ -34,8 +33,15 @@
         <tr>
             <td>{{ item.id }}</td>
             <td><a href="{{ path('medical_show', { 'id': item.id }) }}">{{ item.employee }}</a></td>
-            <td>{{ item.employee.subdivision.enterprise }}</td>
-            <td>{{ item.employee.subdivision }}</td>
+            <td>
+                {% if item.enterprise is defined %}
+                    <ul>
+                        {% for enterprise in item.enterprise %}
+                            <li>{{ enterprise.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </td>
             <td>{{ item.comment }}</td>
             <td>
                 <ul>

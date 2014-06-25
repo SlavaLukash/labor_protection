@@ -111,7 +111,7 @@ class ExpenseController extends BaseController
                 'required' => false
             ])
             ->add('submit', 'submit', [
-                'label' => 'Показать'
+                'label' => 'Применить'
             ])
         ;
     }

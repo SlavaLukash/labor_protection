@@ -101,7 +101,7 @@ class TraumaController extends BaseController
                 'required' => false
             ])
             ->add('submit', 'submit', [
-                'label' => 'Показать'
+                'label' => 'Применить'
             ])
         ;
     }
@@ -109,10 +109,9 @@ class TraumaController extends BaseController
     protected function createFilterQuery(Form $form)
     {
         $qb = $this->getTraumaRepository()->createQueryBuilder('t')
-            ->select('t', 'e', 'subd', 'enterp')
+            ->select('t', 'e', 'enterp')
             ->leftJoin('t.employee', 'e')
-            ->leftJoin('e.subdivision', 'subd')
-            ->leftJoin('subd.enterprise', 'enterp');
+            ->leftJoin('e.enterprise', 'enterp');
 
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('t.name LIKE :name');

@@ -22,8 +22,7 @@
     <tr>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'id'|trans, 't.id') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'LFMname'|trans, 'e.lastname') }}</th>
-        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Enterprise'|trans, 'enterp.name') }}</th>
-        <th class="sorted">{{ knp_pagination_sortable(pagination, 'Subdivision'|trans, 'subd.name') }}</th>
+        <th>{% trans %}Enterprise{% endtrans %}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Datetrauma'|trans, 't.datetrauma') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Traumareport'|trans, 't.traumareport') }}</th>
         <th class="sorted">{{ knp_pagination_sortable(pagination, 'Hoursstart'|trans, 't.hoursstart') }}</th>
@@ -36,8 +35,15 @@
         <tr>
             <td>{{ item.id }}</td>
             <td><a href="{{ path('trauma_edit', { 'id': item.id }) }}">{{ item.employee }}</a></td>
-            <td>{{ item.employee.subdivision.enterprise }}</td>
-            <td>{{ item.employee.subdivision }}</td>
+            <td>
+                {% if item.employee.enterprise is defined %}
+                    <ul>
+                        {% for enterprise in item.employee.enterprise %}
+                            <li>{{ enterprise.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </td>
             <td>{{ item.datetrauma|date('d.m.Y') }}</td>
             <td>{{ item.traumareport }}</td>
             <td>{{ item.hoursstart }}</td>

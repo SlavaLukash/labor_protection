@@ -19,11 +19,6 @@ class Subdivision
 	private $users;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="Employee", mappedBy="subdivision")
-	 */
-	protected $employee;
-
-	/**
 	 * @ORM\OneToMany(targetEntity="Equipment", mappedBy="subdivision")
 	 */
 	protected $equipment;
@@ -117,41 +112,7 @@ class Subdivision
     public function __construct()
     {
 		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->employee = new \Doctrine\Common\Collections\ArrayCollection();
         $this->equipment = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add employee
-     *
-     * @param \App\MainBundle\Entity\Employee $employee
-     * @return Subdivision
-     */
-    public function addEmployee(\App\MainBundle\Entity\Employee $employee)
-    {
-        $this->employee[] = $employee;
-    
-        return $this;
-    }
-
-    /**
-     * Remove employee
-     *
-     * @param \App\MainBundle\Entity\Employee $employee
-     */
-    public function removeEmployee(\App\MainBundle\Entity\Employee $employee)
-    {
-        $this->employee->removeElement($employee);
-    }
-
-    /**
-     * Get employee
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEmployee()
-    {
-        return $this->employee;
     }
 
     /**

@@ -89,11 +89,13 @@ class SubdivisionController extends BaseController
             ->add('name', 'text', [
                 'required' => false
             ])
-            ->add('enterprise', null, [
+            ->add('enterprise', 'entity', [
+                'class' => 'App\MainBundle\Entity\Enterprise',
+                'property' => 'name',
                 'required' => false
             ])
             ->add('submit', 'submit', [
-                'label' => 'Показать'
+                'label' => 'Применить'
             ])
         ;
     }
@@ -107,6 +109,11 @@ class SubdivisionController extends BaseController
         if ($form->get('name')->getNormData()) {
             $qb->andWhere('s.name LIKE :name');
             $qb->setParameter('name', '%' . $form->get('name')->getNormData() . '%');
+        }
+
+        if ($form->get('enterprise')->getNormData()) {
+            $qb->andWhere('IDENTITY(s.enterprise) = :enterprise');
+            $qb->setParameter('enterprise', $form->get('enterprise')->getNormData());
         }
 
         if ($form->has('sort_field') && $form->get('sort_field')->getNormData()) {
