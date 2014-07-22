@@ -18,11 +18,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 class User extends BaseUser
 {
 
-	/**
-	 * @ORM\ManyToMany(targetEntity="Subdivision", inversedBy="users")
-	 * @ORM\JoinTable(name="usersubdivision")
-	 **/
-	private $usersubdivisions;
+    /**
+     * @ORM\ManyToMany(targetEntity="Enterprise", cascade={"persist"})
+     * @ORM\JoinTable(name="user_enterprise")
+     */
+    private $enterprise;
 
 	/**
 	 * @ORM\Id
@@ -39,7 +39,7 @@ class User extends BaseUser
 	public function __construct()
 	{
 		parent::__construct();
-		$this->usersubdivisions = new ArrayCollection();
+        $this->enterprise = new ArrayCollection();
 		// your own logic
 	}
 
@@ -59,36 +59,26 @@ class User extends BaseUser
 	}
 
     /**
-     * Get usersubdivisions
+     * Set enterprise
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @param \App\MainBundle\Entity\Enterprise $enterprise
+     * @return Employee
      */
-    public function getUsersubdivisions()
+    public function setEnterprise(Enterprise $enterprise = null)
     {
-        return $this->usersubdivisions;
-    }
+        $this->enterprise = $enterprise;
 
-    /**
-     * Add usersubdivisions
-     *
-     * @param \App\MainBundle\Entity\Subdivision $usersubdivisions
-     * @return User
-     */
-    public function addUsersubdivision(\App\MainBundle\Entity\Subdivision $usersubdivisions)
-    {
-        $this->usersubdivisions[] = $usersubdivisions;
-    
         return $this;
     }
 
     /**
-     * Remove usersubdivisions
+     * Get enterprise
      *
-     * @param \App\MainBundle\Entity\Subdivision $usersubdivisions
+     * @return \App\MainBundle\Entity\Enterprise
      */
-    public function removeUsersubdivision(\App\MainBundle\Entity\Subdivision $usersubdivisions)
+    public function getEnterprise()
     {
-        $this->usersubdivisions->removeElement($usersubdivisions);
+        return $this->enterprise;
     }
 
 	/**

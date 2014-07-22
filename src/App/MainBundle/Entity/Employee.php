@@ -2,7 +2,6 @@
 
 namespace App\MainBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,17 +24,11 @@ class Employee
 	 */
 	protected $trauma;
 
-//	/**
-//	 * @ORM\ManyToOne(targetEntity="Enterprise", inversedBy="employee")
-//	 * @ORM\JoinColumn(name="enterprise", referencedColumnName="id")
-//	 */
-//	protected $enterprise;
-
     /**
-     * @ORM\ManyToMany(targetEntity="Enterprise", cascade={"persist"})
-     * @ORM\JoinTable(name="employee_enterprise")
+     * @ORM\ManyToOne(targetEntity="Subdivision", inversedBy="employee")
+     * @ORM\JoinColumn(name="subdivision", referencedColumnName="id")
      */
-    private $enterprise;
+    protected $subdivision;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Marriagekind", inversedBy="employee")
@@ -113,7 +106,6 @@ class Employee
      */
     public function __construct()
     {
-        $this->enterprise = new ArrayCollection();
         $this->medical = new \Doctrine\Common\Collections\ArrayCollection();
         $this->trauma = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -356,26 +348,26 @@ class Employee
     }
 
     /**
-     * Set enterprise
+     * Set subdivision
      *
-     * @param \App\MainBundle\Entity\Enterprise $enterprise
+     * @param \App\MainBundle\Entity\Subdivision $subdivision
      * @return Employee
      */
-    public function setEnterprise(Enterprise $enterprise = null)
+    public function setSubdivision(\App\MainBundle\Entity\Subdivision $subdivision = null)
     {
-        $this->enterprise = $enterprise;
+        $this->subdivision = $subdivision;
 
         return $this;
     }
 
     /**
-     * Get enterprise
+     * Get subdivision
      *
-     * @return \App\MainBundle\Entity\Enterprise
+     * @return \App\MainBundle\Entity\Subdivision
      */
-    public function getEnterprise()
+    public function getSubdivision()
     {
-        return $this->enterprise;
+        return $this->subdivision;
     }
 
     /**

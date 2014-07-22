@@ -77,7 +77,7 @@
 {#{% endblock %}#}
 
 {% block choice_widget %}
-    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' select2')|trim}) %}
+    {% set attr = attr|merge({'class': (attr.class|default('') ~ ' ')|trim}) %}
     {{ parent() }}
 {% endblock %}
 

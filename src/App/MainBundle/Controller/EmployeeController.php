@@ -91,16 +91,14 @@ class EmployeeController extends BaseController
                 'attr' => array('class' => 'date-input'),
                 'required' => false,
             ))
-            ->add('enterprise', 'entity', array(
-                'class' => 'MainBundle:Enterprise',
-//                'expanded'=> true,
-                'multiple' => true,
+            ->add('subdivision', 'entity', array(
+                'class' => 'MainBundle:Subdivision',
                 'empty_value' => false,
-                'label' => 'Предприятие',
+                'label' => 'Предприятие и подразделение',
                 'constraints' => [
                     new NotBlank([])
-                ],
-                'attr' => ['class' => 'select2']
+                ]
+//                'choices' => $options['sdArray'],
             ))
             /*->add('enterprise', null, [
                 'label' => 'Предприятие',

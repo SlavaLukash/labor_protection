@@ -7,6 +7,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * User controller.
@@ -65,9 +66,17 @@ class UserController extends BaseController
             ->add('enabled', 'checkbox', [
                 'required' => false,
             ])
-            ->add('usersubdivisions', null, [
-                'required' => false,
-            ])
+            ->add('enterprise', 'entity', array(
+                'class' => 'MainBundle:Enterprise',
+//                'expanded'=> true,
+                'multiple' => true,
+                'empty_value' => false,
+                'label' => 'Предприятие',
+                'constraints' => [
+                    new NotBlank([])
+                ],
+                'attr' => ['class' => 'select2']
+            ))
         ;
 
         $editForm = $builder->getForm();

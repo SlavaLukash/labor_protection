@@ -10,7 +10,7 @@ class DefaultController extends Controller
     {
 		/*$session = $this->getRequest()->getSession();
 		$session->set('report_user_id', $this->getUser()->getId());*/
-		
+
 		if($this->getUser()->hasRole('ROLE_ADMIN')) {
 			$response = $this->forward('App\MainBundle\Controller\UserController::indexAction');
 		} else {
